@@ -1,24 +1,48 @@
 # README
+  
+## FitsME
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## 開発言語
+- Ruby 2.6.5  
+- Ruby on Rails 5.2.5  
 
-* Ruby version
+## 就業Termの技術
+- devise  
+- お気に入り機能  
+- kaminari  
+- Ajax  
 
-* System dependencies
+## カリキュラム外の技術
+- Pay.jp  
+- ancestry  
+- ActiveStorage  
 
-* Configuration
+## 余裕があれば実装
+- AWS EC2  
+- ransack  
+- omniauth  
 
-* Database creation
+## 実行手順
+```
+$ git clone git@github.com:Momo-Hayashi/FitsME.git  
+$ cd FitsME  
+$ bundle install  
+$ rails db:create db:migrate  
+$ rails s  
+```
 
-* Database initialization
+## カタログ設計
+カタログ設計
 
-* How to run the test suite
+## テーブル設計
+テーブル設計
 
-* Services (job queues, cache servers, search engines, etc.)
+## ER図
+ER図
 
-* Deployment instructions
+## 画面遷移図
+画面遷移図
 
-* ...
+## ワイヤーフレーム
+ワイヤーフレーム
