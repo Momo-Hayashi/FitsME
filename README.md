@@ -1,5 +1,4 @@
-[default (1).pdf](https://github.com/Momo-Hayashi/FitsME/files/6847686/default.1.pdf)
-[画面遷移図 (1) 19.59.14.pdf](https://github.com/Momo-Hayashi/FitsME/files/6847691/1.19.59.14.pdf)
+
 # README
   
 ## FitsME
