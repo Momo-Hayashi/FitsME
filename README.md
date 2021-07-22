@@ -10,17 +10,17 @@
 
 ## 就業Termの技術
 - devise  
-- お気に入り機能  
-- kaminari  
-- Ajax  
+- お気に入り機能 　
 
 ## カリキュラム外の技術
 - Pay.jp  
 - ancestry  
 - ActiveStorage  
 
-## 余裕があれば実装
-- AWS EC2  
+## その他の技術
+- AWS EC2(優先度：中)  
+- kaminari  
+- Vue.js  
 - ransack  
 - omniauth  
 
