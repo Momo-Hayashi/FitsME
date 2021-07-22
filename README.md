@@ -17,8 +17,8 @@
 - ancestry  
 - ActiveStorage  
 
-## その他の技術
-- AWS EC2(優先度：中)  
+## その他の技術（時間に猶予があれば実行）
+- AWS EC2  
 - kaminari  
 - Vue.js  
 - ransack  
