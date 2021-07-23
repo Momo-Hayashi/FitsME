@@ -1,4 +1,5 @@
 
+
 # README
   
 ## FitsME
@@ -40,7 +41,7 @@ $ rails s
 [テーブル設計](https://docs.google.com/spreadsheets/d/1dUtnFL-pFzik5JiMkF2qFwqpfiGoxGp3OSuWpCnSsVE/edit#gid=2020033787)　　
 
 ## ER図
-![ER図](https://user-images.githubusercontent.com/83218898/126421312-59533893-f761-4957-aa27-6f1fe731ad57.png)
+<img width="1062" alt="ER図" src="https://user-images.githubusercontent.com/83218898/126734982-34144484-1df5-4638-a2f4-8905abf31e95.png">
 https://cacoo.com/diagrams/OdGHuW7wedFiXguP/71C45?reload_rt=1626248381130_0
 
 ## 画面遷移図
