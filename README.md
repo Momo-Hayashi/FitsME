@@ -49,7 +49,7 @@ $ rails s
 [テーブル設計](https://docs.google.com/spreadsheets/d/1dUtnFL-pFzik5JiMkF2qFwqpfiGoxGp3OSuWpCnSsVE/edit#gid=2020033787)　　
 
 ## ER図
-<img width="1001" alt="ER図" src="https://user-images.githubusercontent.com/83218898/126855738-82df3c84-0341-4a2a-9e0c-cbb2dec2a703.png">　　
+<img width="993" alt="ER図" src="https://user-images.githubusercontent.com/83218898/126885170-04653539-8d33-4da6-9fcb-7220cf7bcc68.png">
 https://cacoo.com/diagrams/OdGHuW7wedFiXguP/71C45?reload_rt=1626248381130_0
 
 ## 画面遷移図
