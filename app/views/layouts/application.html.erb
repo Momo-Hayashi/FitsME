@@ -18,7 +18,7 @@
           <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
         <% elsif retailer_signed_in? %>
           <strong><%= link_to 'Fits ME', clothes_path %></strong>
-          <%= link_to 'Company Page', edit_retailer_registration %>
+          <%# <%= link_to 'Company Page', edit_retailer_registration %> %>
           <%= link_to '服の登録' %>
         <% else %>
           <%= link_to 'Sign up', new_user_registration_path %>
