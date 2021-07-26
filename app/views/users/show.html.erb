@@ -1,0 +1,13 @@
+<h1>about me</h1>
+
+<div class="user_info">
+  <h3>User name</h3>
+  <%= @user.username %>
+  <h3>メールアドレス</h3>
+  <%= @user.email %>
+  <h3>保有ポイント</h3>
+  <%= @user.points %>
+</div>
+
+<br>
+<%= link_to 'Edit the profile', edit_user_registration_path %>
