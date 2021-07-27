@@ -18,6 +18,7 @@
 </div>
 
 <br>
-
-<%= link_to 'Edit', edit_clothe_path(@clothe) %> |
+<% if current_retailer == @clothe.retailer %>
+  <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
+<% end %>
 <%= link_to 'Back', clothes_path %>

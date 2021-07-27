@@ -1,9 +1,9 @@
-<h2>Company Profile</h2>
+<h2>ブランド詳細</h2>
 
 <div class="retailer_info">
   <h4>Company Name：</h4>
   <%= @retailer.name %>
-  <h4>ブランド詳細：</h4>
+  <h4>ショップ情報：</h4>
   <%= @retailer.description %>
   <h4>ロゴ：</h4>
   <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
@@ -11,15 +11,20 @@
   <%= @retailer.website_url %>
 </div>
 <br>
-<div>
-  <h4>-----下記は管理用となりますので、ウェブでは公開されません。-----</h4>
-  <h4>メールアドレス：</h4>
-  <%= @retailer.email %>
-  <h4>電話番号：</h4>
-  <%= @retailer.phone_number %>
-  <h4>住所：</h4>
-  <%= @retailer.address %>
-</div>
 
-<br>
-<%= link_to 'Edit the profile', edit_retailer_registration_path %>
+<% if current_retailer == @retailer  %>
+  <div>
+    <h4>-----下記は管理用となりますので、ウェブでは公開されません。-----</h4>
+    <h4>メールアドレス：</h4>
+    <%= @retailer.email %>
+    <h4>電話番号：</h4>
+    <%= @retailer.phone_number %>
+    <h4>住所：</h4>
+    <%= @retailer.address %>
+  </div>
+
+  <br>
+  <%= link_to 'Edit the profile', edit_retailer_registration_path %>
+<% end %>
+
+<%= link_to 'Back', clothes_path %>
