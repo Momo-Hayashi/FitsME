@@ -16,9 +16,16 @@
           <strong><%= link_to 'Fits ME', clothes_path %></strong>
           <%= link_to 'My page', users_show_path %>
           <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        <% elsif retailer_signed_in? %>
+          <strong><%= link_to 'Fits ME', clothes_path %></strong>
+          <%= link_to 'Company Page', edit_retailer_registration_path %>
+          <%= link_to '服の登録' %>
+          <%= link_to 'Log out', destroy_retailer_session_path, method: :delete %>
         <% else %>
           <%= link_to 'Sign up', new_user_registration_path %>
           <%= link_to 'Log in', new_user_session_path %>
+          <%= link_to '出品企業として利用', new_retailer_registration_path %>
+
         <% end %>
       </nav>
     </header>
