@@ -1,4 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h2>アイテム詳細</h2>
+
+<div class="clothes_info">
+  <h3>アイテム名：</h3>
+  <%= @clothe.name %>
+  <h3>アイテム詳細：</h3>
+  <%= @clothe.description %>
+  <h3>Size：</h3>
+  <%= @clothe.size %>
+  <h3>Price：</h3>
+  <%= @clothe.price %>
+  <h3>Images：</h3>
+  <% if @clothe.images.attached? %>
+    <% @clothe.images.each do |image| %>
+      <%= image_tag image.variant(resize: "250x250") %>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
 
 <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
 <%= link_to 'Back', clothes_path %>

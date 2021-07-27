@@ -21,7 +21,7 @@ class ClothesController < ApplicationController
 
   # POST /clothes or /clothes.json
   def create
-    @clothe = Clothe.new(clothe_params)
+    @clothe = current_retailer.clothes.build(clothe_params)
 
     respond_to do |format|
       if @clothe.save
@@ -57,13 +57,11 @@ class ClothesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_clothe
       @clothe = Clothe.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def clothe_params
-      params.fetch(:clothe, {})
+      params.require(:clothe).permit(:name, :description, :size, :price, images: [] )
     end
 end

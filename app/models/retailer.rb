@@ -10,4 +10,5 @@ class Retailer < ApplicationRecord
   validates :address, presence: true, length: { maximum: 250 }
 
   has_one_attached :logo
+  has_many :clothes, dependent: :destroy
 end

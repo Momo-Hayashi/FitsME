@@ -1,2 +1,22 @@
 <h1>Fits ME</h1>
 <p>Go look for your ideal outfits!</p>
+
+<div class="index_clothes">
+  <% @clothes.each do |clothe| %>
+    <ul>
+      <li><%= image_tag clothe.images.first.variant(resize: "200x200") %></li>
+      <li><%= clothe.retailer.name %></li>
+      <li><%= clothe.name %></li>
+      <li>¥<%= clothe.price %></li>
+      <table>
+        <tr>
+          <td><%= link_to 'See more', clothe_path(clothe.id) %></td>
+          <% if current_retailer == clothe.retailer %>
+            <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
+            <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
+          <% end %>
+        </tr>
+      </table>
+    </ul>
+  <% end %>
+</div>
