@@ -6,9 +6,7 @@
   <h4>ブランド詳細：</h4>
   <%= @retailer.description %>
   <h4>ロゴ：</h4>
-  <% if @retailer.logo.attached? %>
-    <%= image_tag @retailer.logo.variant(resize: "150x150") %>
-  <% end %>
+  <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
   <h4>Website URL：</h4>
   <%= @retailer.website_url %>
 </div>
