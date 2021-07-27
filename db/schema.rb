@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2021_07_26_062010) do
+ActiveRecord::Schema.define(version: 2021_07_27_060552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -8,7 +8,7 @@ ActiveRecord::Schema.define(version: 2021_07_26_062010) do
     t.text "description"
     t.text "logo"
     t.text "website_url"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.text "address"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

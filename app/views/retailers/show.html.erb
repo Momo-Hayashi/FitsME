@@ -1,18 +1,25 @@
-<h1>Company Profile</h1>
+<h2>Company Profile</h2>
 
 <div class="retailer_info">
-  <h3>Company Name：</h3>
+  <h4>Company Name：</h4>
   <%= @retailer.name %>
-  <h3>メールアドレス：</h3>
-  <%= @retailer.email %>
-  <h3>電話番号：</h3>
-  <%= @retailer.phone_number %>
-  <h3>住所：</h3>
-  <%= @retailer.address %>
-  <h3>Website URL：</h3>
+  <h4>ブランド詳細：</h4>
+  <%= @retailer.description %>
+  <h4>ロゴ：</h4>
+  <%= @retailer.logo %>
+  <h4>Website URL：</h4>
   <%= @retailer.website_url %>
 </div>
-
+<br>
+<div>
+  <h4>-----下記は管理用となりますので、ウェブでは公開されません。-----</h4>
+  <h4>メールアドレス：</h4>
+  <%= @retailer.email %>
+  <h4>電話番号：</h4>
+  <%= @retailer.phone_number %>
+  <h4>住所：</h4>
+  <%= @retailer.address %>
+</div>
 
 <br>
 <%= link_to 'Edit the profile', edit_retailer_registration_path %>
