@@ -3,6 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :username, length: { maximum: 60 }
+  validates :username, presence: true, length: { maximum: 60 }
   validates :points, presence: true
 end

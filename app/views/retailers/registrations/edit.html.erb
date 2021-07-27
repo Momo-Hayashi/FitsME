@@ -17,7 +17,8 @@
 
   <div class="field">
     <%= f.label :ロゴ %><br />
-    <%= f.text_field :logo %>
+    <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
+    <%= f.file_field :logo %>
   </div>
 
   <div class="field">
