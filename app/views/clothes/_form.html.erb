@@ -1,0 +1,17 @@
+<%= form_with(model: clothe, local: true) do |form| %>
+  <% if clothe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(clothe.errors.count, "error") %> prohibited this clothe from being saved:</h2>
+
+      <ul>
+      <% clothe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
