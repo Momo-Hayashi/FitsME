@@ -1,0 +1,18 @@
+<h1>Company Profile</h1>
+
+<div class="retailer_info">
+  <h3>Company Name：</h3>
+  <%= @retailer.name %>
+  <h3>メールアドレス：</h3>
+  <%= @retailer.email %>
+  <h3>電話番号：</h3>
+  <%= @retailer.phone_number %>
+  <h3>住所：</h3>
+  <%= @retailer.address %>
+  <h3>Website URL：</h3>
+  <%= @retailer.website_url %>
+</div>
+
+
+<br>
+<%= link_to 'Edit the profile', edit_retailer_registration_path %>

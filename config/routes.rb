@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'retailers/show'
   root 'clothes#index'
   resources :clothes
 
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
-  get 'users/show' => 'users#show'
+  get 'users/show', to: 'users#show'
+  get 'retailers/show', to: 'retailers#show'
 
 end
