@@ -1,6 +1,6 @@
-// html {
-//   font-size: 62.5%;
-// }
+html {
+  height: 100%;
+}
 
 header {
   height: 60px;
@@ -13,6 +13,8 @@ body {
   width: 980px;
   background-color: #fef6e4;
   margin: 0 auto;
+  min-height: 100%;
+  position: relative;
 }
 
 ul {
@@ -25,7 +27,7 @@ li {
 }
 
 article {
-  padding: 20px 30px 70px 30px;
+  padding: 20px 30px 100px 30px;
 }
 
 .top_manu li{
@@ -45,4 +47,21 @@ article {
 
 .clothe_info th{
   padding-right: 0px;
+}
+
+.footer {
+  background-color: #8bd3dd;
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: table;
+}
+
+.footer p {
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
 }
