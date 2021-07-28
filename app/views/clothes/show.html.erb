@@ -35,6 +35,11 @@
           <td class="col-md-9"><%= @clothe.description %></td>
         </tr>
       </table>
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(@favorite.id), method: :delete, class: 'btn btn-outline-danger' %><
+      <% else %>
+        <%= link_to 'お気に入りする', favorites_path(@clothe.id), method: :post, class: "btn btn-outline-primary" %>
+      <% end %>
     </div>
 
   </div>
