@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'retailers/show'
-  root 'clothes#index'
   resources :clothes
+  root 'clothes#index'
 
   devise_for :retailers, controllers: {
     sessions: 'retailers/sessions',
