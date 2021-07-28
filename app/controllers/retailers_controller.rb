@@ -1,5 +1,5 @@
 class RetailersController < ApplicationController
   def show
-    @retailer = current_retailer
+    @retailer = Retailer.find(params[:id])
   end
 end
