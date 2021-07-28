@@ -1,24 +1,48 @@
-<h2>アイテム詳細</h2>
+<article>
 
-<div class="clothes_info">
-  <h3>アイテム名：</h3>
-  <%= @clothe.name %>
-  <h3>アイテム詳細：</h3>
-  <%= @clothe.description %>
-  <h3>Size：</h3>
-  <%= @clothe.size %>
-  <h3>Price：</h3>
-  <%= @clothe.price %>
-  <h3>Images：</h3>
-  <% if @clothe.images.attached? %>
-    <% @clothe.images.each do |image| %>
-      <%= image_tag image.variant(resize: "250x250") %>
-    <% end %>
+  <h2>アイテム詳細</h2>
+
+  <div class="row">
+    <div class="col-md-5">
+      <h5>Images：</h5>
+      <% if @clothe.images.attached? %>
+        <% @clothe.images.each do |image| %>
+          <%= image_tag image.variant(resize: "380x380") %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="clothe_info col-md-7">
+      <table class = "row">
+        <tr>
+          <th class="col-md-3">ブランド名：</th>
+          <td class="col-md-9"><%= @clothe.retailer.name %></td>
+        </tr>
+        <tr>
+          <th class="col-md-3">アイテム名：</th>
+          <td class="col-md-9"><%= @clothe.name %></td>
+        </tr>
+        <tr>
+          <th class="col-md-3">Size：</th>
+          <td class="col-md-9"><%= @clothe.size %></td>
+        </tr>
+        <tr>
+          <th class="col-md-3">Price：</th>
+          <td class="col-md-9">¥<%= @clothe.price %></td>
+        </tr>
+        <tr>
+          <th class="col-md-3">アイテム詳細：</th>
+          <td class="col-md-9"><%= @clothe.description %></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <br>
+  <% if current_retailer == @clothe.retailer %>
+    <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
   <% end %>
-</div>
+  <%= link_to 'Back', clothes_path %>
 
-<br>
-<% if current_retailer == @clothe.retailer %>
-  <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
-<% end %>
-<%= link_to 'Back', clothes_path %>
+</article>
