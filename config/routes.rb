@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get 'users/show', to: 'users#show'
   get 'retailers/show/:id', to: 'retailers#show', as: 'retailers'
 
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy, :index]
 
 end
