@@ -1,25 +1,26 @@
+
 <h2>ブランド詳細</h2>
 
 <div class="retailer_info">
-  <h4>Company Name：</h4>
+  <h5>Company Name：</h5>
   <%= @retailer.name %>
-  <h4>ショップ情報：</h4>
+  <h5>ショップ情報：</h5>
   <%= @retailer.description %>
-  <h4>ロゴ：</h4>
+  <h5>ロゴ：</h5>
   <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
-  <h4>Website URL：</h4>
+  <h5>Website URL：</h5>
   <%= @retailer.website_url %>
 </div>
 <br>
 
 <% if current_retailer == @retailer %>
   <div>
-    <h4>-----下記は管理用となりますので、ウェブでは公開されません。-----</h4>
-    <h4>メールアドレス：</h4>
+    <h6>-----下記は管理用となりますので、ウェブでは公開されません。-----</h6>
+    <h5>メールアドレス：</h5>
     <%= @retailer.email %>
-    <h4>電話番号：</h4>
+    <h5>電話番号：</h5>
     <%= @retailer.phone_number %>
-    <h4>住所：</h4>
+    <h5>住所：</h5>
     <%= @retailer.address %>
   </div>
 
