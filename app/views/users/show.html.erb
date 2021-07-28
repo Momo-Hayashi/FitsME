@@ -1,13 +1,21 @@
-<h1>about me</h1>
+<article>
+  <h3>about me</h3>
 
-<div class="user_info">
-  <h3>User name</h3>
-  <%= @user.username %>
-  <h3>メールアドレス</h3>
-  <%= @user.email %>
-  <h3>保有ポイント</h3>
-  <%= @user.points %>
-</div>
+  <table>
+    <tr>
+      <th>User name：</th>
+      <td><%= @user.username %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス：</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>保有ポイント：</th>
+      <td><%= @user.points %>ポイント</td>
+    </tr>
+  </table>
 
-<br>
-<%= link_to 'Edit the profile', edit_user_registration_path %>
+  <br>
+  <%= link_to 'Edit the profile', edit_user_registration_path %>
+</article>
