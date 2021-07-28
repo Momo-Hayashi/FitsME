@@ -16,7 +16,7 @@
       <table class = "row">
         <tr>
           <th class="col-md-3">ブランド名：</th>
-          <td class="col-md-9"><%= @clothe.retailer.name %></td>
+          <td class="col-md-9"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
         </tr>
         <tr>
           <th class="col-md-3">アイテム名：</th>

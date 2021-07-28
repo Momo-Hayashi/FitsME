@@ -1,31 +1,69 @@
+<article>
 
-<h3>ブランド詳細</h3>
+  <h3>ブランド詳細</h3><br>
 
-<div class="retailer_info">
-  <h5>Company Name：</h5>
-  <%= @retailer.name %>
-  <h5>ショップ情報：</h5>
-  <%= @retailer.description %>
-  <h5>ロゴ：</h5>
-  <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
-  <h5>Website URL：</h5>
-  <%= @retailer.website_url %>
-</div>
-<br>
+  <div class="row">
+    <div class="col-md-2">
+      <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
+    </div>
+    <div class="col-md-10">
+      <table class="retailer_info">
+        <tr>
+          <th>Company Name：</th>
+          <td><%= @retailer.name %></td>
+        </tr>
+        <tr>
+          <th>ショップ情報：</th>
+          <td><%= @retailer.description %></td>
+        </tr>
+        <tr>
+          <th>Website URL：</th>
+          <td><%= @retailer.website_url %></td>
+        </tr>
+      </table>
+    </div>
+  </div><br><br><br>
 
-<% if current_retailer == @retailer %>
-  <div>
-    <h6>-----下記は管理用となりますので、ウェブでは公開されません。-----</h6>
-    <h5>メールアドレス：</h5>
-    <%= @retailer.email %>
-    <h5>電話番号：</h5>
-    <%= @retailer.phone_number %>
-    <h5>住所：</h5>
-    <%= @retailer.address %>
+
+  <div class="row">
+    <% @retailer.clothes.each do |clothe| %>
+      <div class="index_clothes col-sm-6 col-md-3">
+        <ul>
+          <li><%= image_tag clothe.images.first.variant(resize: "180x180") %></li>
+          <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
+          <li><%= clothe.name %></li>
+          <li>¥<%= clothe.price %></li>
+          <table>
+            <tr>
+              <td><%= link_to 'See more', clothe_path(clothe.id) %></td>
+              <% if current_retailer == clothe.retailer %>
+                <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
+                <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
+              <% end %>
+            </tr>
+          </table>
+        </ul>
+      </div>
+    <% end %>
   </div>
 
-  <br>
-  <%= link_to 'Edit the profile', edit_retailer_registration_path %>
-<% end %>
 
-<%= link_to 'Back', clothes_path %>
+  <br>
+
+  <% if current_retailer == @retailer %>
+    <div>
+      <h6>-----下記は管理用となりますので、ウェブでは公開されません。-----</h6>
+      <h5>メールアドレス：</h5>
+      <%= @retailer.email %>
+      <h5>電話番号：</h5>
+      <%= @retailer.phone_number %>
+      <h5>住所：</h5>
+      <%= @retailer.address %>
+    </div>
+
+    <br>
+    <%= link_to 'Edit the profile', edit_retailer_registration_path %>
+  <% end %>
+
+  <%= link_to 'Back', clothes_path %>
+</article>
