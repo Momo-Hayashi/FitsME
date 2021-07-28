@@ -1,5 +1,8 @@
 {
   "name": "FitsME",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "4",
+    "jquery": "^3.6.0"
+  }
 }

@@ -1,30 +1,76 @@
-<h2>ブランド詳細</h2>
+<article>
 
-<div class="retailer_info">
-  <h4>Company Name：</h4>
-  <%= @retailer.name %>
-  <h4>ショップ情報：</h4>
-  <%= @retailer.description %>
-  <h4>ロゴ：</h4>
-  <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
-  <h4>Website URL：</h4>
-  <%= @retailer.website_url %>
-</div>
-<br>
+  <h3>ブランド詳細</h3><br>
 
-<% if current_retailer == @retailer %>
-  <div>
-    <h4>-----下記は管理用となりますので、ウェブでは公開されません。-----</h4>
-    <h4>メールアドレス：</h4>
-    <%= @retailer.email %>
-    <h4>電話番号：</h4>
-    <%= @retailer.phone_number %>
-    <h4>住所：</h4>
-    <%= @retailer.address %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
+    </div>
+    <div class="col-md-10">
+      <table class="retailer_info">
+        <tr>
+          <th>Company Name：</th>
+          <td><%= @retailer.name %></td>
+        </tr>
+        <tr>
+          <th>ショップ情報：</th>
+          <td><%= @retailer.description %></td>
+        </tr>
+        <tr>
+          <th>Website URL：</th>
+          <td><%= @retailer.website_url %></td>
+        </tr>
+      </table>
+    </div>
+
+    <% if current_retailer == @retailer %>
+      <div><br><br>
+        <h6>---こちらは管理用となりますので、ウェブでは公開されません。---</h6>
+        <table>
+          <tr>
+            <th>メールアドレス：</th>
+            <td><%= @retailer.email %></td>
+          </tr>
+          <tr>
+            <th>電話番号：</th>
+            <td><%= @retailer.phone_number %></td>
+          </tr>
+          <tr>
+            <th>住所：</th>
+            <td><%= @retailer.address %></td>
+          </tr>
+        </table>
+        <%= link_to 'Edit the profile', edit_retailer_registration_path %>
+        <h6>------------------------------------------------------------------</h6>
+      </div>
+    <% end %>
+  </div><br><br>
+
+
+  <div class="row">
+    <% @retailer.clothes.each do |clothe| %>
+      <div class="index_clothes col-sm-6 col-md-3">
+        <ul>
+          <li><%= image_tag clothe.images.first.variant(resize: "180x180") %></li>
+          <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
+          <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
+          <li>¥<%= clothe.price %></li>
+          <table>
+            <tr>
+              <% if current_retailer == clothe.retailer %>
+                <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
+                <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
+              <% end %>
+            </tr>
+          </table>
+        </ul>
+      </div>
+    <% end %>
   </div>
 
-  <br>
-  <%= link_to 'Edit the profile', edit_retailer_registration_path %>
-<% end %>
+  <br><br>
 
-<%= link_to 'Back', clothes_path %>
+
+
+  <%= link_to 'Back', clothes_path %>
+</article>

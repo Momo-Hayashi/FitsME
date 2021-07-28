@@ -1,3 +1,67 @@
-// Place all the styles related to the Clothes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html {
+  height: 100%;
+}
+
+header {
+  height: 60px;
+  font-size: 1.2rem;
+  background-color: #8bd3dd;
+  margin-left: 0;
+}
+
+body {
+  width: 980px;
+  background-color: #fef6e4;
+  margin: 0 auto;
+  min-height: 100%;
+  position: relative;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+article {
+  padding: 20px 30px 100px 30px;
+}
+
+.top_manu li{
+  float: left;
+  padding: 15px;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+td{
+  padding: 10px;
+}
+
+.clothe_info th{
+  padding-right: 0px;
+}
+
+.footer {
+  background-color: #8bd3dd;
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: table;
+}
+
+.footer p {
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}

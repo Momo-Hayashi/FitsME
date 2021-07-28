@@ -11,24 +11,23 @@
 
   <body>
     <header>
-      <nav>
+      <ul class ="top_manu clearfix">
         <% if user_signed_in? %>
-          <strong><%= link_to 'Fits ME', clothes_path %></strong>
-          <%= link_to 'My page', users_show_path %>
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+          <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
+          <li><%= link_to 'My page', users_show_path %></li>
+          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         <% elsif retailer_signed_in? %>
-          <strong><%= link_to 'Fits ME', clothes_path %></strong>
-          <%= link_to 'Company Profile', retailers_show_path %>
-          <%= link_to '服の登録', new_clothe_path %>
-          <%= link_to 'Log out', destroy_retailer_session_path, method: :delete %>
+          <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
+          <li><%= link_to '管理画面TOP' %></li>
+          <li><%= link_to '服の登録', new_clothe_path %></li>
+          <li><%= link_to 'Log out', destroy_retailer_session_path, method: :delete %></li>
         <% else %>
-          <strong><%= link_to 'Fits ME', clothes_path %></strong>
-          <%= link_to 'Sign up', new_user_registration_path %>
-          <%= link_to 'Log in', new_user_session_path %>
-          <%= link_to '出品企業として利用', new_retailer_registration_path %>
-
+          <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
+          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+          <li><%= link_to 'Log in', new_user_session_path %></li>
+          <li><%= link_to '出品企業として利用', new_retailer_registration_path %></li>
         <% end %>
-      </nav>
+      </ul>
     </header>
     <% if notice %>
       <p class="notice"><%= notice %></p>
@@ -36,10 +35,12 @@
     <% if alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
-    <!-- <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> -->
 
     <%= yield %>
-
   </body>
+
+  <footer class="footer">
+    <p>Copyright © 2021 FitsME All RIGHTS RESERVED.</p>
+  </footer>
+
 </html>

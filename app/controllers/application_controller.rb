@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     when User
       users_show_path
     when Retailer
-      retailers_show_path
+      retailers_path(@retailer.id)
     end
   end
 
