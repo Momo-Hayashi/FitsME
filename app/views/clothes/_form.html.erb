@@ -1,48 +1,67 @@
-<%= form_with(model: clothe, local: true) do |form| %>
+<article>
+  <%= form_with(model: @clothe, local: true) do |form| %>
 
-  <% if clothe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(clothe.errors.count, "error") %> prohibited this clothes from being saved:</h2>
-      <ul>
-      <% clothe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <% if clothe.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(clothe.errors.count, "error") %> prohibited this clothes from being saved:</h2>
+        <ul>
+        <% clothe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <div class="field">
+        <%= form.label :アイテム名 %><br>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :アイテム詳細 %><br>
+        <%= form.text_field :description %>
+      </div>
+
+      <div class="field">
+        <%= form.label :サイズ %><br>
+        <%= form.text_field :size %>
+      </div>
+
+      <div class="field">
+        <%= form.label :Price %><br>
+        <%= form.number_field :price %>
+      </div>
+
+      <div class="field">
+        <%= form.label :'Images of the item' %><br>
+        <% if clothe.images.attached? %>
+          <% clothe.images.each do |image| %>
+            <%= image_tag image.variant(resize: "250x250") %>
+          <% end %>
+        <% end %><br>
+        <%= form.file_field :images, multiple: true %>
+      </div><br>
+
+      <%= form.fields_for :stocks do |stock| %>
+        <div class="field">
+          <%= stock.label :Size %>
+          <%= stock.text_field :size %>
+        </div>
+
+        <div class="field">
+          <%= stock.label :Color %>
+          <%= stock.text_field :color %>
+        </div>
+
+        <div class="field">
+          <%= stock.label :数量 %>
+          <%= stock.text_field :quantity %>
+        </div><br>
       <% end %>
-      </ul>
+
+      <br>
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <div class="field">
-      <%= form.label :アイテム名 %><br>
-      <%= form.text_field :name %>
-    </div>
-
-    <div class="field">
-      <%= form.label :アイテム詳細 %><br>
-      <%= form.text_field :description %>
-    </div>
-
-    <div class="field">
-      <%= form.label :サイズ %><br>
-      <%= form.text_field :size %>
-    </div>
-
-    <div class="field">
-      <%= form.label :Price %><br>
-      <%= form.number_field :price %>
-    </div>
-
-    <div class="field">
-      <%= form.label :'Images of the item' %><br>
-      <% if clothe.images.attached? %>
-        <% clothe.images.each do |image| %>
-          <%= image_tag image.variant(resize: "250x250") %>
-        <% end %>
-      <% end %><br>
-      <%= form.file_field :images, multiple: true %>
-    </div>
-
-    <br>
-    <%= form.submit %>
-  </div>
-<% end %>
+</article>
