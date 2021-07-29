@@ -34,7 +34,24 @@
           <th class="col-md-3">アイテム詳細：</th>
           <td class="col-md-9"><%= @clothe.description %></td>
         </tr>
-      </table>
+      </table><br>
+
+      <% if @stocks.present? %>
+        <table>
+          <tr>
+            <th>Size</th>
+            <th>Color</th>
+            <th>在庫</th>
+          </tr>
+          <% @stocks.each do |stock| %>
+            <tr>
+              <td class="col-md-3"><%= stock.size %></td>
+              <td class="col-md-3"><%= stock.color %></td>
+              <td class="col-md-3"><%= stock.quantity %></td>
+            </tr>
+          <% end %>
+        </table><br>
+      <% end %>
 
       <% if @favorite.present? %>
         <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
