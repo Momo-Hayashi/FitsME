@@ -6,12 +6,6 @@ class ClothesController < ApplicationController
     @clothes = Clothe.all
   end
 
-  # GET /clothes/1 or /clothes/1.json
-  def show
-    @favorite = current_user.favorites.find_by(clothe_id: @clothe.id) if current_user
-    @stock = @clothe.stocks
-  end
-
   # GET /clothes/new
   def new
     @clothe = Clothe.new
@@ -36,6 +30,12 @@ class ClothesController < ApplicationController
         format.json { render json: @clothe.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /clothes/1 or /clothes/1.json
+  def show
+    @favorite = current_user.favorites.find_by(clothe_id: @clothe.id) if current_user
+    @stocks = @clothe.stocks
   end
 
   # PATCH/PUT /clothes/1 or /clothes/1.json
