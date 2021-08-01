@@ -40,6 +40,10 @@ class ClothesController < ApplicationController
     @stocks = @clothe.stocks
   end
 
+  def purchase
+    @stock = @clothe.stocks.find(params[:stock_id])
+  end
+
   def pay
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(

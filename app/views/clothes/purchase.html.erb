@@ -1,26 +1,47 @@
 <article>
-  <h3>購入画面</h3>
+  <h3>購入画面</h3><br>
 
   <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br>
 
   <%= form_with(model: @clothe, local: true, url: clothe_pay_path) do |f| %>
-    <table>
-      <tr>
-        <th>ブランド名</th>
-        <td><%= @clothe.retailer.name %></td>
-      </tr>
-      <tr>
-        <th>アイテム</th>
-        <td><%= @clothe.name %></td>
-      </tr>
-      <tr>
-        <th>金額</th>
-        <td><%= @clothe.price %>円（税込）</td>
-      </tr>
-    </table>
+    <div class="row">
+      <div class="col-md-offset-1 col-md-4">
+        <h5>Images：</h5>
+        <% if @clothe.images.attached? %>
+          <% @clothe.images.each do |image| %>
+            <%= image_tag image.variant(resize: "250x250") %>
+          <% end %>
+        <% end %>
+      </div>
 
-    <strong>**金額を確認し、下記フォームより決済する</strong><hr>
+      <div class="clothe_info col-md-7">
+        <table class = "row">
+          <tr>
+            <th>ブランド名</th>
+            <td><%= @clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th>アイテム</th>
+            <td><%= @clothe.name %></td>
+          </tr>
+          <tr>
+            <th>サイズ</th>
+            <td><%= @stock.size %></td>
+          </tr>
+          <tr>
+            <th>カラー</th>
+            <td><%= @stock.color %></td>
+          </tr>
+          <tr>
+            <th>金額</th>
+            <td><%= @clothe.price %>円（税込）</td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
+    <hr><strong>**金額を確認し、下記フォームより決済する</strong>
+    <br>
     <script
       type="text/javascript"
       src="https://checkout.pay.jp"

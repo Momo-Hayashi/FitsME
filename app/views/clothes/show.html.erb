@@ -48,6 +48,7 @@
               <td class="col-md-3"><%= stock.size %></td>
               <td class="col-md-3"><%= stock.color %></td>
               <td class="col-md-3"><%= stock.quantity %></td>
+              <td class="col-md-3"><%= link_to '購入にすすむ', clothe_purchase_path(stock.clothe, stock_id: stock.id) %></td>
             </tr>
           <% end %>
         </table><br>
@@ -58,7 +59,7 @@
       <% else %>
         <%= link_to 'お気に入りする', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-outline-primary" %>
       <% end %>
-      <%= link_to '購入にすすむ', clothe_purchase_path(@clothe) %>
+
     </div>
   </div>
 
