@@ -1,2 +1,18 @@
-<h1>Carts#index</h1>
-<p>Find me in app/views/carts/index.html.erb</p>
+<article>
+
+  <h5>Items in your cart!</h5><br>
+
+  <div class="row">
+    <% @cart.each do |f| %>
+      <div class="index_clothes col-sm-6 col-md-3">
+        <ul>
+          <li><%= image_tag f.clothe.images.first.variant(resize: "200x200") %></li>
+          <li><%= link_to f.clothe.retailer.name, retailers_path(f.clothe.retailer.id) %></li>
+          <li><%= link_to f.clothe.name, clothe_path(f.clothe.id) %></li>
+          <li>¥<%= f.clothe.price %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+</article>

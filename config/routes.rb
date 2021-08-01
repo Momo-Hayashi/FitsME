@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :clothes do
     get :purchase
     get :pay
-    patch :pay 
+    patch :pay
   end
 
 
@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   get 'retailers/show/:id', to: 'retailers#show', as: 'retailers'
 
   resources :favorites, only: [:create, :destroy, :index]
+  resources :carts, only: [:create, :destroy, :index, :update]
 
 end
