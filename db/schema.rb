@@ -1,5 +1,4 @@
-ActiveRecord::Schema.define(version: 2021_07_29_030504) do
-
+ActiveRecord::Schema.define(version: 2021_08_01_081731) do
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -41,6 +40,21 @@ ActiveRecord::Schema.define(version: 2021_07_29_030504) do
     t.datetime "updated_at", null: false
     t.index ["clothe_id"], name: "index_favorites_on_clothe_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "clothe_id"
+    t.integer "price", null: false
+    t.integer "amount", default: 1, null: false
+    t.integer "zipcode", null: false
+    t.integer "prefecture", null: false
+    t.string "city", null: false
+    t.text "following_address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clothe_id"], name: "index_orders_on_clothe_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "retailers", force: :cascade do |t|
@@ -101,5 +115,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_030504) do
   add_foreign_key "clothes", "retailers"
   add_foreign_key "favorites", "clothes"
   add_foreign_key "favorites", "users"
+  add_foreign_key "orders", "clothes"
+  add_foreign_key "orders", "users"
   add_foreign_key "stocks", "clothes"
 end

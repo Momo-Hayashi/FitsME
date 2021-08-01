@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :clothes
   root 'clothes#index'
+  resources :clothes do
+    get :purchase
+    get :pay
+    patch :pay 
+  end
+
 
   devise_for :retailers, controllers: {
     sessions: 'retailers/sessions',
