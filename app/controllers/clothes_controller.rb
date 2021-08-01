@@ -3,23 +3,19 @@ class ClothesController < ApplicationController
   before_action :set_clothe, only: %i[ show edit update destroy ]
   before_action :set_clothe_purchase, only: %i[ purchase pay ]
 
-  # GET /clothes or /clothes.json
   def index
     @clothes = Clothe.all
   end
 
-  # GET /clothes/new
   def new
     @clothe = Clothe.new
     3.times{ @clothe.stocks.build }
   end
 
-  # GET /clothes/1/edit
   def edit
     @clothe.stocks.build
   end
 
-  # POST /clothes or /clothes.json
   def create
     @clothe = current_retailer.clothes.build(clothe_params)
 
@@ -34,7 +30,6 @@ class ClothesController < ApplicationController
     end
   end
 
-  # GET /clothes/1 or /clothes/1.json
   def show
     @favorite = current_user.favorites.find_by(clothe_id: @clothe.id) if current_user
     @stocks = @clothe.stocks
@@ -55,19 +50,18 @@ class ClothesController < ApplicationController
     new_quantity = @stock.quantity - 1
     @stock.update_attribute( :quantity, new_quantity )
 
-    order = Order.new(
-      user_id: current_user,
-      clothe_id: @stock.id,
-      price: @clothe.price,
-      amount: 1,
-      zipcode: ,
-      prefecture: ,
-      city: ,
-      following_address: 
-    )
+    # order = Order.new(
+    #   user_id: current_user,
+    #   clothe_id: @stock.id,
+    #   price: @clothe.price,
+    #   amount: 1,
+    #   zipcode: ,
+    #   prefecture: ,
+    #   city: ,
+    #   following_address: ""
+    # )
   end
 
-  # PATCH/PUT /clothes/1 or /clothes/1.json
   def update
     respond_to do |format|
       if @clothe.update(clothe_params)
@@ -80,7 +74,6 @@ class ClothesController < ApplicationController
     end
   end
 
-  # DELETE /clothes/1 or /clothes/1.json
   def destroy
     @clothe.destroy
     respond_to do |format|

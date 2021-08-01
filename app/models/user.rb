@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_clothes, through: :favorites, source: :clothe
   has_many :orders
+  has_many :carts, dependent: :destroy
 end
