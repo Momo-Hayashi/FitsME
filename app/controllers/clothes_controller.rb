@@ -51,6 +51,9 @@ class ClothesController < ApplicationController
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
+    @stock = @clothe.stocks.find(params[:clothe][:stock_id])
+    new_quantity = @stock.quantity - 1
+    @stock.update_attribute( :quantity, new_quantity )
   end
 
   # PATCH/PUT /clothes/1 or /clothes/1.json
