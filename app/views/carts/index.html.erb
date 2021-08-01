@@ -2,38 +2,40 @@
 
   <h5>Items in your cart!</h5><br>
 
-  <% @cart.each do |f| %>
+  <% @cart.each do |item| %>
     <div class="row">
-      <% @clothe = f.stock.clothe %>
-      <div class="row">
-        <div class="col-md-offset-1 col-md-4">
-          <%= image_tag @clothe.images.first.variant(resize: "250x250") if @clothe.images.attached? %>
-        </div>
+      <% @clothe = item.stock.clothe %>
+      <div class="col-md-3">
+        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+      </div>
 
-        <div class="clothe_info col-md-7">
-          <table class = "row">
-            <tr>
-              <th>ブランド名</th>
-              <td><%= @clothe.retailer.name %></td>
-            </tr>
-            <tr>
-              <th>アイテム</th>
-              <td><%= @clothe.name %></td>
-            </tr>
-            <tr>
-              <th>サイズ</th>
-              <td><%= f.stock.size %></td>
-            </tr>
-            <tr>
-              <th>カラー</th>
-              <td><%= f.stock.color %></td>
-            </tr>
-            <tr>
-              <th>金額</th>
-              <td><%= @clothe.price %>円（税込）</td>
-            </tr>
-          </table>
-        </div>
+      <div class="col-md-4">
+        <table>
+          <tr>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= @clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= @clothe.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%= item.stock.size %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%= item.stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= @clothe.price %>円（税込）</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-5">
+        <br><br><br>
+        <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete %>
       </div>
     </div><br>
   <% end %>
