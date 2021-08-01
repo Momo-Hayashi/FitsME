@@ -58,7 +58,7 @@
       <% else %>
         <%= link_to 'お気に入りする', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-outline-primary" %>
       <% end %>
-
+      <%= link_to '購入にすすむ', clothe_purchase_path(@clothe) %>
     </div>
   </div>
 
