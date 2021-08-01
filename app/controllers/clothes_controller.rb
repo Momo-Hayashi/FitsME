@@ -54,6 +54,17 @@ class ClothesController < ApplicationController
     @stock = @clothe.stocks.find(params[:clothe][:stock_id])
     new_quantity = @stock.quantity - 1
     @stock.update_attribute( :quantity, new_quantity )
+
+    order = Order.new(
+      user_id: current_user,
+      clothe_id: @stock.id,
+      price: @clothe.price,
+      amount: 1,
+      zipcode: ,
+      prefecture: ,
+      city: ,
+      following_address: 
+    )
   end
 
   # PATCH/PUT /clothes/1 or /clothes/1.json
