@@ -5,12 +5,9 @@ class CartsController < ApplicationController
     @cart = current_user.carts
   end
 
-  def new
-
-  end
-
   def create
-
+    cart = current_user.carts.create(stock_id: params[:stock_id])
+    redirect_to carts_path, notice: "#{cart.stock.clothe.name}をカートに登録しました！"
   end
 
   def update

@@ -1,6 +1,4 @@
-ActiveRecord::Schema.define(version: 2021_08_01_103911) do
-
-  # These are extensions that must be enabled in order to support this database
+ActiveRecord::Schema.define(version: 2021_08_01_111851) do
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -26,11 +24,11 @@ ActiveRecord::Schema.define(version: 2021_08_01_103911) do
 
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "clothe_id"
     t.integer "amount", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["clothe_id"], name: "index_carts_on_clothe_id"
+    t.bigint "stock_id"
+    t.index ["stock_id"], name: "index_carts_on_stock_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -124,7 +122,7 @@ ActiveRecord::Schema.define(version: 2021_08_01_103911) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "carts", "clothes"
+  add_foreign_key "carts", "stocks"
   add_foreign_key "carts", "users"
   add_foreign_key "clothes", "retailers"
   add_foreign_key "favorites", "clothes"

@@ -48,7 +48,8 @@
               <td class="col-md-3"><%= stock.size %></td>
               <td class="col-md-3"><%= stock.color %></td>
               <td class="col-md-3"><%= stock.quantity %></td>
-              <td class="col-md-3"><%= link_to '購入にすすむ', clothe_purchase_path(stock.clothe, stock_id: stock.id) %></td>
+              <td class="col-md-3"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post %></td>
+              <%# <%= link_to 'カートに入れる', clothe_purchase_path(stock.clothe, stock_id: stock.id) %>
             </tr>
           <% end %>
         </table><br>

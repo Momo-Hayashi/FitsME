@@ -2,17 +2,40 @@
 
   <h5>Items in your cart!</h5><br>
 
-  <div class="row">
-    <% @cart.each do |f| %>
-      <div class="index_clothes col-sm-6 col-md-3">
-        <ul>
-          <li><%= image_tag f.clothe.images.first.variant(resize: "200x200") %></li>
-          <li><%= link_to f.clothe.retailer.name, retailers_path(f.clothe.retailer.id) %></li>
-          <li><%= link_to f.clothe.name, clothe_path(f.clothe.id) %></li>
-          <li>¥<%= f.clothe.price %></li>
-        </ul>
+  <% @cart.each do |f| %>
+    <div class="row">
+      <% @clothe = f.stock.clothe %>
+      <div class="row">
+        <div class="col-md-offset-1 col-md-4">
+          <%= image_tag @clothe.images.first.variant(resize: "250x250") if @clothe.images.attached? %>
+        </div>
+
+        <div class="clothe_info col-md-7">
+          <table class = "row">
+            <tr>
+              <th>ブランド名</th>
+              <td><%= @clothe.retailer.name %></td>
+            </tr>
+            <tr>
+              <th>アイテム</th>
+              <td><%= @clothe.name %></td>
+            </tr>
+            <tr>
+              <th>サイズ</th>
+              <td><%= f.stock.size %></td>
+            </tr>
+            <tr>
+              <th>カラー</th>
+              <td><%= f.stock.color %></td>
+            </tr>
+            <tr>
+              <th>金額</th>
+              <td><%= @clothe.price %>円（税込）</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    <% end %>
-  </div>
+    </div><br>
+  <% end %>
 
 </article>
