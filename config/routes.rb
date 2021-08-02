@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'clothes#index'
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+    registrations: 'admins/registrations'
+  }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
 
   devise_for :retailers, controllers: {
     sessions: 'retailers/sessions',
