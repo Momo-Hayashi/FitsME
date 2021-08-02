@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
       users_show_path
     when Retailer
       retailers_path(@retailer.id)
+    when Admin
+      rails_admin_path
     end
   end
-
 end
