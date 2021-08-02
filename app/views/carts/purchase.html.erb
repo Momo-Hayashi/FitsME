@@ -1,45 +1,46 @@
 <article>
   <h3>購入画面</h3><br>
 
-  <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br>
+  <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
 
-  <%= form_with(model: @clothe, local: true, url: cart_pay_path) do |f| %>
-    <%= f.hidden_field :stock_id, value: @stock.id %>
+  <%= form_with( model: @cart, local: true, url: cart_pay_path(@cart.ids) ) do |f| %>
+  <% total_price = 0 %>
+  <% @cart.each do |item| %>
     <div class="row">
-      <div class="col-md-offset-1 col-md-4">
-        <h5>Images：</h5>
-        <% if @clothe.images.attached? %>
-          <% @clothe.images.each do |image| %>
-            <%= image_tag image.variant(resize: "250x250") %>
-          <% end %>
-        <% end %>
+      <% @clothe = item.stock.clothe %>
+      <div class="offset-md-1 col-md-3">
+        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
       </div>
 
-      <div class="clothe_info col-md-7">
-        <table class = "row">
+      <div class="col-md-5">
+        <table>
           <tr>
-            <th>ブランド名</th>
-            <td><%= @clothe.retailer.name %></td>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= @clothe.retailer.name %></td>
           </tr>
           <tr>
-            <th>アイテム</th>
-            <td><%= @clothe.name %></td>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= @clothe.name %></td>
           </tr>
           <tr>
-            <th>サイズ</th>
-            <td><%= @stock.size %></td>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%= item.stock.size %></td>
           </tr>
           <tr>
-            <th>カラー</th>
-            <td><%= @stock.color %></td>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%= item.stock.color %></td>
           </tr>
           <tr>
-            <th>金額</th>
-            <td><%= @clothe.price %>円（税込）</td>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            <% total_price += @clothe.price %>
           </tr>
         </table>
       </div>
-    </div>
+    </div><hr>
+  <% end %>
+
+  <p style="text-align:center;">合計金額：<%= total_price %> 円（税込み）</p><br>
 
     <hr><strong>**金額を確認し、下記フォームより決済する</strong>
     <br>
@@ -50,9 +51,10 @@
       data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
     </script>
 
+  <%= f.hidden_field :total_price, value: total_price %>
   <% end %>
 
   <hr>
 
-  <%= link_to "商品詳細に戻る", clothe_path(@clothe) %>
+  <%= link_to "カートに戻る", carts_path %>
 </article>

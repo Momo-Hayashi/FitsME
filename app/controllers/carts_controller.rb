@@ -15,19 +15,20 @@ class CartsController < ApplicationController
   end
 
   def purchase
-    @stock = @clothe.stocks.find(params[:stock_id])
+    @cart = current_user.carts
   end
 
   def pay
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      :amount => @clothe.price,
+      :amount => params[:cart][:total_price],
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
-    @stock = @clothe.stocks.find(params[:clothe][:stock_id])
-    new_quantity = @stock.quantity - 1
-    @stock.update_attribute( :quantity, new_quantity )
+    #
+    # @stock = @cart.stocks.find(params[:clothe][:stock_id])
+    # new_quantity = @stock.quantity - 1
+    # @stock.update_attribute( :quantity, new_quantity )
 
     # order = Order.new(
     #   user_id: current_user,

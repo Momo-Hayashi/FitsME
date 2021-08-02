@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:create, :destroy, :index, :update] do
     get :purchase
     get :pay
-    patch :pay
+    post :pay
   end
 
 end
