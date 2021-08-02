@@ -1,8 +1,8 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_cart, only: %i[ index purchase pay ]
 
   def index
-    @cart = current_user.carts
   end
 
   def create
@@ -15,7 +15,6 @@ class CartsController < ApplicationController
   end
 
   def purchase
-    @cart = current_user.carts
   end
 
   def pay
@@ -25,10 +24,13 @@ class CartsController < ApplicationController
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
-    #
-    # @stock = @cart.stocks.find(params[:clothe][:stock_id])
-    # new_quantity = @stock.quantity - 1
-    # @stock.update_attribute( :quantity, new_quantity )
+
+    @carts.each do |cart|
+      @stock = cart.stock
+      new_quantity = @stock.quantity - 1
+      @stock.update_attribute( :quantity, new_quantity )
+      cart.destroy
+    end
 
     # order = Order.new(
     #   user_id: current_user,
@@ -45,6 +47,12 @@ class CartsController < ApplicationController
   def destroy
     cart = current_user.carts.find_by(id: params[:id]).destroy
     redirect_to carts_path, notice: "#{cart.stock.clothe.name}をカートから削除しました！"
+  end
+
+  private
+
+  def set_cart
+    @carts = current_user.carts
   end
 
 end

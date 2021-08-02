@@ -3,7 +3,7 @@
   <h5>Items in your cart!</h5><br><hr>
 
   <% total_price = 0 %>
-  <% @cart.each do |item| %>
+  <% @carts.each do |item| %>
     <div class="row">
       <% @clothe = item.stock.clothe %>
       <div class="offset-md-1 col-md-3">
@@ -44,6 +44,6 @@
 
   <p style="text-align:center;">合計金額：<%= total_price %> 円（税込み）</p><br>
 
-  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(current_user.carts.ids) %></h5>
+  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(@carts.ids) if @carts.present? %></h5>
 
 </article>
