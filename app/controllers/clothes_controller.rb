@@ -1,7 +1,6 @@
 class ClothesController < ApplicationController
-  before_action :authenticate_user!, only: %i[ purchase pay ]
   before_action :set_clothe, only: %i[ show edit update destroy ]
-  before_action :set_clothe_purchase, only: %i[ purchase pay ]
+  # before_action :set_clothe_purchase, only: %i[ purchase pay ]
 
   def index
     @clothes = Clothe.all
@@ -35,33 +34,6 @@ class ClothesController < ApplicationController
     @stocks = @clothe.stocks
   end
 
-  def purchase
-    @stock = @clothe.stocks.find(params[:stock_id])
-  end
-
-  def pay
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp::Charge.create(
-      :amount => @clothe.price,
-      :card => params['payjp-token'],
-      :currency => 'jpy'
-    )
-    @stock = @clothe.stocks.find(params[:clothe][:stock_id])
-    new_quantity = @stock.quantity - 1
-    @stock.update_attribute( :quantity, new_quantity )
-
-    # order = Order.new(
-    #   user_id: current_user,
-    #   clothe_id: @stock.id,
-    #   price: @clothe.price,
-    #   amount: 1,
-    #   zipcode: ,
-    #   prefecture: ,
-    #   city: ,
-    #   following_address: ""
-    # )
-  end
-
   def update
     respond_to do |format|
       if @clothe.update(clothe_params)
@@ -87,9 +59,9 @@ class ClothesController < ApplicationController
       @clothe = Clothe.find(params[:id])
     end
 
-    def set_clothe_purchase
-      @clothe = Clothe.find(params[:clothe_id])
-    end
+    # def set_clothe_purchase
+    #   @clothe = Clothe.find(params[:clothe_id])
+    # end
 
     def clothe_params
       params.require(:clothe).permit(:name, :description, :size, :price, images: [], stocks_attributes: [:size, :color, :quantity, :id, :clothe_id ] )
