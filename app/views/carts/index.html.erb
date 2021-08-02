@@ -1,0 +1,49 @@
+<article>
+
+  <h5>Items in your cart!</h5><br><hr>
+
+  <% total_price = 0 %>
+  <% @carts.each do |item| %>
+    <div class="row">
+      <% @clothe = item.stock.clothe %>
+      <div class="offset-md-1 col-md-3">
+        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+      </div>
+
+      <div class="col-md-5">
+        <table>
+          <tr>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= @clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= @clothe.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%= item.stock.size %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%= item.stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            <% total_price += @clothe.price %>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-3">
+        <br><br><br>
+        <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete %>
+      </div>
+    </div><hr>
+  <% end %>
+
+  <p style="text-align:center;">合計金額：<%= total_price %> 円（税込み）</p><br>
+
+  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(@carts.ids) if @carts.present? %></h5>
+
+</article>

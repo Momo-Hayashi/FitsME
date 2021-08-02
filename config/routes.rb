@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
   root 'clothes#index'
-  resources :clothes do
-    get :purchase
-    get :pay
-    patch :pay 
-  end
-
 
   devise_for :retailers, controllers: {
     sessions: 'retailers/sessions',
@@ -18,9 +12,16 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
+
   get 'users/show', to: 'users#show'
   get 'retailers/show/:id', to: 'retailers#show', as: 'retailers'
 
+  resources :clothes
   resources :favorites, only: [:create, :destroy, :index]
+  resources :carts, only: [:create, :destroy, :index, :update] do
+    get :purchase
+    get :pay
+    post :pay
+  end
 
 end

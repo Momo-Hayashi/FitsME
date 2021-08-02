@@ -3,26 +3,26 @@
   <h1>Fits ME</h1>
   <h5>Go look for your ideal outfits!</h5>
 
-<div class="row">
-  <% @clothes.each do |clothe| %>
-    <div class="index_clothes col-sm-6 col-md-3">
-      <ul>
-        <li><%= image_tag clothe.images.first.variant(resize: "200x200") %></li>
-        <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
-        <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
-        <li>¥<%= clothe.price %></li>
-        <table>
-          <tr>
-            <% if current_retailer == clothe.retailer %>
-              <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
-              <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
-            <% end %>
-          </tr>
-        </table>
-      </ul>
-    </div>
-  <% end %>
-</div>
+  <div class="row">
+    <% @clothes.each do |clothe| %>
+      <div class="index_clothes col-sm-6 col-md-3">
+        <ul>
+          <li><%= image_tag clothe.images.first.variant(resize: "200x200") %></li>
+          <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
+          <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
+          <li>¥<%= clothe.price %></li>
+          <table>
+            <tr>
+              <% if current_retailer == clothe.retailer %>
+                <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
+                <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
+              <% end %>
+            </tr>
+          </table>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
 
 
