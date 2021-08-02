@@ -5,7 +5,7 @@
   <% @cart.each do |item| %>
     <div class="row">
       <% @clothe = item.stock.clothe %>
-      <div class="col-md-3">
+      <div class="offset-md-1 col-md-3">
         <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
       </div>
 
@@ -33,11 +33,13 @@
           </tr>
         </table>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-3">
         <br><br><br>
         <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete %>
       </div>
     </div><br>
   <% end %>
+
+  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(current_user.carts.ids) %></h5>
 
 </article>
