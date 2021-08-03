@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Retailers::PasswordsController < Devise::PasswordsController
+  before_action :ensure_normal_retailer, only: :create
+
+  def ensure_normal_retailer
+    if params[:retailer][:email].downcase == 'guest_retailer@example.com'
+      redirect_to new_retailer_session_path, alert: 'ゲストリテイラーのパスワード再設定はできません。'
+    end
+  end
+
   # GET /resource/password/new
   # def new
   #   super
