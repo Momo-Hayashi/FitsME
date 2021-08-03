@@ -7,7 +7,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   def ensure_normal_admin
     if resource.email == 'admin_guest@example.com'
-      redirect_to root_path, notice: 'ゲストユーザーの更新・削除はできません。'
+      redirect_to root_path, notice: 'ゲスト管理者の更新・削除はできません。'
     end
   end
 
