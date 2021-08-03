@@ -17,12 +17,16 @@ Rails.application.routes.draw do
     registrations: 'retailers/registrations'
   }
 
+  devise_scope :retailer do
+    post 'retailers/guest_sign_in', to: 'retailers/sessions#guest_sign_in'
+  end
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
-  
+
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
