@@ -28,7 +28,8 @@
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
           <li><%= link_to '出品企業として利用', new_retailer_registration_path %></li>
-          <li><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %><li>
+          <li><%= link_to 'ゲストログイン（user）', users_guest_sign_in_path, method: :post %><li>
+          <li><%= link_to 'ゲストログイン（admin）', admins_guest_sign_in_path, method: :post %><li>
         <% end %>
       </ul>
     </header>
