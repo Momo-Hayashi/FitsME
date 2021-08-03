@@ -1,75 +1,43 @@
 <article>
-  <h3>購入画面</h3><br>
-
-  <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
-
-  <%= form_with( model: @carts, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>
-    <% total_price = 0 %>
-    <% @carts.each do |item| %>
-      <div class="row">
-        <% @clothe = item.stock.clothe %>
-        <div class="offset-md-1 col-md-3">
-          <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
-        </div>
-
-        <div class="col-md-5">
-          <table>
-            <tr>
-              <th class="col-md-5">ブランド名</th>
-              <td class="col-md-7"><%= @clothe.retailer.name %></td>
-            </tr>
-            <tr>
-              <th class="col-md-5">アイテム</th>
-              <td class="col-md-7"><%= @clothe.name %></td>
-            </tr>
-            <tr>
-              <th class="col-md-5">サイズ</th>
-              <td class="col-md-7"><%= item.stock.size %></td>
-            </tr>
-            <tr>
-              <th class="col-md-5">カラー</th>
-              <td class="col-md-7"><%= item.stock.color %></td>
-            </tr>
-            <tr>
-              <th class="col-md-5">金額</th>
-              <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
-              <% total_price += @clothe.price %>
-            </tr>
-          </table>
-        </div>
-      </div><hr>
-    <% end %>
-
-    <p style="text-align:center;"><strong>合計金額：<%= total_price %> 円（税込み）</strong></p><hr>
-    <%= f.hidden_field :total_price, value: total_price %>
-
-    <h5 class="shipping_address_info">配送先</h5>
+  <h3>お届け先情報</h3><br>
+  <%= form_with( model: @user, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>
+    <h5 class="shipping_address_info">お届け先お名前</h5>
     <div class="field">
-      <%= f.label :郵便番号 %><br>
+      <%= f.label :姓 %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :名 %>
+      <%= f.text_field :last_name %>
+    </div><hr>
+
+    <h5 class="shipping_address_info">お届け先</h5>
+    <div class="field">
+      <%= f.label :郵便番号 %>
       <%= f.text_field :zipcode %>
     </div>
     <div class="field">
-      <%= f.label :都道府県 %><br>
+      <%= f.label :都道府県 %>
       <%= f.text_field :prefecture %>
     </div>
     <div class="field">
-      <%= f.label :市区町村 %><br>
+      <%= f.label :市区町村 %>
       <%= f.text_field :city %>
     </div>
     <div class="field">
-      <%= f.label :住所つづき %><br>
+      <%= f.label :住所つづき %>
       <%= f.text_field :following_addresse %>
     </div>
     <div class="field">
-      <%= f.label :市区町村 %><br>
+      <%= f.label :市区町村 %>
       <%= f.text_field :city %>
     </div>
     <div class="field">
-      <%= f.label :住所つづき %><br>
+      <%= f.label :住所つづき %>
       <%= f.text_field :following_addresse %>
     </div><hr>
 
-    <%= f.submit "注文を確定する" %><br>
+    <%= f.submit "注文内容の確認画面へ" %><br>
   <% end %>
 
   <%= link_to "カートに戻る", carts_path %>
