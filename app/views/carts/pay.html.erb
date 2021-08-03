@@ -40,7 +40,24 @@
     </div><hr>
   <% end %>
 
-  <p style="text-align:center;">合計金額：<%= total_price %> 円（税込み）</p><br>
+  <p style="text-align:center;"><strong>合計金額：<%= total_price %> 円（税込み）</strong></p><hr>
+
+  <h4>お届け先情報</h4>
+  <table>
+    <tr>
+      <th>お名前：</th>
+      <td><%= @user.last_name %><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th>郵便番号：</th>
+      <td><%= @user.postcode %></td>
+    </tr>
+    <tr>
+      <th>住所：</th>
+      <% pref = JpPrefecture::Prefecture.find(@user.prefecture_code) %>
+      <td><%= pref.name %><%= @user.address_city %><%= @user.address_street %><%= @user.address_building %>
+    </tr>
+  </table>
 
     <hr><strong>**金額を確認し、下記フォームより決済する</strong>
     <br>
