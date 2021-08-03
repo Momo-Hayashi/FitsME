@@ -1,7 +1,7 @@
 <article>
   <h3>お届け先情報</h3><br>
   <%= form_with( model: @user, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>
-    <h5 class="shipping_address_info">お届け先お名前</h5>
+    <h5 class="shipping_address_info">お名前</h5>
     <div class="field">
       <%= f.label :姓 %>
       <%= f.text_field :first_name %>
@@ -12,30 +12,17 @@
     </div><hr>
 
     <h5 class="shipping_address_info">お届け先</h5>
-    <div class="field">
-      <%= f.label :郵便番号 %>
-      <%= f.text_field :zipcode %>
-    </div>
-    <div class="field">
-      <%= f.label :都道府県 %>
-      <%= f.text_field :prefecture %>
-    </div>
-    <div class="field">
-      <%= f.label :市区町村 %>
-      <%= f.text_field :city %>
-    </div>
-    <div class="field">
-      <%= f.label :住所つづき %>
-      <%= f.text_field :following_addresse %>
-    </div>
-    <div class="field">
-      <%= f.label :市区町村 %>
-      <%= f.text_field :city %>
-    </div>
-    <div class="field">
-      <%= f.label :住所つづき %>
-      <%= f.text_field :following_addresse %>
-    </div><hr>
+    <%= f.label :postcode, '郵便番号' %>
+    <%= f.text_field :postcode, id: 'user_postcode' %><br>
+    <%= f.label :prefecture_name, '都道府県' %>
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %><br>
+    <%= f.label :address_city, '市区町村' %>
+    <%= f.text_field :address_city %><br>
+    <%= f.label :address_street, '番地' %>
+    <%= f.text_field :address_street %><br>
+    <%= f.label :address_building, '建物' %>
+    <%= f.text_field :address_building %><br>
+    <hr>
 
     <%= f.submit "注文内容の確認画面へ" %><br>
   <% end %>
