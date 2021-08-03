@@ -1,78 +1,80 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<article>
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "retailers/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "retailers/shared/error_messages", resource: resource %>
 
-  <h4>*マークの項目は登録に必須の項目となります。</h4>
+    <h6>*マークの項目は登録に必須の項目となります。</h6>
 
-  <div class="field">
-    <%= f.label :'*Company Name' %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <div class="field">
+      <%= f.label :'*Company Name' %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :ショップ情報 %><br />
-    <%= f.text_field :description %>
-  </div>
+    <div class="field">
+      <%= f.label :ショップ情報 %><br />
+      <%= f.text_field :description %>
+    </div>
 
-  <div class="field">
-    <%= f.label :ロゴ %><br />
-    <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
-    <%= f.file_field :logo %>
-  </div>
+    <div class="field">
+      <%= f.label :ロゴ %><br />
+      <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
+      <%= f.file_field :logo %>
+    </div>
 
-  <div class="field">
-    <%= f.label :'website URL' %><br />
-    <%= f.url_field :website_url %>
-  </div>
-  <br>
-  <h4>-----下記は管理用となりますので、ウェブでは公開されません。-----</h4>
+    <div class="field">
+      <%= f.label :'website URL' %><br />
+      <%= f.url_field :website_url %>
+    </div>
+    <br>
+    <h6>-----下記は管理用となりますので、ウェブでは公開されません。-----</h6>
 
-  <div class="field">
-    <%= f.label :'*email' %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :'*email' %><br />
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :'*電話番号' %><br />
-    <%= f.telephone_field	 :phone_number %>
-  </div>
+    <div class="field">
+      <%= f.label :'*電話番号' %><br />
+      <%= f.telephone_field	 :phone_number %>
+    </div>
 
-  <div class="field">
-    <%= f.label :'*住所' %><br />
-    <%= f.text_field :address %>
-  </div>
+    <div class="field">
+      <%= f.label :'*住所' %><br />
+      <%= f.text_field :address %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <br><br>
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
   <% end %>
+  <%= link_to "Back", :back %>
 
   <br><br>
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-<%= link_to "Back", :back %>
-
-<br>
-<h4>Cancel my account</h4>
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <h6>Unhappy?</h6>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %><br>
+</article>
