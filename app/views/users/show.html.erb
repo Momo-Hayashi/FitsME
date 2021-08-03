@@ -28,7 +28,8 @@
     </tr>
     <tr>
       <th>都道府県：</th>
-      <td><%= @user.prefecture_code %></td>
+      <% pref = JpPrefecture::Prefecture.find(@user.prefecture_code) %>
+      <td><%= pref.name %></td>
     </tr>
     <tr>
       <th>市区町村：</th>

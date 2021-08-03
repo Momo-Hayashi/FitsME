@@ -18,6 +18,15 @@ class CartsController < ApplicationController
   end
 
   def pay
+    @user = current_user
+    @user.update_attributes(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      postcode: params[:postcode],
+      prefecture_code: params[:prefecture_code],
+      address_city: params[:address_city],
+      address_street: params[:address_street],
+      address_building: params[:address_building])
   end
 
   def complete
