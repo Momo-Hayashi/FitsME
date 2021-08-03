@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  devise_scope :admin do
+    post 'admins/guest_sign_in', to: 'admins/sessions#guest_sign_in'
+  end
 
   devise_for :retailers, controllers: {
     sessions: 'retailers/sessions',
@@ -19,6 +22,10 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
+  
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   get 'users/show', to: 'users#show'
   get 'retailers/show/:id', to: 'retailers#show', as: 'retailers'

@@ -4,7 +4,10 @@ class Ability
   include CanCan::Ability
 
   def initialize(admin)
-    if admin
+    if admin.email == 'admin_guest@example.com'
+      can :access, :rails_admin
+      can :read, :all
+    elsif admin
       can :access, :rails_admin
       can :manage, :all
     end
