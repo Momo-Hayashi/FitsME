@@ -18,6 +18,9 @@ class CartsController < ApplicationController
   end
 
   def pay
+  end
+
+  def complete
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       :amount => params[:cart][:total_price],
@@ -32,16 +35,16 @@ class CartsController < ApplicationController
       cart.destroy
     end
 
-    # order = Order.new(
-    #   user_id: current_user,
-    #   clothe_id: @stock.id,
-    #   price: @clothe.price,
-    #   amount: 1,
-    #   zipcode: ,
-    #   prefecture: ,
-    #   city: ,
-    #   following_address: ""
-    # )
+    order = Order.new(
+      user_id: current_user,
+      clothe_id: @stock.id,
+      price: @clothe.price,
+      amount: 1,
+      # zipcode: ,
+      # prefecture: ,
+      # city: ,
+      # following_address: ""
+    )
   end
 
   def destroy
