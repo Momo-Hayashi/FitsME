@@ -42,7 +42,7 @@ class CartsController < ApplicationController
       cart.destroy
     end
 
-    order = Order.create(
+    Order.create(
       user_id: @user.id,
       clothe_id: params[:cart][:clothe_id],
       price: params[:cart][:total_price],
@@ -50,7 +50,7 @@ class CartsController < ApplicationController
       zipcode: @user.postcode,
       prefecture: @user.prefecture_code,
       city: @user.address_city,
-      following_address: ' @user.address_street+@user.address_building'
+      following_address: '@user.address_street+@user.address_building'
     )
 
   end

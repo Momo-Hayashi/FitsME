@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'order/index'
   root 'clothes#index'
 
   devise_for :admins, controllers: {

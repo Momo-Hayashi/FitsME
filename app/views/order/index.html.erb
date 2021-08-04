@@ -1,0 +1,56 @@
+<article>
+  <h3>注文履歴</h3><br>
+
+  <% @orders.each do |item| %>
+    <div class="row">
+      <div class="offset-md-1 col-md-3">
+        <%= image_tag item.clothe.images.first.variant(resize: "180x180") if item.clothe.images.attached? %>
+      </div>
+
+      <div class="col-md-5">
+        <table>
+          <tr>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= item.clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= item.clothe.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%=  %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%=  %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= item.clothe.price %>円（税込み）</td>
+          </tr>
+        </table>
+      </div>
+    </div><hr>
+
+    <p style="text-align:center;"><strong>合計金額：<%= item.price %> 円（税込み）</strong></p><hr>
+
+    <h4>お届け先情報</h4>
+    <table>
+      <tr>
+        <th>お名前：</th>
+        <td><%= current_user.last_name %><%= current_user.first_name %></td>
+      </tr>
+      <tr>
+        <th>郵便番号：</th>
+        <td><%= item.zipcode %></td>
+      </tr>
+      <tr>
+        <th>住所：</th>
+        <% pref = JpPrefecture::Prefecture.find(item.prefecture) %>
+        <td><%= pref.name %><%= item.city %><%= item.following_address %></td>
+      </tr>
+    </table>
+  <% end %>
+
+</article>
