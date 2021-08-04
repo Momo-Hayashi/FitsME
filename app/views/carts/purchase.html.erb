@@ -1,6 +1,6 @@
 <article>
   <h3>お届け先情報</h3><br>
-  <%= form_with( model: @user, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>
+  <%= form_with( model: @user, local: true, url:cart_pay_path(@carts.ids) ) do |f| %>
 
     <hr><h5 class="shipping_address_info">お届け用お名前</h5>
     <div class="field">

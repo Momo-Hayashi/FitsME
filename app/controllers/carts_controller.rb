@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cart, only: %i[ index purchase pay ]
+  before_action :set_cart, only: %i[ index purchase pay complete ]
 
   def index
   end
@@ -11,22 +11,20 @@ class CartsController < ApplicationController
   end
 
   def update
-
   end
 
   def purchase
   end
 
   def pay
-    @user = current_user
     @user.update_attributes(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      postcode: params[:postcode],
-      prefecture_code: params[:prefecture_code],
-      address_city: params[:address_city],
-      address_street: params[:address_street],
-      address_building: params[:address_building])
+      first_name: params[:user][:first_name],
+      last_name: params[:user][:last_name],
+      postcode: params[:user][:postcode],
+      prefecture_code: params[:user][:prefecture_code],
+      address_city: params[:user][:address_city],
+      address_street: params[:user][:address_street],
+      address_building: params[:user][:address_building])
   end
 
   def complete
@@ -44,16 +42,17 @@ class CartsController < ApplicationController
       cart.destroy
     end
 
-    order = Order.new(
-      user_id: current_user,
-      clothe_id: @stock.id,
-      price: @clothe.price,
+    order = Order.create(
+      user_id: @user.id,
+      clothe_id: params[:cart][:clothe_id],
+      price: params[:cart][:total_price],
       amount: 1,
-      # zipcode: ,
-      # prefecture: ,
-      # city: ,
-      # following_address: ""
+      zipcode: @user.postcode,
+      prefecture: @user.prefecture_code,
+      city: @user.address_city,
+      following_address: ' @user.address_street+@user.address_building'
     )
+
   end
 
   def destroy
@@ -65,6 +64,7 @@ class CartsController < ApplicationController
 
   def set_cart
     @carts = current_user.carts
+    @user = current_user
   end
 
 end

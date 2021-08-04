@@ -38,10 +38,10 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy, :index]
   resources :carts, only: [:create, :destroy, :index, :update] do
     get :purchase
-    post :purchase
     get :pay
-    post :pay
+    patch :pay
     get :complete
+    post :complete
   end
 
 end
