@@ -58,7 +58,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :address_city,
       :address_street,
       :address_building,
-      :phone_number ] ])
+      :phone_number,
+      :user_id,
+      :id,
+      :_destroy ] ])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -71,7 +74,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :address_city,
       :address_street,
       :address_building,
-      :phone_number ] ])
+      :phone_number,
+      :user_id,
+      :id,
+      :_destroy ] ])
   end
 
   #更新（編集の反映）時にパスワード入力を省く

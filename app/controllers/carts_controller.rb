@@ -14,6 +14,7 @@ class CartsController < ApplicationController
   end
 
   def pay
+    @address = @user.addresses.first
   end
 
   def complete
@@ -23,10 +24,12 @@ class CartsController < ApplicationController
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
+    @address = @user.addresses.first
 
+    binding.irb
     Order.create(
       user_id: @user.id,
-      stock_id: @carts.pluck(:stock_id),
+      stock_id: @carts.pluck(:stock_id).join(','),
       price: params[:cart][:total_price],
       amount: 1
       # shipping_to:
@@ -51,7 +54,7 @@ class CartsController < ApplicationController
   def set_cart
     @carts = current_user.carts
     @user = current_user
-    @address = @user.addresses.first
+    @addresses = @user.addresses
   end
 
 end

@@ -32,8 +32,13 @@
         <tr>
           <th>住所：</th>
           <% pref = JpPrefecture::Prefecture.find(address.prefecture_code) %>
-          <td><%= pref.name if address.prefecture_code %> <%= address.address_city %> 
+          <td><%= pref.name if address.prefecture_code %> <%= address.address_city %>
             <%= address.address_street %> <%= address.address_building %></td>
+        </tr>
+        <tr>
+          <% if address.current_address == true %>
+            <th>デフォルトの住所として使用中</th>
+          <% end %>
         </tr>
       </table>
     <% end %>
