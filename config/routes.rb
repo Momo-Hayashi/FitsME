@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'order/index'
   root 'clothes#index'
 
   devise_for :admins, controllers: {
@@ -39,7 +40,9 @@ Rails.application.routes.draw do
   resources :carts, only: [:create, :destroy, :index, :update] do
     get :purchase
     get :pay
-    post :pay
+    patch :pay
+    get :complete
+    post :complete
   end
 
 end

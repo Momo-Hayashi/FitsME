@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,6 +19,7 @@
           <li><%= link_to 'My page', users_show_path %></li>
           <li><%= link_to 'Favorites', favorites_path %></li>
           <li><%= link_to 'Cart', carts_path %></li>
+          <li><%= link_to 'Orders', order_index_path %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         <% elsif retailer_signed_in? %>
           <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
@@ -28,9 +31,7 @@
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
           <li><%= link_to '出品企業として利用', new_retailer_registration_path %></li>
-          <li><%= link_to 'Guest User', users_guest_sign_in_path, method: :post %><li>
           <li><%= link_to 'Guest Admin', admins_guest_sign_in_path, method: :post %><li>
-          <li><%= link_to 'Guest Retailer', retailers_guest_sign_in_path, method: :post %><li>
         <% end %>
       </ul>
     </header>

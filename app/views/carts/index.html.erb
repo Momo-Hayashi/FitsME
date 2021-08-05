@@ -44,6 +44,6 @@
 
   <p style="text-align:center;">合計金額：<%= total_price %> 円（税込み）</p><br>
 
-  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(@carts.ids) if @carts.present? %></h5>
-
+  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(@carts.ids) if @carts.present? %></h5><br>
+  <%= link_to '他の商品を追加する', clothes_path %>
 </article>

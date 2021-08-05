@@ -1,4 +1,77 @@
-<h3>支払いが完了しました</h3>
+<article>
+  <h3>ご注文確認画面</h3><br>
 
-<br>
-<%= link_to 'Topへ', root_path %>
+  <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
+
+  <%= form_with( model: @carts, local: true, url: cart_complete_path(@carts.ids) ) do |f| %>
+  <% total_price = 0 %>
+  <% @carts.each do |item| %>
+    <div class="row">
+      <% @clothe = item.stock.clothe %>
+      <div class="offset-md-1 col-md-3">
+        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+      </div>
+
+      <div class="col-md-5">
+        <table>
+          <tr>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= @clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= @clothe.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%= item.stock.size %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%= item.stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            <% total_price += @clothe.price %>
+          </tr>
+        </table>
+      </div>
+    </div><hr>
+  <% end %>
+
+  <p style="text-align:center;"><strong>合計金額：<%= total_price %> 円（税込み）</strong></p><hr>
+
+  <h4>お届け先情報</h4>
+  <table>
+    <tr>
+      <th>お名前：</th>
+      <td><%= @user.last_name %><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th>郵便番号：</th>
+      <td><%= @user.postcode %></td>
+    </tr>
+    <tr>
+      <th>住所：</th>
+      <% pref = JpPrefecture::Prefecture.find(@user.prefecture_code) %>
+      <td><%= pref.name %><%= @user.address_city %><%= @user.address_street %><%= @user.address_building %>
+    </tr>
+  </table>
+
+    <hr><strong>**金額を確認し、下記フォームより決済する</strong>
+    <br>
+    <script
+      type="text/javascript"
+      src="https://checkout.pay.jp"
+      class="payjp-button"
+      data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
+    </script>
+
+  <%= f.hidden_field :total_price, value: total_price %>
+  <% end %>
+
+  <hr>
+
+  <%= link_to "カートに戻る", carts_path %>
+</article>

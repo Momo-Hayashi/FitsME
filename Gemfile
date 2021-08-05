@@ -19,6 +19,9 @@ gem 'payjp'
 gem 'dotenv-rails'
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
+gem 'jp_prefecture'
 
 
 group :development, :test do

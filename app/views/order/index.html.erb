@@ -1,0 +1,60 @@
+<article>
+  <h3>注文履歴</h3>
+  <p>最新のご注文から順番に表示されます。</p><br>
+
+  <% n = 0 %>
+  <% @orders.each do |order| %>
+    <hr><h4>ご注文履歴 <%= n += 1 %> </h4><hr>
+    <% @clothe = order.stock.clothe %>
+    <div class="row">
+      <div class="offset-md-1 col-md-3">
+        <%= image_tag@clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+      </div>
+
+      <div class="col-md-5">
+        <table>
+          <tr>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= @clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= @clothe.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%= order.stock.size %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%= order.stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+          </tr>
+        </table>
+      </div>
+    </div><hr>
+
+    <p style="text-align:center;"><strong>合計金額：<%= order.price %> 円（税込み）</strong></p><hr>
+
+    <h5>お届け先情報</h5>
+    <table>
+      <tr>
+        <th>お名前：</th>
+        <td><%= current_user.last_name %><%= current_user.first_name %></td>
+      </tr>
+      <tr>
+        <th>郵便番号：</th>
+        <td><%= order.zipcode %></td>
+      </tr>
+      <tr>
+        <th>住所：</th>
+        <% pref = JpPrefecture::Prefecture.find(order.prefecture) %>
+        <td><%= pref.name %><%= order.city %><%= order.following_address %></td>
+      </tr>
+    </table><br><br>
+  <% end %>
+
+</article>

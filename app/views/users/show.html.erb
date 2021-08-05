@@ -14,6 +14,35 @@
       <th>保有ポイント：</th>
       <td><%= @user.points %>ポイント</td>
     </tr>
+  <table>
+    <br><br>
+  <h4>お届け先情報</h4>
+  <table>
+    <tr>
+      <th>お名前：</th>
+      <td><%= @user.last_name %><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th>郵便番号：</th>
+      <td><%= @user.postcode %></td>
+    </tr>
+    <tr>
+      <th>都道府県：</th>
+      <% pref = JpPrefecture::Prefecture.find(@user.prefecture_code) %>
+      <td><%= pref.name if @user.prefecture_code %></td>
+    </tr>
+    <tr>
+      <th>市区町村：</th>
+      <td><%= @user.address_city %></td>
+    </tr>
+    <tr>
+      <th>番地：</th>
+      <td><%= @user.address_street %></td>
+    </tr>
+    <tr>
+      <th>建物：</th>
+      <td><%= @user.address_building %></td>
+    </tr>
   </table>
 
   <br>
