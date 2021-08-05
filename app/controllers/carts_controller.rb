@@ -35,16 +35,9 @@ class CartsController < ApplicationController
       :currency => 'jpy'
     )
 
-    @carts.each do |cart|
-      @stock = cart.stock
-      new_quantity = @stock.quantity - 1
-      @stock.update_attribute( :quantity, new_quantity )
-      cart.destroy
-    end
-
     Order.create(
       user_id: @user.id,
-      clothe_id: params[:cart][:clothe_id],
+      clothe_id: @carts.pluck(:stock_id),
       price: params[:cart][:total_price],
       amount: 1,
       zipcode: @user.postcode,
@@ -52,6 +45,14 @@ class CartsController < ApplicationController
       city: @user.address_city,
       following_address: '@user.address_street+@user.address_building'
     )
+    binding.irb
+
+    @carts.each do |cart|
+      @stock = cart.stock
+      new_quantity = @stock.quantity - 1
+      @stock.update_attribute( :quantity, new_quantity )
+      cart.destroy
+    end
 
   end
 
