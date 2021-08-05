@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_052559) do
+ActiveRecord::Schema.define(version: 2021_08_05_053421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_052559) do
     t.text "following_address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "stock_id"
+    t.index ["stock_id"], name: "index_orders_on_stock_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -177,6 +179,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_052559) do
   add_foreign_key "clothes", "retailers"
   add_foreign_key "favorites", "clothes"
   add_foreign_key "favorites", "users"
+  add_foreign_key "orders", "stocks"
   add_foreign_key "orders", "users"
   add_foreign_key "stocks", "clothes"
 end
