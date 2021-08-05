@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :current_password
+
   validates :username, presence: true, length: { in: 1..30 }
   validates :points, presence: true
 
@@ -12,6 +14,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :carts, dependent: :destroy
   has_many :addresses, dependent: :destroy
+  accepts_nested_attributes_for :addresses, allow_destroy: true, reject_if: :all_blank
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
