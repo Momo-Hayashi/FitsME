@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :favorite_clothes, through: :favorites, source: :clothe
   has_many :orders
   has_many :carts, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
