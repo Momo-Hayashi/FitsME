@@ -46,6 +46,17 @@ class CartsController < ApplicationController
       following_address: '@user.address_street+@user.address_building'
     )
 
+    # Order.create(
+    #   user_id: @user.id,
+    #   stock_id: @carts.pluck(:stock_id).join(','),
+    #   price: 10000,
+    #   amount: 1,
+    #   zipcode: @user.postcode,
+    #   prefecture: @user.prefecture_code,
+    #   city: @user.address_city,
+    #   following_address: '@user.address_street+@user.address_building'
+    # )
+
     @carts.each do |cart|
       @stock = cart.stock
       new_quantity = @stock.quantity - 1
