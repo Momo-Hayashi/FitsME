@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cart, only: %i[ index purchase pay complete ]
+  before_action :set_cart, only: %i[ index pay complete ]
 
   def index
   end
@@ -13,18 +13,7 @@ class CartsController < ApplicationController
   def update
   end
 
-  def purchase
-  end
-
   def pay
-    @user.update_attributes(
-      first_name: params[:user][:first_name],
-      last_name: params[:user][:last_name],
-      postcode: params[:user][:postcode],
-      prefecture_code: params[:user][:prefecture_code],
-      address_city: params[:user][:address_city],
-      address_street: params[:user][:address_street],
-      address_building: params[:user][:address_building])
   end
 
   def complete
@@ -39,23 +28,9 @@ class CartsController < ApplicationController
       user_id: @user.id,
       stock_id: @carts.pluck(:stock_id),
       price: params[:cart][:total_price],
-      amount: 1,
-      zipcode: @user.postcode,
-      prefecture: @user.prefecture_code,
-      city: @user.address_city,
-      following_address: '@user.address_street+@user.address_building'
+      amount: 1
+      # shipping_to:
     )
-
-    # Order.create(
-    #   user_id: @user.id,
-    #   stock_id: @carts.pluck(:stock_id).join(','),
-    #   price: 10000,
-    #   amount: 1,
-    #   zipcode: @user.postcode,
-    #   prefecture: @user.prefecture_code,
-    #   city: @user.address_city,
-    #   following_address: '@user.address_street+@user.address_building'
-    # )
 
     @carts.each do |cart|
       @stock = cart.stock
@@ -76,6 +51,7 @@ class CartsController < ApplicationController
   def set_cart
     @carts = current_user.carts
     @user = current_user
+    @address = @user.addresses.first
   end
 
 end

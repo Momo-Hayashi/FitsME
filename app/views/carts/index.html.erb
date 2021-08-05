@@ -1,6 +1,8 @@
 <article>
 
-  <h5>Items in your cart!</h5><br><hr>
+  <h3>Items in your cart!</h3><br>
+
+  <%= link_to '他の商品を追加する', clothes_path %><hr>
 
   <% total_price = 0 %>
   <% @carts.each do |item| %>
@@ -44,6 +46,30 @@
 
   <p style="text-align:center;">合計金額：<%= total_price %> 円（税込み）</p><br>
 
-  <h5 style="text-align:center;"><%= link_to '購入へすすむ', cart_purchase_path(@carts.ids) if @carts.present? %></h5><br>
-  <%= link_to '他の商品を追加する', clothes_path %>
+  <hr><h4>お届け先情報</h4>
+
+  <% n = 0 %>
+  <% @addresses.each do |address| %>
+    <hr><h5>お届け先情報 <%= n += 1 %> </h5><hr>
+    <table>
+      <tr>
+        <th>お名前：</th>
+        <td><%= address.last_name %><%= address.first_name %></td>
+      </tr>
+      <tr>
+        <th>郵便番号：</th>
+        <td><%= address.postcode %></td>
+      </tr>
+      <tr>
+        <th>住所：</th>
+        <% pref = JpPrefecture::Prefecture.find(address.prefecture_code) %>
+        <td><%= pref.name if address.prefecture_code %> <%= address.address_city %>
+          <%= address.address_street %> <%= address.address_building %></td>
+      </tr>
+    </table><hr>
+  <% end %>
+  <%= link_to 'お届け先を追加/変更する', edit_user_registration_path %><br><br>
+
+  <h5><%= link_to '購入へすすむ', cart_pay_path(@carts.ids) if @carts.present? %></h5><br>
+
 </article>

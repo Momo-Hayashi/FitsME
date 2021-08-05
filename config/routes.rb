@@ -38,9 +38,7 @@ Rails.application.routes.draw do
   resources :clothes
   resources :favorites, only: [:create, :destroy, :index]
   resources :carts, only: [:create, :destroy, :index, :update] do
-    get :purchase
     get :pay
-    patch :pay
     get :complete
     post :complete
   end

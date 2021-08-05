@@ -46,16 +46,16 @@
   <table>
     <tr>
       <th>お名前：</th>
-      <td><%= @user.last_name %><%= @user.first_name %></td>
+      <td><%= @address.last_name %><%= @address.first_name %></td>
     </tr>
     <tr>
       <th>郵便番号：</th>
-      <td><%= @user.postcode %></td>
+      <td><%= @address.postcode %></td>
     </tr>
     <tr>
       <th>住所：</th>
-      <% pref = JpPrefecture::Prefecture.find(@user.prefecture_code) %>
-      <td><%= pref.name %><%= @user.address_city %><%= @user.address_street %><%= @user.address_building %>
+      <% pref = JpPrefecture::Prefecture.find(@address.prefecture_code) %>
+      <td><%= pref.name %><%= @address.address_city %><%= @address.address_street %><%= @address.address_building %>
     </tr>
   </table>
 
