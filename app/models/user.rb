@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_clothes, through: :favorites, source: :clothe
   has_many :orders
+  has_many :reviews
   has_many :carts, dependent: :destroy
   has_many :addresses, dependent: :destroy
   accepts_nested_attributes_for :addresses, allow_destroy: true, reject_if: :reject_all_blank

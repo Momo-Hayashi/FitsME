@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(version: 2021_08_05_072847) do
+ActiveRecord::Schema.define(version: 2021_08_06_024853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,16 @@ ActiveRecord::Schema.define(version: 2021_08_05_072847) do
     t.index ["reset_password_token"], name: "index_retailers_on_reset_password_token", unique: true
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "stock_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_reviews_on_stock_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "stocks", force: :cascade do |t|
     t.string "size"
     t.string "color"
@@ -175,5 +185,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_072847) do
   add_foreign_key "favorites", "users"
   add_foreign_key "orders", "stocks"
   add_foreign_key "orders", "users"
+  add_foreign_key "reviews", "stocks"
+  add_foreign_key "reviews", "users"
   add_foreign_key "stocks", "clothes"
 end
