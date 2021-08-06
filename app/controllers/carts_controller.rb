@@ -24,24 +24,27 @@ class CartsController < ApplicationController
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
+
     @address = @user.addresses.first
 
-    binding.irb
-    Order.create(
+    @order = Order.create(
       user_id: @user.id,
-      stock_id: @carts.pluck(:stock_id).join(','),
       price: params[:cart][:total_price],
-      amount: 1
       # shipping_to:
     )
 
-    @carts.each do |cart|
-      @stock = cart.stock
+    @carts.each do |item|
+      OrderStock.create(
+        stock_id: item.stock.id,
+        order_id: @order.id,
+        amount: 1,
+      )
+      @stock = item.stock
       new_quantity = @stock.quantity - 1
       @stock.update_attribute( :quantity, new_quantity )
-      cart.destroy
+      item.destroy
     end
-
+    
   end
 
   def destroy

@@ -5,37 +5,39 @@
   <% n = 0 %>
   <% @orders.each do |order| %>
     <hr><h4>ご注文履歴 <%= n += 1 %> </h4><hr>
-    <% @clothe = order.stock.clothe %>
-    <div class="row">
-      <div class="offset-md-1 col-md-3">
-        <%= image_tag@clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
-      </div>
+    <% order.bought_stocks.each do |stock| %>
+      <% @clothe = stock.clothe %>
+      <div class="row">
+        <div class="offset-md-1 col-md-3">
+          <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+        </div>
 
-      <div class="col-md-5">
-        <table>
-          <tr>
-            <th class="col-md-5">ブランド名</th>
-            <td class="col-md-7"><%= @clothe.retailer.name %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">アイテム</th>
-            <td class="col-md-7"><%= @clothe.name %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">サイズ</th>
-            <td class="col-md-7"><%= order.stock.size %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">カラー</th>
-            <td class="col-md-7"><%= order.stock.color %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">金額</th>
-            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
-          </tr>
-        </table>
-      </div>
-    </div><hr>
+        <div class="col-md-5">
+          <table>
+            <tr>
+              <th class="col-md-5">ブランド名</th>
+              <td class="col-md-7"><%= @clothe.retailer.name %></td>
+            </tr>
+            <tr>
+              <th class="col-md-5">アイテム</th>
+              <td class="col-md-7"><%= @clothe.name %></td>
+            </tr>
+            <tr>
+              <th class="col-md-5">サイズ</th>
+              <td class="col-md-7"><%= stock.size %></td>
+            </tr>
+            <tr>
+              <th class="col-md-5">カラー</th>
+              <td class="col-md-7"><%= stock.color %></td>
+            </tr>
+            <tr>
+              <th class="col-md-5">金額</th>
+              <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            </tr>
+          </table>
+        </div>
+      </div><hr>
+    <% end %>
 
     <p style="text-align:center;"><strong>合計金額：<%= order.price %> 円（税込み）</strong></p><hr>
 
