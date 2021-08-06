@@ -19,7 +19,7 @@
           <li><%= link_to 'My page', users_show_path %></li>
           <li><%= link_to 'Favorites', favorites_path %></li>
           <li><%= link_to 'Cart', carts_path %></li>
-          <li><%= link_to 'Orders', order_index_path %></li>
+          <li><%= link_to 'Orders', orders_path %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         <% elsif retailer_signed_in? %>
           <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
