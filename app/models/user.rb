@@ -14,14 +14,14 @@ class User < ApplicationRecord
   has_many :orders
   has_many :carts, dependent: :destroy
   has_many :addresses, dependent: :destroy
-  accepts_nested_attributes_for :addresses, allow_destroy: true, reject_if: :reject_both_blank
+  accepts_nested_attributes_for :addresses, allow_destroy: true, reject_if: :reject_all_blank
 
-  def reject_both_blank(attributes)
+  def reject_all_blank(attributes)
     if attributes[:id]
-      attributes.merge!(_destroy: "1") if attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:prefecture_code].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
-      !attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? attributes[:prefecture_code].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
+      attributes.merge!(_destroy: "1") if attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
+      !attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
     else
-      attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:prefecture_code].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
+      attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
     end
   end
 

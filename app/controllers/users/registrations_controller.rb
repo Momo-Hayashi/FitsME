@@ -12,9 +12,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @user = User.new
+    @user.addresses.build
+    super
+  end
 
   # POST /resource
   # def create
