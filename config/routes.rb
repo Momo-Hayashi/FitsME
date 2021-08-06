@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources :favorites, only: %i[ create destroy index]
   resources :addresses, only: [:destroy]
   resources :orders, only: %i[ index show ]
+  resources :reviews
   resources :carts, only: %i[ create destroy index update ] do
     get :pay
     get :complete

@@ -1,0 +1,50 @@
+<%= form_with(model: @review, local: true) do |form| %>
+
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this clothes from being saved:</h2>
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @bought_items.each do |bought_item| %>
+    <% @clothe = bought_item.stock.clothe %>
+    <div class="row">
+      <ul class="col-md-3">
+        <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
+        <li><%= @clothe.retailer.name %></li>
+        <li><%= @clothe.name %></li>
+        <li><%= bought_item.stock.size %>サイズ</li>
+        <li><%= bought_item.stock.color %></li>
+        <li><%= @clothe.price %>円（税込み）</li>
+      </ul>
+
+      <div class="col-md-7">
+        <table>
+          <tr>
+            <th class="col-md-4"><%= form.label :レーティング %></th>
+            <td class="col-md-7"><%= form.text_field :content %></td>
+          </tr>
+          <tr>
+            <th class="col-md-4"><%= form.label :内容 %></th>
+            <td class="col-md-7"><%= form.text_field :content %></td>
+          </tr>
+          <tr>
+            <th class="col-md-4"><%= form.label :'Images' %></th>
+            <% if @review.images.attached? %>
+              <% @review.images.each do |image| %>
+                <%= image_tag image.variant(resize: "250x250") %>
+              <% end %>
+            <% end %>
+            <td class="col-md-7"><%= form.file_field :images, multiple: true %></td>
+          </tr>
+        </table>
+      </div>
+    </div><hr><br>
+  <% end %>
+  <%= form.submit %>
+<% end %>
