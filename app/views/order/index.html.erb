@@ -40,20 +40,29 @@
     <p style="text-align:center;"><strong>合計金額：<%= order.price %> 円（税込み）</strong></p><hr>
 
     <h5>お届け先情報</h5>
-    <% shipping_info = current_user.addresses.find(order.shipping_to) %>
+    <% shipping_info = current_user.addresses.first %>
+    <%# <% shipping_info = current_user.addresses.find(order.shipping_to) %>
     <table>
+      <tr>
+        <th>ご注文日：</th>
+        <td><%= l order.created_at %></td>
+      </tr>
       <tr>
         <th>お名前：</th>
         <td><%= shipping_info.last_name %><%= shipping_info.first_name %></td>
       </tr>
       <tr>
         <th>郵便番号：</th>
-        <td><%= shipping_info.zipcode %></td>
+        <td><%= shipping_info.postcode %></td>
       </tr>
       <tr>
         <th>住所：</th>
-        <% pref = JpPrefecture::Prefecture.find(shipping_info.prefecture) %>
-        <td><%= pref.name %><%= shipping_info.city %><%= shipping_info.following_address %></td>
+        <% pref = JpPrefecture::Prefecture.find(shipping_info.prefecture_code) %>
+        <td><%= pref.name %><%= shipping_info.address_city %><%= shipping_info.address_street %><%= shipping_info.address_building %></td>
+      </tr>
+      <tr>
+        <th>お電話番号：</th>
+        <td><%= shipping_info.phone_number %></td>
       </tr>
     </table><br><br>
   <% end %>
