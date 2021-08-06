@@ -41,6 +41,7 @@
           <% end %>
         </tr>
       </table>
+      <%= link_to 'このお届け先を削除', address_path(id: address.id), method: :delete, class: 'btn btn-outline-danger' %>
     <% end %>
 
   <br>
