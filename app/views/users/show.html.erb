@@ -16,34 +16,33 @@
     </tr>
   <table>
     <br><br>
-  <h4>お届け先情報</h4>
-  <table>
-    <tr>
-      <th>お名前：</th>
-      <td><%= @user.last_name %><%= @user.first_name %></td>
-    </tr>
-    <tr>
-      <th>郵便番号：</th>
-      <td><%= @user.postcode %></td>
-    </tr>
-    <tr>
-      <th>都道府県：</th>
-      <% pref = JpPrefecture::Prefecture.find(@user.prefecture_code) %>
-      <td><%= pref.name if @user.prefecture_code %></td>
-    </tr>
-    <tr>
-      <th>市区町村：</th>
-      <td><%= @user.address_city %></td>
-    </tr>
-    <tr>
-      <th>番地：</th>
-      <td><%= @user.address_street %></td>
-    </tr>
-    <tr>
-      <th>建物：</th>
-      <td><%= @user.address_building %></td>
-    </tr>
-  </table>
+
+    <% n = 0 %>
+    <% @addresses.each do |address| %>
+      <hr><h4>お届け先情報 <%= n += 1 %> </h4><hr>
+      <table>
+        <tr>
+          <th>お名前：</th>
+          <td><%= address.last_name %><%= address.first_name %></td>
+        </tr>
+        <tr>
+          <th>郵便番号：</th>
+          <td><%= address.postcode %></td>
+        </tr>
+        <tr>
+          <th>住所：</th>
+          <% pref = JpPrefecture::Prefecture.find(address.prefecture_code) %>
+          <td><%= pref.name if address.prefecture_code %> <%= address.address_city %>
+            <%= address.address_street %> <%= address.address_building %></td>
+        </tr>
+        <tr>
+          <% if address.current_address == true %>
+            <th>デフォルトの住所として使用中</th>
+          <% end %>
+        </tr>
+      </table>
+      <%= link_to 'このお届け先を削除', address_path(id: address.id), method: :delete, class: 'btn btn-outline-danger' %>
+    <% end %>
 
   <br>
   <%= link_to 'Edit the profile', edit_user_registration_path %>
