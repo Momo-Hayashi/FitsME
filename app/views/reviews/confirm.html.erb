@@ -1,15 +1,14 @@
 <article>
   <h2>Would you like to post with the following contents?</h2>
-  <%= form_with(model: @review, url: new_clothe_review_path, local: true) do |f| %>
+  <%= form_with(model: @review, url: clothe_reviews_path, local: true) do |f| %>
 
+    <%= f.hidden_field :rate %>
     <%= f.hidden_field :content %>
-    <%= f.hidden_field :stock_id %>
-    <%# <%= f.hidden_field :rating %>
-
-    <% @clothe = @stock.clothe %>
+    <%= f.hidden_field :stock_no %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%# <%= f.hidden_field :images, value: params[:review][:images] %> %>
 
     <div class="row">
-
       <ul class="col-md-3">
         <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
         <li><%= @clothe.retailer.name %></li>
@@ -20,8 +19,8 @@
       </ul>
 
       <div class="col-md-7">
-        <p>Rating：<%= %></p>
-        <p>Content：<%= @review.content%></p>
+        <p>Rating：<%= @review.rate %></p>
+        <p>Content：<%= @review.content %></p>
         <p>Image：</p>
         <% if @review.images.attached? %>
           <% @review.images.each do |image| %>

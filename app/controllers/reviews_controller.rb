@@ -1,17 +1,16 @@
 class ReviewsController < ApplicationController
-  before_action :set_clothe, only: %i[ new create edit update]
+  before_action :set_clothe, only: %i[ new confirm create edit update]
 
   def new
     @stock = Stock.find(params[:stock_no])
     @review = @clothe.reviews.new
   end
 
-  # def confirm
-  #   @stock = Stock.find(params[:review][:stock_id])
-  #   @clothe = Clothe.find(@stock.clothe.id)
-  #   @review = @stock.reviews.build(review_params)
-  #   render :new if @review.invalid?
-  # end
+  def confirm
+    @stock = Stock.find(params[:review][:stock_no])
+    @review = @clothe.reviews.build(review_params)
+    render :new if @review.invalid?
+  end
 
   def create
     @review = @clothe.reviews.build(review_params)

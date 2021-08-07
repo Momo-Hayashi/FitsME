@@ -38,7 +38,9 @@ Rails.application.routes.draw do
   resources :addresses, only: [:destroy]
   resources :orders, only: %i[ index show ]
   resources :clothes do
-    resources :reviews
+    resources :reviews do
+      post 'confirm', on: :collection
+    end
   end
 
   resources :carts, only: %i[ create destroy index update ] do
