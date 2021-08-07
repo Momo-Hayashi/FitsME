@@ -1,5 +1,6 @@
-<%= form_with(model:@review, local: true ) do |form| %>
-  <%= form.hidden_field :stock_id %>
+<%= form_with(model: @review, local: true, url: clothe_reviews_path ) do |form| %>
+  <%= form.hidden_field :stock_no, value: @stock.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
 
   <% if @review.errors.any? %>
     <div id="error_explanation">
@@ -12,7 +13,6 @@
     </div>
   <% end %>
 
-  <% @clothe = @stock.clothe %>
   <div class="row">
     <ul class="col-md-3">
       <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
@@ -24,12 +24,11 @@
     </ul>
 
     <div class="col-md-7">
-      <%= form.hidden_field :stock_id, value: @stock.id %>
       <table>
-        <!-- <tr> -->
-          <!-- <th class="col-md-4"><%= form.label :レーティング %></th> -->
-          <!-- <td class="col-md-7"><%= form.text_field :rating %></td> -->
-        <!-- </tr> -->
+        <tr>
+          <th class="col-md-4"><%= form.label :Rating %></th>
+          <td class="col-md-7"><%= form.text_field :rate %></td>
+        </tr>
         <tr>
           <th class="col-md-4"><%= form.label :内容 %></th>
           <td class="col-md-7"><%= form.text_field :content, class: "form-control" %></td>

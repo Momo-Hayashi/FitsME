@@ -1,9 +1,9 @@
 class ReviewsController < ApplicationController
-  # before_action :set_clothe, only: %i[ create edit update]
+  before_action :set_clothe, only: %i[ new create edit update]
 
   def new
-    @stock = Stock.find(params[:stock_id])
-    @review = @stock.reviews.new
+    @stock = Stock.find(params[:stock_no])
+    @review = @clothe.reviews.new
   end
 
   # def confirm
@@ -14,12 +14,13 @@ class ReviewsController < ApplicationController
   # end
 
   def create
-    @review = current_user.reviews.build(review_params)
+    @review = @clothe.reviews.build(review_params)
+    @stock = Stock.find(params[:review][:stock_no])
     if params[:back]
       render :new
     else
       if @review.save
-        redirect_to clothe_path(@review.stock.clothe), notice: 'レビュー投稿ありがとうございます!'
+        redirect_to clothe_path(@review.clothe), notice: 'レビュー投稿ありがとうございます!'
       else
         render :new
       end
@@ -41,11 +42,11 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content, :stock_id, :clothe_id, images: [])
+    params.require(:review).permit( :clothe_id, :user_id, :rate, :content, :stock_no, images: [])
   end
-  #
-  # def set_clothe
-  #   @clothe = Clothe.find(params[:review][:clothe_id])
-  # end
+
+  def set_clothe
+    @clothe = Clothe.find(params[:clothe_id])
+  end
 
 end
