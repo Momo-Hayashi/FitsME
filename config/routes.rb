@@ -34,11 +34,12 @@ Rails.application.routes.draw do
   get 'users/show', to: 'users#show'
   get 'retailers/show/:id', to: 'retailers#show', as: 'retailers'
 
-  resources :clothes
   resources :favorites, only: %i[ create destroy index]
   resources :addresses, only: [:destroy]
   resources :orders, only: %i[ index show ]
+  resources :clothes
   resources :reviews
+
   resources :carts, only: %i[ create destroy index update ] do
     get :pay
     get :complete

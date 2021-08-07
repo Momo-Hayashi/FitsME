@@ -1,0 +1,37 @@
+<article>
+  <h2>Would you like to post with the following contents?</h2>
+  <%= form_with(model: @review, url: new_clothe_review_path, local: true) do |f| %>
+
+    <%= f.hidden_field :content %>
+    <%= f.hidden_field :stock_id %>
+    <%# <%= f.hidden_field :rating %>
+
+    <% @clothe = @stock.clothe %>
+
+    <div class="row">
+
+      <ul class="col-md-3">
+        <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
+        <li><%= @clothe.retailer.name %></li>
+        <li><%= @clothe.name %></li>
+        <li><%= @stock.size %>サイズ</li>
+        <li><%= @stock.color %></li>
+        <li><%= @clothe.price %>円（税込み）</li>
+      </ul>
+
+      <div class="col-md-7">
+        <p>Rating：<%= %></p>
+        <p>Content：<%= @review.content%></p>
+        <p>Image：</p>
+        <% if @review.images.attached? %>
+          <% @review.images.each do |image| %>
+            <%= image_tag image.variant(resize: "200x200") %>
+          <% end %>
+        <% end %>
+      </div>
+    </div><br>
+
+    <%= f.submit "Post!" %>
+    <%= f.submit "Back", name:'back' %>
+  <% end %>
+</article>
