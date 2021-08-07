@@ -59,8 +59,24 @@
         <%= link_to 'お気に入り解除する', favorite_path(clothe_id: @clothe.id, id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
       <% else %>
         <%= link_to 'お気に入りする', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-outline-primary" %>
-      <% end %>
+      <% end %><br><br>
 
+      <h5>Reviews</h5>
+      <% if @clothe.stocks.first.reviews.present? %>
+        <% @clothe.stocks.first.reviews.each do |review| %>
+          <%= review.user.username %>
+          <%= review.stock.size %>
+          <%= review.stock.color %>
+          <%= review.content %>
+          <% if review.images.attached? %>
+            <% review.images.each do |image| %>
+              <%= image_tag image.variant(resize: "150x150") %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% else %>
+        <p>こちらの商品に対するレビューはまだありません。</p>
+      <% end %>
     </div>
   </div>
 
