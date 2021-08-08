@@ -6,7 +6,7 @@
     <%= f.hidden_field :content %>
     <%= f.hidden_field :stock_no %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%# <%= f.hidden_field :images, value: params[:review][:images] %> %>
+    <%= f.hidden_field :images, value: params[:review][:images] %>
 
     <div class="row">
       <ul class="col-md-3">
