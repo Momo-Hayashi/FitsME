@@ -20,7 +20,8 @@ Fits ME は、服を実際に購入したカスタマーからのレビューに
 ## 就業Termの技術
 - devise  
 - お気に入り機能 　
-
+- コメント機能(review)  
+ 
 ## カリキュラム外の技術
 - Pay.jp  
 - ancestry  
@@ -49,7 +50,7 @@ $ rails s
 [テーブル設計](https://docs.google.com/spreadsheets/d/1dUtnFL-pFzik5JiMkF2qFwqpfiGoxGp3OSuWpCnSsVE/edit#gid=2020033787)　　
 
 ## ER図
-<img width="959" alt="ER図" src="https://user-images.githubusercontent.com/83218898/127105559-cc09a15d-df5e-4854-a537-61b999d6ac3f.png">
+<img width="1115" alt="ER図" src="https://user-images.githubusercontent.com/83218898/128620044-37db7cd2-ac82-4ae3-b27b-df98c430e020.png">
 https://cacoo.com/diagrams/OdGHuW7wedFiXguP/71C45?reload_rt=1626248381130_0
 
 ## 画面遷移図
