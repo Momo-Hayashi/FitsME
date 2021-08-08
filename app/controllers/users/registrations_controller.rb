@@ -30,9 +30,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    # redirect_to users_show_path, notice: "Successfully updated!"
+  end
 
   # DELETE /resource
   # def destroy
