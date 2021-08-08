@@ -63,8 +63,8 @@
       </tr>
     </table>
     <%= link_to 'このお届け先を削除', address_path(id: address.id), method: :delete, class: 'btn btn-outline-danger' %>
-  <% end %>
+  <% end %><hr>
 
-  <br>
-  <%= link_to 'Edit the profile', edit_user_registration_path %>
+  <%= link_to 'Edit the profile', edit_user_registration_path, class: "btn btn-outline-info" %>
+
 </article>
