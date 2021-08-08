@@ -45,7 +45,6 @@ Rails.application.routes.draw do
 
   resources :carts, only: %i[ create destroy index update ] do
     get :pay
-    get :complete
     post :complete
   end
 

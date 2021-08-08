@@ -1,5 +1,5 @@
 <article>
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>Edit <%= resource_name.to_s.humanize %></h2><hr>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
@@ -8,11 +8,32 @@
       <%= f.label :Username %>
       <%= f.text_field :username, autofocus: true %>
     </div>
-
     <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, autocomplete: "email" %>
     </div>
+    <div class="field">
+      <%= f.label :お誕生日 %>
+      <%= f.date_select :birthday,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1) %>
+    </div><hr>
+
+    <strong><h4>レビュー用情報</h4></strong><hr>
+    <table>
+      <tr>
+        <th>身長</th>
+        <th>体重</th>
+        <th>ウエスト</th>
+        <th>バスト</th>
+        <th>ヒップ</th>
+      </tr>
+      <tr>
+        <td><%= f.number_field :height, step: '0.1' %>cm</td>
+        <td><%= f.number_field :weight, step: '0.1' %>kg</td>
+        <td><%= f.number_field :waist, step: '0.1' %>cm</td>
+        <td><%= f.number_field :bust, step: '0.1' %>cm</td>
+        <td><%= f.number_field :hip, step: '0.1' %>cm</td>
+      </tr>
+    <table>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -20,7 +41,7 @@
 
     <% n = 0 %>
     <%= f.fields_for :addresses do |address| %>
-      <hr><h4 class="shipping_address_info">お届け先情報<%= n += 1 %></h4>
+      <hr><h4 class="shipping_address_info">お届け先情報<%= n += 1 %></h4><hr>
       <div class="js-user_address" id="add_address_#{m.index}">
         <h5>お名前</h5>
         <div class="field">
@@ -55,14 +76,14 @@
           <%= address.label :phone_number, 'お電話番号' %>
           <%= address.text_field :phone_number %><br>
         </div>
-        <div class="field">
-          <%= address.check_box :current_address %>
-          <%= address.label :current_address, 'デフォルトの住所として使用する' %>
-        </div>
+        <!-- <div class="field"> -->
+          <%# <%= address.check_box :current_address %>
+          <%# <%= address.label :current_address, 'デフォルトの住所として使用する' %>
+        <!-- </div> -->
       </div>
     <% end %><hr><br>
 
-    <h5>パスワード変更時のみご入力ください</h5>
+    <h6>**パスワード変更時のみご入力ください</h6>
     <div class="field">
       <%= f.label :新しいパスワード %>
       <%= f.password_field :password, autocomplete: "new-password" %>

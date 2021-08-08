@@ -68,15 +68,23 @@
       <table>
         <tr>
           <th>User Info</th>
+          <th>Clothe Info</th>
           <th>Rating</th>
           <th>Images</th>
         </tr>
         <% @clothe.reviews.each do |review| %>
           <% @stock = Stock.find(review.stock_no) %>
           <tr>
-            <td class="col-md-3"><%= review.user.username %><br>
-                <%= @stock.size %><br>
-                <%= @stock.color %></td>
+            <td class="col-md-3 body_shape_info">
+              <%= review.user.username %><br>
+              Height：<%= review.user.height %>cm<br>
+              Weight：<%= review.user.weight %>km<br>
+              Waist：<%= review.user.waist %>cm<br>
+              Bust：<%= review.user.bust %>cm<br>
+              Hip：<%= review.user.hip %>cm</td>
+            <td class="col-md-3">
+              <%= @stock.size %><br>
+              <%= @stock.color %></td>
             <td class="col-md-6"><%= review.rate %><br><%= review.content %></td>
             <td class="col-md-3">
               <% if review.images.attached? %>

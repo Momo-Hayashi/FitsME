@@ -44,7 +44,9 @@ class CartsController < ApplicationController
       @stock.update_attribute( :quantity, new_quantity )
       item.destroy
     end
-    
+
+    redirect_to orders_path, notice: "購入処理が完了しました！ご利用ありがとうございました"
+
   end
 
   def destroy
