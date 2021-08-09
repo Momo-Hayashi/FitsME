@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get 'users/show', to: 'users#show'
   get 'retailers/show/:id', to: 'retailers#show', as: 'retailers'
   get 'retailers/orders', to: 'retailers#orders'
-  get 'retailers/orders/:id/detail', to: 'retailers/orders#detail'
+  get 'retailers/orders/:id/detail', to: 'retailers#detail', as: 'retailers/orders/detail'
 
   resources :favorites, only: %i[ create destroy index]
   resources :addresses, only: [:destroy]
