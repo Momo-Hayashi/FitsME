@@ -9,12 +9,20 @@
         <th>合計</th>
         <th>詳細</th>
       </tr>
-      <% @order_stocks.each do |order_stock| %>
+      <%  %>
+      <% @orders.each do |order| %>
+        <% total_price = 0 %>
         <tr>
-          <td><%= image_tag order_stock.stock.clothe.images.first.variant(resize: "150x150") %></td>
-          <td><%= l order_stock.order.created_at %></td>
-          <td>¥<%= order_stock.order.price %></td>
-          <td><%= link_to '注文の詳細', retailers_orders_detail_path(id: order_stock.order.id) %></td>
+          <td><% order.order_stocks.each do |order_stock| %>
+                <% if @order_stocks.pluck(:id).include?(order_stock.id) %>
+                  <% @order_stock = order_stock %>
+                  <%= image_tag @order_stock.stock.clothe.images.first.variant(resize: "150x150") %>
+                  <% total_price += @order_stock.stock.clothe.price %>
+                <% end %>
+              <% end %></td>
+          <td><%= l order.created_at %></td>
+          <td>¥<%= total_price %></td>
+          <td><%= link_to '注文の詳細', retailers_orders_detail_path(id: order.id) %></td>
         </tr>
       <% end %>
     </table>

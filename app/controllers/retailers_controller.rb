@@ -29,6 +29,13 @@ class RetailersController < ApplicationController
 
     #企業の保有している全ての在庫に対するオーダー(OrderStock)
     @order_stocks = OrderStock.where(stock_id: @stock_ids)
+
+    @orders = []
+    @order_stocks.each do |order|
+      @order = order.order
+      @orders.push(@order)
+    end
+    @orders = @orders.uniq
   end
 
 end
