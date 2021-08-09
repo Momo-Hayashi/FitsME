@@ -13,24 +13,24 @@
     <% end %>
 
     <div class="actions">
-      <div class="field">
-        <%= form.label :アイテム名 %><br>
-        <%= form.text_field :name %>
+      <div class="form-group row">
+        <%= form.label :アイテム名, class: "col-sm-2 col-form-label" %><br>
+        <%= form.text_field :name, class: "col-sm-10 form-control" %>
       </div>
 
-      <div class="field">
-        <%= form.label :アイテム詳細 %><br>
-        <%= form.text_field :description %>
+      <div class="form-group row">
+        <%= form.label :アイテム詳細, class: "col-sm-2 col-form-label" %><br>
+        <%= form.text_area :description, class: "col-sm-10 form-control" %>
       </div>
 
-      <div class="field">
-        <%= form.label :サイズ %><br>
-        <%= form.text_field :size %>
+      <div class="form-group row">
+        <%= form.label :サイズ, class: "col-sm-2 col-form-label" %><br>
+        <%= form.text_area :size, class: "col-sm-10 form-control" %>
       </div>
 
-      <div class="field">
-        <%= form.label :Price %><br>
-        <%= form.number_field :price %>
+      <div class="form-group row">
+        <%= form.label :Price, class: "col-sm-2 col-form-label" %><br>
+        <%= form.number_field :price, class: "col-sm-10 form-control" %>
       </div>
 
       <div class="field">
@@ -46,20 +46,19 @@
       </div><br>
 
       <%= form.fields_for :stocks do |stock| %>
-        <div class="field">
-          <%= stock.label :Size %>
-          <%= stock.text_field :size %>
-        </div>
-
-        <div class="field">
-          <%= stock.label :Color %>
-          <%= stock.text_field :color %>
-        </div>
-
-        <div class="field">
-          <%= stock.label :数量 %>
-          <%= stock.text_field :quantity %>
-        </div><br>
+      <table>
+        <tr>
+          <th><%= stock.label :Size %></th>
+          <th><%= stock.label :Color %></th>
+          <th><%= stock.label :数量 %></th>
+        </tr>
+        <tr>
+          <td><%= stock.text_field :size %></td>
+          <td><%= stock.text_field :color %></td>
+          <td><%= stock.text_field :quantity %></td>
+        </tr>
+      </table>
+      <br>
       <% end %>
 
       <br>

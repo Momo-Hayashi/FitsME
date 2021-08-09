@@ -23,8 +23,9 @@
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         <% elsif retailer_signed_in? %>
           <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
-          <li><%= link_to '管理画面TOP', retailers_path(current_retailer.id) %></li>
+          <li><%= link_to '企業ページ', retailers_path(current_retailer.id) %></li>
           <li><%= link_to '服の登録', new_clothe_path %></li>
+          <li><%= link_to '注文管理', retailers_orders_path %></li>
           <li><%= link_to 'Log out', destroy_retailer_session_path, method: :delete %></li>
         <% else %>
           <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>

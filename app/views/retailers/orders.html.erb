@@ -1,0 +1,21 @@
+<article>
+  <hr><h3>オーダー管理</h3><hr>
+  <p>最新のご注文から順番に表示されます。</p><br>
+
+    <table>
+      <tr>
+        <th>アイテム</th>
+        <th>ご注文日</th>
+        <th>合計</th>
+        <th>詳細</th>
+      </tr>
+      <% @order_stocks.each do |order_stock| %>
+        <tr>
+          <td><%= image_tag order_stock.stock.clothe.images.first.variant(resize: "150x150") %></td>
+          <td><%= l order_stock.order.created_at %></td>
+          <td>¥<%= order_stock.order.price %></td>
+          <td><%= link_to '注文の詳細', retailers_orders_path(order_stock.order.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+</article>
