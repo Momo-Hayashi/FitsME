@@ -23,5 +23,6 @@
   </div>
 <% end %>
 
-<%= render "retailers/shared/links" %>
+<%= render "retailers/shared/links" %><br>
+<%= link_to '出品企業としてログインはこちら', new_retailer_registration_path %><br>
 <%= link_to 'Guest Retailerとしてログイン', retailers_guest_sign_in_path, method: :post %>

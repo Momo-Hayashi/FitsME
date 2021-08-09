@@ -7,7 +7,7 @@
     <% @clothes.each do |clothe| %>
       <div class="index_clothes col-sm-6 col-md-3">
         <ul>
-          <li><%= image_tag clothe.images.first.variant(resize: "200x200") %></li>
+          <li><%= image_tag clothe.images.first.variant(resize: "250x250") %></li>
           <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
           <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
           <li>¥<%= clothe.price %></li>

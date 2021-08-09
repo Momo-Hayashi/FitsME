@@ -35,8 +35,14 @@ class ClothesController < ApplicationController
   end
 
   def update
+    if params[:clothe][:image_ids]
+      params[:clothe][:image_ids].each do |image_id|
+        image = @clothe.images.find(image_id)
+        image.purge
+      end
+    end
     respond_to do |format|
-      if @clothe.update(clothe_params)
+      if @clothe.update_attributes(clothe_params)
         format.html { redirect_to @clothe, notice: "Clothe was successfully updated." }
         format.json { render :show, status: :ok, location: @clothe }
       else
