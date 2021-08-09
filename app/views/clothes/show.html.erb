@@ -7,7 +7,7 @@
       <h5>Images：</h5>
       <% if @clothe.images.attached? %>
         <% @clothe.images.each do |image| %>
-          <%= image_tag image.variant(resize: "350x480") %>
+          <%= image_tag image.variant(resize: "350x480") %><br><br>
         <% end %>
       <% end %>
     </div>

@@ -32,7 +32,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if @review.update(review_params)
+    if params[:review][:image_ids]
+      params[:review][:image_ids].each do |image_id|
+        image = @review.images.find(image_id)
+        image.purge
+      end
+    end
+    if @review.update_attributes(review_params)
       redirect_to clothe_path(@review.clothe), notice: "Successfully updated!"
     else
       render :edit

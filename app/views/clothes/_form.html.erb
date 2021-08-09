@@ -36,7 +36,9 @@
       <div class="field">
         <%= form.label :'Images of the item' %><br>
         <% if clothe.images.attached? %>
+          <p>現在登録されている画像（削除するものはチェックしてください）</p>
           <% clothe.images.each do |image| %>
+            <%= form.check_box :image_ids, {multiple: true}, image.id, false %>
             <%= image_tag image.variant(resize: "250x250") %>
           <% end %>
         <% end %><br>

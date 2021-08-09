@@ -1,13 +1,13 @@
 <article class = #row>
 
   <h1>Fits ME</h1>
-  <h5>Go look for your ideal outfits!</h5>
+  <h5>Go look for your ideal outfits!</h5><br>
 
   <div class="row">
     <% @clothes.each do |clothe| %>
       <div class="index_clothes col-sm-6 col-md-3">
         <ul>
-          <li><%= image_tag clothe.images.first.variant(resize: "200x200") %></li>
+          <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}).processed %></li>
           <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
           <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
           <li>¥<%= clothe.price %></li>
@@ -17,7 +17,7 @@
                 <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
                 <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
               <% end %>
-            </tr>
+            </tr><br>
           </table>
         </ul>
       </div>
