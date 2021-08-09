@@ -28,11 +28,11 @@
         </tr>
         <tr>
           <th class="col-md-3">アイテム詳細：</th>
-          <td class="col-md-9"><%= @clothe.description %></td>
+          <td class="col-md-9"><%= simple_format @clothe.description %></td>
         </tr>
         <tr>
           <th class="col-md-3">サイズガイド：</th>
-          <td class="col-md-9"><%= @clothe.size %></td>
+          <td class="col-md-9"><%= simple_format @clothe.size %></td>
         </tr>
       </table><br>
 
