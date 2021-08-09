@@ -3,7 +3,7 @@ class ClothesController < ApplicationController
   # before_action :set_clothe_purchase, only: %i[ purchase pay ]
 
   def index
-    @clothes = Clothe.all
+    @clothes = Clothe.all.order(updated_at: :desc)
   end
 
   def new
