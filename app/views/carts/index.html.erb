@@ -71,7 +71,7 @@
           </tr>
           <tr>
             <th></th>
-            <td><%= f.check_box :address_id ,{}, address.id, false %>
+            <td><%= f.check_box :address_ids ,{multiple: true}, address.id, false %>
                 この住所を今回のお届け先に指定する</td>
           </tr>
         </table><hr>

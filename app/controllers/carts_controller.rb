@@ -16,8 +16,11 @@ class CartsController < ApplicationController
   def pay
     if params[:cart].blank?
       redirect_to carts_path, notice: "住所の登録/選択をお願いします"
+    elsif params[:cart][:address_ids].count > 1
+      redirect_to carts_path, notice: "住所は一つしか選択できません。"
     else
-      @address = current_user.addresses.find(params[:cart][:address_id])
+      @address = current_user.addresses.find(params[:cart][:address_ids])
+      @address = @address.first
     end
   end
 
@@ -65,7 +68,7 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:cart).permit(:address_id)
+    params.require(:cart).permit(address_ids:[])
   end
 
 end
