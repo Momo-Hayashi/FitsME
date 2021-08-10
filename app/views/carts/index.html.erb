@@ -1,6 +1,8 @@
 <article>
+  <hr><h3>カート</h3><hr>
   <% if @carts.empty? %>
-    <%= link_to '商品を追加する', clothes_path %><hr>
+    <p>カートに商品を追加すると内容が表示されます！</p>
+    <%= link_to '商品を追加する', clothes_path, class: "btn btn-info" %><hr>
   <% else %>
 
     <%= form_with(model: @carts, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>

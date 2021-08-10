@@ -25,12 +25,10 @@ class CartsController < ApplicationController
       :currency => 'jpy'
     )
 
-    @address = @user.addresses.first
-
     @order = Order.create(
       user_id: @user.id,
       price: params[:cart][:total_price],
-      # shipping_to:
+      shipping_to: params[:cart][:address_id]
     )
 
     @carts.each do |item|
@@ -63,7 +61,7 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:cart).permit(:checkbox, address_id:[])
+    params.require(:cart).permit(:address_id)
   end
 
 end

@@ -1,10 +1,7 @@
 <article>
   <hr><h3>ご注文の詳細</h3><hr><br>
 
-  <strong><p>ご注文日：<%= l @order.created_at %><p></strong>
-  <% shipping_info = current_user.addresses.first %><hr>
-  <%# <% shipping_info = current_user.addresses.find(order.shipping_to) %>
-
+  <strong><p>ご注文日：<%= l @order.created_at %><p></strong><hr>
 
   <% @order.bought_stocks.each do |stock| %>
     <% @clothe = stock.clothe %>
@@ -49,20 +46,20 @@
   <table>
     <tr>
       <th>お名前：</th>
-      <td><%= shipping_info.last_name %><%= shipping_info.first_name %></td>
+      <td><%= @address.last_name %><%= @address.first_name %></td>
     </tr>
     <tr>
       <th>郵便番号：</th>
-      <td><%= shipping_info.postcode %></td>
+      <td><%= @address.postcode %></td>
     </tr>
     <tr>
       <th>住所：</th>
-      <% pref = JpPrefecture::Prefecture.find(shipping_info.prefecture_code) %>
-      <td><%= pref.name %><%= shipping_info.address_city %><%= shipping_info.address_street %><%= shipping_info.address_building %></td>
+      <% pref = JpPrefecture::Prefecture.find(@address.prefecture_code) %>
+      <td><%= pref.name %><%= @address.address_city %><%= @address.address_street %><%= @address.address_building %></td>
     </tr>
     <tr>
       <th>お電話番号：</th>
-      <td><%= shipping_info.phone_number %></td>
+      <td><%= @address.phone_number %></td>
     </tr>
   </table><br><br>
 
