@@ -5,6 +5,5 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @address = Address.find(@order.shipping_to)
   end
 end

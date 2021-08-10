@@ -32,10 +32,19 @@ class CartsController < ApplicationController
       :currency => 'jpy'
     )
 
+    @address = Address.find(params[:cart][:address_id])
+
     @order = Order.create(
       user_id: @user.id,
       price: params[:cart][:total_price],
-      shipping_to: params[:cart][:address_id]
+      last_name: @address.last_name,
+      first_name: @address.first_name,
+      postcode: @address.postcode,
+      prefecture_code: @address.prefecture_code,
+      address_city: @address.address_city,
+      address_street: @address.address_street,
+      address_building: @address.address_building,
+      phone_number: @address.phone_number,
     )
 
     @carts.each do |item|
