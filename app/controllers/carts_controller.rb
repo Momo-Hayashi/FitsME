@@ -14,7 +14,14 @@ class CartsController < ApplicationController
   end
 
   def pay
-    @address = @user.addresses.first
+    if params[:cart].blank?
+      redirect_to carts_path, notice: "住所の登録/選択をお願いします"
+    elsif params[:cart][:address_ids].count > 1
+      redirect_to carts_path, notice: "住所は一つしか選択できません。"
+    else
+      @address = current_user.addresses.find(params[:cart][:address_ids])
+      @address = @address.first
+    end
   end
 
   def complete
@@ -25,12 +32,19 @@ class CartsController < ApplicationController
       :currency => 'jpy'
     )
 
-    @address = @user.addresses.first
+    @address = Address.find(params[:cart][:address_id])
 
     @order = Order.create(
       user_id: @user.id,
       price: params[:cart][:total_price],
-      # shipping_to:
+      last_name: @address.last_name,
+      first_name: @address.first_name,
+      postcode: @address.postcode,
+      prefecture_code: @address.prefecture_code,
+      address_city: @address.address_city,
+      address_street: @address.address_street,
+      address_building: @address.address_building,
+      phone_number: @address.phone_number,
     )
 
     @carts.each do |item|
@@ -60,6 +74,10 @@ class CartsController < ApplicationController
     @carts = current_user.carts
     @user = current_user
     @addresses = @user.addresses
+  end
+
+  def cart_params
+    params.require(:cart).permit(address_ids:[])
   end
 
 end

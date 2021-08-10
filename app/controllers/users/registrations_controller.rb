@@ -53,13 +53,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :points, :birthday,
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:id, :username, :points, :birthday,
       :height, :weight, :bust, :waist, :hip,
       addresses_attributes: [
       :first_name,
       :last_name,
       :postcode,
-      :prefecture_name,
+      :prefecture_code,
       :address_city,
       :address_street,
       :address_building,
@@ -71,13 +71,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :points, :birthday,
+    devise_parameter_sanitizer.permit(:account_update, keys: [:id, :username, :points, :birthday,
       :height, :weight, :bust, :waist, :hip,
       addresses_attributes: [
       :first_name,
       :last_name,
       :postcode,
-      :prefecture_name,
+      :prefecture_code,
       :address_city,
       :address_street,
       :address_building,
