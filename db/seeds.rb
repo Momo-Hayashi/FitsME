@@ -7,11 +7,11 @@ User.create!([
 ])
 
 Address.create!([
-  { user_id: 1, first_name: 'Emily', last_name: 'Cooper', postcode: '154-0001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111' },
-  { user_id: 1, first_name: 'Emily', last_name: 'Cooper', postcode: '678-0064', prefecture_code: 04, address_city: '相生市', address_street: '青葉台1-2-3', address_building: 'ビル101', phone_number: '22222222222' },
-  { user_id: 2, first_name: 'Rose', last_name: 'Mason', postcode: '248-0026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333' },
-  { user_id: 3, first_name: 'Emilia', last_name: 'Packer', postcode: '248-0026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444' },
-  { user_id: 4, first_name: 'Olivia', last_name: 'Grealish', postcode: '399-9300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555' }
+  { user_id: 1, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111' },
+  { user_id: 1, first_name: 'Emily', last_name: 'Cooper', postcode: '6780064', prefecture_code: 04, address_city: '相生市', address_street: '青葉台1-2-3', address_building: 'ビル101', phone_number: '22222222222' },
+  { user_id: 2, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333' },
+  { user_id: 3, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444' },
+  { user_id: 4, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555' }
 ])
 
 Retailer.create!([
