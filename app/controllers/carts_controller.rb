@@ -14,7 +14,7 @@ class CartsController < ApplicationController
   end
 
   def pay
-    @address = @user.addresses.first
+    @address = current_user.addresses.find(params[:cart][:address_id])
   end
 
   def complete
@@ -60,6 +60,10 @@ class CartsController < ApplicationController
     @carts = current_user.carts
     @user = current_user
     @addresses = @user.addresses
+  end
+
+  def cart_params
+    params.require(:cart).permit(:checkbox, address_id:[])
   end
 
 end
