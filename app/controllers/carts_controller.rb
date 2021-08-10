@@ -14,7 +14,11 @@ class CartsController < ApplicationController
   end
 
   def pay
-    @address = current_user.addresses.find(params[:cart][:address_id])
+    if params[:cart].blank?
+      redirect_to carts_path, notice: "住所の登録/選択をお願いします"
+    else
+      @address = current_user.addresses.find(params[:cart][:address_id])
+    end
   end
 
   def complete
