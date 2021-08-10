@@ -95,7 +95,7 @@ Clothe.create!([
   },
 
   { retailer_id: 1,
-    name: '【SET UP対応】長袖ショート丈テーラードジャケット',
+    name: 'Yellow Jacket',
     description: '金ボタンでクラシックに。カーディガン感覚で着こなせるノーカラージャケット
                   ---
                   Design/Styling
@@ -111,6 +111,7 @@ Clothe.create!([
   },
 
   { retailer_id: 2,
+    name: '【SET UP対応】長袖ショート丈テーラードジャケット',
     description: '大人気のジャケットに長袖が登場！！
                   【デザイン】
                   短丈デザインなので小柄な方もスッキリと着こなす事ができ、
