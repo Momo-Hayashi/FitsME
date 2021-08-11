@@ -1,7 +1,7 @@
 <article>
   <h2>Edit <%= resource_name.to_s.humanize %></h2><hr>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
     <div class="field">
@@ -76,10 +76,6 @@
           <%= address.label :phone_number, 'お電話番号' %>
           <%= address.text_field :phone_number %><br>
         </div>
-        <!-- <div class="field"> -->
-          <%# <%= address.check_box :current_address %>
-          <%# <%= address.label :current_address, 'デフォルトの住所として使用する' %>
-        <!-- </div> -->
       </div>
     <% end %><hr><br>
 
@@ -104,9 +100,10 @@
 
     <div class="actions">
       <%= f.submit "Update" %>
-    </div><br><br>
+    </div>
   <% end %>
 
+  <br><br>
   <h5>Unhappy?</h5>
   <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
 
