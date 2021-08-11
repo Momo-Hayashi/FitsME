@@ -1,7 +1,6 @@
 <article>
   <h2>Edit <%= resource_name.to_s.humanize %></h2><hr>
 
-  <%# <%= form_for(resource, url: user_registration_path, method: :put ) do |f| %>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
@@ -18,67 +17,76 @@
       <%= f.email_field :email, autocomplete: "email" %>
     </div>
     <div class="field">
-      <%= f.label :お誕生日 %>
-      <%= f.date_select :birthday,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1) %>
+      <%= f.label :birthday, 'お誕生日' %>
+      <%= f.date_select :birthday, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1) %>
     </div><hr>
 
-    <strong><h4>レビュー用情報</h4></strong><hr>
-    <table>
-      <tr>
-        <th>身長</th>
-        <th>体重</th>
-        <th>ウエスト</th>
-        <th>バスト</th>
-        <th>ヒップ</th>
-      </tr>
-      <tr>
-        <td><%= f.number_field :height, step: '0.1' %>cm</td>
-        <td><%= f.number_field :weight, step: '0.1' %>kg</td>
-        <td><%= f.number_field :waist, step: '0.1' %>cm</td>
-        <td><%= f.number_field :bust, step: '0.1' %>cm</td>
-        <td><%= f.number_field :hip, step: '0.1' %>cm</td>
-      </tr>
-    <table>
-
-    <% n = 0 %>
-    <%= f.fields_for :addresses do |address| %>
-      <hr><h4 class="shipping_address_info">お届け先情報<%= n += 1 %></h4><hr>
-      <div class="js-user_address" id="add_address_#{m.index}">
-        <h5>お名前</h5>
-        <div class="field">
-          <%= address.label :姓 %>
-          <%= address.text_field :last_name %>
-          <%= address.label :名 %>
-          <%= address.text_field :first_name %>
-        </div>
-
-        <h5 class="shipping_address_info">ご住所</h5>
-        <div class="field">
-          <%= address.label :postcode, '郵便番号' %>
-          <%= address.text_field :postcode, id: 'user_postcode' %><br>
-        </div>
-        <div class="field">
-          <%= address.label :prefecture_name, '都道府県' %>
-          <%= address.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %><br>
-        </div>
-        <div class="field">
-          <%= address.label :address_city, '市区町村' %>
-          <%= address.text_field :address_city, id:'address_city' %><br>
-        </div>
-        <div class="field">
-          <%= address.label :address_street, '番地' %>
-          <%= address.text_field :address_street, id:'address_street' %><br>
-        </div>
-        <div class="field">
-          <%= address.label :address_building, '建物' %>
-          <%= address.text_field :address_building, id:'address_building' %><br>
-        </div>
-        <div class="field">
-          <%= address.label :phone_number, 'お電話番号' %>
-          <%= address.text_field :phone_number %><br>
-        </div>
+    <div class="info_for_review">
+      <strong><h4>レビュー用情報</h4></strong><hr>
+      <div class="field">
+        <%= f.label :height, '身長' %>
+        <%= f.number_field :height, step: '0.1' %> cm
       </div>
-    <% end %><hr><br>
+      <div class="field">
+        <%= f.label :weight, '体重' %>
+        <%= f.number_field :weight, step: '0.1' %> kg
+      </div>
+      <div class="field">
+        <%= f.label :waist, 'ウエスト' %>
+        <%= f.number_field :waist, step: '0.1' %> cm
+      </div>
+      <div class="field">
+        <%= f.label :bust, 'バスト' %>
+        <%= f.number_field :bust, step: '0.1' %> cm
+      </div>
+      <div class="field">
+        <%= f.label :hip, 'ヒップ' %>
+        <%= f.number_field :hip, step: '0.1' %> cm
+      </div>
+    </div>
+
+    <div class="info_for_shipping">
+      <% n = 0 %>
+      <%= f.fields_for :addresses do |address| %>
+        <hr><h4 class="shipping_address_info">お届け先情報<%= n += 1 %></h4><hr>
+        <div class="js-user_address" id="add_address_#{m.index}">
+          <h5>お名前</h5>
+          <div class="field">
+            <%= address.label :姓 %>
+            <%= address.text_field :last_name %>
+            <%= address.label :名 %>
+            <%= address.text_field :first_name %>
+          </div>
+
+          <h5 class="shipping_address_info">ご住所</h5>
+          <div class="field">
+            <%= address.label :postcode, '郵便番号' %>
+            <%= address.text_field :postcode, id: 'user_postcode' %><br>
+          </div>
+          <div class="field">
+            <%= address.label :prefecture_name, '都道府県' %>
+            <%= address.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %><br>
+          </div>
+          <div class="field">
+            <%= address.label :address_city, '市区町村' %>
+            <%= address.text_field :address_city, id:'address_city' %><br>
+          </div>
+          <div class="field">
+            <%= address.label :address_street, '番地' %>
+            <%= address.text_field :address_street, id:'address_street' %><br>
+          </div>
+          <div class="field">
+            <%= address.label :address_building, '建物' %>
+            <%= address.text_field :address_building, id:'address_building' %><br>
+          </div>
+          <div class="field">
+            <%= address.label :phone_number, 'お電話番号' %>
+            <%= address.text_field :phone_number %><br>
+          </div>
+        </div>
+      <% end %>
+    </div><hr><br>
+
 
     <h6>**パスワード変更時のみご入力ください</h6>
     <div class="field">
