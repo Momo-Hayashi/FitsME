@@ -22,6 +22,13 @@
           <th class="col-md-3">アイテム名：</th>
           <td class="col-md-9"><%= @clothe.name %></td>
         </tr>
+        <% if @clothe.category.present? %>
+          <tr>
+            <th class="col-md-3">カテゴリー：</th>
+            <td class="col-md-9"><%= link_to @clothe.category.parent.name, category_path(@clothe.category.parent.id) %> /
+               <%= link_to @clothe.category.name, category_path(@clothe.category.id) %></td>
+          </tr>
+        <% end %>
         <tr>
           <th class="col-md-3">Price：</th>
           <td class="col-md-9">¥<%= @clothe.price %></td>
