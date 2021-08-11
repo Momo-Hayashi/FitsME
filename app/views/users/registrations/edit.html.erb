@@ -1,8 +1,13 @@
 <article>
   <h2>Edit <%= resource_name.to_s.humanize %></h2><hr>
 
-  <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
+  <%# <%= form_for(resource, url: user_registration_path, method: :put ) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
     <div class="field">
       <%= f.label :Username %>
@@ -34,10 +39,6 @@
         <td><%= f.number_field :hip, step: '0.1' %>cm</td>
       </tr>
     <table>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
 
     <% n = 0 %>
     <%= f.fields_for :addresses do |address| %>
@@ -106,6 +107,4 @@
   <br><br>
   <h5>Unhappy?</h5>
   <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
-
-  <%= link_to "Back", :back %>
 </article>
