@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   resources :favorites, only: %i[ create destroy index]
   resources :addresses, only: [:destroy]
+  resources :categories, only: [:show]
   resources :orders, only: %i[ index show ]
   resources :clothes do
     resources :reviews do
