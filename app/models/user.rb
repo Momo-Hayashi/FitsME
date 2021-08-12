@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true, length: { in: 1..30 }
   validates :points, presence: true
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_clothes, through: :favorites, source: :clothe
