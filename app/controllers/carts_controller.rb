@@ -34,7 +34,7 @@ class CartsController < ApplicationController
 
     @address = Address.find(params[:cart][:address_id])
 
-    @order = Order.create(
+    @order = Order.create!(
       user_id: @user.id,
       price: params[:cart][:total_price],
       last_name: @address.last_name,
