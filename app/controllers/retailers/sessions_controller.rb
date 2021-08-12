@@ -2,11 +2,19 @@
 
 class Retailers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :ensure_not_user
+
 
   def guest_sign_in
     retailer = Retailer.guest
     sign_in retailer
     redirect_to root_path, notice: 'ゲストリテイラーとしてログインしました。'
+  end
+
+  def ensure_not_user
+    if current_user.present?
+      redirect_to root_path, notice: 'アクセス権限がありません'
+    end
   end
 
   # GET /resource/sign_in

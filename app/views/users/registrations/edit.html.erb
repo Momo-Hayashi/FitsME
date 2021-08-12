@@ -10,11 +10,11 @@
 
     <div class="field">
       <%= f.label :Username %>
-      <%= f.text_field :username, autofocus: true %>
+      <%= f.text_field :username, autofocus: true, placeholder: "username" %>
     </div>
     <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email, autocomplete: "email" %>
+      <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp" %>
     </div>
     <div class="field">
       <%= f.label :birthday, 'お誕生日' %>
@@ -25,23 +25,23 @@
       <strong><h4>レビュー用情報</h4></strong><hr>
       <div class="field">
         <%= f.label :height, '身長' %>
-        <%= f.number_field :height, step: '0.1' %> cm
+        <%= f.number_field :height, step: '0.1', placeholder: "ex. 160.7" %> cm
       </div>
       <div class="field">
         <%= f.label :weight, '体重' %>
-        <%= f.number_field :weight, step: '0.1' %> kg
+        <%= f.number_field :weight, step: '0.1', placeholder: "ex. 60.7" %> kg
       </div>
       <div class="field">
         <%= f.label :waist, 'ウエスト' %>
-        <%= f.number_field :waist, step: '0.1' %> cm
+        <%= f.number_field :waist, step: '0.1', placeholder: "ex. 60.7" %> cm
       </div>
       <div class="field">
         <%= f.label :bust, 'バスト' %>
-        <%= f.number_field :bust, step: '0.1' %> cm
+        <%= f.number_field :bust, step: '0.1', placeholder: "ex. 60.7" %> cm
       </div>
       <div class="field">
         <%= f.label :hip, 'ヒップ' %>
-        <%= f.number_field :hip, step: '0.1' %> cm
+        <%= f.number_field :hip, step: '0.1', placeholder: "ex. 60.7" %> cm
       </div>
     </div>
 
@@ -53,15 +53,15 @@
           <h5>お名前</h5>
           <div class="field">
             <%= address.label :姓 %>
-            <%= address.text_field :last_name %>
+            <%= address.text_field :last_name, placeholder: "last name" %>
             <%= address.label :名 %>
-            <%= address.text_field :first_name %>
+            <%= address.text_field :first_name, placeholder: "first name" %>
           </div>
 
           <h5 class="shipping_address_info">ご住所</h5>
           <div class="field">
             <%= address.label :postcode, '郵便番号' %>
-            <%= address.text_field :postcode, id: 'user_postcode' %><br>
+            <%= address.text_field :postcode, id: 'user_postcode', placeholder: "1112222" %><br>
           </div>
           <div class="field">
             <%= address.label :prefecture_name, '都道府県' %>
@@ -69,19 +69,19 @@
           </div>
           <div class="field">
             <%= address.label :address_city, '市区町村' %>
-            <%= address.text_field :address_city, id:'address_city' %><br>
+            <%= address.text_field :address_city, id:'address_city', placeholder: "渋谷区" %><br>
           </div>
           <div class="field">
             <%= address.label :address_street, '番地' %>
-            <%= address.text_field :address_street, id:'address_street' %><br>
+            <%= address.text_field :address_street, id:'address_street', placeholder: "渋谷市1-2-3" %><br>
           </div>
           <div class="field">
             <%= address.label :address_building, '建物' %>
-            <%= address.text_field :address_building, id:'address_building' %><br>
+            <%= address.text_field :address_building, id:'address_building', placeholder: "渋谷ビル 707" %><br>
           </div>
           <div class="field">
             <%= address.label :phone_number, 'お電話番号' %>
-            <%= address.text_field :phone_number %><br>
+            <%= address.text_field :phone_number, placeholder: "1234567890" %><br>
           </div>
         </div>
       <% end %>
@@ -91,7 +91,7 @@
     <h6>**パスワード変更時のみご入力ください</h6>
     <div class="field">
       <%= f.label :新しいパスワード %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password" %>
       <% if @minimum_password_length %>
         <em><%= @minimum_password_length %> characters minimum</em>
       <% end %>
@@ -99,12 +99,12 @@
 
     <div class="field">
       <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new password" %>
     </div>
 
     <div class="field">
       <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: "current-password" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "current password" %>
     </div><hr>
 
     <div class="actions">
