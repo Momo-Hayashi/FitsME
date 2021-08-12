@@ -26,15 +26,15 @@
     <div class="col-md-7">
       <table>
         <tr>
-          <th class="col-md-4"><%= form.label :Rating %></th>
-          <td class="col-md-7"><%= form.text_field :rate %></td>
+          <th class="col-md-3"><%= form.label :Rating %></th>
+          <td class="col-md-9"><%= form.text_field :rate, placeholder: "5.0" %></td>
         </tr>
         <tr>
-          <th class="col-md-4"><%= form.label :内容 %></th>
-          <td class="col-md-7"><%= form.text_field :content, class: "form-control" %></td>
+          <th class="col-md-3"><%= form.label :内容 %></th>
+          <td class="col-md-9"><%= form.text_area :content, class: "form-control", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
         </tr>
         <tr>
-          <th class="col-md-4 file_upload"><%= form.label :'Images' %></th>
+          <th class="col-md-3 file_upload"><%= form.label :'Images' %></th>
           <% if @review.images.attached? %>
             <p>現在登録されている画像（削除するものはチェックしてください）</p>
             <% @review.images.each do |image| %>
@@ -42,7 +42,7 @@
               <%= image_tag image.variant(resize: "250x250") %>
             <% end %>
           <% end %>
-          <td class="col-md-7"><%= form.file_field :images, multiple: true %></td>
+          <td class="col-md-9"><%= form.file_field :images, multiple: true %></td>
         </tr>
       </table>
     </div>
