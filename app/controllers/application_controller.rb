@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :set_parents
 
    # ログイン済ユーザーのみにアクセスを許可する
   # before_action :authenticate_user!
@@ -13,5 +14,9 @@ class ApplicationController < ActionController::Base
     when Admin
       rails_admin_path
     end
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 end

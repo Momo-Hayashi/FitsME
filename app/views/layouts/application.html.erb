@@ -4,7 +4,8 @@
     <title>FitsME</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -32,9 +33,12 @@
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
           <li><%= link_to '出品企業として利用', new_retailer_session_path %></li>
+
         <% end %>
       </ul>
+      <%= render 'categories/menu' %>
     </header>
+
     <% if notice %>
       <p class="notice alert alert-success"><%= notice %></p>
     <% end %>

@@ -14,15 +14,21 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 gem 'devise-i18n'
+
 gem 'image_processing'
 gem 'mini_magick'
+
 gem 'payjp'
 gem 'dotenv-rails'
+
 gem 'rails_admin', '~> 2.0'
 gem 'cancancan'
+
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jp_prefecture'
+
+gem 'ancestry'
 
 
 group :development, :test do

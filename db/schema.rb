@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_022401) do
+ActiveRecord::Schema.define(version: 2021_08_12_081202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,22 @@ ActiveRecord::Schema.define(version: 2021_08_11_022401) do
     t.bigint "stock_id"
     t.index ["stock_id"], name: "index_carts_on_stock_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.bigint "clothe_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorizations_on_category_id"
+    t.index ["clothe_id"], name: "index_categorizations_on_clothe_id"
   end
 
   create_table "clothes", force: :cascade do |t|
@@ -214,6 +230,8 @@ ActiveRecord::Schema.define(version: 2021_08_11_022401) do
   add_foreign_key "addresses", "users"
   add_foreign_key "carts", "stocks"
   add_foreign_key "carts", "users"
+  add_foreign_key "categorizations", "categories"
+  add_foreign_key "categorizations", "clothes"
   add_foreign_key "clothes", "retailers"
   add_foreign_key "favorites", "clothes"
   add_foreign_key "favorites", "users"
