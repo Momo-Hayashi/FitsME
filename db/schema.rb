@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_064745) do
+ActiveRecord::Schema.define(version: 2021_08_12_081202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,15 @@ ActiveRecord::Schema.define(version: 2021_08_11_064745) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categorizations", force: :cascade do |t|
+    t.bigint "clothe_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorizations_on_category_id"
+    t.index ["clothe_id"], name: "index_categorizations_on_clothe_id"
+  end
+
   create_table "clothes", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -109,8 +118,6 @@ ActiveRecord::Schema.define(version: 2021_08_11_064745) do
     t.bigint "retailer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_clothes_on_category_id"
     t.index ["retailer_id"], name: "index_clothes_on_retailer_id"
   end
 
@@ -223,7 +230,8 @@ ActiveRecord::Schema.define(version: 2021_08_11_064745) do
   add_foreign_key "addresses", "users"
   add_foreign_key "carts", "stocks"
   add_foreign_key "carts", "users"
-  add_foreign_key "clothes", "categories"
+  add_foreign_key "categorizations", "categories"
+  add_foreign_key "categorizations", "clothes"
   add_foreign_key "clothes", "retailers"
   add_foreign_key "favorites", "clothes"
   add_foreign_key "favorites", "users"
