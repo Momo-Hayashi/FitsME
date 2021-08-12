@@ -1,4 +1,5 @@
 class ClothesController < ApplicationController
+  before_action :authenticate_retailer!, only: %i[ new create edit update destroy ]
   before_action :set_clothe, only: %i[ show edit update destroy ]
   # before_action :set_clothe_purchase, only: %i[ purchase pay ]
 

@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 class Retailers::RegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_retailer!
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :ensure_normal_retailer, only: %i[ update destroy ]
+  before_action :ensure_not_user
 
   def ensure_normal_retailer
     if resource.email == 'guest_retailer@example.com'
       redirect_to root_path, notice: 'ゲストリテイラーの更新・削除はできません。'
+    end
+  end
+
+  def ensure_not_user
+    if current_user.present?
+      redirect_to root_path, notice: 'アクセス権限がありません'
     end
   end
 
@@ -49,12 +57,12 @@ class Retailers::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phone_number, :address, :website_url, :logo])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :description, :logo, :website_url, :email, :phone_number, :address])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone_number, :address, :website_url, :logo])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :description, :logo, :website_url, :email, :phone_number, :address])
   end
 
   # The path used after sign up.

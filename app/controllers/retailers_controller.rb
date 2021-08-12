@@ -1,5 +1,6 @@
 class RetailersController < ApplicationController
   before_action :all_stocks_retailer_has, only: %i[ orders detail ]
+  before_action :authenticate_retailer!, only: %i[ orders detail ]
 
   def show
     @retailer = Retailer.find(params[:id])
