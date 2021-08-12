@@ -70,6 +70,6 @@ class ClothesController < ApplicationController
     # end
 
     def clothe_params
-      params.require(:clothe).permit(:name, :description, :size, :price, :category_id, images: [], stocks_attributes: [:size, :color, :quantity, :id, :clothe_id ] )
+      params.require(:clothe).permit(:name, :description, :size, :price, :category_id, category_ids: [], images: [], stocks_attributes: [:size, :color, :quantity, :id, :clothe_id ] )
     end
 end

@@ -12,20 +12,15 @@
   position: relative;
   z-index: 100;
 }
-.gnav > li >a{/*親階層のみ幅を25%にする*/
-  border-bottom: 2px solid rgb(243, 152, 15);
+.gnav > li >a{
   font-weight: bold;
 }
 
-/*全てのリスト・リンク共通*/
 .gnav li {
   list-style: none;
   position: relative;
   width: 220px;
   font-size: 13px;
-}
-.gnav ul{
-  padding-inline-start: 0;
 }
 
 .gnav li a {
@@ -40,23 +35,25 @@
   width: 100%;
 }
 
-.gnav li:hover > a{
-  background-color:#ff9022;
+.gnav li:hover > ul > li {
+  height: 2rem;
+  overflow: visible;
 }
 
-/*子階層以降共通*/
 .gnav li li {
   height: 0;
   overflow: hidden;
 }
 
-.gnav li:hover > ul > li {
-  height: 2rem;
-  overflow: visible;
-}
-.gnav li ul li ul {
-  left: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
+
+// .gnav li:hover > a{
+//   background-color:#ff9022;
+// }
+
+
+// .gnav li ul li ul {
+//   left: 100%;
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+// }

@@ -2,7 +2,7 @@ class Clothe < ApplicationRecord
   has_many_attached :images
   belongs_to :retailer
   has_many :categorizations
-  has_many :categories, through: :ccategorizatioins, source: :category
+  has_many :categories, through: :categorizations, source: :category
   has_many :favorites, dependent: :destroy
   has_many :stocks, dependent: :destroy
   has_many :reviews, dependent: :destroy
