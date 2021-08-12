@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :set_clothe, only: %i[ new confirm create edit update]
   before_action :set_reviews, only:  %i[ show edit destroy update ]
-
+  before_action :authenticate_user!
+  
   def new
     @stock = Stock.find(params[:stock_no])
     @review = @clothe.reviews.new

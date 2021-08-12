@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  before_action :ensure_not_retailer
 
   def guest_sign_in
     user = User.guest
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
-  
+
+  def ensure_not_retailer
+    if current_retailer.present?
+      redirect_to root_path, notice: 'アクセス権限がありません'
+    end
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

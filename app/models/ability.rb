@@ -10,6 +10,8 @@ class Ability
     elsif admin
       can :access, :rails_admin
       can :manage, :all
+    else
+      cannot :access
     end
     # Define abilities for the passed in user here. For example:
     #
