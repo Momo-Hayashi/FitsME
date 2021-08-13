@@ -12,9 +12,7 @@ class ClothesController < ApplicationController
     3.times{ @clothe.stocks.build }
   end
 
-  def edit
-    @clothe.stocks.build
-  end
+  def edit ;  end
 
   def create
     @clothe = current_retailer.clothes.build(clothe_params)
@@ -71,6 +69,7 @@ class ClothesController < ApplicationController
     # end
 
     def clothe_params
-      params.require(:clothe).permit(:name, :description, :size, :price, :category_id, category_ids: [], images: [], stocks_attributes: [:size, :color, :quantity, :id, :clothe_id ] )
+      params.require(:clothe).permit(:name, :description, :size, :price, :category_id, category_ids: [], images: [],
+         stocks_attributes: [:size, :color, :quantity, :id, :clothe_id, :_destroy ] )
     end
 end
