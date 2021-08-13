@@ -11,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def ensure_not_retailer
     if current_retailer.present?
-      redirect_to root_path, notice: 'アクセス権限がありません'
+      redirect_to root_path, alert: 'アクセス権限がありません'
     end
   end
 

@@ -1,23 +1,36 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cart, only: %i[ index pay complete ]
+  before_action :set_cart, only: %i[ index pay confirm complete ]
 
-  def index
-  end
+  def index ;  end
 
   def create
-    cart = current_user.carts.create(stock_id: params[:stock_id])
-    redirect_to carts_path, notice: "#{cart.stock.clothe.name}をカートに登録しました！"
+    @stock = Stock.find(params[:stock_id])
+    @carts = current_user.carts
+
+    if @carts.pluck(:stock_id).include?(@stock.id)
+      @cart = @carts.find_by(stock_id: @stock.id)
+      if @cart.amount == @stock.quantity
+        redirect_to carts_path, alert: "商品の在庫が足りず、カート内の個数を増やせません..."
+      else
+        new_amount = @cart.amount + 1
+        @cart.update_attributes(amount: new_amount)
+        redirect_to carts_path, notice: "#{@cart.stock.clothe.name}の注文数を1点増やしました！"
+      end
+    else
+      @cart = current_user.carts.create(stock_id: @stock.id)
+      redirect_to carts_path, notice: "#{@cart.stock.clothe.name}をカートに登録しました！"
+    end
+
   end
 
-  def update
-  end
+  def confirm ;  end
 
   def pay
     if params[:cart].blank?
-      redirect_to carts_path, notice: "住所の登録/選択をお願いします"
+      redirect_to carts_path, alert: "住所の登録/選択をお願いします"
     elsif params[:cart][:address_ids].count > 1
-      redirect_to carts_path, notice: "住所は一つしか選択できません。"
+      redirect_to carts_path, alert: "住所は一つしか選択できません。"
     else
       @address = current_user.addresses.find(params[:cart][:address_ids])
       @address = @address.first
@@ -51,10 +64,10 @@ class CartsController < ApplicationController
       OrderStock.create(
         stock_id: item.stock.id,
         order_id: @order.id,
-        amount: 1,
+        amount: item.amount,
       )
       @stock = item.stock
-      new_quantity = @stock.quantity - 1
+      new_quantity = @stock.quantity - item.amount
       @stock.update_attribute( :quantity, new_quantity )
       item.destroy
     end
@@ -63,9 +76,21 @@ class CartsController < ApplicationController
 
   end
 
+  def update
+    @cart = current_user.carts.find_by(id: params[:id])
+    @stock = Stock.find(@cart.stock_id)
+
+    if params[:cart][:amount].to_i > @stock.quantity
+      redirect_to carts_path, alert: "商品の在庫数が足りず、カート内の個数を増やせません..."
+    else
+      @cart.update_attributes(amount: params[:cart][:amount])
+      redirect_to carts_path, notice: "カートの個数を更新しました！"
+    end
+  end
+
   def destroy
-    cart = current_user.carts.find_by(id: params[:id]).destroy
-    redirect_to carts_path, notice: "#{cart.stock.clothe.name}をカートから削除しました！"
+    @cart = current_user.carts.find_by(id: params[:id]).destroy
+    redirect_to carts_path, notice: "#{@cart.stock.clothe.name}をカートから削除しました！"
   end
 
   private
@@ -77,7 +102,7 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:cart).permit(address_ids:[])
+    params.require(:cart).permit(:amount, :total_price , address_ids:[])
   end
 
 end
