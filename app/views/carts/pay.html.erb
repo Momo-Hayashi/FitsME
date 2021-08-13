@@ -4,7 +4,6 @@
   <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
 
   <%= form_with( model: @carts, local: true, url: cart_complete_path(@carts.ids) ) do |f| %>
-  <% total_price = 0 %>
   <% @carts.each do |item| %>
     <div class="row">
       <% @clothe = item.stock.clothe %>
@@ -12,7 +11,7 @@
         <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
       </div>
 
-      <div class="col-md-5">
+      <div class="col-md-4">
         <table>
           <tr>
             <th class="col-md-5">ブランド名</th>
@@ -33,16 +32,19 @@
           <tr>
             <th class="col-md-5">金額</th>
             <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
-            <% total_price += @clothe.price %>
           </tr>
         </table>
+      </div>
+      <div class="col-md-4">
+        <br><br><br>
+        <p >個数：<%= item.amount %>点</p>
       </div>
     </div><hr>
   <% end %>
 
-  <p style="text-align:center;"><strong>合計金額：<%= total_price %> 円（税込み）</strong></p><hr>
+  <strong><p>合計金額：<%= params[:cart][:total_price] %> 円（税込み）</p></strong><hr>
 
-  <h4>お届け先情報</h4>
+  <h4>お届け先情報</h4><hr>
   <table>
     <tr>
       <th>お名前：</th>
@@ -68,7 +70,7 @@
       data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
     </script>
 
-  <%= f.hidden_field :total_price, value: total_price %>
+  <%= f.hidden_field :total_price, value: params[:cart][:total_price] %>
   <%= f.hidden_field :address_id, value: @address.id %>
   <% end %>
 

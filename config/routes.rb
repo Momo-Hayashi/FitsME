@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   resources :favorites, only: %i[ create destroy index]
   resources :addresses, only: [:destroy]
+  resources :categories, only: [:show]
   resources :orders, only: %i[ index show ]
   resources :clothes do
     resources :reviews do
@@ -46,8 +47,10 @@ Rails.application.routes.draw do
   end
 
   resources :carts, only: %i[ create destroy index update ] do
-    post :pay
+    get :confirm
+    post :confirm
     get :pay
+    post :pay
     post :complete
   end
 
