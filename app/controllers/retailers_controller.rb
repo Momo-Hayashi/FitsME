@@ -7,7 +7,6 @@ class RetailersController < ApplicationController
   end
 
   def orders
-    @order_stocks = @order_stocks.order(created_at: :desc)
   end
 
   def detail
@@ -36,7 +35,7 @@ class RetailersController < ApplicationController
       @order = order.order
       @orders.push(@order)
     end
-    @orders = @orders.uniq
+    @orders = @orders.uniq.sort.reverse
   end
 
 end
