@@ -47,6 +47,12 @@
             </div>
           </div>
         <% end %>
+        <% if @clothe.categories.present? %>
+          <p>現在選択したカテゴリー：</p>
+          <% @clothe.categories.each do |category| %>
+            <p> <%= category.name %> / </p>
+          <% end %>
+        <% end %>
       </div><br>
 
       <div class="form-group row">
@@ -77,14 +83,17 @@
               <th><%= stock.label :数量 %></th>
             </tr>
             <tr>
-              <td><%= stock.select :size, Stock.sizes.keys.to_a {} %></td>
-              <td><%= stock.select :color, Stock.colors.keys.to_a {} %></td>
+              <td><%= stock.select :size, Stock.sizes.keys.to_a {}, include_blank: true %></td>
+              <td><%= stock.select :color, Stock.colors.keys.to_a {}, include_blank: true %></td>
               <td><%= stock.text_field :quantity, placeholder: "50" %></td>
+              <%# <% if @clothe.stocks.pluck(:id).include?(stock.id) %>
+                <%# <!-- <td><%= form.check_box :stock_ids, {multiple: true}, stock.id, false %></td>
+              <%# <% end %>
             </tr>
           <% end %>
         </table>
         <div id="links">
-          <%= link_to_add_association "Add more stocks", form, :stocks %>
+          <%= link_to_add_association "サイズ・カラーをさらに追加する", form, :stocks %>
         </div>
       </div>
 

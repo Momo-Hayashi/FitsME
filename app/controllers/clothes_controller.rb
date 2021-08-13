@@ -64,10 +64,6 @@ class ClothesController < ApplicationController
       @clothe = Clothe.find(params[:id])
     end
 
-    # def set_clothe_purchase
-    #   @clothe = Clothe.find(params[:clothe_id])
-    # end
-
     def clothe_params
       params.require(:clothe).permit(:name, :description, :size, :price, :category_id, category_ids: [], images: [],
          stocks_attributes: [:size, :color, :quantity, :id, :clothe_id, :_destroy ] )
