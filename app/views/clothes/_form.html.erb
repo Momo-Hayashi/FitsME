@@ -77,8 +77,8 @@
             <th><%= stock.label :数量 %></th>
           </tr>
           <tr>
-            <td><%= stock.text_field :size, placeholder: "S" %></td>
-            <td><%= stock.text_field :color, placeholder: "White" %></td>
+            <td><%= stock.select :size, Stock.sizes.keys.to_a {} %></td>
+            <td><%= stock.select :color, Stock.colors.keys.to_a {} %></td>
             <td><%= stock.text_field :quantity, placeholder: "50" %></td>
           </tr>
         </table>
