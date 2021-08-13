@@ -3,8 +3,8 @@
 
   <strong><p>ご注文日：<%= l @order.created_at %><p></strong><hr>
 
-  <% @order.bought_stocks.each do |stock| %>
-    <% @clothe = stock.clothe %>
+  <% @order.order_stocks.each do |order_stock| %>
+    <% @clothe = order_stock.stock.clothe %>
     <div class="row">
       <div class="offset-md-1 col-md-3">
         <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
@@ -22,20 +22,24 @@
           </tr>
           <tr>
             <th class="col-md-5">サイズ</th>
-            <td class="col-md-7"><%= stock.size %></td>
+            <td class="col-md-7"><%= order_stock.stock.size %></td>
           </tr>
           <tr>
             <th class="col-md-5">カラー</th>
-            <td class="col-md-7"><%= stock.color %></td>
+            <td class="col-md-7"><%= order_stock.stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">個数</th>
+            <td class="col-md-7"><%= order_stock.amount %>点</td>
           </tr>
           <tr>
             <th class="col-md-5">金額</th>
-            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            <td class="col-md-7"><%= @clothe.price*order_stock.amount %>円（税込み）</td>
           </tr>
         </table>
       </div>
       <div class="col-md-3">
-        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: stock.id) %></td>
+        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id) %></td>
       </div>
     </div><hr>
   <% end %>

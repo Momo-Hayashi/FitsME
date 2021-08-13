@@ -6,9 +6,9 @@
   <%# <% shipping_info = current_user.addresses.find(order.shipping_to) %>
 
   <% @total_price = 0 %>
-  <% @order.bought_stocks.each do |stock| %>
-    <% if @stock_ids.include?(stock.id) %>
-      <% @clothe = stock.clothe %>
+  <% @order.order_stocks.each do |order_stock| %>
+    <% if @stock_ids.include?(order_stock.stock.id) %>
+      <% @clothe = order_stock.stock.clothe %>
       <div class="row">
         <div class="offset-md-1 col-md-3">
           <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
@@ -25,17 +25,17 @@
               <td class="col-md-7"><%= @clothe.name %></td>
             </tr>
             <tr>
-              <th class="col-md-5">サイズ</th>
-              <td class="col-md-7"><%= stock.size %></td>
+              <th class="col-md-5">サイズ / カラー</th>
+              <td class="col-md-7"><%= order_stock.stock.size %> / <%= order_stock.stock.color %></td>
             </tr>
             <tr>
-              <th class="col-md-5">カラー</th>
-              <td class="col-md-7"><%= stock.color %></td>
+              <th class="col-md-5">個数</th>
+              <td class="col-md-7"><%= order_stock.amount %>点</td>
             </tr>
             <tr>
               <th class="col-md-5">金額</th>
               <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
-              <% @total_price += @clothe.price %>
+              <% @total_price += @clothe.price*order_stock.amount %>
             </tr>
           </table>
         </div>
@@ -43,9 +43,9 @@
     <% end %>
   <% end %>
 
-  <p style="text-align:center;"><strong>合計金額：<%= @total_price %> 円（税込み）</strong></p><hr>
+  <p><strong>合計金額：<%= @total_price %> 円（税込み）</strong></p><br><hr>
 
-  <h5>お届け先情報</h5>
+  <h5>お届け先情報</h5><hr>
   <table>
     <tr>
       <th>お名前：</th>

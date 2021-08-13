@@ -13,7 +13,7 @@ class Retailers::SessionsController < Devise::SessionsController
 
   def ensure_not_user
     if current_user.present?
-      redirect_to root_path, notice: 'アクセス権限がありません'
+      redirect_to root_path, alert: 'アクセス権限がありません'
     end
   end
 
