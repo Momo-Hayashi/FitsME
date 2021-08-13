@@ -1,0 +1,19 @@
+<div class="nested-fields well well-compact">
+  <div class="form-group">
+    <table>
+      <%= f.fields_for :stocks do |stock| %>
+      <tr>
+        <th><%= stock.label :Size %></th>
+        <th><%= stock.label :Color %></th>
+        <th><%= stock.label :数量 %></th>
+      </tr>
+      <tr>
+        <td><%= stock.select :size, Stock.sizes.keys.to_a {} %></td>
+        <td><%= stock.select :color, Stock.colors.keys.to_a {} %></td>
+        <td><%= stock.text_field :quantity, placeholder: "50" %></td>
+        <td><%= link_to_remove_association "remove stock", f %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>

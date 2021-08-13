@@ -69,21 +69,23 @@
       <div class="field stocks">
         <h5>ストック情報</h5>
         <p>*サイズ・カラーごとに在庫数をご記入ください</p>
-        <%= form.fields_for :stocks do |stock| %>
         <table>
-          <tr>
-            <th><%= stock.label :Size %></th>
-            <th><%= stock.label :Color %></th>
-            <th><%= stock.label :数量 %></th>
-          </tr>
-          <tr>
-            <td><%= stock.select :size, Stock.sizes.keys.to_a {} %></td>
-            <td><%= stock.select :color, Stock.colors.keys.to_a {} %></td>
-            <td><%= stock.text_field :quantity, placeholder: "50" %></td>
-          </tr>
+          <%= form.fields_for :stocks do |stock| %>
+            <tr>
+              <th><%= stock.label :Size %></th>
+              <th><%= stock.label :Color %></th>
+              <th><%= stock.label :数量 %></th>
+            </tr>
+            <tr>
+              <td><%= stock.select :size, Stock.sizes.keys.to_a {} %></td>
+              <td><%= stock.select :color, Stock.colors.keys.to_a {} %></td>
+              <td><%= stock.text_field :quantity, placeholder: "50" %></td>
+            </tr>
+          <% end %>
         </table>
-        <br>
-        <% end %>
+        <div id="links">
+          <%= link_to_add_association "Add more stocks", form, :stocks %>
+        </div>
       </div>
 
       <br>
