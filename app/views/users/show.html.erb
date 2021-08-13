@@ -59,9 +59,8 @@
               <%= address.address_street %> <%= address.address_building %></td>
           </tr>
           <tr>
-            <% if address.current_address == true %>
-              <th>デフォルトの住所として使用中</th>
-            <% end %>
+            <th>電話番号：</th>
+            <td><%= address.phone_number %></td>
           </tr>
         </table>
         <%= link_to 'このお届け先を削除', address_path(id: address.id), method: :delete, class: 'btn btn-outline-danger' %>

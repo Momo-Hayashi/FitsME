@@ -28,7 +28,7 @@
             <% category = Category.find(category_id) %>
             <tr>
               <th class="col-md-3">カテゴリー <%= n += 1 %>：</th>
-              <td class="col-md-9"><%= link_to category.parent.name, category_path(category.parent.id) %> /
+              <td class="col-md-9"><%= category.parent.name %> /
                <%= link_to category.name, category_path(category_id) %></td>
             </tr>
           <% end %>
@@ -58,7 +58,7 @@
             <tr>
               <td class="col-md-2"><%= stock.size %></td>
               <td class="col-md-3"><%= stock.color %></td>
-              <% if stock.quantity =< 0 %>
+              <% if stock.quantity <= 0 %>
                 <td>0</td>
                 <td class="col-md-4">Sorry...Out of stock!</td>
               <% else %>
