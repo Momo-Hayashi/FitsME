@@ -27,7 +27,7 @@ class CartsController < ApplicationController
   def confirm ;  end
 
   def pay
-    if params[:cart].blank?
+    if params[:cart][:address_ids].blank?
       redirect_to carts_path, alert: "住所の登録/選択をお願いします"
     elsif params[:cart][:address_ids].count > 1
       redirect_to carts_path, alert: "住所は一つしか選択できません。"

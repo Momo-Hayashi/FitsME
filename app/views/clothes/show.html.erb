@@ -28,7 +28,7 @@
             <% category = Category.find(category_id) %>
             <tr>
               <th class="col-md-3">カテゴリー <%= n += 1 %>：</th>
-              <td class="col-md-9"><%= link_to category.parent.name, category_path(category.parent.id) %> /
+              <td class="col-md-9"><%= category.parent.name %> /
                <%= link_to category.name, category_path(category_id) %></td>
             </tr>
           <% end %>
