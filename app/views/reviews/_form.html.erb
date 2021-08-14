@@ -17,7 +17,7 @@
     <ul class="col-md-3">
       <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
       <li><%= @clothe.retailer.name %></li>
-      <li><%= @clothe.name %></li>
+      <li><%= link_to @clothe.name, clothe_path(@clothe) %></li>
       <li><%= @stock.size %>サイズ</li>
       <li><%= @stock.color %></li>
       <li><%= @clothe.price %>円（税込み）</li>
@@ -31,7 +31,7 @@
         </tr>
         <tr>
           <th class="col-md-3"><%= form.label :内容 %></th>
-          <td class="col-md-9"><%= form.text_area :content, class: "form-control", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
+          <td class="col-md-9"><%= form.text_area :content, class: "form-control", rows: "4", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
         </tr>
         <tr>
           <th class="col-md-3 file_upload"><%= form.label :'Images' %></th>
@@ -48,5 +48,5 @@
     </div>
   </div><hr><br>
 
-  <%= form.submit %>
+  <%= form.submit %><br>
 <% end %>

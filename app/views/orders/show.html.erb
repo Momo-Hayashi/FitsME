@@ -39,7 +39,7 @@
         </table>
       </div>
       <div class="col-md-3">
-        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id) %></td>
+        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id) %></td>
       </div>
     </div><hr>
   <% end %>
