@@ -2,10 +2,23 @@ class ReviewsController < ApplicationController
   before_action :set_clothe, only: %i[ new confirm create edit update]
   before_action :set_reviews, only:  %i[ show edit destroy update ]
   before_action :authenticate_user!
-  
+
   def new
+    @orders_ids = current_user.orders.pluck(:id)
+
+    @order_stocks = []
+    @orders_ids.each do |order_id|
+      @order_stock = OrderStock.where(order_id: order_id)
+      @order_stocks.push(@order_stock)
+    end
+    @order_stocks = @order_stocks.flatten!.pluck(:stock_id)
+
     @stock = Stock.find(params[:stock_no])
-    @review = @clothe.reviews.new
+    if @order_stocks.include?(@stock.id)
+      @review = @clothe.reviews.new
+    else
+      redirect_to orders_path, alert:'購入した商品のみレビュー投稿が可能です'
+    end
   end
 
   def confirm
