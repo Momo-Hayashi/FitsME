@@ -3,6 +3,13 @@
   <h1>Fits ME</h1>
   <h5>Go look for your ideal outfits!</h5><br>
 
+  <h5>アイテム検索</h5>
+  <%= search_form_for @q, url: search_clothes_path do |f| %>
+    <%= f.label :name_cont, 'アイテム名' %>
+    <%= f.search_field :name_cont %>
+    <%= f.submit '検索' %>
+  <% end %>
+
   <div class="row">
     <% @clothes.each do |clothe| %>
       <div class="index_clothes col-sm-6 col-md-3">
@@ -23,5 +30,5 @@
       </div><br>
     <% end %>
   </div>
-  
+
 </article>
