@@ -1,61 +1,57 @@
-<article>
-  <hr><h3>カート</h3><hr>
-  <% if @carts.empty? %>
-    <p>カートに商品を追加すると内容が表示されます！</p>
-    <%= link_to '商品を追加する', clothes_path, class: "btn btn-info" %><hr>
-  <% else %>
+<hr><h3>カート</h3><hr>
+<% if @carts.empty? %>
+  <p>カートに商品を追加すると内容が表示されます！</p>
+  <%= link_to '商品を追加する', clothes_path, class: "btn btn-info" %><hr>
+<% else %>
 
+  <h3>Items in your cart!</h3><br>
+  <% total_price = 0 %>
 
-      <h3>Items in your cart!</h3><br>
-      <% total_price = 0 %>
+  <% @carts.each do |item| %>
+    <%= form_with(model: item, local: true, url: cart_path(item.id) ) do |f| %>
+      <div class="row">
+        <% @clothe = item.stock.clothe %>
+        <div class="col-md-2">
+          <%= image_tag @clothe.images.first.variant(resize: "150x250") if @clothe.images.attached? %>
+        </div>
 
-      <% @carts.each do |item| %>
-        <%= form_with(model: item, local: true, url: cart_path(item.id) ) do |f| %>
-          <div class="row">
-            <% @clothe = item.stock.clothe %>
-            <div class="col-md-2">
-              <%= image_tag @clothe.images.first.variant(resize: "150x250") if @clothe.images.attached? %>
-            </div>
-
-            <div class="col-md-7">
-              <table>
-                <tr>
-                  <th class="col-md-4">ブランド名</th>
-                  <td class="col-md-8"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
-                </tr>
-                <tr>
-                  <th class="col-md-4">アイテム</th>
-                  <td class="col-md-8"><%= link_to @clothe.name, clothe_path(@clothe.id) %></td>
-                </tr>
-                <tr>
-                  <th class="col-md-4">サイズ</th>
-                  <td class="col-md-8"><%= item.stock.size %></td>
-                </tr>
-                <tr>
-                  <th class="col-md-4">カラー</th>
-                  <td class="col-md-8"><%= item.stock.color %></td>
-                </tr>
-                <tr>
-                  <th class="col-md-4">金額</th>
-                  <td class="col-md-8z"><%= @clothe.price %>円（税込み）</td>
-                </tr>
-              </table>
-            </div>
-            <div class="col-md-2">
-              <br><br><br>
-              <p><%= f.label :個数 %>：<%= f.number_field :amount %></p>
-              <%= f.submit '個数を更新する' %>
-              <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete %>
-            </div>
-          </div><hr>
-          <% total_price += @clothe.price*item.amount %>
-        <% end %>
-      <% end %>
-
-      <strong><p>合計金額：<%= total_price %> 円（税込み）</p></strong><br>
-
-      <%= link_to '購入へすすむ', cart_confirm_path(@carts.ids) %>
-      <%# <!-- <h5><%= f.submit '購入へすすむ' %><br>
+        <div class="col-md-7">
+          <table>
+            <tr>
+              <th class="col-md-4">ブランド名</th>
+              <td class="col-md-8"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
+            </tr>
+            <tr>
+              <th class="col-md-4">アイテム</th>
+              <td class="col-md-8"><%= link_to @clothe.name, clothe_path(@clothe.id) %></td>
+            </tr>
+            <tr>
+              <th class="col-md-4">サイズ</th>
+              <td class="col-md-8"><%= item.stock.size %></td>
+            </tr>
+            <tr>
+              <th class="col-md-4">カラー</th>
+              <td class="col-md-8"><%= item.stock.color %></td>
+            </tr>
+            <tr>
+              <th class="col-md-4">金額</th>
+              <td class="col-md-8z"><%= @clothe.price %>円（税込み）</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-2">
+          <br><br><br>
+          <p><%= f.label :個数 %>：<%= f.number_field :amount %></p>
+          <%= f.submit '個数を更新する' %>
+          <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete %>
+        </div>
+      </div><hr>
+      <% total_price += @clothe.price*item.amount %>
     <% end %>
+  <% end %>
 
-</article>
+  <strong><p>合計金額：<%= total_price %> 円（税込み）</p></strong><br>
+
+  <%= link_to '購入へすすむ', cart_confirm_path(@carts.ids) %>
+  <%# <!-- <h5><%= f.submit '購入へすすむ' %><br>
+<% end %>
