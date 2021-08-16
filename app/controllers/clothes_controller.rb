@@ -1,10 +1,11 @@
 class ClothesController < ApplicationController
   before_action :authenticate_retailer!, only: %i[ new create edit update destroy ]
   before_action :set_clothe, only: %i[ show edit update destroy ]
-  before_action :set_q, only: [:index, :search]
 
   def index
     @clothes = Clothe.all.order(updated_at: :desc)
+    @q = Clothe.ransack(params[:q])
+    @clothes = @q.result(distinct: true).order(updated_at: :desc)
   end
 
   def new
@@ -59,10 +60,6 @@ class ClothesController < ApplicationController
     end
   end
 
-  def search
-    @results = @q.result
-  end
-
   private
 
     def set_clothe
@@ -74,8 +71,4 @@ class ClothesController < ApplicationController
          stocks_attributes: [:size, :color, :quantity, :id, :clothe_id, :_destroy ] )
     end
 
-    def set_q
-      @q = Clothe.ransack(params[:q])
-    end
-  
 end

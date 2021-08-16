@@ -44,9 +44,6 @@ Rails.application.routes.draw do
     resources :reviews do
       post 'confirm', on: :collection
     end
-    collection do
-      get 'search'
-    end
   end
 
   resources :carts, only: %i[ create destroy index update ] do
