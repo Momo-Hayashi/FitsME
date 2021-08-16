@@ -1,6 +1,22 @@
 <article class = #row>
 
-  <h5><%= @category.name %>のアイテム！</h5><br>
+  <h1>Fits ME</h1><br>
+  <strong><h5><%= @category.name %> のアイテム一覧</h5></strong><br>
+
+  <div class="search_field">
+    <%= search_form_for @q, url: category_path do |f| %>
+      <%= f.label :name_or_description_or_retailer_name_cont, 'Key Word' %>
+      <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'キーワードやブランド名で検索' %>
+      <%= f.label :stocks_color_eq, '色' %>
+      <%= f.select :stocks_color_eq, Stock.colors{|key,value| [Stock.colors[key],value]}, {include_blank: '指定なし'} %>
+      <%= f.label :stocks_size_eq, 'サイズ' %>
+      <%= f.select :stocks_size_eq, Stock.sizes{|key,value| [Stock.sizes[key],value]}, {include_blank: '指定なし'} %>
+      <%= f.label :price_lteq, '値段max' %>
+      <%= f.search_field :price_lteq, placeholder:'10000' %>
+      <%= f.submit '検索' %>
+    <% end %>
+  </div><br>
+
 
   <div class="row">
     <% @clothes.each do |clothe| %>

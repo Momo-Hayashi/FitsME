@@ -13,6 +13,9 @@
       <%= f.label :stocks_size_eq, 'サイズ' %>
       <%= f.select :stocks_size_eq, Stock.sizes{|key,value| [Stock.sizes[key],value]}, {include_blank: '指定なし'} %>
 
+      <%# <%= f.label :categories_name_eq, 'カテゴリー' %>
+      <%# <%= f.collection_select :categories_name_eq, Category.where.not(id: 0), :id, :name,  include_blank: '指定なし' %>
+
       <%= f.label :price_lteq, '値段max' %>
       <%= f.search_field :price_lteq, placeholder:'10000' %>
       <%= f.submit '検索' %>
