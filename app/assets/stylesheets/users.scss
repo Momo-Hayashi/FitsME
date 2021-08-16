@@ -6,54 +6,11 @@
   font-size: 0.8rem;
 }
 
-.gnav {
-  height: 2rem;
-  margin: 0 auto;
-  position: relative;
-  z-index: 100;
-}
-.gnav > li >a{
-  font-weight: bold;
+hr {
+  background-color: white;
+  width: 800px;
 }
 
-.gnav li {
-  list-style: none;
-  position: relative;
-  width: 220px;
-  font-size: 13px;
+.field_with_errors {
+  display: contents;
 }
-
-.gnav li a {
-  background: #fff;
-  border-right: 1px solid #eee;
-  color:  #001b34;
-  display: block;
-  height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  text-decoration: none;
-  width: 100%;
-}
-
-.gnav li:hover > ul > li {
-  height: 2rem;
-  overflow: visible;
-}
-
-.gnav li li {
-  height: 0;
-  overflow: hidden;
-}
-
-
-// .gnav li:hover > a{
-//   background-color:#ff9022;
-// }
-
-
-// .gnav li ul li ul {
-//   left: 100%;
-//   position: absolute;
-//   top: 0;
-//   width: 100%;
-// }

@@ -18,4 +18,5 @@
 //= require bootstrap/dist/js/bootstrap.min
 //= require turbolinks
 //= require jquery.jpostal
+//= require cocoon
 //= require_tree .

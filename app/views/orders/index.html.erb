@@ -1,21 +1,19 @@
-<article>
-  <hr><h3>注文履歴</h3><hr>
-  <p>最新のご注文から順番に表示されます。</p><br>
+<hr><h3>注文履歴</h3><hr>
+<p>最新のご注文から順番に表示されます。</p><br>
 
-    <table>
-      <tr>
-        <th>アイテム</th>
-        <th>ご注文日</th>
-        <th>合計</th>
-        <th>詳細</th>
-      </tr>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= image_tag order.bought_stocks.first.clothe.images.first.variant(resize: "150x150") %></td>
-          <td><%= l order.created_at %></td>
-          <td>¥<%= order.price %></td>
-          <td><%= link_to '注文の詳細', order_path(order.id) %></td>
-        </tr>
-      <% end %>
-    </table>
-</article>
+<table>
+  <tr>
+    <th>アイテム</th>
+    <th>ご注文日</th>
+    <th>合計</th>
+    <th>詳細</th>
+  </tr>
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= image_tag order.bought_stocks.first.clothe.images.first.variant(resize: "150x150") %></td>
+      <td><%= l order.created_at %></td>
+      <td>¥<%= order.price %></td>
+      <td><%= link_to '注文の詳細', order_path(order.id) %></td>
+    </tr>
+  <% end %>
+</table>

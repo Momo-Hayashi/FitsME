@@ -28,9 +28,9 @@ class CartsController < ApplicationController
 
   def pay
     if params[:cart][:address_ids].blank?
-      redirect_to carts_path, alert: "住所の登録/選択をお願いします"
+      redirect_to cart_confirm_path, alert: "住所の登録/選択をお願いします"
     elsif params[:cart][:address_ids].count > 1
-      redirect_to carts_path, alert: "住所は一つしか選択できません。"
+      redirect_to cart_confirm_path, alert: "住所は一つしか選択できません。"
     else
       @address = current_user.addresses.find(params[:cart][:address_ids])
       @address = @address.first

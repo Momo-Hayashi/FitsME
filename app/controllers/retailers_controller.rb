@@ -1,5 +1,5 @@
 class RetailersController < ApplicationController
-  before_action :all_stocks_retailer_has, only: %i[ orders detail ]
+  before_action :all_orders_retailer_has, only: %i[ orders detail ]
   before_action :authenticate_retailer!, only: %i[ orders detail ]
 
   def show
@@ -15,7 +15,7 @@ class RetailersController < ApplicationController
 
   private
 
-  def all_stocks_retailer_has
+  def all_orders_retailer_has
     #企業の保有している服全て
     @clothe_ids = current_retailer.clothes.pluck(:id)
 

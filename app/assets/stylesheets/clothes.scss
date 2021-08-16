@@ -5,16 +5,17 @@ html {
 header {
   height: 60px;
   font-size: 1.2rem;
-  background-color: #f3d2c1;
+  background-color: #eebbc3;
   margin-left: 0;
   text-align: center;
 }
 
 body {
+  color: white;
   min-width: 1000px;
   margin: auto;
   position: relative;
-  background-color: #fef6e4;
+  background-color: #232946;
   // margin: 0 auto;
   min-height: 100%;
   position: relative;
@@ -35,9 +36,9 @@ li {
 }
 
 article {
-  padding: 20px 30px 100px 30px;
+  padding: 20px 20px 100px 20px;
   margin: auto;
-  width: 980px;
+  width: 1200px;
 }
 
 .top_manu li{
@@ -65,7 +66,7 @@ td{
 }
 
 .footer {
-  background-color: #f3d2c1;
+  background-color: #eebbc3;
   height: 70px;
   width: 100%;
   position: absolute;
@@ -81,6 +82,15 @@ td{
   display: table-cell;
 }
 
-.dropdown-toggle {
+.category_fields .dropdown-toggle {
   margin-bottom: 10px;
 }
+
+.side_menu .btn {
+  width: 220px;
+  // background-color: #f3d2c1;
+}
+
+// .side_menu {
+//   padding: 0px;
+// }

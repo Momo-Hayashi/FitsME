@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <table>
+    <tr>
+      <th><%= f.label :Size %></th>
+      <th><%= f.label :Color %></th>
+      <th><%= f.label :数量 %></th>
+    </tr>
+    <tr>
+      <td><%= f.select :size, Stock.sizes.keys.to_a {}, include_blank: true %></td>
+      <td><%= f.select :color, Stock.colors.keys.to_a {}, include_blank: true %></td>
+      <td><%= f.text_field :quantity, placeholder: "50" %></td>
+      <td><%= link_to_remove_association "削除", f %></td>
+    </tr>
+  </table>
+</div>

@@ -1,29 +1,34 @@
 <%= form_with(model: @review, local: true, url: new_or_edit ) do |form| %>
   <%= form.hidden_field :stock_no, value: @stock.id %>
   <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :order_id, value: params[:order_id] %>
 
   <% if @review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this clothes from being saved:</h2>
-      <ul>
+      <h2>
+        <%= I18n.t("errors.messages.not_saved",
+                   count: @review.errors.count,
+                   resource: @review.class.model_name.human.downcase) %>
+      </h2>
+      <ul class="alert alert alert-danger">
       <% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
+    </div><br>
   <% end %>
 
   <div class="row">
-    <ul class="col-md-3">
+    <ul class="col-md-3 offset-md-2">
       <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
       <li><%= @clothe.retailer.name %></li>
-      <li><%= @clothe.name %></li>
+      <li><%= link_to @clothe.name, clothe_path(@clothe) %></li>
       <li><%= @stock.size %>サイズ</li>
       <li><%= @stock.color %></li>
       <li><%= @clothe.price %>円（税込み）</li>
     </ul>
 
-    <div class="col-md-7">
+    <div class=".col-md-5 .offset-md-1">
       <table>
         <tr>
           <th class="col-md-3"><%= form.label :Rating %></th>
@@ -31,7 +36,7 @@
         </tr>
         <tr>
           <th class="col-md-3"><%= form.label :内容 %></th>
-          <td class="col-md-9"><%= form.text_area :content, class: "form-control", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
+          <td class="col-md-9"><%= form.text_area :content, class: "form-control", rows: "4", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
         </tr>
         <tr>
           <th class="col-md-3 file_upload"><%= form.label :'Images' %></th>
@@ -48,5 +53,5 @@
     </div>
   </div><hr><br>
 
-  <%= form.submit %>
+  <%= form.submit %><br>
 <% end %>

@@ -1,130 +1,126 @@
-<article>
+<h2>アイテム詳細</h2><br>
 
-  <h2>アイテム詳細</h2><br>
-
-  <div class="row">
-    <div class="col-md-5">
-      <h5>Images：</h5>
-      <% if @clothe.images.attached? %>
-        <% @clothe.images.each do |image| %>
-          <%= image_tag image.variant(resize: "350x480") %><br><br>
-        <% end %>
+<div class="row">
+  <div class="col-md-5">
+    <h5>Images：</h5>
+    <% if @clothe.images.attached? %>
+      <% @clothe.images.each do |image| %>
+        <%= image_tag image.variant(resize: "350x480") %><br><br>
       <% end %>
-    </div>
-
-    <div class="clothe_info col-md-7">
-      <table class = "row">
-        <tr>
-          <th class="col-md-3">ブランド名：</th>
-          <td class="col-md-9"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
-        </tr>
-        <tr>
-          <th class="col-md-3">アイテム名：</th>
-          <td class="col-md-9"><%= @clothe.name %></td>
-        </tr>
-        <% if @clothe.category_ids.present? %>
-          <% n = 0 %>
-          <% @clothe.category_ids.each do |category_id| %>
-            <% category = Category.find(category_id) %>
-            <tr>
-              <th class="col-md-3">カテゴリー <%= n += 1 %>：</th>
-              <td class="col-md-9"><%= category.parent.name %> /
-               <%= link_to category.name, category_path(category_id) %></td>
-            </tr>
-          <% end %>
-        <% end %><br>
-        <tr>
-          <th class="col-md-3">Price：</th>
-          <td class="col-md-9">¥<%= @clothe.price %></td>
-        </tr>
-        <tr>
-          <th class="col-md-3">アイテム詳細：</th>
-          <td class="col-md-9"><%= simple_format @clothe.description %></td>
-        </tr>
-        <tr>
-          <th class="col-md-3">サイズガイド：</th>
-          <td class="col-md-9"><%= simple_format @clothe.size %></td>
-        </tr>
-      </table><br>
-
-      <% if @stocks.present? %>
-        <table>
-          <tr>
-            <th>Size</th>
-            <th>Color</th>
-            <th>在庫</th>
-          </tr>
-          <% @stocks.each do |stock| %>
-            <tr>
-              <td class="col-md-2"><%= stock.size %></td>
-              <td class="col-md-3"><%= stock.color %></td>
-              <% if stock.quantity <= 0 %>
-                <td>0</td>
-                <td class="col-md-4">Sorry...Out of stock!</td>
-              <% else %>
-                <td class="col-md-2"><%= stock.quantity %></td>
-                <td class="col-md-5"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post %></td>
-              <% end %>
-            </tr>
-          <% end %>
-        </table><br>
-      <% end %>
-
-      <% if @favorite.present? %>
-        <%= link_to 'お気に入り解除する', favorite_path(clothe_id: @clothe.id, id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
-      <% else %>
-        <%= link_to 'お気に入りする', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-outline-primary" %>
-      <% end %><br><br>
-    </div>
-  </div>
-
-  <div>
-    <h5>Reviews</h5><br>
-    <% if @clothe.reviews.present? %>
-      <table>
-        <tr>
-          <th>User Info</th>
-          <th>Clothe Info</th>
-          <th>Rating</th>
-          <th>Images</th>
-        </tr>
-        <% @clothe.reviews.each do |review| %>
-          <% @stock = Stock.find(review.stock_no) %>
-          <tr>
-            <td class="col-md-3 body_shape_info">
-              <%= review.user.username %><br>
-              Height：<%= review.user.height %>cm<br>
-              Weight：<%= review.user.weight %>km<br>
-              Waist：<%= review.user.waist %>cm<br>
-              Bust：<%= review.user.bust %>cm<br>
-              Hip：<%= review.user.hip %>cm</td>
-            <td class="col-md-3">
-              <%= @stock.size %><br>
-              <%= @stock.color %></td>
-            <td class="col-md-6"><%= review.rate %><br><%= review.content %></td>
-            <td class="col-md-3">
-              <% if review.images.attached? %>
-                <% review.images.each do |image| %>
-                  <%= image_tag image.variant(resize: "150x150") %>
-                <% end %>
-              <% end %></td>
-            <% if review.user == current_user %>
-              <td><%= link_to 'Edit', edit_clothe_review_path(@clothe.id, review.id, stock_no: @stock.id), class: "btn btn-info btn-sm" %></td>
-              <td><%= link_to 'Delete', clothe_review_path(@clothe.id, review.id), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm" %></td>
-            <% end %>
-          </tr>
-          <% end %>
-      </table>
-      <% else %>
-      <p>こちらの商品に対するレビューはまだありません。</p>
     <% end %>
   </div>
 
-  <br>
-  <% if current_retailer == @clothe.retailer %>
-    <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
-    <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm"  %> |
-  <% end %>
-  <%= link_to 'Back', clothes_path %>
+  <div class="clothe_info col-md-7">
+    <table class = "row">
+      <tr>
+        <th class="col-md-3">ブランド名：</th>
+        <td class="col-md-9"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3">アイテム名：</th>
+        <td class="col-md-9"><%= @clothe.name %></td>
+      </tr>
+      <% if @clothe.category_ids.present? %>
+        <% n = 0 %>
+        <% @clothe.category_ids.each do |category_id| %>
+          <% category = Category.find(category_id) %>
+          <tr>
+            <th class="col-md-3">カテゴリー <%= n += 1 %>：</th>
+            <td class="col-md-9"><%= category.parent.name %> /
+             <%= link_to category.name, category_path(category_id) %></td>
+          </tr>
+        <% end %>
+      <% end %><br>
+      <tr>
+        <th class="col-md-3">Price：</th>
+        <td class="col-md-9">¥<%= @clothe.price %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3">アイテム詳細：</th>
+        <td class="col-md-9"><%= simple_format @clothe.description %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3">サイズガイド：</th>
+        <td class="col-md-9"><%= simple_format @clothe.size %></td>
+      </tr>
+    </table><br>
 
-</article>
+    <% if @stocks.present? %>
+      <table>
+        <tr>
+          <th>Size</th>
+          <th>Color</th>
+          <th>在庫</th>
+        </tr>
+        <% @stocks.each do |stock| %>
+          <tr>
+            <td class="col-md-3"><%= stock.size %></td>
+            <td class="col-md-3"><%= stock.color %></td>
+            <% if stock.quantity <= 0 %>
+              <td class="col-md-2">0</td>
+              <td class="col-md-4">Sorry...Out of stock!</td>
+            <% else %>
+              <td class="col-md-2"><%= stock.quantity %></td>
+              <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table><br>
+    <% end %>
+
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入り解除する', favorite_path(clothe_id: @clothe.id, id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
+    <% else %>
+      <%= link_to 'お気に入りする', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-outline-primary" %>
+    <% end %><br><br>
+  </div>
+</div>
+
+<div>
+  <h5>Reviews</h5><br>
+  <% if @clothe.reviews.present? %>
+    <table>
+      <tr>
+        <th>User Info</th>
+        <th>Clothe Info</th>
+        <th>Rating</th>
+        <th>Images</th>
+      </tr>
+      <% @clothe.reviews.each do |review| %>
+        <% @stock = Stock.find(review.stock_no) %>
+        <tr>
+          <td class="col-md-3 body_shape_info">
+            <%= review.user.username %><br>
+            Height：<%= review.user.height %>cm<br>
+            Weight：<%= review.user.weight %>km<br>
+            Waist：<%= review.user.waist %>cm<br>
+            Bust：<%= review.user.bust %>cm<br>
+            Hip：<%= review.user.hip %>cm</td>
+          <td class="col-md-3">
+            <%= @stock.size %><br>
+            <%= @stock.color %></td>
+          <td class="col-md-6"><%= review.rate %><br><%= review.content %></td>
+          <td class="col-md-3">
+            <% if review.images.attached? %>
+              <% review.images.each do |image| %>
+                <%= image_tag image.variant(resize: "150x150") %>
+              <% end %>
+            <% end %></td>
+          <% if review.user == current_user %>
+            <td><%= link_to 'Edit', edit_clothe_review_path(@clothe.id, review.id, stock_no: @stock.id), class: "btn btn-info btn-sm" %></td>
+            <td><%= link_to 'Delete', clothe_review_path(@clothe.id, review.id), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm" %></td>
+          <% end %>
+        </tr>
+        <% end %>
+    </table>
+    <% else %>
+    <p>こちらの商品に対するレビューはまだありません。</p>
+  <% end %>
+</div>
+
+<br>
+<% if current_retailer == @clothe.retailer %>
+  <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
+  <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm"  %> |
+<% end %>
+<%= link_to 'Back', clothes_path %>
