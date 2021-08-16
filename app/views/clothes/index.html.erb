@@ -26,7 +26,7 @@
     <div class="side_menu col-md-3">
       <% Category.all.order("id ASC").limit(20).each do |category| %>
         <div class="btn-group-vertical dropright">
-          <button type="button" class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn btn-outline-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= category.name %>
           </button>
           <div class="dropdown-menu">
