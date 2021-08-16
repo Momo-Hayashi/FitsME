@@ -35,9 +35,9 @@ li {
 }
 
 article {
-  padding: 20px 30px 100px 30px;
+  padding: 20px 20px 100px 20px;
   margin: auto;
-  width: 980px;
+  width: 1200px;
 }
 
 .top_manu li{
@@ -81,6 +81,14 @@ td{
   display: table-cell;
 }
 
-.dropdown-toggle {
+.category_fields .dropdown-toggle {
   margin-bottom: 10px;
 }
+
+.side_menu .btn {
+  width: 220px;
+}
+
+// .side_menu {
+//   padding: 0px;
+// }

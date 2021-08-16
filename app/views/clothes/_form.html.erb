@@ -34,15 +34,15 @@
                 M :  51   42  68   59" %>
       </div>
 
-      <div class="fields row">
+      <div class="category_fields row">
         <% Category.all.order("id ASC").limit(20).each do |category| %>
           <div class="field col-sm-3">
             <div class="dropdown">
-              <button class="btn btn-info btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <%= category.name %>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <p class="dropdown-item"><%= form.collection_check_boxes(:category_ids, category.children, :id, :name) %></p>
+                <a class="dropdown-item"><%= form.collection_check_boxes(:category_ids, category.children, :id, :name) %></a>
               </div>
             </div>
           </div>
