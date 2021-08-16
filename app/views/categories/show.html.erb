@@ -1,26 +1,64 @@
 <article class = #row>
 
-  <h5><%= @category.name %>のアイテム！</h5><br>
+  <h1>Fits ME</h1><br>
+  <strong><h5><%= @category.name %> のアイテム一覧</h5></strong><br>
+
+  <form>
+    <div class="search_field form-row">
+      <%= search_form_for @q do |f| %>
+        <%= f.label :name_or_description_or_retailer_name_cont, 'Key Word', class: "col-1.5" %>
+        <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'アイテム名やブランド名で検索', class:"form-control col-2" %>
+        <%= f.label :stocks_color_eq, 'Color', class: "col-1" %>
+        <%= f.select :stocks_color_eq, Stock.colors{|key,value| [Stock.colors[key],value]}, {include_blank: '指定なし'}, class:"form-control col-2" %>
+        <%= f.label :stocks_size_eq, 'Size', class: "col-1" %>
+        <%= f.select :stocks_size_eq, Stock.sizes{|key,value| [Stock.sizes[key],value]}, {include_blank: '指定なし'}, class:"form-control col-2" %>
+        <%= f.label :price_lteq, '値段max', class: "col-1" %>
+        <%= f.search_field :price_lteq, placeholder:'10000', class:"form-control col-1" %>
+        <%= f.submit '検索', class:"btn btn-outline-info" %>
+      <% end %>
+    </div>
+    <%=  link_to '検索条件を解除', clothes_path %><br>
+  </form><br>
 
   <div class="row">
-    <% @clothes.each do |clothe| %>
-      <div class="index_clothes col-sm-6 col-md-3">
-        <ul>
-          <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}) if clothe.images.attached? %></li>
-          <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
-          <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
-          <li>¥<%= clothe.price %></li>
-          <table>
-            <tr>
-              <% if current_retailer == clothe.retailer %>
-                <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
-                <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
-              <% end %>
-            </tr>
-          </table>
-        </ul>
-      </div><br>
-    <% end %>
-  </div>
 
+    <div class="side_menu col-md-3">
+      <% Category.all.order("id ASC").limit(20).each do |category| %>
+        <div class="btn-group-vertical dropright">
+          <button type="button" class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= category.name %>
+          </button>
+          <div class="dropdown-menu">
+            <% category.children.each do |child| %>
+              <button class="dropdown-item" type="button"><%= link_to child.name, category_path(child.id) %></button>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class=" col-md-9">
+      <div class="row">
+        <% @clothes.each do |clothe| %>
+          <div class="index_clothes col-sm-6 col-md-3">
+            <ul>
+              <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}) if clothe.images.attached? %></li>
+              <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
+              <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
+              <li>¥<%= clothe.price %></li>
+              <table>
+                <tr>
+                  <% if current_retailer == clothe.retailer %>
+                    <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
+                    <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
+                  <% end %>
+                </tr>
+              </table>
+            </ul>
+          </div><br>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
 </article>
