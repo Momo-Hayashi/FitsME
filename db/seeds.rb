@@ -2,7 +2,7 @@ User.create!([
   { username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 0, height: 160.8, weight: 50.3, waist: 60.3, bust: 77.7, hip: 90.5 },
   { username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 0, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5 },
   { username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 0, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5 },
-  { username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 0, height: 180.8, weight: 71.3, bust: 82.7, hip: 96.5 },
+  { username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 0, height: 180.8, weight: 71.3, bust: 82.7, hip: 96.5, waist: 70.3 },
   { username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 0, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5 }
 ])
 
