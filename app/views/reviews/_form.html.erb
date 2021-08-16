@@ -1,11 +1,16 @@
 <%= form_with(model: @review, local: true, url: new_or_edit ) do |form| %>
   <%= form.hidden_field :stock_no, value: @stock.id %>
   <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :order_id, value: params[:order_id] %>
 
   <% if @review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this clothes from being saved:</h2>
-      <ul>
+      <h2>
+        <%= I18n.t("errors.messages.not_saved",
+                   count: @review.errors.count,
+                   resource: @review.class.model_name.human.downcase) %>
+      </h2>
+      <ul class="alert alert alert-danger">
       <% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

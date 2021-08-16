@@ -1,8 +1,30 @@
 ---
 ja:
   activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: ユーザー
+      user/addresses: 住所
+      user/categories: カテゴリー
+      clothe: 洋服
+      clothe/stocks: 在庫
     attributes:
-      address:
+      user:
+        username: ユーザーネーム
+        email: メールアドレス
+        encrypted_password: パスワード
+        birthday: 誕生日
+        height: 身長
+        weight: 体重
+        bust: バスト
+        waist: ウエスト
+        hip: ヒップ
+      user/addresses:
         id: ID
         first_name: 名前
         last_name: 姓
@@ -12,12 +34,35 @@ ja:
         address_street: 番地
         address_building: 建物
         phone_number: 電話番号
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+      user/categories:
+        name: カテゴリー
+      clothe:
+        name: アイテム名
+        description: アイテム詳細
+        price: 値段
+        size: サイズ
+        images: イメージ画像
+        stocks: 在庫
+      clothe/stocks:
+        quantity: 数量
+        color: 色
+        size: サイズ
+      review:
+        content: レビュー内容
+        rate: 評価
+      admin:
+        name: 名前
+        email: メールアドレス
+        encrypted_password: パスワード
+      retailer:
+        name: 名前
+        description: 詳細
+        logo: ロゴ
+        website_url: WebサイトURL
+        email: メールアドレス
+        encrypted_password: パスワード
+        phone_number: 電話番号
+        address: 住所
   date:
     abbr_day_names:
     - 日

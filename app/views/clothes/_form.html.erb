@@ -2,14 +2,18 @@
 
   <% if clothe.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(clothe.errors.count, "error") %> prohibited this clothes from being saved:</h2>
-      <ul>
-      <% clothe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <h2>
+        <%= I18n.t("errors.messages.not_saved",
+                   count: clothe.errors.count,
+                   resource: clothe.class.model_name.human.downcase) %>
+      </h2>
+      <ul class="alert alert alert-danger">
+        <% clothe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %><br>
 
   <div class="actions">
     <div class="form-group row">
