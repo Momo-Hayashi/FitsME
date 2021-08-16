@@ -5,11 +5,11 @@
 <% @order.order_stocks.each do |order_stock| %>
   <% @clothe = order_stock.stock.clothe %>
   <div class="row">
-    <div class="offset-md-1 col-md-3">
+    <div class="offset-md-2 col-md-2">
       <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-3">
       <table>
         <tr>
           <th class="col-md-5">ブランド名</th>
@@ -38,14 +38,15 @@
       </table>
     </div>
     <div class="col-md-3">
-      <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id) %></td>
+      <br><br><br><br>
+      <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' %></td>
     </div>
   </div><hr>
 <% end %>
 
 <p style="text-align:center;"><strong>合計金額：<%= @order.price %> 円（税込み）</strong></p><hr>
 
-<h5>お届け先情報</h5>
+<h5>お届け先情報</h5><hr>
 <table>
   <tr>
     <th>お名前：</th>
@@ -64,6 +65,6 @@
     <th>お電話番号：</th>
     <td><%= @order.phone_number %></td>
   </tr>
-</table><br><br>
+</table><hr><br>
 
-<%= link_to '注文履歴へ戻る', orders_path %>
+<%= link_to '注文履歴へ戻る', orders_path, class:"btn btn-outline-primary" %>

@@ -7,11 +7,11 @@
   <% @carts.each do |item| %>
     <div class="row">
       <% @clothe = item.stock.clothe %>
-      <div class="col-md-2">
-        <%= image_tag @clothe.images.first.variant(resize: "150x250") if @clothe.images.attached? %>
+      <div class="col-md-1 offset-md-2">
+        <%= image_tag @clothe.images.first.variant(resize: "150x250") %>
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-5">
         <table>
           <tr>
             <th class="col-md-4">ブランド名</th>
@@ -44,14 +44,14 @@
     <% total_price += @clothe.price*item.amount %>
   <% end %>
 
-  <strong><p>合計金額：<%= total_price %> 円（税込み）</p></strong><br>
+  <strong><h5>合計金額：<%= total_price %> 円（税込み）</h5></strong><br>
   <%= f.hidden_field :total_price, value: total_price %>
 
   <hr><h4>お届け先情報</h4>
 
-  <% n = 0 %>
+  <% n = 0 %><hr>
   <% @addresses.each do |address| %>
-    <hr><h5>お届け先情報 <%= n += 1 %> </h5><hr>
+    <h5>お届け先情報 <%= n += 1 %> </h5>
     <table>
       <tr>
         <th>お名前：</th>
@@ -75,6 +75,6 @@
     </table><hr>
   <% end %>
 
-  <%= link_to 'お届け先を追加/変更する', edit_user_registration_path %><br><br>
-  <h5><%= f.submit '購入へすすむ' %></h5><br>
+  <%= link_to 'お届け先を追加/変更する', edit_user_registration_path, class: "btn btn-info" %><br><br>
+  <h5><%= f.submit '購入へすすむ', class: "btn btn-success" %></h5><br>
 <% end %>

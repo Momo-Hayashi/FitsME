@@ -15,11 +15,11 @@
         <li><%= message %></li>
       <% end %>
       </ul>
-    </div>
+    </div><br>
   <% end %>
 
   <div class="row">
-    <ul class="col-md-3">
+    <ul class="col-md-3 offset-md-2">
       <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
       <li><%= @clothe.retailer.name %></li>
       <li><%= link_to @clothe.name, clothe_path(@clothe) %></li>
@@ -28,7 +28,7 @@
       <li><%= @clothe.price %>円（税込み）</li>
     </ul>
 
-    <div class="col-md-7">
+    <div class=".col-md-5 .offset-md-1">
       <table>
         <tr>
           <th class="col-md-3"><%= form.label :Rating %></th>

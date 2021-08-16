@@ -6,11 +6,11 @@
 <% @carts.each do |item| %>
   <div class="row">
     <% @clothe = item.stock.clothe %>
-    <div class="offset-md-1 col-md-3">
+    <div class="col-md-1 offset-md-2">
       <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-5">
       <table>
         <tr>
           <th class="col-md-5">ブランド名</th>
@@ -34,7 +34,7 @@
         </tr>
       </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
       <br><br><br>
       <p >個数：<%= item.amount %>点</p>
     </div>
@@ -75,4 +75,4 @@
 
 <hr>
 
-<%= link_to "カートに戻る", carts_path %>
+<%= link_to "カートに戻る", carts_path, class:"btn btn-outline-info" %>
