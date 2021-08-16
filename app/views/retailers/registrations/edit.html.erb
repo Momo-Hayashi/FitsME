@@ -1,78 +1,76 @@
-<article>
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "retailers/shared/error_messages", resource: resource %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "retailers/shared/error_messages", resource: resource %>
 
-    <h6>*マークの項目は登録に必須の項目となります。</h6><br>
+  <h6>*マークの項目は登録に必須の項目となります。</h6><br>
 
-    <div class="field form-group row">
-      <%= f.label :'*Company Name', class: "col-sm-3 col-form-label" %><br />
-      <%= f.text_field :name, autofocus: true, placeholder: "company name", class: "col-sm-9 form-control" %>
-    </div>
+  <div class="field form-group row">
+    <%= f.label :'*Company Name', class: "col-sm-3 col-form-label" %><br />
+    <%= f.text_field :name, autofocus: true, placeholder: "company name", class: "col-sm-9 form-control" %>
+  </div>
 
-    <div class="field form-group row">
-      <%= f.label :ショップ情報, class: "col-sm-3 col-form-label" %><br />
-      <%= f.text_area :description, autofocus: true, class: "col-sm-9 form-control", placeholder: "ブランド/アパレルのご紹介文をご記入ください" %>
-    </div>
+  <div class="field form-group row">
+    <%= f.label :ショップ情報, class: "col-sm-3 col-form-label" %><br />
+    <%= f.text_area :description, autofocus: true, class: "col-sm-9 form-control", placeholder: "ブランド/アパレルのご紹介文をご記入ください" %>
+  </div>
 
-    <div class="field form-group row">
-      <%= f.label :ロゴ, class: "col-sm-3 col-form-label" %><br />
-      <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
-      <%= f.file_field :logo %>
-    </div>
+  <div class="field form-group row">
+    <%= f.label :ロゴ, class: "col-sm-3 col-form-label" %><br />
+    <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
+    <%= f.file_field :logo %>
+  </div>
 
-    <div class="field form-group row">
-      <%= f.label :'website URL（もしあれば）', class: "col-sm-3 col-form-label" %><br />
-      <%= f.url_field :website_url, placeholder: "https://もしあれば/", class: "col-sm-9 form-control" %>
-    </div><br><hr>
+  <div class="field form-group row">
+    <%= f.label :'website URL（もしあれば）', class: "col-sm-3 col-form-label" %><br />
+    <%= f.url_field :website_url, placeholder: "https://もしあれば/", class: "col-sm-9 form-control" %>
+  </div><br><hr>
 
-    <h6>下記は管理用となりますので、ウェブでは公開されません。</h6><br>
-    <div class="field form-group row">
-      <%= f.label :'*email', class: "col-sm-3 col-form-label" %><br />
-      <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp", class: "col-sm-9 form-control" %>
-    </div>
+  <h6>下記は管理用となりますので、ウェブでは公開されません。</h6><br>
+  <div class="field form-group row">
+    <%= f.label :'*email', class: "col-sm-3 col-form-label" %><br />
+    <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp", class: "col-sm-9 form-control" %>
+  </div>
 
-    <div class="field form-group row">
-      <%= f.label :'*電話番号', class: "col-sm-3 col-form-label" %><br />
-      <%= f.telephone_field	 :phone_number, placeholder: "1234567890", class: "col-sm-9 form-control" %>
-    </div>
+  <div class="field form-group row">
+    <%= f.label :'*電話番号', class: "col-sm-3 col-form-label" %><br />
+    <%= f.telephone_field	 :phone_number, placeholder: "1234567890", class: "col-sm-9 form-control" %>
+  </div>
 
-    <div class="field form-group row">
-      <%= f.label :'*住所', class: "col-sm-3 col-form-label" %><br />
-      <%= f.text_field :address, placeholder: "東京都渋谷区渋谷市1-2-3 渋谷ビル123", class: "col-sm-9 form-control" %>
-    </div>
+  <div class="field form-group row">
+    <%= f.label :'*住所', class: "col-sm-3 col-form-label" %><br />
+    <%= f.text_field :address, placeholder: "東京都渋谷区渋谷市1-2-3 渋谷ビル123", class: "col-sm-9 form-control" %>
+  </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <br><hr>
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password（変更時のみ入力）"  %>
-      <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new password（変更時のみ入力）" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
-      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "current password" %>
-    </div><hr>
-
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  <%= link_to "Back", :back %>
 
-  <br><br>
-  <h6>Unhappy?</h6>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %><br>
-</article>
+  <br><hr>
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password（変更時のみ入力）"  %>
+    <% if @minimum_password_length %>
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new password（変更時のみ入力）" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "current password" %>
+  </div><hr>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+<%= link_to "Back", retailers_path(@retailer) %>
+
+<br><br>
+<h6>Unhappy?</h6>
+<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %><br>

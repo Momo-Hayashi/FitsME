@@ -1,82 +1,80 @@
-<article>
-  <hr><h3>ご注文内容・お届け先情報のご確認</h3><hr>
+<hr><h3>ご注文内容・お届け先情報のご確認</h3><hr>
 
-  <%= form_with(model: @carts, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>
-    <h3>Items in your cart!</h3><br>
+<%= form_with(model: @carts, local: true, url: cart_pay_path(@carts.ids) ) do |f| %>
+  <h3>Items in your cart!</h3><br>
 
-    <% total_price = 0 %>
-    <% @carts.each do |item| %>
-      <div class="row">
-        <% @clothe = item.stock.clothe %>
-        <div class="col-md-2">
-          <%= image_tag @clothe.images.first.variant(resize: "150x250") if @clothe.images.attached? %>
-        </div>
+  <% total_price = 0 %>
+  <% @carts.each do |item| %>
+    <div class="row">
+      <% @clothe = item.stock.clothe %>
+      <div class="col-md-1 offset-md-2">
+        <%= image_tag @clothe.images.first.variant(resize: "150x250") %>
+      </div>
 
-        <div class="col-md-7">
-          <table>
-            <tr>
-              <th class="col-md-4">ブランド名</th>
-              <td class="col-md-8"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">アイテム</th>
-              <td class="col-md-8"><%= link_to @clothe.name, clothe_path(@clothe.id) %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">サイズ</th>
-              <td class="col-md-8"><%= item.stock.size %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">カラー</th>
-              <td class="col-md-8"><%= item.stock.color %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">金額</th>
-              <td class="col-md-8z"><%= @clothe.price %>円（税込み）</td>
-            </tr>
-          </table>
-        </div>
+      <div class="col-md-5">
+        <table>
+          <tr>
+            <th class="col-md-4">ブランド名</th>
+            <td class="col-md-8"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
+          </tr>
+          <tr>
+            <th class="col-md-4">アイテム</th>
+            <td class="col-md-8"><%= link_to @clothe.name, clothe_path(@clothe.id) %></td>
+          </tr>
+          <tr>
+            <th class="col-md-4">サイズ</th>
+            <td class="col-md-8"><%= item.stock.size %></td>
+          </tr>
+          <tr>
+            <th class="col-md-4">カラー</th>
+            <td class="col-md-8"><%= item.stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-4">金額</th>
+            <td class="col-md-8z"><%= @clothe.price %>円（税込み）</td>
+          </tr>
+        </table>
+      </div>
 
-        <div class="col-md-2">
-          <br><br><br>
-          <strong><p>個数：<%= item.amount %>点</p></strong>
-        </div>
-      </div><hr>
-      <% total_price += @clothe.price*item.amount %>
-    <% end %>
-
-    <strong><p>合計金額：<%= total_price %> 円（税込み）</p></strong><br>
-    <%= f.hidden_field :total_price, value: total_price %>
-
-    <hr><h4>お届け先情報</h4>
-
-    <% n = 0 %>
-    <% @addresses.each do |address| %>
-      <hr><h5>お届け先情報 <%= n += 1 %> </h5><hr>
-      <table>
-        <tr>
-          <th>お名前：</th>
-          <td><%= address.last_name %><%= address.first_name %></td>
-        </tr>
-        <tr>
-          <th>郵便番号：</th>
-          <td><%= address.postcode %></td>
-        </tr>
-        <tr>
-          <th>住所：</th>
-          <% pref = JpPrefecture::Prefecture.find(address.prefecture_code) %>
-          <td><%= pref.name if address.prefecture_code %> <%= address.address_city %>
-            <%= address.address_street %> <%= address.address_building %></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td><%= f.check_box :address_ids ,{multiple: true}, address.id, false %>
-              この住所を今回のお届け先に指定する</td>
-        </tr>
-      </table><hr>
-    <% end %>
-
-    <%= link_to 'お届け先を追加/変更する', edit_user_registration_path %><br><br>
-    <h5><%= f.submit '購入へすすむ' %></h5><br>
+      <div class="col-md-2">
+        <br><br><br>
+        <strong><p>個数：<%= item.amount %>点</p></strong>
+      </div>
+    </div><hr>
+    <% total_price += @clothe.price*item.amount %>
   <% end %>
-</article>
+
+  <strong><h5>合計金額：<%= total_price %> 円（税込み）</h5></strong><br>
+  <%= f.hidden_field :total_price, value: total_price %>
+
+  <hr><h4>お届け先情報</h4>
+
+  <% n = 0 %><hr>
+  <% @addresses.each do |address| %>
+    <h5>お届け先情報 <%= n += 1 %> </h5>
+    <table>
+      <tr>
+        <th>お名前：</th>
+        <td><%= address.last_name %><%= address.first_name %></td>
+      </tr>
+      <tr>
+        <th>郵便番号：</th>
+        <td><%= address.postcode %></td>
+      </tr>
+      <tr>
+        <th>住所：</th>
+        <% pref = JpPrefecture::Prefecture.find(address.prefecture_code) %>
+        <td><%= pref.name if address.prefecture_code %> <%= address.address_city %>
+          <%= address.address_street %> <%= address.address_building %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= f.check_box :address_ids ,{multiple: true}, address.id, false %>
+            この住所を今回のお届け先に指定する</td>
+      </tr>
+    </table><hr>
+  <% end %>
+
+  <%= link_to 'お届け先を追加/変更する', edit_user_registration_path, class: "btn btn-info" %><br><br>
+  <h5><%= f.submit '購入へすすむ', class: "btn btn-success" %></h5><br>
+<% end %>

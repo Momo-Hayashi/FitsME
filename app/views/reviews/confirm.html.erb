@@ -1,36 +1,34 @@
-<article>
-  <h2>Would you like to post with the following contents?</h2>
-  <%= form_with(model: @review, url: clothe_reviews_path, local: true) do |f| %>
+<h2>Would you like to post with the following contents?</h2>
+<%= form_with(model: @review, url: clothe_reviews_path, local: true) do |f| %>
 
-    <%= f.hidden_field :rate %>
-    <%= f.hidden_field :content %>
-    <%= f.hidden_field :stock_no %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :images, value: params[:review][:images] %>
+  <%= f.hidden_field :rate %>
+  <%= f.hidden_field :content %>
+  <%= f.hidden_field :stock_no %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :images, value: params[:review][:images] %>
 
-    <div class="row">
-      <ul class="col-md-3">
-        <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
-        <li><%= @clothe.retailer.name %></li>
-        <li><%= @clothe.name %></li>
-        <li><%= @stock.size %>サイズ</li>
-        <li><%= @stock.color %></li>
-        <li><%= @clothe.price %>円（税込み）</li>
-      </ul>
+  <div class="row">
+    <ul class="col-md-3">
+      <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
+      <li><%= @clothe.retailer.name %></li>
+      <li><%= @clothe.name %></li>
+      <li><%= @stock.size %>サイズ</li>
+      <li><%= @stock.color %></li>
+      <li><%= @clothe.price %>円（税込み）</li>
+    </ul>
 
-      <div class="col-md-7">
-        <p>Rating：<%= @review.rate %></p>
-        <p>Content：<%= @review.content %></p>
-        <p>Image：</p>
-        <% if @review.images.attached? %>
-          <% @review.images.each do |image| %>
-            <%= image_tag image.variant(resize: "200x200") %>
-          <% end %>
+    <div class="col-md-7">
+      <p>Rating：<%= @review.rate %></p>
+      <p>Content：<%= @review.content %></p>
+      <p>Image：</p>
+      <% if @review.images.attached? %>
+        <% @review.images.each do |image| %>
+          <%= image_tag image.variant(resize: "200x200") %>
         <% end %>
-      </div>
-    </div><br>
+      <% end %>
+    </div>
+  </div><br>
 
-    <%= f.submit "Post!" %>
-    <%= f.submit "Back", name:'back' %>
-  <% end %>
-</article>
+  <%= f.submit "Post!" %>
+  <%= f.submit "Back", name:'back' %>
+<% end %>

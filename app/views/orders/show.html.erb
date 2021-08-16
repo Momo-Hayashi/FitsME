@@ -1,71 +1,70 @@
-<article>
-  <hr><h3>ご注文の詳細</h3><hr><br>
+<hr><h3>ご注文の詳細</h3><hr><br>
 
-  <strong><p>ご注文日：<%= l @order.created_at %><p></strong><hr>
+<strong><p>ご注文日：<%= l @order.created_at %><p></strong><hr>
 
-  <% @order.order_stocks.each do |order_stock| %>
-    <% @clothe = order_stock.stock.clothe %>
-    <div class="row">
-      <div class="offset-md-1 col-md-3">
-        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
-      </div>
+<% @order.order_stocks.each do |order_stock| %>
+  <% @clothe = order_stock.stock.clothe %>
+  <div class="row">
+    <div class="offset-md-2 col-md-2">
+      <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+    </div>
 
-      <div class="col-md-5">
-        <table>
-          <tr>
-            <th class="col-md-5">ブランド名</th>
-            <td class="col-md-7"><%= @clothe.retailer.name %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">アイテム</th>
-            <td class="col-md-7"><%= @clothe.name %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">サイズ</th>
-            <td class="col-md-7"><%= order_stock.stock.size %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">カラー</th>
-            <td class="col-md-7"><%= order_stock.stock.color %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">個数</th>
-            <td class="col-md-7"><%= order_stock.amount %>点</td>
-          </tr>
-          <tr>
-            <th class="col-md-5">金額</th>
-            <td class="col-md-7"><%= @clothe.price*order_stock.amount %>円（税込み）</td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-md-3">
-        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id) %></td>
-      </div>
-    </div><hr>
-  <% end %>
+    <div class="col-md-3">
+      <table>
+        <tr>
+          <th class="col-md-5">ブランド名</th>
+          <td class="col-md-7"><%= @clothe.retailer.name %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">アイテム</th>
+          <td class="col-md-7"><%= @clothe.name %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">サイズ</th>
+          <td class="col-md-7"><%= order_stock.stock.size %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">カラー</th>
+          <td class="col-md-7"><%= order_stock.stock.color %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">個数</th>
+          <td class="col-md-7"><%= order_stock.amount %>点</td>
+        </tr>
+        <tr>
+          <th class="col-md-5">金額</th>
+          <td class="col-md-7"><%= @clothe.price*order_stock.amount %>円（税込み）</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-3">
+      <br><br><br><br>
+      <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' %></td>
+    </div>
+  </div><hr>
+<% end %>
 
-  <p style="text-align:center;"><strong>合計金額：<%= @order.price %> 円（税込み）</strong></p><hr>
+<p style="text-align:center;"><strong>合計金額：<%= @order.price %> 円（税込み）</strong></p><hr>
 
-  <h5>お届け先情報</h5>
-  <table>
-    <tr>
-      <th>お名前：</th>
-      <td><%= @order.last_name %><%= @order.first_name %></td>
-    </tr>
-    <tr>
-      <th>郵便番号：</th>
-      <td><%= @order.postcode %></td>
-    </tr>
-    <tr>
-      <th>住所：</th>
-      <% pref = JpPrefecture::Prefecture.find(@order.prefecture_code) %>
-      <td><%= pref.name %><%= @order.address_city %><%= @order.address_street %><%= @order.address_building %></td>
-    </tr>
-    <tr>
-      <th>お電話番号：</th>
-      <td><%= @order.phone_number %></td>
-    </tr>
-  </table><br><br>
+<h5>お届け先情報</h5><hr>
+<table>
+  <tr>
+    <th>お名前：</th>
+    <td><%= @order.last_name %><%= @order.first_name %></td>
+  </tr>
+  <tr>
+    <th>郵便番号：</th>
+    <td><%= @order.postcode %></td>
+  </tr>
+  <tr>
+    <th>住所：</th>
+    <% pref = JpPrefecture::Prefecture.find(@order.prefecture_code) %>
+    <td><%= pref.name %><%= @order.address_city %><%= @order.address_street %><%= @order.address_building %></td>
+  </tr>
+  <tr>
+    <th>お電話番号：</th>
+    <td><%= @order.phone_number %></td>
+  </tr>
+</table><hr><br>
 
-  <%= link_to '注文履歴へ戻る', orders_path %>
-</article>
+<%= link_to '注文履歴へ戻る', orders_path, class:"btn btn-outline-primary" %>

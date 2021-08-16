@@ -1,80 +1,78 @@
-<article>
-  <h3>ご注文確認画面</h3><br>
+<h3>ご注文確認画面</h3><br>
 
-  <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
+<h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
 
-  <%= form_with( model: @carts, local: true, url: cart_complete_path(@carts.ids) ) do |f| %>
-  <% @carts.each do |item| %>
-    <div class="row">
-      <% @clothe = item.stock.clothe %>
-      <div class="offset-md-1 col-md-3">
-        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
-      </div>
+<%= form_with( model: @carts, local: true, url: cart_complete_path(@carts.ids) ) do |f| %>
+<% @carts.each do |item| %>
+  <div class="row">
+    <% @clothe = item.stock.clothe %>
+    <div class="col-md-1 offset-md-2">
+      <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+    </div>
 
-      <div class="col-md-4">
-        <table>
-          <tr>
-            <th class="col-md-5">ブランド名</th>
-            <td class="col-md-7"><%= @clothe.retailer.name %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">アイテム</th>
-            <td class="col-md-7"><%= @clothe.name %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">サイズ</th>
-            <td class="col-md-7"><%= item.stock.size %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">カラー</th>
-            <td class="col-md-7"><%= item.stock.color %></td>
-          </tr>
-          <tr>
-            <th class="col-md-5">金額</th>
-            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
-          </tr>
-        </table>
-      </div>
-      <div class="col-md-4">
-        <br><br><br>
-        <p >個数：<%= item.amount %>点</p>
-      </div>
-    </div><hr>
-  <% end %>
+    <div class="col-md-5">
+      <table>
+        <tr>
+          <th class="col-md-5">ブランド名</th>
+          <td class="col-md-7"><%= @clothe.retailer.name %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">アイテム</th>
+          <td class="col-md-7"><%= @clothe.name %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">サイズ</th>
+          <td class="col-md-7"><%= item.stock.size %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">カラー</th>
+          <td class="col-md-7"><%= item.stock.color %></td>
+        </tr>
+        <tr>
+          <th class="col-md-5">金額</th>
+          <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-2">
+      <br><br><br>
+      <p >個数：<%= item.amount %>点</p>
+    </div>
+  </div><hr>
+<% end %>
 
-  <strong><p>合計金額：<%= params[:cart][:total_price] %> 円（税込み）</p></strong><hr>
+<strong><p>合計金額：<%= params[:cart][:total_price] %> 円（税込み）</p></strong><hr>
 
-  <h4>お届け先情報</h4><hr>
-  <table>
-    <tr>
-      <th>お名前：</th>
-      <td><%= @address.last_name %><%= @address.first_name %></td>
-    </tr>
-    <tr>
-      <th>郵便番号：</th>
-      <td><%= @address.postcode %></td>
-    </tr>
-    <tr>
-      <th>住所：</th>
-      <% pref = JpPrefecture::Prefecture.find(@address.prefecture_code) %>
-      <td><%= pref.name %><%= @address.address_city %><%= @address.address_street %><%= @address.address_building %>
-    </tr>
-  </table>
+<h4>お届け先情報</h4><hr>
+<table>
+  <tr>
+    <th>お名前：</th>
+    <td><%= @address.last_name %><%= @address.first_name %></td>
+  </tr>
+  <tr>
+    <th>郵便番号：</th>
+    <td><%= @address.postcode %></td>
+  </tr>
+  <tr>
+    <th>住所：</th>
+    <% pref = JpPrefecture::Prefecture.find(@address.prefecture_code) %>
+    <td><%= pref.name %><%= @address.address_city %><%= @address.address_street %><%= @address.address_building %>
+  </tr>
+</table>
 
-    <hr><strong>**金額を確認し、下記フォームより決済する</strong>
-    <br>
-    <script
-      type="text/javascript"
-      src="https://checkout.pay.jp"
-      class="payjp-button"
-      data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
-    </script>
+  <hr><strong>**金額を確認し、下記フォームより決済する</strong>
+  <br>
+  <script
+    type="text/javascript"
+    src="https://checkout.pay.jp"
+    class="payjp-button"
+    data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
+  </script>
 
-  <%= f.hidden_field :total_price, value: params[:cart][:total_price] %>
-  <%= f.hidden_field :address_id, value: @address.id %>
-  <% end %>
+<%= f.hidden_field :total_price, value: params[:cart][:total_price] %>
+<%= f.hidden_field :address_id, value: @address.id %>
+<% end %>
 
-  <hr>
+<hr>
 
-  <%= link_to "カートに戻る", carts_path %>
-</article>
+<%= link_to "カートに戻る", carts_path, class:"btn btn-outline-info" %>
