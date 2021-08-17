@@ -19,9 +19,11 @@ class Clothe < ApplicationRecord
   validates :less_than_3_categories, presence: true
 
   def less_than_3_categories
-    if categories.length > 4
-      errors.add(:categories, ": カテゴリーは3つまでしか選べません")
-    else categories.length < 4
+    if categories.length >= 4
+      errors.add(:categories, "は3つまでしか選べません")
+    elsif categories.length == 0
+      errors.add(:categories, "を1-3個選択してください")
+    elsif 0 < categories.length && categories.length < 4
       true
     end
   end

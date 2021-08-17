@@ -13,6 +13,8 @@ ja:
       user/categories: カテゴリー
       clothe: 洋服
       clothe/stocks: 在庫
+      category: カテゴリー
+      clothe/categories: カテゴリー
     attributes:
       user:
         username: ユーザーネーム
@@ -43,6 +45,7 @@ ja:
         size: サイズ
         images: イメージ画像
         stocks: 在庫
+        categories: カテゴリー
       clothe/stocks:
         quantity: 数量
         color: 色
