@@ -14,9 +14,14 @@
   </div>
 
   <div class="field">
+    <%= f.label :birthday, 'お誕生日' %><br />
+    <%= f.date_select :birthday, start_year: 1940, end_year: (Time.now.year - 10), include_blank: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
   </div>

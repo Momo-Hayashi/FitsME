@@ -1,47 +1,46 @@
 <h3>ブランド詳細</h3><br>
 
+<% if current_retailer == @retailer %>
+  <div><hr>
+    <h6>こちらは管理用となりますので、ウェブでは公開されません。</h6>
+    <table>
+      <tr>
+        <th>メールアドレス：</th>
+        <td><%= @retailer.email %></td>
+      </tr>
+      <tr>
+        <th>電話番号：</th>
+        <td><%= @retailer.phone_number %></td>
+      </tr>
+      <tr>
+        <th>住所：</th>
+        <td><%= @retailer.address %></td>
+      </tr>
+    </table>
+    <hr>
+  </div>
+<% end %>
+
 <div class="row">
-  <div class="col-md-3">
-    <%= image_tag @retailer.logo.variant(resize: "150x150") if @retailer.logo.attached?  %>
+  <div class="col-md-2 offset-md-1">
+    <%= image_tag @retailer.logo.variant(resize: "250x250") if @retailer.logo.attached?  %>
   </div>
   <div class="col-md-8">
-    <table class="retailer_info">
+    <table class="retailer_info row">
       <tr>
-        <th>Company Name：</th>
-        <td><%= @retailer.name %></td>
+        <th class="col-md-3">Company Name：</th>
+        <td class="col-md-9"><%= @retailer.name %></td>
       </tr>
       <tr>
-        <th>ショップ情報：</th>
-        <td><%= @retailer.description %></td>
+        <th class="col-md-3">ショップ情報：</th>
+        <td class="col-md-9"><%= @retailer.description %></td>
       </tr>
       <tr>
-        <th>Website URL：</th>
-        <td><%= @retailer.website_url %></td>
+        <th class="col-md-3">Website URL：</th>
+        <td class="col-md-9"><%= link_to @retailer.website_url %></td>
       </tr>
     </table>
   </div>
-
-  <% if current_retailer == @retailer %>
-    <div><br><br>
-      <h6>---こちらは管理用となりますので、ウェブでは公開されません。---</h6>
-      <table>
-        <tr>
-          <th>メールアドレス：</th>
-          <td><%= @retailer.email %></td>
-        </tr>
-        <tr>
-          <th>電話番号：</th>
-          <td><%= @retailer.phone_number %></td>
-        </tr>
-        <tr>
-          <th>住所：</th>
-          <td><%= @retailer.address %></td>
-        </tr>
-      </table>
-      <%= link_to 'Edit the profile', edit_retailer_registration_path %>
-      <h6>------------------------------------------------------------------</h6>
-    </div>
-  <% end %>
 </div><br><br>
 
 
@@ -49,7 +48,7 @@
   <% @retailer.clothes.each do |clothe| %>
     <div class="index_clothes col-sm-6 col-md-3">
       <ul>
-        <li><%= image_tag clothe.images.first.variant(resize: "180x180") if clothe.images.attached? %></li>
+        <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}) %></li>
         <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
         <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
         <li>¥<%= clothe.price %></li>
@@ -64,6 +63,11 @@
       </ul>
     </div>
   <% end %>
-</div><br><br>
+</div><br>
+<%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %><br>
 
-<%= link_to 'Back', clothes_path %>
+<% if current_retailer == @retailer %>
+  <%= link_to 'Edit the profile', edit_retailer_registration_path, class: "btn btn-outline-info" %><br><br>
+  <%= link_to '退会する', retailer_registration_path, method: :delete, class: "btn btn-outline-danger",
+     data:{ confirm:'Are you sure you want to delete your account?'} %>
+<% end %>
