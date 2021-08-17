@@ -77,7 +77,7 @@
 </div>
 
 <div>
-  <h5>Reviews</h5><br>
+  <h5>Reviews</h5><hr>
   <% if @clothe.reviews.present? %>
     <table>
       <tr>
@@ -89,17 +89,17 @@
       <% @clothe.reviews.each do |review| %>
         <% @stock = Stock.find(review.stock_no) %>
         <tr>
-          <td class="col-md-3 body_shape_info">
-            <%= review.user.username %><br>
+          <td class="col-md-2 body_shape_info">
+            <%= review.user.username %>, <%= Date.today.year - review.user.birthday.year %>歳<br>
             Height：<%= review.user.height %>cm<br>
             Weight：<%= review.user.weight %>km<br>
             Waist：<%= review.user.waist %>cm<br>
             Bust：<%= review.user.bust %>cm<br>
             Hip：<%= review.user.hip %>cm</td>
-          <td class="col-md-3">
+          <td class="col-md-1">
             <%= @stock.size %><br>
             <%= @stock.color %></td>
-          <td class="col-md-6"><%= review.rate %><br><%= review.content %></td>
+          <td class="col-md-4"><%= review.rate %><br><%= review.content %></td>
           <td class="col-md-3">
             <% if review.images.attached? %>
               <% review.images.each do |image| %>

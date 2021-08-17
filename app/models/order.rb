@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   has_many :bought_stocks, through: :order_stocks, source: :stock
   # accepts_nested_attributes_for :order_stocks, allow_destroy: true, reject_if: :all_blank
 
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :first_name, presence: true, length: { maximum: 100 }
   VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/
