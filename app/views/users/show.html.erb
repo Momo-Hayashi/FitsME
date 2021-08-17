@@ -62,7 +62,8 @@
           <td><%= address.phone_number %></td>
         </tr>
       </table>
-      <%= link_to 'このお届け先を削除', address_path(id: address.id), method: :delete, class: 'btn btn-outline-danger' %>
+      <%= link_to 'このお届け先を削除', address_path(id: address.id), method: :delete, class: 'btn btn-outline-danger',
+        data:{ confirm:'Are you sure you want to delete this address?'} %>
     <% end %><hr>
     <% else %>
       <hr><h4>お届け先情報1 </h4><hr>
@@ -70,4 +71,6 @@
   <% end %>
 </div>
 
-<%= link_to 'Edit the profile', edit_user_registration_path, class: "btn btn-outline-info" %>
+<%= link_to 'Edit the profile', edit_user_registration_path, class: "btn btn-outline-info" %><br>
+<%= link_to '退会する', user_registration_path, method: :delete, class: "btn btn-outline-danger",
+   data:{ confirm:'Are you sure you want to delete your account?'} %>
