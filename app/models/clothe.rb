@@ -23,6 +23,8 @@ class Clothe < ApplicationRecord
       errors.add(:categories, "は3つまでしか選べません")
     elsif categories.length == 0
       errors.add(:categories, "を1-3個選択してください")
+    elsif 0 < categories.length && categories.length < 4
+      true
     end
   end
 
