@@ -64,7 +64,7 @@
         </div>
         <div class="field">
           <%= address.label :prefecture_name, '都道府県' %>
-          <%= address.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name %><br>
+          <%= address.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: true %><br>
         </div>
         <div class="field">
           <%= address.label :address_city, '市区町村' %>
