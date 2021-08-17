@@ -7,8 +7,8 @@ class Retailer < ApplicationRecord
   VALID_PHONE_REGEX = /\A\d{10,11}\z/
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
   validates :name, presence: true, length: { maximum: 100 }
-  validates :description, length: { maximum: 300 }
-  validates :website_url, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :description, length: { maximum: 500 }, allow_blank: true
+  validates :website_url, format: /\A#{URI::regexp(%w(http https))}\z/, allow_blank: true
   # /\Ahttp(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/
   validates :address, presence: true, length: { maximum: 250 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }

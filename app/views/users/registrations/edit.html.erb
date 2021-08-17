@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :birthday, 'お誕生日' %>
-    <%= f.date_select :birthday, start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1990, 1, 1) %>
+    <%= f.date_select :birthday, start_year: 1940, end_year: (Time.now.year - 10), include_blank: true %>
   </div><hr>
 
   <div class="info_for_review">

@@ -10,11 +10,12 @@ class User < ApplicationRecord
   validates :points, presence: true
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  validates :height, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }
-  validates :weight, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }
-  validates :waist, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }
-  validates :bust, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }
-  validates :hip, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }
+  validates :birthday, presence: true
+  validates :height, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
+  validates :weight, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
+  validates :waist, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
+  validates :bust, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
+  validates :hip, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_clothes, through: :favorites, source: :clothe
