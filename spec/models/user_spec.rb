@@ -21,6 +21,10 @@ RSpec.describe User, type: :model do
         user = FactoryBot.build(:user, email: 'test_user1test.com' )
         expect(user).not_to be_valid
       end
+      it 'バリデーションに引っかかる' do
+        user = FactoryBot.build(:user, email: 'test_user1@testcom' )
+        expect(user).not_to be_valid
+      end
     end
 
     context 'passwordが6文字以下の時' do
@@ -30,9 +34,13 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context '身長がマイナスの数値で入力された場合' do
+    context '身長がマイナスの数値/300を超える数値で入力された場合' do
       it 'バリデーションに引っかかる' do
         user = FactoryBot.build(:user, height: '-22')
+        expect(user).not_to be_valid
+      end
+      it 'バリデーションに引っかかる' do
+        user = FactoryBot.build(:user, height: '301')
         expect(user).not_to be_valid
       end
     end
