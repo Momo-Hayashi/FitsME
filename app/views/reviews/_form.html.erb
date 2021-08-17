@@ -19,7 +19,7 @@
   <% end %>
 
   <div class="row">
-    <ul class="col-md-3 offset-md-2">
+    <ul class="col-md-2 offset-md-2">
       <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
       <li><%= @clothe.retailer.name %></li>
       <li><%= link_to @clothe.name, clothe_path(@clothe) %></li>
@@ -28,26 +28,27 @@
       <li><%= @clothe.price %>円（税込み）</li>
     </ul>
 
-    <div class=".col-md-5 .offset-md-1">
+    <div class="col-md-6">
       <table>
         <tr>
-          <th class="col-md-3"><%= form.label :Rating %></th>
+          <th class="col-md-3"><%= form.label :'評価(5段階)' %></th>
           <td class="col-md-9"><%= form.text_field :rate, placeholder: "5.0" %></td>
         </tr>
         <tr>
-          <th class="col-md-3"><%= form.label :内容 %></th>
-          <td class="col-md-9"><%= form.text_area :content, class: "form-control", rows: "4", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
+          <th class="col-md-2"><%= form.label :コメント %></th>
+          <td class="col-md-10"><%= form.text_area :content, class: "form-control", rows: "4", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
         </tr>
         <tr>
-          <th class="col-md-3 file_upload"><%= form.label :'Images' %></th>
-          <% if @review.images.attached? %>
-            <p>現在登録されている画像（削除するものはチェックしてください）</p>
+          <th class="col-md-2 file_upload"><%= form.label :画像 %></th>
+          <td class="col-md-10"><% if @review.images.attached? %>
+            <p>現在登録されている画像</p>
+            <p>（削除するものはチェックしてください）</p>
             <% @review.images.each do |image| %>
               <%= form.check_box :image_ids, {multiple: true}, image.id, false %>
-              <%= image_tag image.variant(resize: "250x250") %>
+              <%= image_tag image.variant(resize: "230x230") %><br>
             <% end %>
           <% end %>
-          <td class="col-md-9"><%= form.file_field :images, multiple: true %></td>
+          <br><%= form.file_field :images, multiple: true %></td>
         </tr>
       </table>
     </div>

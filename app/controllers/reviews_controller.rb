@@ -14,7 +14,12 @@ class ReviewsController < ApplicationController
     @order_stocks = @order_stocks.flatten!.pluck(:stock_id)
 
     @stock = Stock.find(params[:stock_no])
-    if @order_stocks.include?(@stock.id)
+    @review = Review.find_by(user_id:current_user, clothe_id:@clothe.id, stock_no:@stock.id )
+
+    if @review.present?
+      redirect_to edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: @stock.id ),
+       alert: 'ひとつの商品へのレビューは一人一回までです'
+    elsif @order_stocks.include?(@stock.id)
       @review = @clothe.reviews.new
     else
       redirect_to orders_path, alert:'購入した商品のみレビュー投稿が可能です'
