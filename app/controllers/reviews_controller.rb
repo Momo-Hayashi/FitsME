@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
       end
     end
     if @review.update_attributes(review_params)
-      redirect_to clothe_path(@review.clothe), notice: "Successfully updated!"
+      redirect_to clothe_path(@review.clothe), notice: "レビューを更新しました！"
     else
       render :edit
     end
@@ -66,7 +66,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to clothe_path(@review.clothe), notice: "Successfully deleted!"
+    redirect_to clothe_path(@review.clothe), notice: "レビューを削除しました！"
   end
 
   private
