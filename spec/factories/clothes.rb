@@ -1,6 +1,6 @@
 FactoryBot.define do
 
-  factory :clothe do  
+  factory :clothe do
     name {'【web限定Sサイズ】センタープレスセミフレアスラックス' }
     description {'美脚効果抜群のセミフレアパンツに、待望のスラックスパンツが登場‼
       普段の着こなしに取り入れるだけで一気にこなれ感がアップします。
