@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :order_stock do
     association :order
     association :stock
-    amount { 2 }
+    amount { 1 }
   end
 end

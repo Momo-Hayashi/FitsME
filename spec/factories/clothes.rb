@@ -1,6 +1,6 @@
 FactoryBot.define do
 
-  factory :clothe do  
+  factory :clothe do
     name {'【web限定Sサイズ】センタープレスセミフレアスラックス' }
     description {'美脚効果抜群のセミフレアパンツに、待望のスラックスパンツが登場‼
       普段の着こなしに取り入れるだけで一気にこなれ感がアップします。
@@ -25,7 +25,7 @@ FactoryBot.define do
       stock = create(:stock)
       clothe.stocks.build(size: stock.size, color:stock.color, quantity: stock.quantity )
 
-      category = create(:category)
+      category = create(:second_category)
       clothe.categories.build(name:category.name)
     end
   end

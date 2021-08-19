@@ -26,7 +26,7 @@
           <% category = Category.find(category_id) %>
           <tr>
             <th class="col-md-3">カテゴリー <%= n += 1 %>：</th>
-            <td class="col-md-9"><%= category.parent.name %> /
+            <td class="col-md-9"><%= category.parent.name if category.parent.present? %> /
              <%= link_to category.name, category_path(category_id) %></td>
           </tr>
         <% end %>

@@ -38,10 +38,12 @@
     </div>
 
     <div class="category_fields row">
+      <% n = 0 %>
       <% Category.all.order("id ASC").limit(20).each do |category| %>
+        <% n += 1 %>
         <div class="field col-sm-3">
           <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-info dropdown-toggle category" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= category.name %>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

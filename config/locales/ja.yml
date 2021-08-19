@@ -11,10 +11,20 @@ ja:
       user: ユーザー
       user/addresses: 住所
       user/categories: カテゴリー
+      address: 住所
+      admin: 管理者
+      cart: カート
+      category: カテゴリー
       clothe: 洋服
       clothe/stocks: 在庫
-      category: カテゴリー
       clothe/categories: カテゴリー
+      favorite: お気に入り
+      order_stock: オーダー詳細
+      order: オーダー
+      retailer: リテイラー
+      review: レビュー
+      stock: 在庫
+      categorization: カテゴリー管理
     attributes:
       user:
         username: ユーザーネーム

@@ -39,6 +39,13 @@ class User < ApplicationRecord
       user.username = 'ゲスト'
       user.birthday = '1999-10-10'
       user.password = SecureRandom.urlsafe_base64
+      user.addresses.last_name = '山田'
+      user.addresses.first_name = '太郎'
+      user.addresses.postcode = '1500000'
+      user.addresses.prefecture_code = '13'
+      user.addresses.address_city = '渋谷区'
+      user.addresses.address_street = '渋谷1-2-3'
+      user.addresses.phone_number ='123456789'
     end
   end
 
