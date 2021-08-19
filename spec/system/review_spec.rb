@@ -30,7 +30,6 @@ RSpec.describe Review, type: :system do
         click_on '登録する'
         sleep(0.1)
         expect(page).to have_content('レビュー投稿ありがとうございます!').and have_content('身長160cmのわたしはSサイズで丈感がちょうど')
-        レビュー投稿ありがとうございます!
       end
     end
 
