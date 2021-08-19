@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'clothes#index'
+  root 'tops#index'
 
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',

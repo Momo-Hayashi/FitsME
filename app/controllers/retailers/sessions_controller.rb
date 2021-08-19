@@ -8,12 +8,12 @@ class Retailers::SessionsController < Devise::SessionsController
   def guest_sign_in
     retailer = Retailer.guest
     sign_in retailer
-    redirect_to root_path, notice: 'ゲストリテイラーとしてログインしました。'
+    redirect_to clothes_path, notice: 'ゲストリテイラーとしてログインしました。'
   end
 
   def ensure_not_user
     if current_user.present?
-      redirect_to root_path, alert: 'アクセス権限がありません'
+      redirect_to clothes_path, alert: 'アクセス権限がありません'
     end
   end
 

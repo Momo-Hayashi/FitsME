@@ -9,13 +9,13 @@ class Retailers::RegistrationsController < Devise::RegistrationsController
 
   def ensure_normal_retailer
     if resource.email == 'guest_retailer@example.com'
-      redirect_to root_path, notice: 'ゲストリテイラーの更新・削除はできません。'
+      redirect_to clothes_path, notice: 'ゲストリテイラーの更新・削除はできません。'
     end
   end
 
   def ensure_not_user
     if current_user.present?
-      redirect_to root_path, alert: 'アクセス権限がありません'
+      redirect_to clothes_path, alert: 'アクセス権限がありません'
     end
   end
 
@@ -71,7 +71,7 @@ class Retailers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_update_path_for(resource)
+    retailers_path(@retailer.id)
+  end
 end

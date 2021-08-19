@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_parents
+  # before_action :set_parents
 
    # ログイン済ユーザーのみにアクセスを許可する
   # before_action :authenticate_user!
@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_parents
-    @parents = Category.where(ancestry: nil)
+  def after_sign_out_path_for(resource)
+    clothes_path
   end
+
+  # def set_parents
+  #   @parents = Category.where(ancestry: nil)
+  # end
 end
