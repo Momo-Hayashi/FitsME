@@ -7,7 +7,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   def ensure_normal_admin
     if resource.email == 'admin_guest@example.com'
-      redirect_to root_path, notice: 'ゲスト管理者の更新・削除はできません。'
+      redirect_to clothes_path, notice: 'ゲスト管理者の更新・削除はできません。'
     end
   end
 
@@ -57,13 +57,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_update_path_for(resource)
+    rails_admin_path
+  end
 end
