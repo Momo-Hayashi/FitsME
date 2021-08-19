@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :ensure_normal_user, only: %i[ update destroy ]
+  before_action :ensure_normal_user, only: %i[ destroy ]
   before_action :authenticate_user!
   before_action :ensure_not_retailer
 
