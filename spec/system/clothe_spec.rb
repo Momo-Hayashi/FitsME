@@ -34,6 +34,7 @@ RSpec.describe Clothe, type: :system do
         select 'Black', from: 'clothe[stocks_attributes][0][color]'
         fill_in 'clothe[stocks_attributes][0][quantity]', with: '100'
         click_on '登録する'
+        sleep(0.1)
         expect(page).to have_content('Clothe was successfully created.').and have_content('美脚効果抜群のセミフレアパンツに、待望のスラックス')
       end
     end
@@ -58,7 +59,5 @@ RSpec.describe Clothe, type: :system do
       end
     end
   end
-
-
 
 end
