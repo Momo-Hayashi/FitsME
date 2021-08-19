@@ -58,9 +58,10 @@ class ReviewsController < ApplicationController
       end
     end
     if @review.update_attributes(review_params)
-      redirect_to clothe_path(@review.clothe), notice: "レビューを更新しました！"
+      redirect_to clothe_path(@review.clothe), notice: "レビューを更新しました！ありがとうございます！"
     else
-      render :edit
+      redirect_to edit_clothe_review_path(@review.id, clothe_id:@review.clothe.id, stock_no: params[:review][:stock_no] ),
+      alert: '評価もしくは内容が空白です'
     end
   end
 

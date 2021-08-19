@@ -19,4 +19,5 @@
 //= require turbolinks
 //= require jquery.jpostal
 //= require cocoon
+//= require jquery.raty.js
 //= require_tree .
