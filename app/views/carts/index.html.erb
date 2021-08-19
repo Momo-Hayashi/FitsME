@@ -11,11 +11,11 @@
     <%= form_with(model: item, local: true, url: cart_path(item.id) ) do |f| %>
       <div class="row">
         <% @clothe = item.stock.clothe %>
-        <div class="col-md-1 offset-md-2">
+        <div class="col-md-2 offset-md-2">
           <%= image_tag @clothe.images.first.variant(resize: "150x250") %>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-4">
           <table>
             <tr>
               <th class="col-md-4">ブランド名</th>
@@ -50,7 +50,7 @@
     <% end %>
   <% end %>
 
-  <strong><p>合計金額：<%= total_price %> 円（税込み）</p></strong><br>
+  <strong><h5>合計金額：<%= total_price %> 円（税込み）</h5></strong><br>
 
   <%= link_to '他の商品を追加する', clothes_path, class: "btn btn-info" %> |
   <% if current_user.addresses.present? %>

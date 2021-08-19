@@ -50,7 +50,7 @@
         <tr>
           <th>Size</th>
           <th>Color</th>
-          <th>在庫</th>
+          <th>残り</th>
         </tr>
         <% @stocks.each do |stock| %>
           <tr>
@@ -60,8 +60,8 @@
               <td class="col-md-2">0</td>
               <td class="col-md-4">Sorry...Out of stock!</td>
             <% else %>
-              <td class="col-md-2"><%= stock.quantity %></td>
-              <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post %></td>
+              <td class="col-md-2"><%= stock.quantity %>点</td>
+              <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-outline-warning' %></td>
             <% end %>
           </tr>
         <% end %>

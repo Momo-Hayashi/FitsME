@@ -14,3 +14,26 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
+
+ hr {
+   background-color: white;
+   width: 800px;
+ }
+
+ .field_with_errors {
+   display: contents;
+ }
+
+ .toppage {
+   background-image: url("/images/toppage.png");
+   height: 800px;
+   background-size: cover;
+ }
+
+ .toppage_content {
+   padding-top: 80px;
+   vertical-align: middle;
+   font-family: 'Noto Serif JP', serif;
+ }

@@ -4,14 +4,14 @@
 <form>
   <div class="search_field form-row">
     <%= search_form_for @q do |f| %>
-      <%= f.label :name_or_description_or_retailer_name_cont, 'Key Word', class: "col-1.5" %>
-      <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'キーワードやブランド名で検索', class:"form-control col-2" %>
+      <%# <%= f.label :name_or_description_or_retailer_name_cont, 'Key Word', class: "col-1.5" %>
+      <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'キーワードやブランド名で検索', class:"form-control col-3" %>
       <%= f.label :stocks_color_eq, 'Color', class: "col-1" %>
       <%= f.select :stocks_color_eq, Stock.colors{|key,value| [Stock.colors[key],value]}, {include_blank: '指定なし'}, class:"form-control col-2" %>
       <%= f.label :stocks_size_eq, 'Size', class: "col-1" %>
       <%= f.select :stocks_size_eq, Stock.sizes{|key,value| [Stock.sizes[key],value]}, {include_blank: '指定なし'}, class:"form-control col-2" %>
       <%= f.label :price_lteq, '値段max', class: "col-1" %>
-      <%= f.search_field :price_lteq, placeholder:'10000', class:"form-control col-1" %>
+      <%= f.search_field :price_lteq, placeholder:'10000', class:"form-control col-1" %>&emsp;
       <%= f.submit '検索', class:"btn btn-outline-info" %>
     <% end %>
   </div>
