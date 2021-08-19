@@ -37,7 +37,7 @@ RSpec.describe Admin, type: :system do
       it '管理者が増える' do
         admin_login
         sleep(0.1)
-        find(:xpath, '/html/body/div[3]/div/div[1]/ul[1]/li[3]/a').click
+        find(:xpath, '/html/body/div[3]/div/div[1]/ul[1]/li[17]/a').click
         sleep(0.1)
         click_on '新規作成'
         fill_in 'admin[name]', with: 'Test Admin'
@@ -46,7 +46,7 @@ RSpec.describe Admin, type: :system do
         fill_in 'admin_password_confirmation', with: 'test@test.com'
         find(:xpath, '//*[@id="new_admin"]/div/div/button').click
         sleep(0.1)
-        expect(page).to have_content('Adminの作成に成功しました').and have_content('test@test.com')
+        expect(page).to have_content('管理者の作成に成功しました').and have_content('test@test.com')
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe Admin, type: :system do
         retailer = FactoryBot.create(:second_retailer)
         admin_login
         sleep(0.1)
-        find(:xpath, '/html/body/div[3]/div/div[1]/ul[1]/li[13]/a').click
+        find(:xpath, '/html/body/div[3]/div/div[1]/ul[1]/li[12]/a').click
         sleep(0.1)
         find(:xpath, '//*[@id="bulk_form"]/table/tbody/tr[1]/td[9]/ul/li[3]').click
         sleep(0.1)

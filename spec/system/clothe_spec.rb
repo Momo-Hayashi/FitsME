@@ -5,6 +5,7 @@ RSpec.describe Clothe, type: :system do
   let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer) }
   let!(:second_category) { FactoryBot.create(:second_category) }
   let!(:child_category) { FactoryBot.create(:child_category) }
+  let!(:categorization) { FactoryBot.create(:categorization) }
 
   def retailer_login
     visit new_retailer_session_path
@@ -25,7 +26,8 @@ RSpec.describe Clothe, type: :system do
         fill_in 'clothe[size]', with: 'ウエスト【62cm】【65cm】
           ヒップ【94cm】【97cm】
           パンツ丈【97cm】【100cm】'
-        click_on 'レディース /トップス'
+          binding.irb
+        click_on 'メンズ /トップス'
         check 'Tシャツ'
         fill_in 'clothe[price]', with: '12000'
         attach_file 'clothe[images][]', "#{Rails.root}/spec/images/clothes1.jpg"
@@ -49,7 +51,8 @@ RSpec.describe Clothe, type: :system do
         sleep(0.1)
         click_on 'サイズ・カラーをさらに追加する'
         fill_in 'clothe[description]', with: '編集テスト！！'
-        click_on 'レディース /トップス'
+        binding.irb
+        click_on 'メンズ /トップス'
         check 'Tシャツ'
         click_on '更新する'
         sleep(0.1)

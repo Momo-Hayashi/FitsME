@@ -25,7 +25,7 @@ FactoryBot.define do
       stock = create(:stock)
       clothe.stocks.build(size: stock.size, color:stock.color, quantity: stock.quantity )
 
-      category = create(:category)
+      category = create(:second_category)
       clothe.categories.build(name:category.name)
     end
   end
