@@ -38,9 +38,10 @@ class CartsController < ApplicationController
   end
 
   def complete
+    total_price = params[:cart][:total_price]
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      :amount => params[:cart][:total_price],
+      :amount => total_price,
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
@@ -49,7 +50,7 @@ class CartsController < ApplicationController
 
     @order = Order.create!(
       user_id: @user.id,
-      price: params[:cart][:total_price],
+      price: total_price,
       last_name: @address.last_name,
       first_name: @address.first_name,
       postcode: @address.postcode,
@@ -72,7 +73,11 @@ class CartsController < ApplicationController
       item.destroy
     end
 
-    redirect_to orders_path, notice: "購入処理が完了しました！ご利用ありがとうございました"
+    new_points = total_price.to_i*0.05
+    point_total = @user.points + new_points
+    @user.update(points:point_total)
+
+    redirect_to orders_path, notice: "購入処理が完了しました！今回のご購入で #{new_points.round} ポイント加算されました！"
 
   end
 

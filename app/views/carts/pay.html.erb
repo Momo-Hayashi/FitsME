@@ -6,11 +6,11 @@
 <% @carts.each do |item| %>
   <div class="row">
     <% @clothe = item.stock.clothe %>
-    <div class="col-md-1 offset-md-2">
+    <div class="col-md-2 offset-md-2">
       <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-4">
       <table>
         <tr>
           <th class="col-md-5">ブランド名</th>
