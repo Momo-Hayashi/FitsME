@@ -3,24 +3,19 @@ class ReviewsController < ApplicationController
   before_action :set_reviews, only:  %i[ show edit destroy update ]
   before_action :authenticate_user!
 
+  def index
+    items_current_user_bought
+  end
+
   def new
-    # @order_stocks= 購入した商品の配列
-    @orders_ids = current_user.orders.pluck(:id)
-
-    @order_stocks = []
-    @orders_ids.each do |order_id|
-      @order_stock = OrderStock.where(order_id: order_id)
-      @order_stocks.push(@order_stock)
-    end
-    @order_stocks = @order_stocks.flatten!.pluck(:stock_id)
-
+    items_current_user_bought
     @stock = Stock.find(params[:stock_no])
     @review = Review.find_by(user_id:current_user, clothe_id:@clothe.id, stock_no:@stock.id )
 
     if @review.present?
       redirect_to edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: @stock.id ),
        alert: 'ひとつの商品へのレビューは一人一回までです'
-    elsif @order_stocks.include?(@stock.id)
+    elsif @bought_item_stock_ids.include?(@stock.id)
       @review = @clothe.reviews.new
     else
       redirect_to orders_path, alert:'購入した商品のみレビュー投稿が可能です'
@@ -91,6 +86,24 @@ class ReviewsController < ApplicationController
 
   def set_clothe
     @clothe = Clothe.find(params[:clothe_id])
+  end
+
+  def items_current_user_bought
+    # @bought_item_stock_ids= 購入した商品のストックの配列
+    @orders_ids = current_user.orders.pluck(:id)
+
+    @bought_item_stock_ids = []
+    @order_stock_ids = []
+    @orders_ids.each do |order_id|
+      @order_stock = OrderStock.where(order_id: order_id)
+      @bought_item_stock_ids.push(@order_stock)
+      @order_stock_ids.push(@order_stock.ids)
+    end
+    #購入したアイテムのストックのids
+    @bought_item_stock_ids = @bought_item_stock_ids.flatten!.pluck(:stock_id) if @bought_item_stock_ids.present?
+    @bought_item_stock_ids = @bought_item_stock_ids.uniq
+    #購入したオーダーのids
+    @order_stock_ids = @order_stock_ids.flatten!
   end
 
 end
