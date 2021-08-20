@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    # @order_stocks= 購入した商品の配列
     @orders_ids = current_user.orders.pluck(:id)
 
     @order_stocks = []
@@ -39,7 +40,15 @@ class ReviewsController < ApplicationController
       render :new
     else
       if @review.save
-        redirect_to clothe_path(@review.clothe), notice: 'レビュー投稿ありがとうございます!'
+        if @review.images.attached?
+          new_points = current_user.points + 150
+          current_user.update(points: new_points)
+          redirect_to clothe_path(@review.clothe), notice: '写真付きレビュー投稿ありがとうございます！150ポイント獲得しました！'
+        else
+          new_points = current_user.points + 100
+          current_user.update(points: new_points)
+          redirect_to clothe_path(@review.clothe), notice: 'レビュー投稿ありがとうございます！100ポイント獲得しました！'
+        end
       else
         render :new
       end

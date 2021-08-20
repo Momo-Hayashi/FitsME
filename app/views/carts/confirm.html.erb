@@ -44,8 +44,17 @@
     <% total_price += @clothe.price*item.amount %>
   <% end %>
 
-  <strong><h5>合計金額：<%= total_price %> 円（税込み）</h5></strong><br>
+  <h5>合計金額：<%= total_price %> 円（税込み）</h5><br>
   <%= f.hidden_field :total_price, value: total_price %>
+  <% new_points = total_price*0.03 %>
+  <h6>現在保有ポイント：<%= @user.points %> pt.</h6>
+  <h6>今回獲得予定ポイント：<%= new_points.round %> pt.</h6><br>
+
+  <h7><small>**既に獲得されているポイントを今回ご利用の場合、<br>
+    合計金額からご利用ポイント分を引いた金額の3%が獲得ポイントとなります。</small></h7><br><br>
+
+  <h6>今回ご利用ポイント：<%= f.number_field :using_points, min: 0 %> pt.</h6>
+  <p><small>**ポイントをご利用される場合のみご記入ください</small></p>
 
   <hr><h4>お届け先情報</h4>
 
@@ -75,6 +84,6 @@
     </table><hr>
   <% end %>
 
-  <%= link_to 'お届け先を追加/変更する', edit_user_registration_path, class: "btn btn-info" %><br><br>
-  <h5><%= f.submit '購入へすすむ', class: "btn btn-success" %></h5><br>
+  <%= link_to 'お届け先を追加/変更する', edit_user_registration_path, class: "btn btn-outline-info" %> |
+  <%= f.submit '  購入へすすむ  ', class: "btn btn-success" %><br>
 <% end %>

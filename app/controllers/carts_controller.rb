@@ -24,10 +24,12 @@ class CartsController < ApplicationController
 
   end
 
-  def confirm ;  end
+  def confirm ;end
 
   def pay
-    if params[:cart][:address_ids].blank?
+    if (params[:cart][:using_points]).to_i > @user.points
+      redirect_to cart_confirm_path, alert: '保有ポイント数以上のポイントはご利用できません'
+    elsif params[:cart][:address_ids].blank?
       redirect_to cart_confirm_path, alert: "住所の登録/選択をお願いします"
     elsif params[:cart][:address_ids].count > 1
       redirect_to cart_confirm_path, alert: "住所は一つしか選択できません。"
@@ -38,9 +40,10 @@ class CartsController < ApplicationController
   end
 
   def complete
+    paid_price = params[:cart][:paid_price]
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      :amount => params[:cart][:total_price],
+      :amount => paid_price,
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
@@ -50,6 +53,8 @@ class CartsController < ApplicationController
     @order = Order.create!(
       user_id: @user.id,
       price: params[:cart][:total_price],
+      used_points: params[:cart][:used_points],
+      paid_price: paid_price,
       last_name: @address.last_name,
       first_name: @address.first_name,
       postcode: @address.postcode,
@@ -72,8 +77,12 @@ class CartsController < ApplicationController
       item.destroy
     end
 
-    redirect_to orders_path, notice: "購入処理が完了しました！ご利用ありがとうございました"
+    new_points = paid_price.to_i*0.03
+    point_total = @user.points + new_points - (params[:cart][:used_points]).to_i
+    @user.update(points:point_total)
 
+    redirect_to orders_path,
+    notice: "購入処理が完了しました！#{@user.username}さんの保有ポイントは #{@user.points} pt.になりました！"
   end
 
   def update
@@ -102,7 +111,7 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:cart).permit(:amount, :total_price , address_ids:[])
+    params.require(:cart).permit(:amount, :total_price, :using_points, address_ids:[])
   end
 
 end

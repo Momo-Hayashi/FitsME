@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_045612) do
+ActiveRecord::Schema.define(version: 2021_08_20_045233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_045612) do
     t.string "address_street", default: "", null: false
     t.string "address_building"
     t.string "phone_number", default: "", null: false
+    t.integer "used_points"
+    t.integer "paid_price"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
