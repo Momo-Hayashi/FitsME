@@ -19,7 +19,7 @@
 .scrolldown4{
     /*描画位置※位置は適宜調整してください*/
   position:absolute;
-  bottom:1%;
+  bottom:10%;
   right:50%;
     /*矢印の動き1秒かけて永遠にループ*/
   animation: arrowmove 1s ease-in-out infinite;
@@ -28,7 +28,7 @@
 /*下からの距離が変化して全体が下→上→下に動く*/
 @keyframes arrowmove{
       0%{bottom:1%;}
-      50%{bottom:3%;}
+      50%{bottom:7%;}
      100%{bottom:1%;}
  }
 
@@ -40,7 +40,7 @@
   bottom:10px;
     /*テキストの形状*/
   color: #eee;
-  font-size: 0.7rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   /*縦書き設定*/
   -ms-writing-mode: tb-rl;
@@ -70,7 +70,7 @@
   right:0;
     /*矢印の形状*/
   width:1px;
-  height: 50px;
+  height: 70px;
   background:#eee;
 }
 
@@ -109,7 +109,7 @@
   position: relative;
   z-index:1;
   background:white;
-  padding:250px 0 300px;
+  padding:230px 0 300px;
   text-align: center;
   color: grey;
   background-image: url("/images/toppage_bottom.png");
