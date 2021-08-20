@@ -14,3 +14,13 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap');
+ hr {
+   background-color: white;
+   width: 800px;
+ }
+
+ .field_with_errors {
+   display: contents;
+ }
