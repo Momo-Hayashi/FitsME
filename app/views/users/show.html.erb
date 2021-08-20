@@ -18,7 +18,8 @@
     <td><h4 style= "color: pink;"><%= @user.points %>ポイント</h4></td>
   </tr>
 <table>
-<p>**ポイントは服の購入やレビューの投稿で獲得できます</p><hr>
+<p style= "color: pink;">**ポイントは服の購入やレビューの投稿で獲得できます</p>
+<%= link_to 'レビュー投稿可能なアイテム一覧へ', users_reviewable_path, class: 'btn btn-warning'  %><hr>
 
 <strong><h4>レビュー用情報</h4></strong><hr>
 <table>
