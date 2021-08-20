@@ -26,6 +26,7 @@ gem 'jp_prefecture'
 gem 'ancestry'
 gem 'cocoon'
 gem 'ransack'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
