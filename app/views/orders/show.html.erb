@@ -51,8 +51,14 @@
 <% end %>
 
 <p>お品代：<%= @order.price %> 円（税込み）</p>
-<p>ご利用ポイント数：<%= @order.used_points %> pt.</p>
-<h5>合計金額：<%= @order.paid_price %> 円（税込み）</h5><hr>
+<p>ご利用ポイント数：
+  <% if @order.used_points.blank? %>
+    0 pt.</p>
+  <% else %>
+    <%= @order.used_points %> pt.</p>
+  <% end %>
+<h4>合計金額：<%= @order.paid_price %> 円（税込み）</h4>
+<p>獲得ポイント数：<%= (@order.paid_price*0.03).round %> pt.</p><hr>
 
 <h5>お届け先情報</h5><hr>
 <table>

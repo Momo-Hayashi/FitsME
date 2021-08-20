@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    # @order_stocks= 購入した商品の配列
     @orders_ids = current_user.orders.pluck(:id)
 
     @order_stocks = []

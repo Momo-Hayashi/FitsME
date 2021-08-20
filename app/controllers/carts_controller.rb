@@ -29,8 +29,7 @@ class CartsController < ApplicationController
   def pay
     if (params[:cart][:using_points]).to_i > @user.points
       redirect_to cart_confirm_path, alert: '保有ポイント数以上のポイントはご利用できません'
-    end
-    if params[:cart][:address_ids].blank?
+    elsif params[:cart][:address_ids].blank?
       redirect_to cart_confirm_path, alert: "住所の登録/選択をお願いします"
     elsif params[:cart][:address_ids].count > 1
       redirect_to cart_confirm_path, alert: "住所は一つしか選択できません。"

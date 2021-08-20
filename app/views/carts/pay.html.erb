@@ -60,8 +60,15 @@
 <% end %>
 
 <h5>お品代：<%= params[:cart][:total_price] %> 円（税込み）</h5><br>
-<h5>ご利用ポイント数：<%= params[:cart][:using_points] %> pt.</h5>
-  <% pay_price = (params[:cart][:total_price]).to_i - (params[:cart][:using_points]).to_i %>
+
+<h5>ご利用ポイント数：
+  <% if params[:cart][:using_points].blank? %>
+    0 pt.</h5>
+  <% else %>
+    <%= params[:cart][:using_points] %> pt.</h5>
+  <% end %>
+  
+<% pay_price = (params[:cart][:total_price]).to_i - (params[:cart][:using_points]).to_i %>
 <h4>合計金額：<%= pay_price %> 円（税込み）</h4><br>
   <% gain_point = pay_price*0.03 %>
 <h5>今回獲得ポイント数：<%= gain_point.round %> pt.</h5><hr>

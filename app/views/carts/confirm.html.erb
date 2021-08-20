@@ -53,7 +53,7 @@
   <h7><small>**既に獲得されているポイントを今回ご利用の場合、<br>
     合計金額からご利用ポイント分を引いた金額の3%が獲得ポイントとなります。</small></h7><br><br>
 
-  <h6>今回ご利用ポイント：<%= f.number_field :using_points %> pt.</h6>
+  <h6>今回ご利用ポイント：<%= f.number_field :using_points, min: 0 %> pt.</h6>
   <p><small>**ポイントをご利用される場合のみご記入ください</small></p>
 
   <hr><h4>お届け先情報</h4>

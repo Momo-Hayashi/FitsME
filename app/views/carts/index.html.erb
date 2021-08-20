@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-2">
           <br><br>
-          <p class ="row"><%= f.label :個数 %>：<%= f.number_field :amount, class:"form-control col-4" %>
+          <p class ="row"><%= f.label :個数 %>：<%= f.number_field :amount, class:"form-control col-4", min: 0 %>
           <%= f.submit '更新', class:"btn btn-outline-success" %></p><br>
           <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete, class:"btn btn-outline-danger" %>
         </div>

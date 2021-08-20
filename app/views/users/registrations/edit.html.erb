@@ -24,23 +24,23 @@
     <strong><h4>レビュー用情報</h4></strong><hr>
     <div class="field">
       <%= f.label :height, '身長' %>
-      <%= f.number_field :height, step: '0.1', placeholder: "ex. 160.7" %> cm
+      <%= f.number_field :height, step: '0.1', placeholder: "ex. 160.7", min: 0 %> cm
     </div>
     <div class="field">
       <%= f.label :weight, '体重' %>
-      <%= f.number_field :weight, step: '0.1', placeholder: "ex. 60.7" %> kg
+      <%= f.number_field :weight, step: '0.1', placeholder: "ex. 60.7", min: 0 %> kg
     </div>
     <div class="field">
       <%= f.label :waist, 'ウエスト' %>
-      <%= f.number_field :waist, step: '0.1', placeholder: "ex. 60.7" %> cm
+      <%= f.number_field :waist, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
     </div>
     <div class="field">
       <%= f.label :bust, 'バスト' %>
-      <%= f.number_field :bust, step: '0.1', placeholder: "ex. 60.7" %> cm
+      <%= f.number_field :bust, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
     </div>
     <div class="field">
       <%= f.label :hip, 'ヒップ' %>
-      <%= f.number_field :hip, step: '0.1', placeholder: "ex. 60.7" %> cm
+      <%= f.number_field :hip, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
     </div>
   </div>
 
