@@ -2,6 +2,24 @@
 
 <h5 style="text-align:center;"><strong>**以下の内容で、購入を確定する。**</strong></h5><br><hr>
 
+<h4>お届け先情報</h4><hr>
+<table>
+  <tr>
+    <th>お名前：</th>
+    <td><%= @address.last_name %><%= @address.first_name %></td>
+  </tr>
+  <tr>
+    <th>郵便番号：</th>
+    <td><%= @address.postcode %></td>
+  </tr>
+  <tr>
+    <th>住所：</th>
+    <% pref = JpPrefecture::Prefecture.find(@address.prefecture_code) %>
+    <td><%= pref.name %> <%= @address.address_city %> <%= @address.address_street %> <%= @address.address_building %>
+  </tr>
+</table><hr>
+
+<h4>ご注文商品</h4><hr>
 <%= form_with( model: @carts, local: true, url: cart_complete_path(@carts.ids) ) do |f| %>
 <% @carts.each do |item| %>
   <div class="row">
@@ -41,27 +59,14 @@
   </div><hr>
 <% end %>
 
-<strong><p>合計金額：<%= params[:cart][:total_price] %> 円（税込み）</p></strong><hr>
+<h5>お品代：<%= params[:cart][:total_price] %> 円（税込み）</h5><br>
+<h5>ご利用ポイント数：<%= params[:cart][:using_points] %> pt.</h5>
+  <% pay_price = (params[:cart][:total_price]).to_i - (params[:cart][:using_points]).to_i %>
+<h4>合計金額：<%= pay_price %> 円（税込み）</h4><br>
+  <% gain_point = pay_price*0.03 %>
+<h5>今回獲得ポイント数：<%= gain_point.round %> pt.</h5><hr>
 
-<h4>お届け先情報</h4><hr>
-<table>
-  <tr>
-    <th>お名前：</th>
-    <td><%= @address.last_name %><%= @address.first_name %></td>
-  </tr>
-  <tr>
-    <th>郵便番号：</th>
-    <td><%= @address.postcode %></td>
-  </tr>
-  <tr>
-    <th>住所：</th>
-    <% pref = JpPrefecture::Prefecture.find(@address.prefecture_code) %>
-    <td><%= pref.name %><%= @address.address_city %><%= @address.address_street %><%= @address.address_building %>
-  </tr>
-</table>
-
-  <hr><strong>**金額を確認し、下記フォームより決済する</strong>
-  <br>
+  <h4>**金額を確認し、下記フォームより決済する</h4>
   <script
     type="text/javascript"
     src="https://checkout.pay.jp"
@@ -70,6 +75,8 @@
   </script>
 
 <%= f.hidden_field :total_price, value: params[:cart][:total_price] %>
+<%= f.hidden_field :used_points, value: params[:cart][:using_points] %>
+<%= f.hidden_field :paid_price, value: pay_price %>
 <%= f.hidden_field :address_id, value: @address.id %>
 <% end %>
 

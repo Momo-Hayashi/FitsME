@@ -9,7 +9,7 @@
       <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
       <table>
         <tr>
           <th class="col-md-5">ブランド名</th>
@@ -43,13 +43,16 @@
       <% if @review.present? %>
       <td><%= link_to 'レビューを編集', edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: order_stock.stock.id), class: 'btn btn-outline-success' %></td>
       <% else %>
-        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' %></td>
+        <td><%= link_to new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' do %>
+              レビューを書いて<br>ポイントGet <% end %></td>
       <% end %>
     </div>
   </div><hr>
 <% end %>
 
-<p style="text-align:center;"><strong>合計金額：<%= @order.price %> 円（税込み）</strong></p><hr>
+<p>お品代：<%= @order.price %> 円（税込み）</p>
+<p>ご利用ポイント数：<%= @order.used_points %> pt.</p>
+<h5>合計金額：<%= @order.paid_price %> 円（税込み）</h5><hr>
 
 <h5>お届け先情報</h5><hr>
 <table>
