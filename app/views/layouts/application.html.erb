@@ -29,7 +29,7 @@
           <li><%= link_to 'Log out', destroy_retailer_session_path, method: :delete %></li>
         <% elsif admin_signed_in? %>
           <li><%= link_to '管理画面', rails_admin_path %></li>
-          <li><%= link_to 'Log out', destroy_admin_session_path %></li>
+          <li><%= link_to 'Log out', destroy_admin_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
