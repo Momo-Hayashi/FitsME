@@ -48,7 +48,7 @@
         </tr>
         <tr>
           <th class="col-md-5">金額</th>
-          <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+          <td class="col-md-7"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
         </tr>
       </table>
     </div>
@@ -59,7 +59,7 @@
   </div><hr>
 <% end %>
 
-<h5>お品代：<%= params[:cart][:total_price] %> 円（税込み）</h5><br>
+<h5>お品代：<%= @total_price.to_s(:delimited) %> 円（税込み）</h5><br>
 
 <h5>ご利用ポイント数：
   <% if params[:cart][:using_points].blank? %>
@@ -67,9 +67,9 @@
   <% else %>
     <%= params[:cart][:using_points] %> pt.</h5>
   <% end %>
-  
-<% pay_price = (params[:cart][:total_price]).to_i - (params[:cart][:using_points]).to_i %>
-<h4>合計金額：<%= pay_price %> 円（税込み）</h4><br>
+
+<% pay_price = @total_price - (params[:cart][:using_points]).to_i %>
+<h4>合計金額：<%= pay_price.to_s(:delimited) %> 円（税込み）</h4><br>
   <% gain_point = pay_price*0.03 %>
 <h5>今回獲得ポイント数：<%= gain_point.round %> pt.</h5><hr>
 
@@ -81,7 +81,7 @@
     data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
   </script>
 
-<%= f.hidden_field :total_price, value: params[:cart][:total_price] %>
+<%= f.hidden_field :total_price, value: @total_price %>
 <%= f.hidden_field :used_points, value: params[:cart][:using_points] %>
 <%= f.hidden_field :paid_price, value: pay_price %>
 <%= f.hidden_field :address_id, value: @address.id %>

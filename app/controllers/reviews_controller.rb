@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
-  before_action :set_clothe, only: %i[ new confirm create edit update]
+  before_action :set_clothe, only: %i[ new show confirm create edit update ]
   before_action :set_reviews, only:  %i[ show edit destroy update ]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only:  %i[ index new confirm create edit update ]
 
   def index
     items_current_user_bought
@@ -48,6 +48,10 @@ class ReviewsController < ApplicationController
         render :new
       end
     end
+  end
+
+  def show
+    @stock = Stock.find(params[:stock_no])
   end
 
   def edit

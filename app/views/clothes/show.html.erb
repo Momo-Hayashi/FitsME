@@ -33,7 +33,7 @@
       <% end %><br>
       <tr>
         <th class="col-md-3">Price：</th>
-        <td class="col-md-9">¥<%= @clothe.price %></td>
+        <td class="col-md-9">¥<%= @clothe.price.to_s(:delimited) %></td>
       </tr>
       <tr>
         <th class="col-md-3">アイテム詳細：</th>
@@ -92,7 +92,7 @@
             <td class="col-md-2 body_shape_info">
               <%= review.user.username %>, <%= Date.today.year - review.user.birthday.year %>歳<br>
               Height：<%= review.user.height %>cm<br>
-              Weight：<%= review.user.weight %>km<br>
+              Weight：<%= review.user.weight %>kg<br>
               Waist：<%= review.user.waist %>cm<br>
               Bust：<%= review.user.bust %>cm<br>
               Hip：<%= review.user.hip %>cm</td>
@@ -105,17 +105,18 @@
               <div id="star-rate-<%= review.id %>"></div>
               <%= review.content %></td>
 
-            <td class="col-md-3 review_image">
+            <td class="col-md-4 review_image">
               <% if review.images.attached? %>
                 <% review.images.each do |image| %>
-                  <%= image_tag image.variant(resize: "150x150") %>
+                  <%= image_tag image.variant(resize: "130x130") %>
                 <% end %>
               <% end %></td>
 
             <% if review.user == current_user %>
-              <td><%= link_to 'Edit', edit_clothe_review_path(@clothe.id, review.id, stock_no: @stock.id), class: "btn btn-info btn-sm" %></td>
-              <td><%= link_to 'Delete', clothe_review_path(@clothe.id, review.id), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm" %></td>
+              <td><%= link_to 'Edit', edit_clothe_review_path(@clothe.id, review.id, stock_no: @stock.id), class: "btn btn-info btn-sm" %><br><br>
+              <%= link_to 'Delete', clothe_review_path(@clothe.id, review.id), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm" %></td>
             <% end %>
+            <td><%= link_to 'Detail', clothe_review_path(review.id, clothe_id:@clothe.id, stock_no: @stock.id), class: 'btn btn-outline-info' %></td>
           </tr>
 
           <script>
@@ -138,7 +139,7 @@
 
 <br>
 <% if current_retailer == @clothe.retailer %>
-  <%= link_to 'Edit', edit_clothe_path(@clothe) %> |
-  <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm"  %> |
+  <%= link_to 'Edit', edit_clothe_path(@clothe), class: "btn btn-outline-success" %> |
+  <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-outline-danger"  %> |
 <% end %>
-<%= link_to 'Back', clothes_path %>
+<%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>

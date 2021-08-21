@@ -24,7 +24,7 @@ class CartsController < ApplicationController
 
   end
 
-  def confirm ;end
+  def confirm;  end
 
   def pay
     if (params[:cart][:using_points]).to_i > @user.points
@@ -37,6 +37,7 @@ class CartsController < ApplicationController
       @address = current_user.addresses.find(params[:cart][:address_ids])
       @address = @address.first
     end
+    @total_price = (params[:cart][:total_price]).to_i
   end
 
   def complete

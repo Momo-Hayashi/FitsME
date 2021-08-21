@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <th class="col-md-5">金額</th>
-          <td class="col-md-7"><%= @clothe.price*order_stock.amount %>円（税込み）</td>
+          <td class="col-md-7"><%= (@clothe.price*order_stock.amount).to_s(:delimited) %>円（税込み）</td>
         </tr>
       </table>
     </div>
@@ -50,14 +50,14 @@
   </div><hr>
 <% end %>
 
-<p>お品代：<%= @order.price %> 円（税込み）</p>
+<p>お品代：<%= @order.price.to_s(:delimited) %> 円（税込み）</p>
 <p>ご利用ポイント数：
   <% if @order.used_points.blank? %>
     0 pt.</p>
   <% else %>
     <%= @order.used_points %> pt.</p>
   <% end %>
-<h4>合計金額：<%= @order.paid_price %> 円（税込み）</h4>
+<h4>合計金額：<%= @order.paid_price.to_s(:delimited) %> 円（税込み）</h4>
 <p>獲得ポイント数：<%= (@order.paid_price*0.03).round if @order.paid_price %> pt.</p><hr>
 
 <h5>お届け先情報</h5><hr>
@@ -73,7 +73,7 @@
   <tr>
     <th>住所：</th>
     <% pref = JpPrefecture::Prefecture.find(@order.prefecture_code) %>
-    <td><%= pref.name %><%= @order.address_city %><%= @order.address_street %><%= @order.address_building %></td>
+    <td><%= pref.name %> <%= @order.address_city %> <%= @order.address_street %> <%= @order.address_building %></td>
   </tr>
   <tr>
     <th>お電話番号：</th>

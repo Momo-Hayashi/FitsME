@@ -35,7 +35,7 @@
             </tr>
             <tr>
               <th class="col-md-4">金額</th>
-              <td class="col-md-8z"><%= @clothe.price %>円（税込み）</td>
+              <td class="col-md-8z"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
             </tr>
           </table>
         </div>
@@ -50,9 +50,9 @@
     <% end %>
   <% end %>
 
-  <h5>合計金額：<%= total_price %> 円（税込み）</h5><br>
+  <h5>合計金額：<%= total_price.to_s(:delimited) %> 円（税込み）</h5><br>
   <% new_points = total_price*0.03 %>
-  <h6>現在保有ポイント：<%= @user.points %> pt.</h6>
+  <h6>現在保有ポイント：<%= @user.points.to_s(:delimited) %> pt.</h6>
   <h6>今回獲得予定ポイント：<%= new_points.round %> pt.</h6><br>
   <h7><small>**既に獲得されているポイントを今回ご利用の場合、<br>
     合計金額からご利用ポイント分を引いた金額の3%が獲得ポイントとなります。</small></h7><br><hr>

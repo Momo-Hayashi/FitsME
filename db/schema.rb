@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_045233) do
+ActiveRecord::Schema.define(version: 2021_08_21_010328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,11 +203,11 @@ ActiveRecord::Schema.define(version: 2021_08_20_045233) do
     t.datetime "updated_at", null: false
     t.string "username", null: false
     t.integer "points", default: 0
-    t.float "height"
-    t.float "weight"
-    t.float "bust"
-    t.float "waist"
-    t.float "hip"
+    t.float "height", default: 0.0
+    t.float "weight", default: 0.0
+    t.float "bust", default: 0.0
+    t.float "waist", default: 0.0
+    t.float "hip", default: 0.0
     t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
