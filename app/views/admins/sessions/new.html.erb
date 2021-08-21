@@ -23,4 +23,5 @@
   </div>
 <% end %>
 
-<%= render "admins/shared/links" %>
+<%= render "admins/shared/links" %><br>
+<%= link_to 'Guest Admin（管理者 閲覧用）', admins_guest_sign_in_path, method: :post, class:'btn btn-outline-primary btn-sm' %>

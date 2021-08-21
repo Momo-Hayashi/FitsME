@@ -32,12 +32,12 @@
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
     <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
   </div>
 
@@ -46,7 +46,7 @@
   </div><br>
 <% end %>
 
-<%= link_to '出品企業としてログインはこちら', new_retailer_session_path %><br>
-<%= link_to 'Guest Retailerとしてログイン', retailers_guest_sign_in_path, method: :post %>
+<%= link_to '出品企業としてログインはこちら', new_retailer_session_path, class:'btn btn-outline-info btn-sm' %> |
+<%= link_to 'Guest Retailerとしてログイン', retailers_guest_sign_in_path, method: :post, class:'btn btn-outline-primary btn-sm' %>
 
 <%# <%= render "retailers/shared/links" %>
