@@ -35,7 +35,7 @@
           </tr>
           <tr>
             <th class="col-md-5">金額</th>
-            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            <td class="col-md-7"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
           </tr>
         </table>
       </div>

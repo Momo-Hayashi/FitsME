@@ -31,7 +31,7 @@
           </tr>
           <tr>
             <th class="col-md-5">金額</th>
-            <td class="col-md-7"><%= @clothe.price %>円（税込み）</td>
+            <td class="col-md-7"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
             <% @total_price += @clothe.price*order_stock.amount %>
           </tr>
         </table>
@@ -40,7 +40,7 @@
   <% end %>
 <% end %>
 
-<p><strong>合計金額：<%= @total_price %> 円（税込み）</strong></p><br><hr>
+<h5>合計金額：<%= @total_price.to_s(:delimited) %> 円（税込み）</h5><hr>
 
 <h5>お届け先情報</h5><hr>
 <table>
@@ -55,12 +55,12 @@
   <tr>
     <th>住所：</th>
     <% pref = JpPrefecture::Prefecture.find(@order.prefecture_code) %>
-    <td><%= pref.name %><%= @order.address_city %><%= @order.address_street %><%= @order.address_building %></td>
+    <td><%= pref.name %> <%= @order.address_city %> <%= @order.address_street %> <%= @order.address_building %></td>
   </tr>
   <tr>
     <th>お電話番号：</th>
     <td><%= @order.phone_number %></td>
   </tr>
-</table><br><br>
+</table><br>
 
-<%= link_to '注文履歴へ戻る', orders_path %>
+<%= link_to '注文履歴へ戻る', orders_path, class: "btn btn-outline-success" %>

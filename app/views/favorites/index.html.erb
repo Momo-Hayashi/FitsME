@@ -7,7 +7,7 @@
         <li><%= image_tag f.clothe.images.first.variant(resize: "200x200") %></li>
         <li><%= link_to f.clothe.retailer.name, retailers_path(f.clothe.retailer.id) %></li>
         <li><%= link_to f.clothe.name, clothe_path(f.clothe.id) %></li>
-        <li>¥<%= f.clothe.price %></li>
+        <li>¥<%= f.clothe.price.to_s(:delimited) %></li>
       </ul>
     </div>
   <% end %>

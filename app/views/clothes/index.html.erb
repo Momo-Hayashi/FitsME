@@ -14,8 +14,8 @@
       <%= f.search_field :price_lteq, placeholder:'10000', class:"form-control col-1" %>&emsp;
       <%= f.submit '検索', class:"btn btn-outline-info" %>
     <% end %>
-  </div>
-  <%=  link_to '検索条件を解除', clothes_path %><br><br>
+  </div><br>
+  <%=  link_to '検索条件を解除', clothes_path, class: 'btn btn-outline-success btn-sm' %><br><br>
 </form>
 
 
@@ -44,12 +44,13 @@
             <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}) if clothe.images.attached? %></li>
             <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
             <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
-            <li>¥<%= clothe.price %></li>
+            <li>¥<%= clothe.price.to_s(:delimited) %></li>
             <table>
               <tr>
                 <% if current_retailer == clothe.retailer %>
-                  <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
-                  <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
+                  <td><%= link_to 'edit', edit_clothe_path(clothe.id), class: 'btn btn-outline-success btn-sm' %></td>
+                  <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'本当に削除してよろしいですか？' },
+                     class: 'btn btn-outline-danger btn-sm' %></td>
                 <% end %>
               </tr>
             </table>

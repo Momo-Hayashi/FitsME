@@ -51,7 +51,7 @@
         <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}) %></li>
         <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
         <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
-        <li>¥<%= clothe.price %></li>
+        <li>¥<%= clothe.price.to_s(:delimited) %></li>
         <table>
           <tr>
             <% if current_retailer == clothe.retailer %>
@@ -64,10 +64,10 @@
     </div>
   <% end %>
 </div><br>
-<%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %><br>
+<%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>
 
 <% if current_retailer == @retailer %>
-  <%= link_to 'Edit the profile', edit_retailer_registration_path, class: "btn btn-outline-info" %><br><br>
+   | <%= link_to 'Edit the profile', edit_retailer_registration_path, class: "btn btn-outline-success" %><br><br>
   <%= link_to '退会する', retailer_registration_path, method: :delete, class: "btn btn-outline-danger",
      data:{ confirm:'Are you sure you want to delete your account?'} %>
 <% end %>
