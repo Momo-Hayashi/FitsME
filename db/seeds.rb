@@ -1,8 +1,8 @@
-user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 0, height: 160.8, weight: 50.3, waist: 60.3, bust: 77.7, hip: 90.5)
-user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 0, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
-user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 0, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
-user4 = User.create!(username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 0, height: 180.8, weight: 71.3)
-user5 = User.create!(username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 0, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5)
+user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 700, height: 160.8, weight: 50.3, waist: 60.3, bust: 77.7, hip: 90.5)
+user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 700, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
+user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 58, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
+user4 = User.create!(username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 23, height: 180.8, weight: 71.3)
+user5 = User.create!(username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 500, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5)
 
 
 address1 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
@@ -194,59 +194,72 @@ Cart.create!([
 ])
 
 
-order1 = Order.create!(user_id: user1.id, price: 10000, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
-order2 = Order.create!(user_id: user1.id, price: 15000, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
-order3 = Order.create!(user_id: user2.id, price: 15500, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333')
-order4 = Order.create!(user_id: user3.id, price: 12000, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444')
-order5 = Order.create!(user_id: user5.id, price: 5000, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555')
+order1 = Order.create!(user_id: user1.id, price: 10000, used_points: 300, paid_price: 9700, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
+order2 = Order.create!(user_id: user1.id, price: 15000, used_points: 600, paid_price: 14400, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
+order3 = Order.create!(user_id: user2.id, price: 15500, used_points: 500, paid_price: 15000, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333')
+order4 = Order.create!(user_id: user3.id, price: 12000, used_points: 500, paid_price: 11500, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444')
+order5 = Order.create!(user_id: user5.id, price: 5000, used_points: 0, paid_price: 5000, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555')
 
 
 OrderStock.create!([
   { order_id: order1.id, stock_id: stock13.id },
   { order_id: order2.id, stock_id: stock4.id },
   { order_id: order3.id, stock_id: stock8.id },
-  { order_id: order4.id, stock_id: stock11.id },
-  { order_id: order5.id, stock_id: stock10.id },
+  { order_id: order4.id, stock_id: stock8.id },
+  { order_id: order5.id, stock_id: stock2.id },
   { order_id: order1.id, stock_id: stock3.id },
   { order_id: order3.id, stock_id: stock5.id }
 ])
 
-Review.create!([
-  { user_id: user1.id,
-    clothe_id: clothe5.id,
-    stock_no: stock13.id,
-    rate: 5.0,
-    content: 'クロップT欲しくて色んな所見たけどこれは丈感ちょうど良かった！！長すぎず短すぎず。袖もちょうどいいし、フィット感ばっちり！！！！'
-  },
+review1 = Review.create!(
+  user_id: user1.id,
+  clothe_id: clothe5.id,
+  stock_no: stock13.id,
+  rate: 5.0,
+  content: 'クロップT欲しくて色んな所見たけどこれは丈感ちょうど良かった！！長すぎず短すぎず。袖もちょうどいいし、フィット感ばっちり！！！！'
+)
 
-  { user_id: user1.id,
-    clothe_id: clothe2.id,
-    stock_no: stock4.id,
-    rate: 5.0,
-    content: 'とりま可愛すぎる！一枚あれば大活躍！！！！'
-  },
+review2 = Review.create!(
+ user_id: user1.id,
+  clothe_id: clothe2.id,
+  stock_no: stock4.id,
+  rate: 5.0,
+  content: 'とりま可愛すぎる！一枚あれば大活躍！！！！素材がしっかりしてるので、結構寒くなっても着れそう！！'
+)
 
-  { user_id: user2.id,
-    clothe_id: clothe2.id,
-    stock_no: stock5.id,
-    rate: 4.5,
-    content: '紐が長すぎる！爆笑爆笑爆笑 でもめちゃくちゃデザインは可愛いしいいと思う！162センチの私がMサイズを着てみて、丈がすごく短く感じました！'
-  },
+review3 = Review.create!(
+  user_id: user2.id,
+  clothe_id: clothe2.id,
+  stock_no: stock5.id,
+  rate: 4.5,
+  content: '紐が長すぎる！爆笑爆笑爆笑 でもめちゃくちゃデザインは可愛いしいいと思う！162センチの私がMサイズを着てみて、丈がすごく短く感じました！'
+)
 
-  { user_id: user3.id,
-    clothe_id: clothe4.id,
-    stock_no: stock11.id,
-    rate: 5.0,
-    content: '骨格ウェーブです。今までウエストに合わせて買うと丈足りないとかザラでほぼ諦めてたけどこれウエストぴったりだしへそまで隠れるぐらいだから脚長効果抜群。グレ○ルとかのフレアパンツフレアすぎて逆に短足に見える人だったけど写真より全然フレアじゃないから是非買って欲しい。ウエストはサイズ表より小さめかも。ベルト無しでも全然履ける！うれしい！骨格ウェーブ皆これ着て脚長くなろうな( ◠‿◠ )'
-  },
+review4 = Review.create!(
+  user_id: user3.id,
+  clothe_id: clothe3.id,
+  stock_no: stock8.id,
+  rate: 5.0,
+  content: '少し大きめなのかな？と思ったけど肩幅も着丈もピッタリ！！これは可愛い！！低身長さんにもオススメです！'
 
-  { user_id: user5.id,
-    clothe_id: clothe5.id,
-    stock_no: stock10.id,
-    rate: 5.0,
-    content: '少し大きめなのかな？と思ったけどウエストも長さもピッタリ！！これは可愛い❗❗低身長さんにもオススメです！'
-  }
-])
+)
+
+review5 = Review.create!(
+  user_id: user5.id,
+  clothe_id: clothe1.id,
+  stock_no: stock2.id,
+  rate: 5.0,
+  content: '骨格ウェーブです。今までウエストに合わせて買うと丈足りないとかザラでほぼ諦めてたけどこれウエストぴったりだしへそまで隠れるぐらいだから脚長効果抜群。フレアすぎて逆に短足に見える人だったけど写真より全然フレアじゃないから是非買って欲しい。ウエストはサイズ表より小さめかも。ベルト無しでも全然履ける！うれしい！骨格ウェーブ皆これ着て脚長くなろうな( ◠‿◠ )'
+)
+
+review1.images.attach(io: File.open( "./db/images/review1.jpg"), filename: "review1.jpg" )
+review1.images.attach(io: File.open( "./db/images/review_1.jpg"), filename: "review_1.jpg" )
+review2.images.attach(io: File.open( "./db/images/review2.jpg"), filename: "review2.jpg" )
+review3.images.attach(io: File.open( "./db/images/review3.jpg"), filename: "review3.jpg" )
+review4.images.attach(io: File.open( "./db/images/review4.jpg"), filename: "review4.jpg" )
+review4.images.attach(io: File.open( "./db/images/review_4.jpg"), filename: "review_4.jpg" )
+review5.images.attach(io: File.open( "./db/images/review5.jpg"), filename: "review5.jpg" )
+
 
 Favorite.create!([
   { user_id: user1.id, clothe_id: clothe2.id },
