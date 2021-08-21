@@ -2,6 +2,7 @@
 
 class Admins::SessionsController < Devise::SessionsController
   before_action :no_access_for_users_and_retailers
+  before_action :authenticate_admin!
 
   def no_access_for_users_and_retailers
     redirect_to clothes_path, alert: 'アクセス権限がありません' if current_user || current_retailer
@@ -10,9 +11,9 @@ class Admins::SessionsController < Devise::SessionsController
   def guest_sign_in
     admin = Admin.guest
     sign_in admin
-    redirect_to rails_admin_path, notice: 'ゲスト管理者としてログインしました。'
+    redirect_to clothes_path, notice: 'ゲスト管理者としてログインしました。'
   end
-  
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
