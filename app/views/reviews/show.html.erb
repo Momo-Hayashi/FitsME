@@ -13,7 +13,7 @@
   <div class="col-md-7">
     <div class="">
       <h5>User Info</h5>
-      Age: <%= Date.today.year - @review.user.birthday.year %>,
+      Age: <%= Date.today.year - @review.user.birthday.year %>,<br>
       Height：<%= @review.user.height %>cm, Weight：<%= @review.user.weight %>kg, Waist：<%= @review.user.waist %>cm,
       Bust：<%= @review.user.bust %>cm, Hip：<%= @review.user.hip %>cm<br><br><br>
     </div>
@@ -23,7 +23,7 @@
       <p>Images：</p>
       <% if @review.images.attached? %>
         <% @review.images.each do |image| %>
-          <%= image_tag image.variant(resize: "200x200") %>
+          <%= image_tag image.variant(resize: "250x300") %>
         <% end %>
       <% else %>
         <p>画像は投稿されていません</p>
