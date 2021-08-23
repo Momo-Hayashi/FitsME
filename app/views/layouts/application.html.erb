@@ -15,7 +15,7 @@
   <body>
     <header>
       <ul class ="top_manu clearfix">
-        <li><%= link_to 'Fits ME', clothes_path %></li>
+        <li><%= link_to image_tag('FitsME1.png'), clothes_path %></li>
         <% if user_signed_in? %>
           <li><%= link_to 'My page', users_show_path %></li>
           <li><%= link_to 'Favorites', favorites_path %></li>
