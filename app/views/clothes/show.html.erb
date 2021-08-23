@@ -2,15 +2,16 @@
 
 <div class="row">
   <div class="col-md-5">
-    <h5>Images：</h5>
     <% if @clothe.images.attached? %>
+      <%= image_tag @clothe.images.first.variant(resize: "350x480") %><br><br>
+      <p style='color :purple;'>**下記の画像をクリックすると大きい画像が見れます**</p>
       <% @clothe.images.each do |image| %>
-        <%= image_tag image.variant(resize: "350x480") %><br><br>
+        <%= link_to image_tag(image.variant(resize: "150x150")),image, rel:"lightbox", "data-lightbox":"clothe_images" %>
       <% end %>
     <% end %>
   </div>
 
-  <div class="clothe_info col-md-7">
+  <div class="clothe_detail_info col-md-7">
     <table class = "row">
       <tr>
         <th class="col-md-3">ブランド名：</th>
@@ -54,14 +55,14 @@
         </tr>
         <% @stocks.each do |stock| %>
           <tr>
-            <td class="col-md-3"><%= stock.size %></td>
+            <td><%= stock.size %></td>
             <td class="col-md-3"><%= stock.color %></td>
             <% if stock.quantity <= 0 %>
               <td class="col-md-2">0</td>
               <td class="col-md-4">Sorry...Out of stock!</td>
             <% else %>
               <td class="col-md-2"><%= stock.quantity %>点</td>
-              <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-outline-warning' %></td>
+              <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-warning' %></td>
             <% end %>
           </tr>
         <% end %>
@@ -144,3 +145,9 @@
   <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-outline-danger"  %> |
 <% end %>
 <%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script> -->

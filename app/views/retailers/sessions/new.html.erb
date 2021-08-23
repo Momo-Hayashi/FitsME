@@ -1,15 +1,15 @@
-<h2>Log in as a retailer</h2>
+<h2>Log in as a retailer</h2><br>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email@email.jp" %>
-  </div>
+  </div><br>
 
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "current-password", placeholder: "password" %>
-  </div>
+  </div><br>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
@@ -19,10 +19,10 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: 'btn btn-warning' %>
   </div>
 <% end %>
 
 <%= render "retailers/shared/links" %><br>
-<%= link_to '出品企業として登録はこちら', new_retailer_registration_path, class:'btn btn-outline-warning btn-sm' %> |
+<%= link_to '出品企業として登録はこちら', new_retailer_registration_path, class:'btn btn-success btn-sm' %> |
 <%= link_to 'Guest Retailerとしてログイン', retailers_guest_sign_in_path, method: :post, class:'btn btn-outline-info btn-sm' %>
