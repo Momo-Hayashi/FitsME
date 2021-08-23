@@ -48,11 +48,6 @@ article {
   padding: 15px;
 }
 
-// .col-md-3 .index_clothes {
-//   max-width: 100%;
-//   padding: 0px 0px;
-// }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -133,7 +128,33 @@ td{
   text-align: left;
 }
 
+// 服の上をホバーした時に若干拡大する
+.img_wrap{
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+.img_wrap img{
+  transition-duration: 0.5s;
+}
+.img_wrap:hover img{
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+}
 
+.clothe_detail_info {
+  background-color: antiquewhite;
+  border-radius: 20px;
+}
+
+.clothe_detail_info  th{
+  text-align: right;
+}
+
+.favorite_button {
+  text-align: center;
+}
 
 // スライダー(slick)のためのcss
 //
