@@ -22,22 +22,22 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-3 offset-md-1">
+  <div class="col-md-3">
     <%= image_tag @retailer.logo.variant(resize: "250x250") if @retailer.logo.attached?  %>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <table class="retailer_info row">
       <tr>
         <th class="col-md-3">Company Name：</th>
         <td class="col-md-9"><%= @retailer.name %></td>
       </tr>
       <tr>
-        <th class="col-md-3">ショップ情報：</th>
-        <td class="col-md-9"><%= @retailer.description %></td>
+        <th class="col-md-3">Website URL：</th>
+        <td class="col-md-9"><%= @retailer.website_url %></td>
       </tr>
       <tr>
-        <th class="col-md-3">Website URL：</th>
-        <td class="col-md-9"><%= link_to @retailer.website_url %></td>
+        <th class="col-md-3">ショップ情報：</th>
+        <td class="col-md-9"><%= @retailer.description %></td>
       </tr>
     </table>
   </div>
@@ -45,25 +45,34 @@
 
 
 <div class="row">
+
   <% @retailer.clothes.each do |clothe| %>
     <div class="index_clothes col-sm-6 col-md-3">
-      <ul>
-        <li><%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"230x345^", crop:"230x345+0+0"}) %></li>
-        <li><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %></li>
-        <li><%= link_to clothe.name, clothe_path(clothe.id) %></li>
-        <li>¥<%= clothe.price.to_s(:delimited) %></li>
-        <table>
-          <tr>
-            <% if current_retailer == clothe.retailer %>
-              <td><%= link_to 'edit', edit_clothe_path(clothe.id) %></td>
-              <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'Are you sure' } %></td>
-            <% end %>
-          </tr>
-        </table>
-      </ul>
+
+      <div class="card">
+        <%= image_tag clothe.images.first.variant(combine_options:{gravity: :center, resize:"200x300^", crop:"200x300+0+0"}), class:"card-img-top"  %>
+
+        <div class="card-body">
+          <p class="card-text"><%= link_to clothe.retailer.name, retailers_path(clothe.retailer.id) %><br>
+            <%= link_to clothe.name, clothe_path(clothe.id) %><br>
+            ¥<%= clothe.price.to_s(:delimited) %></p>
+          <table>
+            <tr>
+              <% if current_retailer == clothe.retailer %>
+                <td><%= link_to 'edit', edit_clothe_path(clothe.id), class: 'btn btn-outline-success btn-sm' %></td>
+                <td><%= link_to 'delete', clothe_path(clothe.id), method: :delete, data:{ confirm:'本当に削除してよろしいですか？' },
+                   class: 'btn btn-outline-danger btn-sm' %></td>
+              <% end %>
+            </tr>
+          </table>
+        </div>
+      </div>
+
     </div>
   <% end %>
+
 </div><br>
+
 <%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>
 
 <% if current_retailer == @retailer %>
