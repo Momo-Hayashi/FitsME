@@ -24,5 +24,5 @@
 <% end %>
 
 <%= render "users/shared/links" %><br>
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %><br>
-<%= link_to 'Guest Admin（管理者 閲覧用）', admins_guest_sign_in_path, method: :post %>
+<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:'btn btn-outline-info btn-sm' %> |
+<%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-primary btn-sm' %>

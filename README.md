@@ -23,15 +23,16 @@ Fits ME は、服を実際に購入したカスタマーからのレビューに
 - コメント機能(review)  
  
 ## カリキュラム外の技術
-- Pay.jp  
-- ancestry  
+- gem Pay.jp  
+- gem ancestry  
 - ActiveStorage  
+- S3  
+- gem ransack  
 
 ## その他の技術（時間に猶予があれば実行）
 - AWS EC2  
 - kaminari  
-- Vue.js  
-- ransack  
+- Vue.js   
 - omniauth  
 
 ## 実行手順

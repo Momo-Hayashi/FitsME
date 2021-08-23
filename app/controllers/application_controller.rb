@@ -2,9 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # before_action :set_parents
 
-   # ログイン済ユーザーのみにアクセスを許可する
-  # before_action :authenticate_user!
-
   def after_sign_in_path_for(resource)
     case resource
     when User
@@ -12,7 +9,7 @@ class ApplicationController < ActionController::Base
     when Retailer
       retailers_path(@retailer.id)
     when Admin
-      rails_admin_path
+      clothes_path
     end
   end
 

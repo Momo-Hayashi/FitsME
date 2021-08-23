@@ -14,12 +14,14 @@
     <td><%= @user.birthday %></td>
   </tr>
   <tr>
-    <th>保有ポイント：</th>
-    <td><%= @user.points %>ポイント</td>
+    <th><h5 style= "color: pink;">保有ポイント：</h5></th>
+    <td><h4 style= "color: pink;"><%= @user.points %>ポイント</h4></td>
   </tr>
-<table><hr>
+</table>
+<p style= "color: pink;">**ポイントは服の購入やレビューの投稿で獲得できます</p>
+<%= link_to 'レビュー投稿可能なアイテム一覧へ', users_reviewable_path, class: 'btn btn-warning'  %><hr>
 
-<strong><h4>レビュー用情報</h4></strong><hr>
+<h4>レビュー用情報</h4><hr>
 <table>
   <tr>
     <th>身長</th>
@@ -35,7 +37,7 @@
     <td><%= @user.bust %>cm</td>
     <td><%= @user.hip %>cm</td>
   </tr>
-<table>
+</table>
 
 <div>
   <% if @addresses.present? %>

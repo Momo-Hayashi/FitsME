@@ -4,6 +4,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :ensure_normal_admin, only: %i[ update destroy ]
+  before_action :authenticate_admin!
 
   def ensure_normal_admin
     if resource.email == 'admin_guest@example.com'

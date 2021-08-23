@@ -1,0 +1,55 @@
+<hr><h3>レビュー投稿可能なアイテム一覧</h3><hr><br>
+<h5 style="color:pink;">星評価とテキストコメントで&ensp;100ポイント&ensp;、<br>
+写真付きのレビュー投稿で&ensp;150ポイント&ensp;獲得できます：）</h5><br><hr>
+
+<% if @bought_item_stock_ids.empty? %>
+  <br><br><h5>商品を購入すると、レビューの投稿が可能になります</h5><br>
+  <%= link_to 'アイテムを探しにいく', clothes_path, class: "btn btn-success" %><br><br><hr>
+<% else %>
+
+  <% @bought_item_stock_ids.each do |stock| %>
+    <% stock = Stock.find(stock) %>
+    <% @clothe = stock.clothe %>
+    <div class="row">
+      <div class="offset-md-2 col-md-2">
+        <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
+      </div>
+
+      <div class="col-md-4">
+        <table>
+          <tr>
+            <th class="col-md-5">ブランド名</th>
+            <td class="col-md-7"><%= @clothe.retailer.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">アイテム</th>
+            <td class="col-md-7"><%= @clothe.name %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">サイズ</th>
+            <td class="col-md-7"><%= stock.size %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">カラー</th>
+            <td class="col-md-7"><%= stock.color %></td>
+          </tr>
+          <tr>
+            <th class="col-md-5">金額</th>
+            <td class="col-md-7"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-3">
+        <br><br><br>
+        <% @review = Review.find_by(user_id:current_user, clothe_id:@clothe.id, stock_no:stock.id ) %>
+        <% if @review.present? %>
+          <%= link_to '投稿した内容を確認', clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: stock.id), class: 'btn btn-outline-info' %><br><br>
+          <%= link_to 'レビューを編集', edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: stock.id), class: 'btn btn-outline-success' %>
+        <% else %>
+          <td><%= link_to new_clothe_review_path(@clothe.id, stock_no: stock.id), class: 'btn btn-success' do %>
+                レビューを書いて<br>ポイントGet <% end %></td>
+        <% end %>
+      </div>
+    </div><hr>
+  <% end %>
+<% end %>

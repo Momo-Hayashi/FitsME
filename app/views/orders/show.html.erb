@@ -9,7 +9,7 @@
       <%= image_tag @clothe.images.first.variant(resize: "180x180") if @clothe.images.attached? %>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
       <table>
         <tr>
           <th class="col-md-5">ブランド名</th>
@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <th class="col-md-5">金額</th>
-          <td class="col-md-7"><%= @clothe.price*order_stock.amount %>円（税込み）</td>
+          <td class="col-md-7"><%= (@clothe.price*order_stock.amount).to_s(:delimited) %>円（税込み）</td>
         </tr>
       </table>
     </div>
@@ -43,13 +43,22 @@
       <% if @review.present? %>
       <td><%= link_to 'レビューを編集', edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: order_stock.stock.id), class: 'btn btn-outline-success' %></td>
       <% else %>
-        <td><%= link_to 'レビューを書いてポイントGet', new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' %></td>
+        <td><%= link_to new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' do %>
+              レビューを書いて<br>ポイントGet <% end %></td>
       <% end %>
     </div>
   </div><hr>
 <% end %>
 
-<p style="text-align:center;"><strong>合計金額：<%= @order.price %> 円（税込み）</strong></p><hr>
+<p>お品代：<%= @order.price.to_s(:delimited) %> 円（税込み）</p>
+<p>ご利用ポイント数：
+  <% if @order.used_points.blank? %>
+    0 pt.</p>
+  <% else %>
+    <%= @order.used_points %> pt.</p>
+  <% end %>
+<h4>合計金額：<%= @order.paid_price.to_s(:delimited) %> 円（税込み）</h4>
+<p>獲得ポイント数：<%= (@order.paid_price*0.03).round if @order.paid_price %> pt.</p><hr>
 
 <h5>お届け先情報</h5><hr>
 <table>
@@ -64,7 +73,7 @@
   <tr>
     <th>住所：</th>
     <% pref = JpPrefecture::Prefecture.find(@order.prefecture_code) %>
-    <td><%= pref.name %><%= @order.address_city %><%= @order.address_street %><%= @order.address_building %></td>
+    <td><%= pref.name %> <%= @order.address_city %> <%= @order.address_street %> <%= @order.address_building %></td>
   </tr>
   <tr>
     <th>お電話番号：</th>

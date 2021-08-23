@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       post 'confirm', on: :collection
     end
   end
+  get '/users/reviewable', to: 'reviews#index'
 
   resources :carts, only: %i[ create destroy index update ] do
     get :confirm

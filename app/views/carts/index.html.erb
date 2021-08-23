@@ -11,11 +11,11 @@
     <%= form_with(model: item, local: true, url: cart_path(item.id) ) do |f| %>
       <div class="row">
         <% @clothe = item.stock.clothe %>
-        <div class="col-md-1 offset-md-2">
+        <div class="col-md-2 offset-md-2">
           <%= image_tag @clothe.images.first.variant(resize: "150x250") %>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-4">
           <table>
             <tr>
               <th class="col-md-4">ブランド名</th>
@@ -35,13 +35,13 @@
             </tr>
             <tr>
               <th class="col-md-4">金額</th>
-              <td class="col-md-8z"><%= @clothe.price %>円（税込み）</td>
+              <td class="col-md-8z"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
             </tr>
           </table>
         </div>
         <div class="col-md-2">
           <br><br>
-          <p class ="row"><%= f.label :個数 %>：<%= f.number_field :amount, class:"form-control col-4" %>
+          <p class ="row"><%= f.label :個数 %>：<%= f.number_field :amount, class:"form-control col-4", min: 0 %>
           <%= f.submit '更新', class:"btn btn-outline-success" %></p><br>
           <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete, class:"btn btn-outline-danger" %>
         </div>
@@ -50,7 +50,12 @@
     <% end %>
   <% end %>
 
-  <strong><p>合計金額：<%= total_price %> 円（税込み）</p></strong><br>
+  <h5>合計金額：<%= total_price.to_s(:delimited) %> 円（税込み）</h5><br>
+  <% new_points = total_price*0.03 %>
+  <h6>現在保有ポイント：<%= @user.points.to_s(:delimited) %> pt.</h6>
+  <h6>今回獲得予定ポイント：<%= new_points.round %> pt.</h6><br>
+  <h7><small>**既に獲得されているポイントを今回ご利用の場合、<br>
+    合計金額からご利用ポイント分を引いた金額の3%が獲得ポイントとなります。</small></h7><br><hr>
 
   <%= link_to '他の商品を追加する', clothes_path, class: "btn btn-info" %> |
   <% if current_user.addresses.present? %>

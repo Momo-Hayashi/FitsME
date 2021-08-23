@@ -15,25 +15,25 @@
   <body>
     <header>
       <ul class ="top_manu clearfix">
+        <li><%= link_to 'Fits ME', clothes_path %></li>
         <% if user_signed_in? %>
-          <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
           <li><%= link_to 'My page', users_show_path %></li>
           <li><%= link_to 'Favorites', favorites_path %></li>
           <li><%= link_to 'Cart', carts_path %></li>
           <li><%= link_to 'Orders', orders_path %></li>
           <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
         <% elsif retailer_signed_in? %>
-          <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
           <li><%= link_to '企業ページ', retailers_path(current_retailer.id) %></li>
           <li><%= link_to '服の登録', new_clothe_path %></li>
           <li><%= link_to '注文管理', retailers_orders_path %></li>
           <li><%= link_to 'Log out', destroy_retailer_session_path, method: :delete %></li>
+        <% elsif admin_signed_in? %>
+          <li><%= link_to '管理画面', rails_admin_path %></li>
+          <li><%= link_to 'Log out', destroy_admin_session_path, method: :delete %></li>
         <% else %>
-          <li><strong><%= link_to 'Fits ME', clothes_path %></strong></li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <li><%= link_to 'Log in', new_user_session_path %></li>
           <li><%= link_to '出品企業として利用', new_retailer_session_path %></li>
-
         <% end %>
       </ul>
     </header>
@@ -48,8 +48,6 @@
     <article>
       <%= yield %>
     </article>
-
-
 
     <footer class="footer">
       <p>Copyright © 2021 FitsME All RIGHTS RESERVED.</p>

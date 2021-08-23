@@ -32,15 +32,15 @@
       <table>
         <tr>
           <th class="col-md-3"><%= form.label :'評価(5段階)' %></th>
-          <td class="col-md-9"><%= form.text_field :rate, placeholder: "5.0" %></td>
+          <td id="star"><%= form.hidden_field :rate, id: :review_star %></td>
         </tr>
         <tr>
-          <th class="col-md-2"><%= form.label :コメント %></th>
-          <td class="col-md-10"><%= form.text_area :content, class: "form-control", rows: "4", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
+          <th class="col-md-3"><%= form.label :コメント %></th>
+          <td class="col-md-9"><%= form.text_area :content, class: "form-control", rows: "4", placeholder: "身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
         </tr>
         <tr>
-          <th class="col-md-2 file_upload"><%= form.label :画像 %></th>
-          <td class="col-md-10"><% if @review.images.attached? %>
+          <th class="col-md-3 file_upload"><%= form.label :画像 %></th>
+          <td class="col-md-9"><% if @review.images.attached? %>
             <p>現在登録されている画像</p>
             <p>（削除するものはチェックしてください）</p>
             <% @review.images.each do |image| %>
@@ -53,6 +53,16 @@
       </table>
     </div>
   </div><hr><br>
+
+  <script>
+    $('#star').raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      scoreName: 'review[rate]',
+      half: true,
+    });
+  </script>
 
   <%= form.submit %><br>
 <% end %>
