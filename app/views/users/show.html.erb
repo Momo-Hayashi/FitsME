@@ -14,11 +14,11 @@
     <td><%= @user.birthday %></td>
   </tr>
   <tr>
-    <th><h5 style= "color: pink;">保有ポイント：</h5></th>
-    <td><h4 style= "color: pink;"><%= @user.points %>ポイント</h4></td>
+    <th><h5 style= "color: #9656a1;">保有ポイント：</h5></th>
+    <td><h4 style= "color: #9656a1;"><%= @user.points %>ポイント</h4></td>
   </tr>
 </table>
-<p style= "color: pink;">**ポイントは服の購入やレビューの投稿で獲得できます</p>
+<p style= "color: #9656a1;">**ポイントは服の購入やレビューの投稿で獲得できます</p>
 <%= link_to 'レビュー投稿可能なアイテム一覧へ', users_reviewable_path, class: 'btn btn-warning'  %><hr>
 
 <h4>レビュー用情報</h4><hr>
@@ -73,6 +73,6 @@
   <% end %>
 </div>
 
-<%= link_to 'Edit the profile', edit_user_registration_path, class: "btn btn-outline-info" %><br>
+<%= link_to 'Edit the profile', edit_user_registration_path, class: "btn btn-outline-info" %><br><br><hr>
 <%= link_to '退会する', user_registration_path, method: :delete, class: "btn btn-outline-danger",
-   data:{ confirm:'Are you sure you want to delete your account?'} %>
+   data:{ confirm:'アカウント削除を希望されますか？'} %>

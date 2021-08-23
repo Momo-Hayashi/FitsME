@@ -1,10 +1,10 @@
 <hr><h3>レビュー投稿可能なアイテム一覧</h3><hr><br>
-<h5 style="color:pink;">星評価とテキストコメントで&ensp;100ポイント&ensp;、<br>
+<h5 style="color:#9656a1;">星評価とテキストコメントで&ensp;100ポイント&ensp;、<br>
 写真付きのレビュー投稿で&ensp;150ポイント&ensp;獲得できます：）</h5><br><hr>
 
 <% if @bought_item_stock_ids.empty? %>
   <br><br><h5>商品を購入すると、レビューの投稿が可能になります</h5><br>
-  <%= link_to 'アイテムを探しにいく', clothes_path, class: "btn btn-success" %><br><br><hr>
+  <%= link_to 'アイテムを探しにいく', clothes_path, class: "btn btn-info" %><br><br><hr>
 <% else %>
 
   <% @bought_item_stock_ids.each do |stock| %>

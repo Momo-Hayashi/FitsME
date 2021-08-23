@@ -1,16 +1,18 @@
-<h2>アイテム詳細</h2><br>
+<hr><h2>アイテム詳細</h2><hr><br>
 
 <div class="row">
   <div class="col-md-5">
-    <h5>Images：</h5>
     <% if @clothe.images.attached? %>
+      <%= image_tag @clothe.images.first.variant(resize: "350x480") %><br><br>
       <% @clothe.images.each do |image| %>
-        <%= image_tag image.variant(resize: "350x480") %><br><br>
+        <span class="img_wrap">
+          <%= link_to image_tag(image.variant(resize: "150x150")),image, rel:"lightbox", "data-lightbox":"clothe_images" %>
+        </span>
       <% end %>
     <% end %>
   </div>
 
-  <div class="clothe_info col-md-7">
+  <div class="clothe_detail_info col-md-7">
     <table class = "row">
       <tr>
         <th class="col-md-3">ブランド名：</th>
@@ -35,7 +37,7 @@
         <th class="col-md-3">Price：</th>
         <td class="col-md-9">¥<%= @clothe.price.to_s(:delimited) %></td>
       </tr>
-      <tr>
+      <tr class="item_description">
         <th class="col-md-3">アイテム詳細：</th>
         <td class="col-md-9"><%= simple_format @clothe.description %></td>
       </tr>
@@ -43,41 +45,41 @@
         <th class="col-md-3">サイズガイド：</th>
         <td class="col-md-9"><%= simple_format @clothe.size %></td>
       </tr>
+    </table>
+
+    <table class="stock_info item_description">
+      <tr>
+        <th class="col-md-3">Size</th>
+        <th class="col-md-3">Color</th>
+        <th class="col-md-2">残り</th>
+      </tr>
+      <% @stocks.each do |stock| %>
+        <tr>
+          <td class="col-md-3"><%= stock.size %></td>
+          <td class="col-md-3"><%= stock.color %></td>
+          <% if stock.quantity <= 0 %>
+            <td class="col-md-2">0</td>
+            <td class="col-md-4">Sorry...Out of stock!</td>
+          <% else %>
+            <td class="col-md-2"><%= stock.quantity %>点</td>
+            <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-warning' %></td>
+          <% end %>
+        </tr>
+      <% end %>
     </table><br>
 
-    <% if @stocks.present? %>
-      <table>
-        <tr>
-          <th>Size</th>
-          <th>Color</th>
-          <th>残り</th>
-        </tr>
-        <% @stocks.each do |stock| %>
-          <tr>
-            <td class="col-md-3"><%= stock.size %></td>
-            <td class="col-md-3"><%= stock.color %></td>
-            <% if stock.quantity <= 0 %>
-              <td class="col-md-2">0</td>
-              <td class="col-md-4">Sorry...Out of stock!</td>
-            <% else %>
-              <td class="col-md-2"><%= stock.quantity %>点</td>
-              <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-outline-warning' %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </table><br>
-    <% end %>
-
-    <% if @favorite.present? %>
-      <%= link_to 'お気に入り解除する', favorite_path(clothe_id: @clothe.id, id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
-    <% else %>
-      <%= link_to 'お気に入りする', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-outline-primary" %>
-    <% end %><br><br>
+    <div class="favorite_button">
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(clothe_id: @clothe.id, id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
+      <% else %>
+        <%= link_to 'お気に入りに追加', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-info" %>
+      <% end %>
+    </div><br>
   </div>
-</div>
+</div><br><br>
 
-<div>
-  <h5>Reviews</h5><hr>
+<div class ="reviews_detail">
+  <br><h5>Reviews</h5><hr>
   <% if @clothe.reviews.present? %>
     <table>
       <tr>
@@ -135,7 +137,7 @@
       </table>
     <% else %>
     <p>こちらの商品に対するレビューはまだありません。</p>
-  <% end %>
+  <% end %><br>
 </div>
 
 <br>
@@ -144,3 +146,5 @@
   <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-outline-danger"  %> |
 <% end %>
 <%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>

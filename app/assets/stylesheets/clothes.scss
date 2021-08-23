@@ -11,11 +11,12 @@ header {
 }
 
 body {
-  color: white;
-  min-width: 1110px;
+  color: #55423d;
+  // min-width: 1200px;
   margin: auto;
   position: relative;
-  background-color: #271c19;
+  background-color: #FFF5EE;
+  // #FFF5EE, #FFF0F5
   // margin: 0 auto;
   min-height: 100%;
   position: relative;
@@ -37,20 +38,15 @@ li {
 }
 
 article {
-  padding: 20px 20px 100px 20px;
+  padding: 10px 20px 100px 20px;
   margin: auto;
-  width: 1100px;
+  width: 1200px;
 }
 
 .top_manu li{
   float: left;
   padding: 15px;
 }
-
-// .col-md-3 .index_clothes {
-//   max-width: 100%;
-//   padding: 0px 0px;
-// }
 
 .clearfix:after {
   content: "";
@@ -92,6 +88,96 @@ td{
   // background-color: #f3d2c1;
 }
 
-// .side_menu {
-//   padding: 0px;
-// }
+.index_clothes {
+  padding: 0;
+}
+
+.card {
+  background-color: white;
+  // background-color: #FFDAB9;
+  margin: 0 5px 10px 5px;
+  padding: 0 15px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+ cursor: pointer;
+}
+
+.card:hover{
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
+}
+
+.category_bar {
+  padding: 0;
+}
+
+.each_category {
+  padding: 6px 0;
+  max-width: 190px;
+}
+
+.card-img-top {
+  margin-top: 15px;
+}
+
+.card-text {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card-body {
+  padding: 10px 0;
+}
+
+.clothe_detail_info {
+  text-align: left;
+}
+
+// 服の上をホバーした時に若干拡大する
+.img_wrap{
+  border: 1px solid #ddd;
+  margin: 0 auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+.img_wrap img{
+  transition-duration: 0.5s;
+}
+.img_wrap:hover img{
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+}
+
+.clothe_detail_info {
+  background-color: antiquewhite;
+  border-radius: 20px;
+}
+
+.clothe_detail_info  th{
+  text-align: right;
+}
+
+.favorite_button {
+  text-align: center;
+}
+
+.reviews_detail {
+  background-color: #efdccb;
+  border-radius: 20px;
+}
+
+.item_description {
+  background-color: white;
+  border-radius: 20px;
+}
+.stock_info {
+  text-align: center;
+}

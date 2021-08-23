@@ -11,19 +11,19 @@
   </ul>
 
   <div class="col-md-7">
-    <div class="">
+    <div>
       <h5>User Info</h5>
-      Age: <%= Date.today.year - @review.user.birthday.year %>,
+      Age: <%= Date.today.year - @review.user.birthday.year %>,<br>
       Height：<%= @review.user.height %>cm, Weight：<%= @review.user.weight %>kg, Waist：<%= @review.user.waist %>cm,
       Bust：<%= @review.user.bust %>cm, Hip：<%= @review.user.hip %>cm<br><br><br>
     </div>
-    <div class="">
+    <div>
       <div id="star-rate-<%= @review.id %>"></div>
       <%= @review.content %><br><br>
       <p>Images：</p>
       <% if @review.images.attached? %>
         <% @review.images.each do |image| %>
-          <%= image_tag image.variant(resize: "200x200") %>
+          <%= image_tag image.variant(resize: "250x300") %>
         <% end %>
       <% else %>
         <p>画像は投稿されていません</p>
@@ -31,6 +31,7 @@
     </div>
   </div>
 </div><br><hr>
+
 <% if current_user == @review.user %>
   <%= link_to '一覧画面へ戻る', users_reviewable_path, class: 'btn btn-outline-info' %> |
   <%= link_to 'レビューを編集', edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no:@stock.id), class: 'btn btn-outline-success' %>

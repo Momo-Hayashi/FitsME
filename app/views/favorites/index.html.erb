@@ -1,14 +1,26 @@
-<h5>Your favorite outfites!</h5><br>
+<hr><h3>Your favorites!</h3><hr>
+<% if @favorites.empty? %>
+  <p>商品をお気に入り登録することができます！</p>
+  <%= link_to '商品を探しにいく', clothes_path, class: "btn btn-info" %><hr>
+<% else %>
 
-<div class="row">
-  <% @favorites.each do |f| %>
-    <div class="index_clothes col-sm-6 col-md-3">
-      <ul>
-        <li><%= image_tag f.clothe.images.first.variant(resize: "200x200") %></li>
-        <li><%= link_to f.clothe.retailer.name, retailers_path(f.clothe.retailer.id) %></li>
-        <li><%= link_to f.clothe.name, clothe_path(f.clothe.id) %></li>
-        <li>¥<%= f.clothe.price.to_s(:delimited) %></li>
-      </ul>
-    </div>
-  <% end %>
-</div>
+  <div class="row">
+    <% @favorites.each do |f| %>
+      <div class="index_clothes col-sm-6 col-md-3 ">
+
+        <div class="card">
+          <%= image_tag f.clothe.images.first.variant(combine_options:{gravity: :center, resize:"200x300^", crop:"200x300+0+0"}), class:"card-img-top"  %>
+
+          <div class="card-body">
+            <p class="card-text"><%= link_to f.clothe.retailer.name, retailers_path(f.clothe.retailer.id) %><br>
+              <%= link_to f.clothe.name, clothe_path(f.clothe.id) %><br>
+              ¥<%= f.clothe.price.to_s(:delimited) %></p>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+  <br><%= link_to '他の商品も見てみる', clothes_path, class: "btn btn-info" %>
+<% end %>
