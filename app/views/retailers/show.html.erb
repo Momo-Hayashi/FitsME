@@ -1,48 +1,46 @@
-<h3>ブランド詳細</h3><br>
+<br><div class="white_box">
 
-<% if current_retailer == @retailer %>
-  <div><hr>
-    <h6>こちらは管理用となりますので、ウェブでは公開されません。</h6>
-    <table>
-      <tr>
-        <th>メールアドレス：</th>
-        <td><%= @retailer.email %></td>
-      </tr>
-      <tr>
-        <th>電話番号：</th>
-        <td><%= @retailer.phone_number %></td>
-      </tr>
-      <tr>
-        <th>住所：</th>
-        <td><%= @retailer.address %></td>
-      </tr>
-    </table>
-    <hr>
-  </div>
-<% end %>
+  <hr><h3>ブランド詳細</h3><hr>
 
-<div class="row">
-  <div class="col-md-3">
-    <%= image_tag @retailer.logo.variant(resize: "250x250") if @retailer.logo.attached?  %>
-  </div>
-  <div class="col-md-9">
-    <table class="retailer_info row">
-      <tr>
-        <th class="col-md-3">Company Name：</th>
-        <td class="col-md-9"><%= @retailer.name %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3">Website URL：</th>
-        <td class="col-md-9"><%= @retailer.website_url %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3">ショップ情報：</th>
-        <td class="col-md-9"><%= @retailer.description %></td>
-      </tr>
-    </table>
-  </div>
+  <% if current_retailer == @retailer %>
+    <div><hr>
+      <h6>こちらは管理用となりますので、ウェブでは公開されません。</h6>
+      <table>
+        <tr>
+          <th>メールアドレス：</th>
+          <td><%= @retailer.email %></td>
+        </tr>
+        <tr>
+          <th>電話番号：</th>
+          <td><%= @retailer.phone_number %></td>
+        </tr>
+        <tr>
+          <th>住所：</th>
+          <td><%= @retailer.address %></td>
+        </tr>
+      </table>
+      <hr>
+    </div>
+  <% end %>
+
+  <table class="retailer_info row text_left">
+    <tr class="row">
+      <th class="col-md-12"><%= image_tag @retailer.logo.variant(resize: "250x250") if @retailer.logo.attached?  %></th>
+    </tr>
+    <tr class="row">
+      <th class="col-md-1 offset-md-1"><i class="fas fa-building"></i></th>
+      <td class="col-md-9"><strong><%= @retailer.name %></strong></td>
+    </tr>
+    <tr class="row">
+      <th class="col-md-1 offset-md-1"><i class="fas fa-laptop"></i></th>
+      <td class="col-md-9"><%= @retailer.website_url %></td>
+    </tr>
+    <tr class="row">
+      <th class="col-md-1 offset-md-1"><i class="fas fa-pencil-alt"></i></th>
+      <td class="col-md-9"><%= @retailer.description %></td>
+    </tr>
+  </table><br>
 </div><br><br>
-
 
 <div class="row">
 

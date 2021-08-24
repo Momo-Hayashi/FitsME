@@ -1,10 +1,10 @@
 <hr><h3>カート</h3><hr>
 <% if @carts.empty? %>
-  <p>カートに商品を追加すると内容が表示されます！</p>
+  <p>カートに商品を追加すると内容が表示されます:)</p>
   <%= link_to '商品を追加する', clothes_path, class: "btn btn-info" %><hr>
 <% else %>
 
-  <h3>Items in your cart!</h3><br>
+  <h3>Items in my cart.</h3><br>
   <% total_price = 0 %>
 
   <% @carts.each do |item| %>
