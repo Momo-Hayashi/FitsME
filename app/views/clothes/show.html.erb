@@ -102,11 +102,11 @@
               <%= @stock.size %><br>
               <%= @stock.color %></td>
 
-            <td class="col-md-4 review_info">
+            <td class="col-md-5 review_info">
               <div id="star-rate-<%= review.id %>"></div>
               <%= review.content %></td>
 
-            <td class="col-md-4 review_image">
+            <td class="col-md-3 review_image">
               <% if review.images.attached? %>
                 <% review.images.each do |image| %>
                   <%= image_tag image.variant(resize: "130x130") %>

@@ -9,6 +9,7 @@ header {
   margin-left: 0;
   text-align: center;
 }
+// #ebd9fa
 
 body {
   color: #55423d;
@@ -66,6 +67,24 @@ article {
 
 td{
   padding: 10px;
+}
+
+.search_field {
+  display: flex;
+  align-items: center;
+  height: 96px;
+  margin: 0 auto;
+  padding: 0 40px 0;
+  background-color: mistyrose;
+
+}
+
+.search_field .col-3{
+  padding: 0;
+}
+
+.search_field .col-2{
+  padding: 0;
 }
 
 .clothe_info th{
