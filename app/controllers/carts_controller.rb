@@ -41,49 +41,26 @@ class CartsController < ApplicationController
   end
 
   def complete
-    paid_price = params[:cart][:paid_price]
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      :amount => paid_price,
+      :amount => params[:cart][:paid_price],
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
 
-    @address = Address.find(params[:cart][:address_id])
-
-    @order = Order.create!(
-      user_id: @user.id,
-      price: params[:cart][:total_price],
-      used_points: params[:cart][:used_points],
-      paid_price: paid_price,
-      last_name: @address.last_name,
-      first_name: @address.first_name,
-      postcode: @address.postcode,
-      prefecture_code: @address.prefecture_code,
-      address_city: @address.address_city,
-      address_street: @address.address_street,
-      address_building: @address.address_building,
-      phone_number: @address.phone_number,
-    )
+    @order = Order.new_order(@user.id, params[:cart][:address_id], params[:cart][:total_price],
+       params[:cart][:used_points], params[:cart][:paid_price])
 
     @carts.each do |item|
-      OrderStock.create(
-        stock_id: item.stock.id,
-        order_id: @order.id,
-        amount: item.amount,
-      )
+      OrderStock.create(stock_id: item.stock.id, order_id: @order.id, amount: item.amount)
       @stock = item.stock
       new_quantity = @stock.quantity - item.amount
       @stock.update_attribute( :quantity, new_quantity )
       item.destroy
     end
 
-    new_points = paid_price.to_i*0.03
-    point_total = @user.points + new_points - (params[:cart][:used_points]).to_i
-    @user.update(points:point_total)
-
-    redirect_to orders_path,
-    notice: "購入処理が完了しました！#{@user.username}さんの保有ポイントは #{@user.points} pt.になりました！"
+    @user.point_update(params[:cart][:paid_price], params[:cart][:used_points], @user.id)
+    redirect_to orders_path, notice: "購入処理が完了しました！商品の到着を楽しみにお待ちください：）"
   end
 
   def update

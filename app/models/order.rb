@@ -14,4 +14,22 @@ class Order < ApplicationRecord
   validates :address_street, presence: true, length: { maximum: 100 }
   VALID_PHONE_REGEX = /\A\d{10,11}\z/
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
+
+  def self.new_order(user_id, address_id, price, used_points, paid_price)
+    @address = Address.find(address_id)
+    Order.create!(
+      user_id: user_id,
+      price: price,
+      used_points: used_points,
+      paid_price: paid_price,
+      last_name: @address.last_name,
+      first_name: @address.first_name,
+      postcode: @address.postcode,
+      prefecture_code: @address.prefecture_code,
+      address_city: @address.address_city,
+      address_street: @address.address_street,
+      address_building: @address.address_building,
+      phone_number: @address.phone_number,
+    )
+  end
 end
