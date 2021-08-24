@@ -15,35 +15,34 @@
   <div class="clothe_detail_info col-md-7">
     <table class = "row">
       <tr>
-        <th class="col-md-3">ブランド名：</th>
-        <td class="col-md-9"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
+        <th class="col-md-1"><i class="far fa-building"></i></th>
+        <td class="col-md-11"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
       </tr>
       <tr>
-        <th class="col-md-3">アイテム名：</th>
-        <td class="col-md-9"><%= @clothe.name %></td>
+        <th class="col-md-1"><i class="fas fa-tshirt"></i></th>
+        <td class="col-md-11"><%= @clothe.name %></td>
       </tr>
       <% if @clothe.category_ids.present? %>
-        <% n = 0 %>
         <% @clothe.category_ids.each do |category_id| %>
           <% category = Category.find(category_id) %>
           <tr>
-            <th class="col-md-3">カテゴリー <%= n += 1 %>：</th>
-            <td class="col-md-9"><%= category.parent.name if category.parent.present? %> /
+            <th class="col-md-1"><i class="fas fa-tags"></i></th>
+            <td class="col-md-11"><%= category.parent.name if category.parent.present? %> /
              <%= link_to category.name, category_path(category_id) %></td>
           </tr>
         <% end %>
-      <% end %><br>
+      <% end %>
       <tr>
-        <th class="col-md-3">Price：</th>
-        <td class="col-md-9">¥<%= @clothe.price.to_s(:delimited) %></td>
+        <th class="col-md-1"><i class="fas fa-yen-sign"></i></th>
+        <td class="col-md-11"><strong><%= @clothe.price.to_s(:delimited) %>円（税込み）</strong></td>
       </tr>
       <tr class="item_description">
-        <th class="col-md-3">アイテム詳細：</th>
-        <td class="col-md-9"><%= simple_format @clothe.description %></td>
+        <th class="col-md-1"><i class="fas fa-pencil-alt"></i></th>
+        <td class="col-md-11"><%= simple_format @clothe.description %></td>
       </tr>
       <tr>
-        <th class="col-md-3">サイズガイド：</th>
-        <td class="col-md-9"><%= simple_format @clothe.size %></td>
+        <th class="col-md-1"><i class="fas fa-ruler"></i></th>
+        <td class="col-md-11"><%= simple_format @clothe.size %></td>
       </tr>
     </table>
 
