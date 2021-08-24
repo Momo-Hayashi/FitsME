@@ -43,9 +43,19 @@ article {
   width: 1200px;
 }
 
-.top_manu li{
+.top_menu li{
   float: left;
+}
+
+.top_menu li a{
+  display: block;
   padding: 15px;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.top_menu li a:hover {
+  opacity: 0.4;
 }
 
 .clearfix:after {
