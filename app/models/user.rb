@@ -60,4 +60,12 @@ class User < ApplicationRecord
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
 
+  def point_update(paid_price, used_points, user_id)
+    @user = User.find(user_id)
+    new_points = paid_price.to_i*0.03
+    new_points.round
+    point_total = @user.points + new_points - used_points.to_i
+    @user.update(points:point_total)
+  end
+
 end
