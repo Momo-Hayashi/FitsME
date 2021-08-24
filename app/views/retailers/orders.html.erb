@@ -1,5 +1,7 @@
-<hr><h3>オーダー管理</h3><hr>
-<p>最新のご注文から順番に表示されます。</p><br>
+<br><div class="white_box">
+
+  <hr><h3>オーダー管理</h3><hr>
+  <p>最新のご注文から順番に表示されます。</p><br>
 
   <table>
     <tr>
@@ -21,7 +23,8 @@
             <% end %></td>
         <td><%= l order.created_at %></td>
         <td>¥<%= total_price.to_s(:delimited) %></td>
-        <td><%= link_to '注文の詳細', retailers_orders_detail_path(id: order.id) %></td>
+        <td><%= link_to '注文の詳細', retailers_orders_detail_path(id: order.id), class:"btn btn-outline-info" %></td>
       </tr>
     <% end %>
   </table>
+</div>

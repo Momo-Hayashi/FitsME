@@ -1,52 +1,55 @@
-<h2>Sign up as a retailer</h2><br>
+<br>
+<div class="white_box">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "retailers/shared/error_messages", resource: resource %>
+  <hr><h2>Sign up as a retailer</h2><hr><br>
 
-  <div class="field form-group row">
-    <%= f.label :'Company Name', class: "col-sm-3 col-form-label" %><br />
-    <%= f.text_field :name, autofocus: true, placeholder: "company name", class: "col-sm-9 form-control" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "retailers/shared/error_messages", resource: resource %>
 
-  <div class="field form-group row">
-    <%= f.label :email, class: "col-sm-3 col-form-label" %><br />
-    <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp", class: "col-sm-9 form-control" %>
-  </div>
+    <div class="field form-group row">
+      <%= f.label :'Company Name', class: "col-sm-3 offset-md-1 col-form-label" %><br />
+      <%= f.text_field :name, autofocus: true, placeholder: "company name", class: "col-sm-7 form-control" %>
+    </div>
 
-  <div class="field form-group row">
-    <%= f.label :電話番号, class: "col-sm-3 col-form-label" %><br />
-    <%= f.telephone_field	 :phone_number, placeholder: "1234567890", class: "col-sm-9 form-control" %>
-  </div>
+    <div class="field form-group row">
+      <%= f.label :email, class: "col-sm-3 offset-md-1 col-form-label" %><br />
+      <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp", class: "col-sm-7 form-control" %>
+    </div>
 
-  <div class="field form-group row">
-    <%= f.label :住所, class: "col-sm-3 col-form-label" %><br />
-    <%= f.text_field :address, placeholder: "東京都渋谷区渋谷市1-2-3 渋谷ビル123", class: "col-sm-9 form-control" %>
-  </div>
+    <div class="field form-group row">
+      <%= f.label :電話番号, class: "col-sm-3 offset-md-1 col-form-label" %><br />
+      <%= f.telephone_field	 :phone_number, placeholder: "1234567890", class: "col-sm-7 form-control" %>
+    </div>
 
-  <div class="field form-group row">
-    <%= f.label :'website URL（もしあれば）', class: "col-sm-3 col-form-label" %><br />
-    <%= f.url_field :website_url, placeholder: "https://もしあれば/", class: "col-sm-9 form-control" %>
-  </div>
+    <div class="field form-group row">
+      <%= f.label :住所, class: "col-sm-3 offset-md-1 col-form-label" %><br />
+      <%= f.text_field :address, placeholder: "東京都渋谷区渋谷市1-2-3 渋谷ビル123", class: "col-sm-7 form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
-  </div>
+    <div class="field form-group row">
+      <%= f.label :'website URL（もしあれば）', class: "col-sm-3 offset-md-1 col-form-label" %><br />
+      <%= f.url_field :website_url, placeholder: "https://もしあれば/", class: "col-sm-7 form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
+    </div>
 
-  <div class="actions"><br>
-    <%= f.submit "Sign up", class: 'btn btn-warning' %>
-  </div><br>
-<% end %>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
+    </div>
 
-<%= link_to '出品企業としてログインはこちら', new_retailer_session_path, class:'btn btn-outline-info btn-sm' %> |
-<%= link_to 'Guest Retailerとしてログイン', retailers_guest_sign_in_path, method: :post, class:'btn btn-outline-primary btn-sm' %>
+    <div class="actions"><br>
+      <%= f.submit "Sign up", class: 'btn btn-warning' %>
+    </div><br>
+  <% end %>
 
-<%# <%= render "retailers/shared/links" %>
+  <%= link_to '出品企業としてログインはこちら', new_retailer_session_path, class:'btn btn-outline-info btn-sm' %> |
+  <%= link_to 'Guest Retailerとしてログイン', retailers_guest_sign_in_path, method: :post, class:'btn btn-outline-primary btn-sm' %><br><br>
+
+</div>

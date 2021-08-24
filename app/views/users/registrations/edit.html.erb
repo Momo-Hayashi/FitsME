@@ -1,116 +1,117 @@
-<h2>Edit Profile</h2><hr>
+<br>
+<div class="white_box">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <hr><h2>Edit Profile</h2><hr>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :Username %>
-    <%= f.text_field :username, autofocus: true, placeholder: "username" %>
-  </div>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp" %>
-  </div>
-  <div class="field">
-    <%= f.label :birthday, 'お誕生日' %>
-    <%= f.date_select :birthday, start_year: 1940, end_year: (Time.now.year - 10), include_blank: true %>
-  </div><hr>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
-  <div class="info_for_review">
-    <strong><h4>レビュー用情報</h4></strong><hr>
     <div class="field">
-      <%= f.label :height, '身長' %>
-      <%= f.number_field :height, step: '0.1', placeholder: "ex. 160.7", min: 0 %> cm
+      <%= f.label :Username %>
+      <%= f.text_field :username, autofocus: true, placeholder: "username" %>
     </div>
     <div class="field">
-      <%= f.label :weight, '体重' %>
-      <%= f.number_field :weight, step: '0.1', placeholder: "ex. 60.7", min: 0 %> kg
+      <%= f.label :email %>
+      <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp" %>
     </div>
     <div class="field">
-      <%= f.label :waist, 'ウエスト' %>
-      <%= f.number_field :waist, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
-    </div>
-    <div class="field">
-      <%= f.label :bust, 'バスト' %>
-      <%= f.number_field :bust, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
-    </div>
-    <div class="field">
-      <%= f.label :hip, 'ヒップ' %>
-      <%= f.number_field :hip, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
-    </div>
-  </div>
+      <%= f.label :birthday, 'お誕生日' %>
+      <%= f.date_select :birthday, start_year: 1940, end_year: (Time.now.year - 10), include_blank: true %>
+    </div><hr>
 
-  <div class="info_for_shipping">
-    <% n = 0 %>
-    <%= f.fields_for :addresses do |address| %>
-      <hr><h4 class="shipping_address_info">お届け先情報<%= n += 1 %></h4><hr>
-      <div class="js-user_address" id="add_address_#{m.index}">
-        <h5>お名前</h5>
-        <div class="field">
-          <%= address.label :姓 %>
-          <%= address.text_field :last_name, placeholder: "last name" %>
-          <%= address.label :名 %>
-          <%= address.text_field :first_name, placeholder: "first name" %>
-        </div>
-
-        <h5 class="shipping_address_info">ご住所</h5>
-        <div class="field">
-          <%= address.label :postcode, '郵便番号' %>
-          <%= address.text_field :postcode, id: 'user_postcode', placeholder: "1112222" %><br>
-        </div>
-        <div class="field">
-          <%= address.label :prefecture_name, '都道府県' %>
-          <%= address.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: true %><br>
-        </div>
-        <div class="field">
-          <%= address.label :address_city, '市区町村' %>
-          <%= address.text_field :address_city, id:'address_city', placeholder: "渋谷区" %><br>
-        </div>
-        <div class="field">
-          <%= address.label :address_street, '番地' %>
-          <%= address.text_field :address_street, id:'address_street', placeholder: "渋谷市1-2-3" %><br>
-        </div>
-        <div class="field">
-          <%= address.label :address_building, '建物' %>
-          <%= address.text_field :address_building, id:'address_building', placeholder: "渋谷ビル 707" %><br>
-        </div>
-        <div class="field">
-          <%= address.label :phone_number, 'お電話番号' %>
-          <%= address.text_field :phone_number, placeholder: "1234567890" %><br>
-        </div>
+    <div class="info_for_review">
+      <strong><h4>レビュー用情報</h4></strong><hr>
+      <div class="field">
+        <%= f.label :height, '身長' %>
+        <%= f.number_field :height, step: '0.1', placeholder: "ex. 160.7", min: 0 %> cm
       </div>
-    <% end %>
-  </div><hr><br>
+      <div class="field">
+        <%= f.label :weight, '体重' %>
+        <%= f.number_field :weight, step: '0.1', placeholder: "ex. 60.7", min: 0 %> kg
+      </div>
+      <div class="field">
+        <%= f.label :waist, 'ウエスト' %>
+        <%= f.number_field :waist, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
+      </div>
+      <div class="field">
+        <%= f.label :bust, 'バスト' %>
+        <%= f.number_field :bust, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
+      </div>
+      <div class="field">
+        <%= f.label :hip, 'ヒップ' %>
+        <%= f.number_field :hip, step: '0.1', placeholder: "ex. 60.7", min: 0 %> cm
+      </div>
+    </div>
+
+    <div class="info_for_shipping">
+      <% n = 0 %>
+      <%= f.fields_for :addresses do |address| %>
+        <hr><h4 class="shipping_address_info">お届け先情報<%= n += 1 %></h4><hr>
+        <div class="js-user_address" id="add_address_#{m.index}">
+          <h5>お名前</h5>
+          <div class="field">
+            <%= address.label :姓 %>
+            <%= address.text_field :last_name, placeholder: "last name" %>
+            <%= address.label :名 %>
+            <%= address.text_field :first_name, placeholder: "first name" %>
+          </div>
+
+          <h5 class="shipping_address_info">ご住所</h5>
+          <div class="field">
+            <%= address.label :postcode, '郵便番号' %>
+            <%= address.text_field :postcode, id: 'user_postcode', placeholder: "1112222" %><br>
+          </div>
+          <div class="field">
+            <%= address.label :prefecture_name, '都道府県' %>
+            <%= address.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: true %><br>
+          </div>
+          <div class="field">
+            <%= address.label :address_city, '市区町村' %>
+            <%= address.text_field :address_city, id:'address_city', placeholder: "渋谷区" %><br>
+          </div>
+          <div class="field">
+            <%= address.label :address_street, '番地' %>
+            <%= address.text_field :address_street, id:'address_street', placeholder: "渋谷市1-2-3" %><br>
+          </div>
+          <div class="field">
+            <%= address.label :address_building, '建物' %>
+            <%= address.text_field :address_building, id:'address_building', placeholder: "渋谷ビル 707" %><br>
+          </div>
+          <div class="field">
+            <%= address.label :phone_number, 'お電話番号' %>
+            <%= address.text_field :phone_number, placeholder: "1234567890" %><br>
+          </div>
+        </div>
+      <% end %>
+    </div><hr><br>
 
 
-  <h6>**パスワード変更時のみご入力ください</h6>
-  <div class="field">
-    <%= f.label :新しいパスワード %>
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password" %>
-    <% if @minimum_password_length %>
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+    <h6>**パスワード変更時のみご入力ください</h6>
+    <div class="field">
+      <%= f.label :新しいパスワード %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "new password" %>
+      <% if @minimum_password_length %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new password" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "current password" %>
-  </div><hr>
+    <div class="field">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "current password" %>
+    </div><hr>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "Update", class:'btn btn-info' %>
+    </div>
+  <% end %><br><br>
 
-<br><br>
-<h5>Unhappy?</h5>
-<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+</div>

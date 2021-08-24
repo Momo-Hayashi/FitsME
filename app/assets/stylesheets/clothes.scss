@@ -5,20 +5,17 @@ html {
 header {
   height: 60px;
   font-size: 1.2rem;
-  background-color: #ffc0ad;
+  background-color: #FFFFFF;
   margin-left: 0;
   text-align: center;
 }
-// #ebd9fa
 
 body {
   color: #55423d;
   // min-width: 1200px;
   margin: auto;
   position: relative;
-  background-color: #FFF5EE;
-  // #FFF5EE, #FFF0F5
-  // margin: 0 auto;
+  background-color: #F2F2F2;
   min-height: 100%;
   position: relative;
   text-align: center;
@@ -26,7 +23,7 @@ body {
 }
 
 table {
-    margin: 3px auto;
+  margin: 3px auto;
 }
 
 ul {
@@ -44,6 +41,10 @@ article {
   width: 1200px;
 }
 
+.top_menu {
+  display: flex;
+}
+
 .top_menu li{
   float: left;
 }
@@ -53,10 +54,20 @@ article {
   padding: 15px;
   font-size: 1rem;
   text-decoration: none;
+  color: #55423d;
 }
 
 .top_menu li a:hover {
   opacity: 0.4;
+}
+
+.top_logo {
+  margin-left: 15px;
+}
+
+.top_menu_right {
+  margin-left: auto;
+  margin-right: 15px;
 }
 
 .clearfix:after {
@@ -75,8 +86,8 @@ td{
   height: 96px;
   margin: 0 auto;
   padding: 0 40px 0;
-  background-color: mistyrose;
-
+  background-color: #FFFFFF;
+  border-radius: 10px;
 }
 
 .search_field .col-3{
@@ -92,7 +103,7 @@ td{
 }
 
 .footer {
-  background-color: #ffc0ad;
+  background-color: #FFFFFF;
   height: 70px;
   width: 100%;
   position: absolute;
@@ -185,12 +196,22 @@ td{
 }
 
 .clothe_detail_info {
-  background-color: antiquewhite;
+  background-color: #FFFFFF;
   border-radius: 20px;
 }
 
-.clothe_detail_info  th{
-  text-align: right;
+.item_description {
+  background-color: #e6e6e6;
+  border-radius: 20px;
+}
+
+.stock_info {
+  text-align: center;
+  width: 80%;
+}
+
+.stock_info th {
+  text-align: center;
 }
 
 .favorite_button {
@@ -198,14 +219,33 @@ td{
 }
 
 .reviews_detail {
-  background-color: #efdccb;
+  background-color: #E8E3E3;
   border-radius: 20px;
 }
 
-.item_description {
-  background-color: white;
+.white_box {
+  background-color: #FFFFFF;
   border-radius: 20px;
-}
-.stock_info {
+  width: 80%;
   text-align: center;
+  display: inline-block;
+}
+
+.order_index {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 20px 50px;
+  border-collapse: separate;
+}
+
+.retailer_info th{
+  padding: 10px 0;
+}
+
+.text_left td{
+  text-align: left;
+}
+
+.text_right  th{
+  text-align: right;
 }

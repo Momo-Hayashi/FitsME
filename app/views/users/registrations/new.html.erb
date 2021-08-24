@@ -1,40 +1,42 @@
-<h2>Sign up</h2><br>
+<br>
+<div class="white_box">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <hr><h2>Sign up</h2><hr>
 
-  <div class="field">
-    <%= f.label :Username %><br />
-    <%= f.text_field :username, autofocus: true, placeholder: "username" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp" %>
-  </div>
+    <table>
+      <tr class="field" >
+        <th><%= f.label :Username %></th>
+        <td><%= f.text_field :username, autofocus: true, placeholder: "username" %></td>
+      </tr>
+      <tr class="field" >
+        <th><%= f.label :email %></th>
+        <td><%= f.email_field :email, autocomplete: "email", placeholder: "email@email.jp" %></td>
+      </tr>
+      <tr class="field" >
+        <th><%= f.label :birthday, 'お誕生日' %></th>
+        <td><%= f.date_select :birthday, start_year: 1940, end_year: (Time.now.year - 10), include_blank: true %></td>
+      </tr>
+      <tr class="field" >
+        <th><%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %></th>
+        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %></td>
+      </tr>
+      <tr class="field" >
+        <td><%= f.label :password_confirmation %></td>
+        <th><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %></th>
+      </tr>
+    </table>
+    <div class="actions"><br>
+      <%= f.submit "Sign up", class: 'btn btn-warning' %>
+    </div>
+  <% end %><br><br>
 
-  <div class="field">
-    <%= f.label :birthday, 'お誕生日' %><br />
-    <%= f.date_select :birthday, start_year: 1940, end_year: (Time.now.year - 10), include_blank: true %>
-  </div>
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:'btn btn-outline-info btn-sm' %> |
+  <%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-primary btn-sm' %><br><br>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
-  </div>
-
-  <div class="actions"><br>
-    <%= f.submit "Sign up", class: 'btn btn-warning' %>
-  </div>
-<% end %><br>
-
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:'btn btn-outline-info btn-sm' %> |
-<%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-primary btn-sm' %>
+</div>

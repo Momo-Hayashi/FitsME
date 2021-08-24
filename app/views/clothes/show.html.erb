@@ -12,7 +12,7 @@
     <% end %>
   </div>
 
-  <div class="clothe_detail_info col-md-7">
+  <div class="clothe_detail_info col-md-7 text_right">
     <table class = "row">
       <tr>
         <th class="col-md-1"><i class="far fa-building"></i></th>
@@ -48,20 +48,23 @@
 
     <table class="stock_info item_description">
       <tr>
-        <th class="col-md-3">Size</th>
-        <th class="col-md-3">Color</th>
-        <th class="col-md-2">残り</th>
+        <th class="col-md-1">Size</th>
+        <th class="col-md-1">Color</th>
+        <th class="col-md-2">在庫</th>
       </tr>
       <% @stocks.each do |stock| %>
         <tr>
-          <td class="col-md-3"><%= stock.size %></td>
-          <td class="col-md-3"><%= stock.color %></td>
+          <td class="col-md-1"><%= stock.size %></td>
+          <td class="col-md-1"><%= stock.color %></td>
           <% if stock.quantity <= 0 %>
             <td class="col-md-2">0</td>
-            <td class="col-md-4">Sorry...Out of stock!</td>
-          <% else %>
-            <td class="col-md-2"><%= stock.quantity %>点</td>
-            <td class="col-md-4"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-warning' %></td>
+            <td class="col-md-3">Sorry...Out of stock!</td>
+          <% elsif stock.quantity <= 10 %>
+            <td class="col-md-2">残り<%= stock.quantity %>点…！</td>
+            <td class="col-md-3"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-warning' %></td>
+          <% elsif stock.quantity > 10 %>
+            <td class="col-md-2">在庫あり</td>
+            <td class="col-md-3"><%= link_to 'Add to Cart', carts_path(stock_id: stock.id), method: :post, class: 'btn btn-warning' %></td>
           <% end %>
         </tr>
       <% end %>
