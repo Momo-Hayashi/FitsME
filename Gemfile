@@ -26,8 +26,13 @@ gem 'jp_prefecture'
 gem 'ancestry'
 gem 'cocoon'
 gem 'ransack'
-gem "aws-sdk-s3", require: false
 gem 'kaminari'
+
+gem "aws-sdk-s3", require: false
+
+gem 'unicorn'
+gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -38,6 +43,12 @@ group :development, :test do
   gem 'faker'
   gem 'launchy'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'capistrano', '3.6.0' # capistranoのツール一式
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
