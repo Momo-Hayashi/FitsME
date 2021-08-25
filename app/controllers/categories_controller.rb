@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
       end
     end
     @clothes = Clothe.find(@clothes_ids)
+    @clothes = Kaminari.paginate_array(@clothes).page(params[:page]).per(16)
   end
 
 end
