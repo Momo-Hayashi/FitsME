@@ -38,7 +38,7 @@ li {
 article {
   padding: 10px 20px 100px 20px;
   margin: auto;
-  width: 1200px;
+  max-width: 1250px;
 }
 
 .top_menu {
@@ -170,6 +170,10 @@ td{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.card-text a {
+  color: #55423d;
 }
 
 .card-body {

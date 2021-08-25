@@ -59,15 +59,337 @@ retailer5 = Retailer.create!(
   address: '東京都渋谷区1-2-3',
   email: 'jouete@test.jp',
   password: 'jouete@test.jp')
-#
-#
+
+
 retailer1.logo.attach(io: File.open("./db/images/afends.png"), filename: "afends.png")
 retailer2.logo.attach(io: File.open("./db/images/TedBaker.png"), filename: "TedBaker.png")
 retailer3.logo.attach(io: File.open("./db/images/stellamccartney.jpeg"), filename: "stellamccartney.jpeg")
 retailer4.logo.attach(io: File.open("./db/images/maisonkitune.jpeg"), filename: "maisonkitune.jpeg")
 retailer5.logo.attach(io: File.open("./db/images/jouete.jpeg"), filename: "jouete.jpeg")
 
-clothe1 = Clothe.create!(
+
+clothe15 = Clothe.new(
+  retailer_id: retailer5.id,
+  name: 'タートルネック',
+  description: '■デザイン
+    ベーシックで使いやすいリブタートル。 伸縮性のあるリブ素材で、着心地はもちろんすっきり見えも叶います。
+    伸びも良く体にフィットするのでインナーとして着ても◎ 袖口にはスリットを施し、さりげないポイントになっています。
+
+    ■コーディネート
+    体にフィットするデザインなので、パンツやスカートにインして着るとすっきりとバランス良く着こなせます。
+    一枚で着るのはもちろん、レイヤードコーデのインナーとしても活躍します。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 5800,
+  stocks_attributes: [ { size: 2, color: 1, quantity: 50 },
+                    { size: 3, color: 1, quantity: 50 },
+                    { size: 4, color: 1, quantity: 50 }, ],
+  category_ids: [32]
+)
+clothe15.images.attach(io: File.open( "./db/images/clothes15.jpg"), filename: "clothes15.jpg")
+clothe15.save!
+
+clothe16 = Clothe.new(
+  retailer_id: retailer4.id,
+  name: 'Fluffy Coat',
+  description: '金ボタンでクラシックに。カーディガン感覚で着こなせるノーカラージャケット
+                ---
+                Design/Styling
+                カーディガン感覚でかっちりし過ぎず気軽に着られるノーカラージャケット。
+                後ろにダーツを入れたコクーンシルエットと、袖にも立体感を出した構築的なデザインが特徴。
+                よこはぎを入れて、スラッシュポケットにすることでスッキリした印象に。
+                やりすぎないオーバーサイズなのでブルゾン感覚で
+                アウターとしてもカーデ感覚でも着られて、程よいきちんと感が叶います。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 15500,
+  stocks_attributes: [ { size: 2, color: 4, quantity: 50 },
+                    { size: 3, color: 4, quantity: 50 }, ],
+  category_ids: [79]
+)
+clothe16.images.attach(io: File.open( "./db/images/review2.jpg"), filename: "review2.jpg")
+clothe16.save!
+
+clothe6 = Clothe.new(
+  retailer_id: retailer2.id,
+  name: 'センタープレス スラックス',
+  description: '美脚効果抜群のセミフレアパンツに、待望のスラックスパンツが登場‼
+
+                普段の着こなしに取り入れるだけで一気にこなれ感がアップします。
+                上品なウエストデザインと、適度にハリのあるさらりとした生地が高見えポイント◎
+
+                また透け感のない生地を使用することで裏地を無くし、よりすっきりとしたシルエットに。
+                定番に使えるブラックをはじめ、コーディネートの差し色に使いやすい旬のカラー展開にも注目です。',
+  size:'サイズ ウエスト ヒップ パンツ丈 股上 股下
+        S（S） 64 92 99 31 71.5
+        M（M） 68 96 100 31.5 72
+        L（L） 72 100 101 32 72.5',
+  price: 12000,
+  stocks_attributes: [ {size: 1, color: 13, quantity: 50 },
+                      {size: 2, color: 13, quantity: 20 },
+                      {size: 3, color: 13, quantity: 50 },
+                      {size: 4, color: 13, quantity: 10 }, ],
+  category_ids: [40]
+)
+clothe6.images.attach(io: File.open( "./db/images/clothes6.jpg"), filename: "clothes6.jpg" )
+clothe6.images.attach(io: File.open("./db/images/clothes_6.jpg"), filename: "clothes_6.jpg" )
+clothe6.save!
+
+clothe7 = Clothe.new(
+  retailer_id: retailer3.id,
+  name: 'リネンタッチ  ジャンプスーツ',
+  description: '■コーディネート
+                  一枚でサマになる一着で、コーディネートに悩む心配がありません。
+                  足元はサンダルにして、リゾート感をプラスすると◎
+                  Vネックなので、インナーに差し色を加えてアクセントをつけても素敵です。
+
+                ■デザイン
+                  配色が鮮やかな夏に一枚で着たいジャンプスーツの登場！
+                  テロッとしたレーヨン素材で着心地も良く、夏にピッタリのアイテムです。
+                  パンツもフレアシルエットできれいなスタイルで着れるのも嬉しいポイントです。',
+
+  size:'サイズ ウエスト ヒップ パンツ丈 股上 股下
+        S（S） 64 92 99 31 71.5
+        M（M） 68 96 100 31.5 72
+        L（L） 72 100 101 32 72.5',
+  price: 7000,
+  stocks_attributes: [ {size: 2, color: 6, quantity: 20 },
+                      {size: 3, color: 6, quantity: 10 }, ],
+  category_ids: [46, 57]
+)
+clothe7.images.attach(io: File.open( "./db/images/clothes7.jpg"), filename: "clothes7.jpg")
+clothe7.images.attach(io: File.open("./db/images/clothes_7.jpg"), filename: "clothes_7.jpg")
+clothe7.images.attach(io: File.open("./db/images/clothes_7_1.jpg"), filename: "clothes_7_1.jpg")
+clothe7.save!
+
+clothe8 = Clothe.new(
+  retailer_id: retailer4.id,
+  name: 'Flare dress',
+  description: '1枚で華やぐ、ふんわりとしたフレアーシルエット＆大胆プリント、ふんわりと柔らかいワンピース。
+    大きめのモチーフとゆったりとしたフレアーシルエットは体型カバーにも効果的。
+    お客様からのリクエストにお答えして、ロング丈も登場。',
+
+  size:'サイズ ウエスト ヒップ パンツ丈 股上 股下
+        S（S） 64 92 99 31 71.5
+        M（M） 68 96 100 31.5 72
+        L（L） 72 100 101 32 72.5',
+  price: 7500,
+  stocks_attributes: [size: 0, color: 6, quantity: 50],
+  category_ids: [57]
+)
+clothe8.images.attach(io: File.open( "./db/images/clothes8.jpg"), filename: "clothes8.jpg")
+clothe8.images.attach(io: File.open("./db/images/clothes_8.jpg"), filename: "clothes_8.jpg")
+clothe8.images.attach(io: File.open("./db/images/clothes_8_1.jpg"), filename: "clothes_8_1.jpg")
+clothe8.save!
+
+clothe9 = Clothe.new(
+  retailer_id: retailer1.id,
+  name: 'Sweatshirt Pullover',
+  description: '刺繍ロゴデザインスウェットトレーナー。
+
+    定番スウェットもユニセックスに着られルオーバーサイズシルエットでこなれ感UP♪
+    ワンポイントでロゴプリントを施したこだわりに1枚です。
+    こだわりのレイヤード風デザインが古着っぽさをプラス◎
+
+    着心地良いの素材でやわらかな風合いの大人が着れるロゴスウェットに仕上げました。',
+
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 6800,
+  stocks_attributes: [ {size: 2, color: 0, quantity: 20 },
+                      {size: 3, color: 0, quantity: 10 }, ],
+  category_ids: [29]
+)
+clothe9.images.attach(io: File.open( "./db/images/clothes9.jpg"), filename: "clothes9.jpg")
+clothe9.images.attach(io: File.open("./db/images/clothes_9.jpg"), filename: "clothes_9.jpg")
+clothe9.images.attach(io: File.open("./db/images/clothes_9_1.jpg"), filename: "clothes_9_1.jpg")
+clothe9.save!
+
+clothe10 = Clothe.new(
+  retailer_id: retailer2.id,
+  name: 'Aラインワンピース',
+  description: 'ハイウエストの切り替えですっきり脚長に見せてくれます。
+    こなれたバックリボンデザインがおしゃれなロングワンピース。
+    オトナ女子に似合う長めの着丈は、オフィスシーンからちょっとしたお出掛けまで気軽に着こなせる1枚です。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 6800,
+  stocks_attributes: [ {size: 2, color: 0, quantity: 20 },
+                      {size: 3, color: 0, quantity: 10 }, ],
+  category_ids: [57]
+)
+clothe10.images.attach(io: File.open( "./db/images/clothes10.jpg"), filename: "clothes10.jpg")
+clothe10.images.attach(io: File.open("./db/images/clothes_10.jpg"), filename: "clothes_10.jpg")
+clothe10.images.attach(io: File.open("./db/images/clothes_10_1.jpg"), filename: "clothes_10_1.jpg")
+clothe10.save!
+
+clothe11 = Clothe.new(
+  retailer_id: retailer2.id,
+  name: 'SEPARATE DRESS',
+  description: 'ハイウエストの切り替えですっきり脚長に見せてくれます。
+    これだけでサマになる一着で、コーディネートに悩む心配がありません。
+    オトナ女子に似合う長めの着丈は、オフィスシーンからちょっとしたお出掛けまで気軽に着こなせる1枚です。
+
+    それぞれトップス、スカートを別々でも着て頂けるので、単品でのスタイリングもお楽しみいただけます。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 14400,
+  stocks_attributes: [ {size: 2, color: 15, quantity: 20 },
+                      {size: 3, color: 15, quantity: 10 }, ],
+  category_ids: [57]
+)
+clothe11.images.attach(io: File.open( "./db/images/clothes11.jpg"), filename: "clothes11jpg")
+clothe11.images.attach(io: File.open("./db/images/clothes_11.jpg"), filename: "clothes_11.jpg")
+clothe11.save!
+
+clothe12 = Clothe.new(
+  retailer_id: retailer3.id,
+  name: '【WEB限定】モノグラムハンドルバッグ',
+  description: '前回大好評のバッグがWEBだけで再販売！
+
+      コンパクトなサイズ感ですが、マチが広く容量が多いのもポイント♪
+      モノグラムのプリントを施しているので、
+      スタイリングのアクセントになります！
+
+      オールシーズン使用でき、
+      一つ持っていれば大活躍すること間違いなし！！
+
+      ショルダー付きなので持ち方で違った雰囲気を楽しめ、
+      幅広いスタイルにマッチします♪',
+  size:'幅 高さ マチ 持ち手 重量
+        20  18  6    20  約480',
+  price: 15000,
+  stocks_attributes: [size: 0, color: 15, quantity: 20],
+  category_ids: [102]
+)
+clothe12.images.attach(io: File.open( "./db/images/clothes12.jpg"), filename: "clothes12jpg")
+clothe12.images.attach(io: File.open("./db/images/clothes_12.jpg"), filename: "clothes_12.jpg")
+clothe12.save!
+
+clothe13 = Clothe.new(
+  retailer_id: retailer3.id,
+  name: 'テーラードジャケット',
+  description: '【デザイン】
+      短丈デザインなので小柄な方もスッキリと着こなす事ができ、身幅にゆとりがある仕様なのでコンパクトすぎずにご着用頂けます。
+
+      長袖なので初秋から秋本番はもちろん、
+      冬アウターが必要になるまでの 長い期間ご活用いただけます。
+
+      柔らかい素材でかっちりとしすぎず、ジャケットでありながら
+      シャツのようにお召し頂けます。
+
+      【コーディネート】
+      同色で同素材のミニスカート、ショートパンツ、ロングパンツがあるので
+      セットアップ風に着こなしていただくのがおすすめです。
+
+      中はキャミやタンクを合わせると華奢で女性らしい着こなしに
+      カジュアルスタイルがお好みの方はフロントにロゴがあるTシャツなどと
+      合わせていただくのもおすすめです。
+
+      ショート丈なので、ロングスカートやロングパンツとも
+      バランスよく合わせていただけます◎',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 15000,
+  stocks_attributes: [size: 0, color: 15, quantity: 50],
+  category_ids: [61]
+)
+clothe13.images.attach(io: File.open( "./db/images/clothes13.jpg"), filename: "clothes13.jpg")
+clothe13.save!
+
+clothe14 = Clothe.new(
+  retailer_id: retailer4.id,
+  name: 'チノパン',
+  description: 'スタイルアップ間違いなし!トレンドスタイルが完成するデニムパンツ♪
+                ●美脚効果をプラスしてくれるトレンドのセミワイドデニムが登場●
+                シンプルだからこそシルエットにこだわった大人のデニム。
+                コットンメインの素材で、柔らかいしなやかな肌触りが特徴的！
+                ハイストレッチで伸びがよく柔らかな生地を使用しているため、はき心地も抜群です。',
+  size:'サイズ	ウエスト	ヒップ	パンツ丈	股上	股下
+        S（S）	64	92	99	31	71.5
+        M（M）	68	96	100	31.5	72
+        L（L）	72	100	101	32	72.5',
+  price: 15000,
+  stocks_attributes: [ { size: 2, color: 0, quantity: 50 },
+                    { size: 3, color: 0, quantity: 50 },
+                    { size: 4, color: 0, quantity: 50 }, ],
+  category_ids: [42, 138]
+)
+clothe14.images.attach(io: File.open( "./db/images/clothes14.jpg"), filename: "clothes14.jpg")
+clothe14.save!
+
+clothe17 = Clothe.new(
+  retailer_id: retailer4.id,
+  name: 'Floral Dress',
+  description: '金ボタンでクラシックに。カーディガン感覚で着こなせるノーカラージャケット
+                ---
+                Design/Styling
+                カーディガン感覚でかっちりし過ぎず気軽に着られるノーカラージャケット。
+                後ろにダーツを入れたコクーンシルエットと、袖にも立体感を出した構築的なデザインが特徴。
+                よこはぎを入れて、スラッシュポケットにすることでスッキリした印象に。
+                やりすぎないオーバーサイズなのでブルゾン感覚で
+                アウターとしてもカーデ感覚でも着られて、程よいきちんと感が叶います。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 11100,
+  stocks_attributes: [size: 0, color: 12, quantity: 50],
+  category_ids: [57]
+)
+clothe17.images.attach(io: File.open( "./db/images/clothes17.jpg"), filename: "clothes17.jpg")
+clothe17.images.attach(io: File.open( "./db/images/clothes_17.jpg"), filename: "clothes_17.jpg")
+clothe17.save!
+
+clothe18 = Clothe.new(
+  retailer_id: retailer3.id,
+  name: 'マウンテンパーカ Silver',
+  description: '金ボタンでクラシックに。カーディガン感覚で着こなせるノーカラージャケット
+                ---
+                Design/Styling
+                カーディガン感覚でかっちりし過ぎず気軽に着られるノーカラージャケット。
+                後ろにダーツを入れたコクーンシルエットと、袖にも立体感を出した構築的なデザインが特徴。
+                よこはぎを入れて、スラッシュポケットにすることでスッキリした印象に。
+                やりすぎないオーバーサイズなのでブルゾン感覚で
+                アウターとしてもカーデ感覚でも着られて、程よいきちんと感が叶います。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 11100,
+  stocks_attributes: [size: 0, color: 10, quantity: 50],
+  category_ids: [155]
+)
+clothe18.images.attach(io: File.open( "./db/images/clothes18.jpg"), filename: "clothes18.jpg")
+clothe18.save!
+
+clothe19 = Clothe.new(
+  retailer_id: retailer1.id,
+  name: 'black jacket',
+  description: '金ボタンでクラシックに。カーディガン感覚で着こなせるノーカラージャケット
+                ---
+                Design/Styling
+                カーディガン感覚でかっちりし過ぎず気軽に着られるノーカラージャケット。
+                後ろにダーツを入れたコクーンシルエットと、袖にも立体感を出した構築的なデザインが特徴。
+                よこはぎを入れて、スラッシュポケットにすることでスッキリした印象に。
+                やりすぎないオーバーサイズなのでブルゾン感覚で
+                アウターとしてもカーデ感覚でも着られて、程よいきちんと感が叶います。',
+  size:'サイズ 身幅 肩幅 着丈 そで丈
+        S :    47   38  60    52
+        M, L： 51   42   68   59',
+  price: 11100,
+  stocks_attributes: [size: 0, color: 1, quantity: 110],
+  category_ids: [155]
+)
+clothe19.images.attach(io: File.open( "./db/images/clothes19.jpg"), filename: "clothes19.jpg")
+clothe19.images.attach(io: File.open( "./db/images/clothes_19.jpg"), filename: "clothes_19.jpg")
+clothe19.save!
+
+clothe1 = Clothe.new(
   retailer_id: retailer1.id,
   name: '【web限定Sサイズ】センタープレスセミフレアスラックス',
   description: '美脚効果抜群のセミフレアパンツに、待望のスラックスパンツが登場‼
@@ -83,12 +405,17 @@ clothe1 = Clothe.create!(
         股下【66cm】【67cm】
         もも周り【57cm】【60cm】
         すそ周り【47cm】【50cm】',
-  price: 12000
+  price: 12000,
+  stocks_attributes: [ { size: 2, color: 8, quantity: 50 },
+                    { size: 3, color: 8, quantity: 50 },
+                    { size: 4, color: 8, quantity: 50}, ],
+  category_ids: [42]
 )
 clothe1.images.attach(io: File.open( "./db/images/clothes1.jpg"), filename: "clothes1.jpg" )
 clothe1.images.attach(io: File.open("./db/images/clothes_1.jpg"), filename: "clothes_1.jpg" )
+clothe1.save!
 
-clothe2 = Clothe.create!(
+clothe2 = Clothe.new(
   retailer_id: retailer1.id,
   name: 'Yellow Jacket',
   description: '金ボタンでクラシックに。カーディガン感覚で着こなせるノーカラージャケット
@@ -102,9 +429,18 @@ clothe2 = Clothe.create!(
   size:'サイズ 身幅 肩幅 着丈 そで丈
         S :    47   38  60    52
         M, L： 51   42   68   59',
-  price: 15500)
+  price: 15500,
+  stocks_attributes: [ { size: 2, color: 6, quantity: 10 },
+                    { size: 3, color: 6, quantity: 50 },
+                    { size: 2, color: 1, quantity: 50 },
+                    { size: 3, color: 1, quantity: 50 }, ],
+  category_ids: [61, 144]
+)
+clothe2.images.attach(io: File.open( "./db/images/clothes2.jpg"), filename: "clothes2.jpg" )
+clothe2.images.attach(io: File.open("./db/images/clothes_2.jpg"), filename: "clothes_2.jpg" )
+clothe2.save!
 
-clothe3 = Clothe.create!(
+clothe3 = Clothe.new(
   retailer_id: retailer2.id,
   name: '【SET UP対応】長袖ショート丈テーラードジャケット',
   description: '大人気のジャケットに長袖が登場！！
@@ -131,9 +467,17 @@ clothe3 = Clothe.create!(
   size:'サイズ 身幅 肩幅 着丈 そで丈
         S :    47   38  60    52
         M, L： 51   42   68   59',
-  price: 15000)
+  price: 15000,
+  stocks_attributes: [ { size: 2, color: 0, quantity: 50 },
+                    { size: 3, color: 0, quantity: 50 },
+                    { size: 4, color: 0, quantity: 50 }, ],
+  category_ids: [61]
+)
+clothe3.images.attach(io: File.open( "./db/images/clothes3.jpg"), filename: "clothes3.jpg" )
+clothe3.images.attach(io: File.open("./db/images/clothes_3.jpg"), filename: "clothes_3.jpg" )
+clothe3.save!
 
-clothe4 = Clothe.create!(
+clothe4 = Clothe.new(
   retailer_id: retailer3.id,
   name: 'ハイウエストストレッチデニムセミワイドパンツ',
   description: 'スタイルアップ間違いなし!トレンドスタイルが完成するデニムパンツ♪
@@ -145,7 +489,14 @@ clothe4 = Clothe.create!(
         S（S）	64	92	99	31	71.5
         M（M）	68	96	100	31.5	72
         L（L）	72	100	101	32	72.5',
-  price: 10000)
+  price: 10000,
+  stocks_attributes: [ { size: 3, color: 16, quantity: 50 },
+                    { size: 4, color: 16, quantity: 50 }, ],
+  category_ids: [38]
+)
+clothe4.images.attach(io: File.open( "./db/images/clothes4.jpg"), filename: "clothes4.jpg" )
+clothe4.images.attach(io: File.open("./db/images/clothes_4.jpg"), filename: "clothes_4.jpg" )
+clothe4.save!
 
 clothe5 = Clothe.create!(
   retailer_id: retailer4.id,
@@ -156,33 +507,13 @@ clothe5 = Clothe.create!(
   size:'サイズ 身幅 肩幅 着丈 そで丈
         S :    47   38  60    52
         M, L： 51   42   68   59',
-  price: 5000)
-
-
-
-clothe2.images.attach(io: File.open( "./db/images/clothes2.jpg"), filename: "clothes2.jpg" )
-clothe2.images.attach(io: File.open("./db/images/clothes_2.jpg"), filename: "clothes_2.jpg" )
-clothe3.images.attach(io: File.open( "./db/images/clothes3.jpg"), filename: "clothes3.jpg" )
-clothe3.images.attach(io: File.open("./db/images/clothes_3.jpg"), filename: "clothes_3.jpg" )
-clothe4.images.attach(io: File.open( "./db/images/clothes4.jpg"), filename: "clothes4.jpg" )
-clothe4.images.attach(io: File.open("./db/images/clothes_4.jpg"), filename: "clothes_4.jpg" )
+  price: 5000,
+  stocks_attributes: [size: 0, color: 2, quantity: 50],
+  category_ids: [21,123]
+)
 clothe5.images.attach(io: File.open( "./db/images/clothes5.jpg"), filename: "clothes5.jpg" )
 clothe5.images.attach(io: File.open("./db/images/clothes_5.jpg"), filename: "clothes_5.jpg" )
-
-
-stock1 = Stock.create!(clothe_id: clothe1.id, size: 2, color: 8, quantity: 50)
-stock2 = Stock.create!(clothe_id: clothe1.id, size: 3, color: 8, quantity: 50)
-stock3 = Stock.create!(clothe_id: clothe1.id, size: 4, color: 8, quantity: 50)
-stock4 = Stock.create!(clothe_id: clothe2.id, size: 2, color: 6, quantity: 10)
-stock5 = Stock.create!(clothe_id: clothe2.id, size: 3, color: 6, quantity: 50)
-stock6 = Stock.create!(clothe_id: clothe2.id, size: 2, color: 1, quantity: 50)
-stock7 = Stock.create!(clothe_id: clothe2.id, size: 3, color: 1, quantity: 50)
-stock8 = Stock.create!(clothe_id: clothe3.id, size: 2, color: 0, quantity: 50)
-stock9 = Stock.create!(clothe_id: clothe3.id, size: 3, color: 0, quantity: 50)
-stock10 = Stock.create!(clothe_id: clothe3.id, size: 4, color: 0, quantity: 50)
-stock11 = Stock.create!(clothe_id: clothe4.id, size: 3, color: 16, quantity: 50)
-stock12 = Stock.create!(clothe_id: clothe4.id, size: 4, color: 16, quantity: 50)
-stock13 = Stock.create!(clothe_id: clothe5.id, size: 0, color: 2, quantity: 50)
+clothe5.save!
 
 
 Cart.create!([
@@ -284,7 +615,7 @@ women_7 = Category.create(name: "レディース /靴")
 women_8 = Category.create(name: "レディース /アクセサリー")
 women_9 = Category.create(name: "レディース /バッグ")
 women_10 = Category.create(name: "レディース /その他")
-
+unisex_1 = Category.create(name: "ユニセックス /帽子")
 
 men_1 = Category.create(name: "メンズ /トップス")
 men_2 = Category.create(name: "メンズ /パンツ")
@@ -295,36 +626,25 @@ men_6 = Category.create(name: "メンズ /靴")
 men_7 = Category.create(name: "メンズ /バッグ")
 men_8 = Category.create(name: "メンズ /アクセサリー")
 men_9 = Category.create(name: "メンズ /その他")
-unisex_1 = Category.create(name: "ユニセックス /帽子")
 
-women_1.children.create([{name: "Tシャツ"},{name: "クロップドTシャツ"},{name: "カットソー"},{name: "シャツ/ブラウス"},{name: "ポロシャツ"},{name: "キャミソール"},{name: "タンクトップ"},{name: "ベアトップ/チューブトップ"},{name: "トレーナー/スウェット"},{name: "パーカー"},{name: "ニット/セーター"},{name: "ホルターネック"},{name: "カーディガン/ボレロ"},{name: "アンサンブル"},{name: "チュニック"},{name: "ベスト/ジレ"},{name: "その他"}])
-women_2.children.create([{name: "デニム/ジーンズ"},{name: "ショートパンツ"},{name: "カジュアルパンツ"},{name: "ハーフパンツ"},{name: "チノパン"},{name: "ワークパンツ/カーゴパンツ"},{name: "クロップドパンツ"},{name: "サロペット/オーバーオール"},{name: "オールインワン"},{name: "サルエルパンツ"},{name: "ガウチョパンツ"},{name: "その他"}])
+women_1.children.create([{name: "Tシャツ"},{name: "クロップドTシャツ"},{name: "カットソー"},{name: "シャツ/ブラウス"},{name: "ポロシャツ"},{name: "キャミソール"},{name: "タンクトップ"},{name: "チューブトップ"},{name: "トレーナー/スウェット"},{name: "パーカー"},{name: "ニット/セーター"},{name: "タートルネック"},{name: "カーディガン"},{name: "その他"}])
+women_2.children.create([{name: "デニム/ジーンズ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "カジュアルパンツ"},{name: "ハーフパンツ"},{name: "クロップドパンツ"},{name: "オーバーオール"},{name: "オールインワン"},{name: "サルエルパンツ"},{name: "ガウチョパンツ"},{name: "その他"}])
 women_3.children.create([{name: "ショート丈スカート"},{name: "ひざ丈スカート"},{name: "ロングスカート"},{name: "キュロット"},{name: "その他"}])
-women_4.children.create([{name: "ショート丈ワンピース"},{name: "ひざ丈ワンピース"},{name: "ロングワンピース"},{name: "パーティ用ドレス"},{name: "柄ドレス"},{name: "その他"}])
-women_5.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "デニムジャケット"},{name: "レザージャケット"},{name: "MA-1"},{name: "ライダースジャケット"},{name: "ミリタリージャケット"},{name: "ダウンベスト"},{name: "ジャンパー/ブルゾン"},{name: "スカジャン"},{name: "その他"}])
+women_4.children.create([{name: "ショート丈ワンピース"},{name: "ひざ丈ワンピース"},{name: "ロングワンピース"},{name: "ジャンプスーツ"},{name: "パーティ用ドレス"},{name: "柄ドレス"},{name: "その他"}])
+women_5.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "デニムジャケット"},{name: "レザージャケット"},{name: "MA-1"},{name: "ミリタリージャケット"},{name: "ダウンベスト"},{name: "ジャンパー/ブルゾン"},{name: "その他"}])
 women_6.children.create([{name: "ダウンジャケット"},{name: "ロングコート"},{name: "トレンチコート"},{name: "ダッフルコート"},{name: "ピーコート"},{name: "チェスターコート"},{name: "モッズコート"},{name: "毛皮/ファーコート"},{name: "スプリングコート"},{name: "その他"}])
 women_7.children.create([{name: "ハイヒール/パンプス"},{name: "ブーツ"},{name: "サンダル"},{name: "スニーカー"},{name: "ミュール"},{name: "モカシン"},{name: "ローファー/革靴"},{name: "フラットシューズ/バレエシューズ"},{name: "長靴/レインシューズ"},{name: "その他"}])
 women_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{name: "バングル/リストバンド"},{name: "リング"},{name: "ピアス"},{name: "イヤリング"},{name: "アンクレット"},{name: "ブローチ/コサージュ"},{name: "チャーム"},{name: "その他"}])
-women_9.children.create([{name: "ハンドバッグ"},{name: "レザーバッグ"},{name: "トートバッグ"},{name: "エコバッグ"},{name: "リュック/バックパック"},{name: "スポーツバッグ"},{name: "ショルダーバッグ"},{name: "クラッチバッグ"},{name: "ポーチ/バニティ"},{name: "ボディバッグ/ウェストバッグ"},{name: "マザーズバッグ"},{name: "ビジネスバッグ"},{name: "かごバッグ"},{name: "その他"}])
+women_9.children.create([{name: "ハンドバッグ"},{name: "レザーバッグ"},{name: "トートバッグ"},{name: "エコバッグ"},{name: "リュック/バックパック"},{name: "ショルダーバッグ"},{name: "クラッチバッグ"},{name: "ポーチ/バニティ"},{name: "ウェストバッグ"},{name: "ビジネスバッグ"},{name: "かごバッグ"},{name: "その他"}])
 women_10.children.create([{name: "水着セパレート"},{name: "水着ワンピース"},{name: "水着スポーツ用"},{name: "ビキニ"},{name: "ルームウェア"},{name: "浴衣"},{name: "その他"}])
 
 men_1.children.create([{name: "Tシャツ"},{name: "カットソー"},{name: "シャツ"},{name: "ポロシャツ"},{name: "タンクトップ"},{name: "ニット/セーター"},{name: "パーカー"},{name: "カーディガン"},{name: "スウェット"},{name: "ジャージ"},{name: "ベスト"},{name: "その他"}])
 men_2.children.create([{name: "デニム/ジーンズ"},{name: "ワークパンツ/カーゴパンツ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "ペインターパンツ"},{name: "サルエルパンツ"},{name: "オーバーオール"},{name: "その他"}])
-men_3.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "Gジャン/デニムジャケット"},{name: "レザージャケット"},{name: "ライダースジャケット"},{name: "ミリタリージャケット"},{name: "ナイロンジャケット"},{name: "フライトジャケット"},{name: "スタジャン"},{name: "スカジャン"},{name: "ブルゾン"},{name: "マウンテンパーカー"},{name: "その他"}])
+men_3.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "Gジャン/デニムジャケット"},{name: "レザージャケット"},{name: "ミリタリージャケット"},{name: "ナイロンジャケット"},{name: "マウンテンパーカー"},{name: "その他"}])
 men_4.children.create([{name: "ダウンジャケット"},{name: "ダッフルコート"},{name: "ピーコート"},{name: "ステンカラーコート"},{name: "トレンチコート"},{name: "モッズコート"},{name: "チェスターコート"},{name: "ダウンベスト"},{name: "カバーオール"},{name: "その他"}])
 men_5.children.create([{name: "ジムウェア - トップス"},{name: "ジムウェア - ボトムス"},{name: "スウェット（上）"},{name: "スウェット（下）"},{name: "その他"}])
 men_6.children.create([{name: "スニーカー"},{name: "サンダル"},{name: "ブーツ"},{name: "モカシン"},{name: "ドレス/ビジネス"},{name: "長靴/レインシューズ"},{name: "デッキシューズ"},{name: "その他"}])
-men_7.children.create([{name: "ショルダーバッグ"},{name: "トートバッグ"},{name: "ボストンバッグ"},{name: "リュック/バックパック"},{name: "ウエストポーチ"},{name: "ボディーバッグ"},{name: "ドラムバッグ"},{name: "ビジネスバッグ"},{name: "トラベルバッグ"},{name: "メッセンジャーバッグ"},{name: "エコバッグ"},{name: "その他"}])
+men_7.children.create([{name: "ショルダーバッグ"},{name: "トートバッグ"},{name: "ボストンバッグ"},{name: "リュック/バックパック"},{name: "ウエストポーチ"},{name: "ボディーバッグ"},{name: "ビジネスバッグ"},{name: "メッセンジャーバッグ"},{name: "エコバッグ"},{name: "その他"}])
 men_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{name: "バングル/リストバンド"},{name: "リング"},{name: "ピアス(片耳用)"},{name: "ピアス(両耳用)"},{name: "アンクレット"},{name: "その他"}])
 men_9.children.create([{name: "水着"},{name: "スーツジャケット"},{name: "スーツベスト"},{name: "スラックス"},{name: "セットアップ"},{name: "その他"}])
 unisex_1.children.create([{name: "キャップ"},{name: "ニットキャップ/ビーニー"},{name: "ハット"},{name: "ハンチング/ベレー帽"},{name: "キャップ"},{name: "キャスケット"},{name: "麦わら帽子"},{name: "その他"}])
-
-Categorization.create!([
-  { clothe_id: clothe1.id, category_id: women_2.children.first.id },
-  { clothe_id: clothe2.id, category_id: women_5.children.first.id },
-  { clothe_id: clothe2.id, category_id: men_3.children.first.id },
-  { clothe_id: clothe3.id, category_id: women_5.children.first.id },
-  { clothe_id: clothe4.id, category_id: women_2.children.first.id },
-  { clothe_id: clothe5.id, category_id: women_1.children.first.id },
-  { clothe_id: clothe5.id, category_id: men_1.children.first.id }
-])
