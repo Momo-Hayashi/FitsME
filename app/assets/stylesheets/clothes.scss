@@ -38,7 +38,7 @@ li {
 article {
   padding: 10px 20px 100px 20px;
   margin: auto;
-  width: 1200px;
+  max-width: 1250px;
 }
 
 .top_menu {
@@ -172,6 +172,10 @@ td{
   text-overflow: ellipsis;
 }
 
+.card-text a {
+  color: #55423d;
+}
+
 .card-body {
   padding: 10px 0;
 }
@@ -248,4 +252,12 @@ td{
 
 .text_right  th{
   text-align: right;
+}
+
+.pagination {
+  justify-content: center;
+}  
+
+.pagination>li>a {
+  color: #55423d;
 }

@@ -6,6 +6,7 @@ class ClothesController < ApplicationController
     @clothes = Clothe.all.order(updated_at: :desc)
     @q = Clothe.ransack(params[:q])
     @clothes = @q.result(distinct: true).order(updated_at: :desc)
+    @clothes = @clothes.page(params[:page]).per(16)
   end
 
   def new
