@@ -253,3 +253,11 @@ td{
 .text_right  th{
   text-align: right;
 }
+
+.pagination {
+  justify-content: center;
+}  
+
+.pagination>li>a {
+  color: #55423d;
+}
