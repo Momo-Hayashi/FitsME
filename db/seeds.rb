@@ -1,72 +1,123 @@
-user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 700, height: 160.8, weight: 50.3, waist: 60.3, bust: 77.7, hip: 90.5)
-user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 700, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
-user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 58, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
-user4 = User.create!(username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 23, height: 180.8, weight: 71.3)
-user5 = User.create!(username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 500, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5)
+# user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 700, height: 160.8, weight: 50.3, waist: 60.3, bust: 80.7, hip: 90.5)
+# user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 700, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
+# user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 58, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
+# user4 = User.create!(username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 23, height: 180.8, weight: 71.3)
+# user5 = User.create!(username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 500, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5)
+#
+#
+# address1 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
+# address2 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '6780064', prefecture_code: 04, address_city: '相生市', address_street: '青葉台1-2-3', address_building: 'ビル101', phone_number: '22222222222')
+# address3 = Address.create!(user_id: user2.id, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333')
+# address4 = Address.create!(user_id: user3.id, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444')
+# address5 = Address.create!(user_id: user4.id, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555')
+#
+#
+# retailer1 = Retailer.create!(
+#   name: 'afendssss',
+#   description: '７０年代オーストラリアのヒッピーカルチャーの聖地として有名なバイロンベイにて、その第二世代として生まれ育ったDeclan Wise（デクラン・ワイズ）、Jono Salfield（ジョノ・サーフィールド）を中心に２００６年に設立されたオルタネートファッション＆ライフスタイルブランド。Punk-Rock をルーツとしたバイロンベイのモダンデイカルチャーとフリーリビングアティテュードをテーマに、自宅のバックヤードにてハンドスクリーンプリンティングを施したオリジナルアートTシャツの販売からスタートした後、またたくまにオーストラリアで成功をおさめ、現在世界１５カ国に広がるブランドへと成長。
+#   Question Everything（全てのことに疑問を持つこと）を信条とし、そのあくなき探究心と創造性により、アート、ミュージック、サーフ、ストリートと共にある彼らの日常のライフスタイルをテキスタイルに落とし込み、Afends way of lifeとしてバイロンベイより提案している。',
+#   website_url: 'https://afends.com/',
+#   phone_number: '1234567890',
+#   address: '東京都渋谷区1-2-3',
+#   email: 'afends@test.jp',
+#   password: 'afends@test.jp')
+#
+# retailer2 = Retailer.create!(
+#   name: 'Ted Bakerrrr',
+#   description: 'Ted Baker Londonの始まりは、イギリスのグラスゴーの小さなシャツ専門店。現在はグローバルライフスタイルブランドとして世界中に500以上の店舗を展開。「No Ordinary Designer Label」として、Ted Bakerのデザインはブリティッシュユーモアを取り入れたクオリティの高いデザインが魅力的なブランドです。',
+#   website_url: 'https://tedbaker.jp/',
+#   phone_number: '1234567890',
+#   address: '東京都渋谷区1-2-3',
+#   email: 'tedbaker@test.jp',
+#   password: 'tedbaker@test.jp')
+#
+# retailer3 = Retailer.create!(
+#   name: 'Stella McCartneyyyy',
+#   description: 'スポーツとファッションのどちらも犠牲にできない欲張りな女性のために、adidasのスポーツテクノロジーとステラ・マッカートニーのデザインが融合し、最高のスポーツパフォーマンスと美しさを引き出すハイエンドスポーツウエア　adidas by Stella McCartney',
+#   website_url: 'https://www.stellamccartney.com/jp/ja/',
+#   phone_number: '1234567890',
+#   address: '東京都渋谷区1-2-3',
+#   email: 'stella@test.jp',
+#   password: 'stella@test.jp')
+#
+# retailer4 = Retailer.create!(
+#   name: 'Maison Kitsuneeee',
+#   description: '2002年にGildas Loaëc （ジルダ・ロアエック）とMasaya Kuroki （黒木理也）のふたりにより設立。
+#   ファッションブランドの「Maison Kitsuné（メゾン キツネ）」、ミュージックレーベルの「Kitsuné Musique（キツネ ミュージック）」、カフェの「Café Kitsuné（カフェ キツネ）」を通じ、インスピレーションあふれるユニークなアール・ド・ヴィーヴル
+#   （フランス語で「暮らしの芸術」の意）を発信しています。ブランド設立から19年間、パリと東京を拠点とする多面的なブランドは一貫して成長し続け、グローバルなインフルーエンスパワーを自然と高めていき、世界中に熱心なファンを増やしています。',
+#   website_url: 'https://maisonkitsune.com/jp/',
+#   phone_number: '1234567890',
+#   address: '東京都渋谷区1-2-3',
+#   email: 'maisonkitune@test.jp',
+#   password: 'maisonkitune@test.jp')
+#
+# retailer5 = Retailer.create!(
+#   name: 'Joueteeee',
+#   description: 'スペシャルなシチュエーションだけでなく、いつもお洒落を楽しみたい。流行とともに歳を重ねてきたファッションに敏感な大人の女性に向けてそれぞれの個性をより輝かせるジュエリーを発信します。',
+#   website_url: 'https://www.jouete.com/',
+#   phone_number: '1234567890',
+#   address: '東京都渋谷区1-2-3',
+#   email: 'jouete@test.jp',
+#   password: 'jouete@test.jp')
+#
+#
+# retailer1.logo.attach(io: File.open("./db/images/afends.png"), filename: "afends.png")
+# retailer2.logo.attach(io: File.open("./db/images/TedBaker.png"), filename: "TedBaker.png")
+# retailer3.logo.attach(io: File.open("./db/images/stellamccartney.jpeg"), filename: "stellamccartney.jpeg")
+# retailer4.logo.attach(io: File.open("./db/images/maisonkitune.jpeg"), filename: "maisonkitune.jpeg")
+# retailer5.logo.attach(io: File.open("./db/images/jouete.jpeg"), filename: "jouete.jpeg")
 
 
-address1 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
-address2 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '6780064', prefecture_code: 04, address_city: '相生市', address_street: '青葉台1-2-3', address_building: 'ビル101', phone_number: '22222222222')
-address3 = Address.create!(user_id: user2.id, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333')
-address4 = Address.create!(user_id: user3.id, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444')
-address5 = Address.create!(user_id: user4.id, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555')
+women_1 = Category.create(name: "レディース /トップス")
+women_2 = Category.create(name: "レディース /パンツ")
+women_3 = Category.create(name: "レディース /スカート")
+women_4 = Category.create(name: "レディース /ワンピース")
+women_5 = Category.create(name: "レディース /ジャケット")
+women_6 = Category.create(name: "レディース /コート")
+women_7 = Category.create(name: "レディース /靴")
+women_8 = Category.create(name: "レディース /アクセサリー")
+women_9 = Category.create(name: "レディース /バッグ")
+women_10 = Category.create(name: "レディース /その他")
+unisex_1 = Category.create(name: "ユニセックス /帽子")
+
+men_1 = Category.create(name: "メンズ /トップス")
+men_2 = Category.create(name: "メンズ /パンツ")
+men_3 = Category.create(name: "メンズ /ジャケット")
+men_4 = Category.create(name: "メンズ /コート")
+men_5 = Category.create(name: "メンズ /スポーツウェア")
+men_6 = Category.create(name: "メンズ /靴")
+men_7 = Category.create(name: "メンズ /バッグ")
+men_8 = Category.create(name: "メンズ /アクセサリー")
+men_9 = Category.create(name: "メンズ /その他")
+
+women_1.children.create([{name: "Tシャツ"},{name: "クロップドTシャツ"},{name: "カットソー"},{name: "シャツ/ブラウス"},{name: "ポロシャツ"},{name: "キャミソール"},{name: "タンクトップ"},{name: "チューブトップ"},{name: "トレーナー/スウェット"},{name: "パーカー"},{name: "ニット/セーター"},{name: "タートルネック"},{name: "カーディガン"},{name: "その他"}])
+women_2.children.create([{name: "デニム/ジーンズ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "カジュアルパンツ"},{name: "ハーフパンツ"},{name: "クロップドパンツ"},{name: "オーバーオール"},{name: "オールインワン"},{name: "サルエルパンツ"},{name: "ガウチョパンツ"},{name: "その他"}])
+women_3.children.create([{name: "ショート丈スカート"},{name: "ひざ丈スカート"},{name: "ロングスカート"},{name: "キュロット"},{name: "その他"}])
+women_4.children.create([{name: "ショート丈ワンピース"},{name: "ひざ丈ワンピース"},{name: "ロングワンピース"},{name: "ジャンプスーツ /セットアップ"},{name: "パーティ用ドレス"},{name: "柄ドレス"},{name: "その他"}])
+women_5.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "デニムジャケット"},{name: "レザージャケット"},{name: "MA-1"},{name: "ミリタリージャケット"},{name: "ダウンベスト"},{name: "ジャンパー/ブルゾン"},{name: "その他"}])
+women_6.children.create([{name: "ダウンジャケット"},{name: "ロングコート"},{name: "トレンチコート"},{name: "ダッフルコート"},{name: "ピーコート"},{name: "チェスターコート"},{name: "モッズコート"},{name: "毛皮/ファーコート"},{name: "スプリングコート"},{name: "その他"}])
+women_7.children.create([{name: "ハイヒール/パンプス"},{name: "ブーツ"},{name: "サンダル"},{name: "スニーカー"},{name: "ミュール"},{name: "モカシン"},{name: "ローファー/革靴"},{name: "フラットシューズ/バレエシューズ"},{name: "長靴/レインシューズ"},{name: "その他"}])
+women_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{name: "バングル/リストバンド"},{name: "リング"},{name: "ピアス"},{name: "イヤリング"},{name: "アンクレット"},{name: "ブローチ/コサージュ"},{name: "チャーム"},{name: "その他"}])
+women_9.children.create([{name: "ハンドバッグ"},{name: "レザーバッグ"},{name: "トートバッグ"},{name: "エコバッグ"},{name: "リュック/バックパック"},{name: "ショルダーバッグ"},{name: "クラッチバッグ"},{name: "ポーチ/バニティ"},{name: "ウェストバッグ"},{name: "ビジネスバッグ"},{name: "かごバッグ"},{name: "その他"}])
+women_10.children.create([{name: "水着セパレート"},{name: "水着ワンピース"},{name: "水着スポーツ用"},{name: "ビキニ"},{name: "ルームウェア"},{name: "浴衣"},{name: "その他"}])
+
+men_1.children.create([{name: "Tシャツ"},{name: "カットソー"},{name: "シャツ"},{name: "ポロシャツ"},{name: "タンクトップ"},{name: "ニット/セーター"},{name: "パーカー"},{name: "カーディガン"},{name: "スウェット"},{name: "ジャージ"},{name: "ベスト"},{name: "その他"}])
+men_2.children.create([{name: "デニム/ジーンズ"},{name: "ワークパンツ/カーゴパンツ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "ペインターパンツ"},{name: "サルエルパンツ"},{name: "オーバーオール"},{name: "その他"}])
+men_3.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "Gジャン/デニムジャケット"},{name: "レザージャケット"},{name: "ミリタリージャケット"},{name: "ナイロンジャケット"},{name: "マウンテンパーカー"},{name: "その他"}])
+men_4.children.create([{name: "ダウンジャケット"},{name: "ダッフルコート"},{name: "ピーコート"},{name: "ステンカラーコート"},{name: "トレンチコート"},{name: "モッズコート"},{name: "チェスターコート"},{name: "ダウンベスト"},{name: "カバーオール"},{name: "その他"}])
+men_5.children.create([{name: "ジムウェア - トップス"},{name: "ジムウェア - ボトムス"},{name: "スウェット（上）"},{name: "スウェット（下）"},{name: "その他"}])
+men_6.children.create([{name: "スニーカー"},{name: "サンダル"},{name: "ブーツ"},{name: "モカシン"},{name: "ドレス/ビジネス"},{name: "長靴/レインシューズ"},{name: "デッキシューズ"},{name: "その他"}])
+men_7.children.create([{name: "ショルダーバッグ"},{name: "トートバッグ"},{name: "ボストンバッグ"},{name: "リュック/バックパック"},{name: "ウエストポーチ"},{name: "ボディーバッグ"},{name: "ビジネスバッグ"},{name: "メッセンジャーバッグ"},{name: "エコバッグ"},{name: "その他"}])
+men_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{name: "バングル/リストバンド"},{name: "リング"},{name: "ピアス(片耳用)"},{name: "ピアス(両耳用)"},{name: "アンクレット"},{name: "その他"}])
+men_9.children.create([{name: "水着"},{name: "スーツジャケット"},{name: "スーツベスト"},{name: "スラックス"},{name: "セットアップ"},{name: "その他"}])
+unisex_1.children.create([{name: "キャップ"},{name: "ニットキャップ/ビーニー"},{name: "ハット"},{name: "ハンチング/ベレー帽"},{name: "キャップ"},{name: "キャスケット"},{name: "麦わら帽子"},{name: "その他"}])
 
 
-retailer1 = Retailer.create!(
-  name: 'afendssss',
-  description: '７０年代オーストラリアのヒッピーカルチャーの聖地として有名なバイロンベイにて、その第二世代として生まれ育ったDeclan Wise（デクラン・ワイズ）、Jono Salfield（ジョノ・サーフィールド）を中心に２００６年に設立されたオルタネートファッション＆ライフスタイルブランド。Punk-Rock をルーツとしたバイロンベイのモダンデイカルチャーとフリーリビングアティテュードをテーマに、自宅のバックヤードにてハンドスクリーンプリンティングを施したオリジナルアートTシャツの販売からスタートした後、またたくまにオーストラリアで成功をおさめ、現在世界１５カ国に広がるブランドへと成長。
-  Question Everything（全てのことに疑問を持つこと）を信条とし、そのあくなき探究心と創造性により、アート、ミュージック、サーフ、ストリートと共にある彼らの日常のライフスタイルをテキスタイルに落とし込み、Afends way of lifeとしてバイロンベイより提案している。',
-  website_url: 'https://afends.com/',
-  phone_number: '1234567890',
-  address: '東京都渋谷区1-2-3',
-  email: 'afends@test.jp',
-  password: 'afends@test.jp')
-
-retailer2 = Retailer.create!(
-  name: 'Ted Bakerrrr',
-  description: 'Ted Baker Londonの始まりは、イギリスのグラスゴーの小さなシャツ専門店。現在はグローバルライフスタイルブランドとして世界中に500以上の店舗を展開。「No Ordinary Designer Label」として、Ted Bakerのデザインはブリティッシュユーモアを取り入れたクオリティの高いデザインが魅力的なブランドです。',
-  website_url: 'https://tedbaker.jp/',
-  phone_number: '1234567890',
-  address: '東京都渋谷区1-2-3',
-  email: 'tedbaker@test.jp',
-  password: 'tedbaker@test.jp')
-
-retailer3 = Retailer.create!(
-  name: 'Stella McCartneyyyy',
-  description: 'スポーツとファッションのどちらも犠牲にできない欲張りな女性のために、adidasのスポーツテクノロジーとステラ・マッカートニーのデザインが融合し、最高のスポーツパフォーマンスと美しさを引き出すハイエンドスポーツウエア　adidas by Stella McCartney',
-  website_url: 'https://www.stellamccartney.com/jp/ja/',
-  phone_number: '1234567890',
-  address: '東京都渋谷区1-2-3',
-  email: 'stella@test.jp',
-  password: 'stella@test.jp')
-
-retailer4 = Retailer.create!(
-  name: 'Maison Kitsuneeee',
-  description: '2002年にGildas Loaëc （ジルダ・ロアエック）とMasaya Kuroki （黒木理也）のふたりにより設立。
-  ファッションブランドの「Maison Kitsuné（メゾン キツネ）」、ミュージックレーベルの「Kitsuné Musique（キツネ ミュージック）」、カフェの「Café Kitsuné（カフェ キツネ）」を通じ、インスピレーションあふれるユニークなアール・ド・ヴィーヴル
-  （フランス語で「暮らしの芸術」の意）を発信しています。ブランド設立から19年間、パリと東京を拠点とする多面的なブランドは一貫して成長し続け、グローバルなインフルーエンスパワーを自然と高めていき、世界中に熱心なファンを増やしています。',
-  website_url: 'https://maisonkitsune.com/jp/',
-  phone_number: '1234567890',
-  address: '東京都渋谷区1-2-3',
-  email: 'maisonkitune@test.jp',
-  password: 'maisonkitune@test.jp')
-
-retailer5 = Retailer.create!(
-  name: 'Joueteeee',
-  description: 'スペシャルなシチュエーションだけでなく、いつもお洒落を楽しみたい。流行とともに歳を重ねてきたファッションに敏感な大人の女性に向けてそれぞれの個性をより輝かせるジュエリーを発信します。',
-  website_url: 'https://www.jouete.com/',
-  phone_number: '1234567890',
-  address: '東京都渋谷区1-2-3',
-  email: 'jouete@test.jp',
-  password: 'jouete@test.jp')
-
-
-retailer1.logo.attach(io: File.open("./db/images/afends.png"), filename: "afends.png")
-retailer2.logo.attach(io: File.open("./db/images/TedBaker.png"), filename: "TedBaker.png")
-retailer3.logo.attach(io: File.open("./db/images/stellamccartney.jpeg"), filename: "stellamccartney.jpeg")
-retailer4.logo.attach(io: File.open("./db/images/maisonkitune.jpeg"), filename: "maisonkitune.jpeg")
-retailer5.logo.attach(io: File.open("./db/images/jouete.jpeg"), filename: "jouete.jpeg")
-
+retailer1 = Retailer.find(1)
+retailer2 = Retailer.find(2)
+retailer3 = Retailer.find(3)
+retailer4 = Retailer.find(4)
+retailer5 = Retailer.find(5)
 
 clothe15 = Clothe.new(
   retailer_id: retailer5.id,
@@ -107,7 +158,7 @@ clothe16 = Clothe.new(
   price: 15500,
   stocks_attributes: [ { size: 2, color: 4, quantity: 50 },
                     { size: 3, color: 4, quantity: 50 }, ],
-  category_ids: [79]
+  category_ids: [75]
 )
 clothe16.images.attach(io: File.open( "./db/images/review2.jpg"), filename: "review2.jpg")
 clothe16.save!
@@ -131,7 +182,7 @@ clothe6 = Clothe.new(
                       {size: 2, color: 13, quantity: 20 },
                       {size: 3, color: 13, quantity: 50 },
                       {size: 4, color: 13, quantity: 10 }, ],
-  category_ids: [40]
+  category_ids: [36]
 )
 clothe6.images.attach(io: File.open( "./db/images/clothes6.jpg"), filename: "clothes6.jpg" )
 clothe6.images.attach(io: File.open("./db/images/clothes_6.jpg"), filename: "clothes_6.jpg" )
@@ -157,7 +208,7 @@ clothe7 = Clothe.new(
   price: 7000,
   stocks_attributes: [ {size: 2, color: 6, quantity: 20 },
                       {size: 3, color: 6, quantity: 10 }, ],
-  category_ids: [46, 57]
+  category_ids: [43, 55]
 )
 clothe7.images.attach(io: File.open( "./db/images/clothes7.jpg"), filename: "clothes7.jpg")
 clothe7.images.attach(io: File.open("./db/images/clothes_7.jpg"), filename: "clothes_7.jpg")
@@ -177,7 +228,7 @@ clothe8 = Clothe.new(
         L（L） 72 100 101 32 72.5',
   price: 7500,
   stocks_attributes: [size: 0, color: 6, quantity: 50],
-  category_ids: [57]
+  category_ids: [54, 57]
 )
 clothe8.images.attach(io: File.open( "./db/images/clothes8.jpg"), filename: "clothes8.jpg")
 clothe8.images.attach(io: File.open("./db/images/clothes_8.jpg"), filename: "clothes_8.jpg")
@@ -220,7 +271,7 @@ clothe10 = Clothe.new(
   price: 6800,
   stocks_attributes: [ {size: 2, color: 0, quantity: 20 },
                       {size: 3, color: 0, quantity: 10 }, ],
-  category_ids: [57]
+  category_ids: [54]
 )
 clothe10.images.attach(io: File.open( "./db/images/clothes10.jpg"), filename: "clothes10.jpg")
 clothe10.images.attach(io: File.open("./db/images/clothes_10.jpg"), filename: "clothes_10.jpg")
@@ -241,7 +292,7 @@ clothe11 = Clothe.new(
   price: 14400,
   stocks_attributes: [ {size: 2, color: 15, quantity: 20 },
                       {size: 3, color: 15, quantity: 10 }, ],
-  category_ids: [57]
+  category_ids: [55, 52, 57]
 )
 clothe11.images.attach(io: File.open( "./db/images/clothes11.jpg"), filename: "clothes11jpg")
 clothe11.images.attach(io: File.open("./db/images/clothes_11.jpg"), filename: "clothes_11.jpg")
@@ -265,7 +316,7 @@ clothe12 = Clothe.new(
         20  18  6    20  約480',
   price: 15000,
   stocks_attributes: [size: 0, color: 15, quantity: 20],
-  category_ids: [102]
+  category_ids: [98]
 )
 clothe12.images.attach(io: File.open( "./db/images/clothes12.jpg"), filename: "clothes12jpg")
 clothe12.images.attach(io: File.open("./db/images/clothes_12.jpg"), filename: "clothes_12.jpg")
@@ -298,7 +349,7 @@ clothe13 = Clothe.new(
         M, L： 51   42   68   59',
   price: 15000,
   stocks_attributes: [size: 0, color: 15, quantity: 50],
-  category_ids: [61]
+  category_ids: [59]
 )
 clothe13.images.attach(io: File.open( "./db/images/clothes13.jpg"), filename: "clothes13.jpg")
 clothe13.save!
@@ -319,7 +370,7 @@ clothe14 = Clothe.new(
   stocks_attributes: [ { size: 2, color: 0, quantity: 50 },
                     { size: 3, color: 0, quantity: 50 },
                     { size: 4, color: 0, quantity: 50 }, ],
-  category_ids: [42, 138]
+  category_ids: [37, 132]
 )
 clothe14.images.attach(io: File.open( "./db/images/clothes14.jpg"), filename: "clothes14.jpg")
 clothe14.save!
@@ -340,7 +391,7 @@ clothe17 = Clothe.new(
         M, L： 51   42   68   59',
   price: 11100,
   stocks_attributes: [size: 0, color: 12, quantity: 50],
-  category_ids: [57]
+  category_ids: [57, 54]
 )
 clothe17.images.attach(io: File.open( "./db/images/clothes17.jpg"), filename: "clothes17.jpg")
 clothe17.images.attach(io: File.open( "./db/images/clothes_17.jpg"), filename: "clothes_17.jpg")
@@ -362,7 +413,7 @@ clothe18 = Clothe.new(
         M, L： 51   42   68   59',
   price: 11100,
   stocks_attributes: [size: 0, color: 10, quantity: 50],
-  category_ids: [155]
+  category_ids: [144]
 )
 clothe18.images.attach(io: File.open( "./db/images/clothes18.jpg"), filename: "clothes18.jpg")
 clothe18.save!
@@ -383,7 +434,7 @@ clothe19 = Clothe.new(
         M, L： 51   42   68   59',
   price: 11100,
   stocks_attributes: [size: 0, color: 1, quantity: 110],
-  category_ids: [155]
+  category_ids: [141]
 )
 clothe19.images.attach(io: File.open( "./db/images/clothes19.jpg"), filename: "clothes19.jpg")
 clothe19.images.attach(io: File.open( "./db/images/clothes_19.jpg"), filename: "clothes_19.jpg")
@@ -409,7 +460,7 @@ clothe1 = Clothe.new(
   stocks_attributes: [ { size: 2, color: 8, quantity: 50 },
                     { size: 3, color: 8, quantity: 50 },
                     { size: 4, color: 8, quantity: 50}, ],
-  category_ids: [42]
+  category_ids: [36]
 )
 clothe1.images.attach(io: File.open( "./db/images/clothes1.jpg"), filename: "clothes1.jpg" )
 clothe1.images.attach(io: File.open("./db/images/clothes_1.jpg"), filename: "clothes_1.jpg" )
@@ -434,7 +485,7 @@ clothe2 = Clothe.new(
                     { size: 3, color: 6, quantity: 50 },
                     { size: 2, color: 1, quantity: 50 },
                     { size: 3, color: 1, quantity: 50 }, ],
-  category_ids: [61, 144]
+  category_ids: [62, 141]
 )
 clothe2.images.attach(io: File.open( "./db/images/clothes2.jpg"), filename: "clothes2.jpg" )
 clothe2.images.attach(io: File.open("./db/images/clothes_2.jpg"), filename: "clothes_2.jpg" )
@@ -471,7 +522,7 @@ clothe3 = Clothe.new(
   stocks_attributes: [ { size: 2, color: 0, quantity: 50 },
                     { size: 3, color: 0, quantity: 50 },
                     { size: 4, color: 0, quantity: 50 }, ],
-  category_ids: [61]
+  category_ids: [59, 55]
 )
 clothe3.images.attach(io: File.open( "./db/images/clothes3.jpg"), filename: "clothes3.jpg" )
 clothe3.images.attach(io: File.open("./db/images/clothes_3.jpg"), filename: "clothes_3.jpg" )
@@ -492,13 +543,13 @@ clothe4 = Clothe.new(
   price: 10000,
   stocks_attributes: [ { size: 3, color: 16, quantity: 50 },
                     { size: 4, color: 16, quantity: 50 }, ],
-  category_ids: [38]
+  category_ids: [35]
 )
 clothe4.images.attach(io: File.open( "./db/images/clothes4.jpg"), filename: "clothes4.jpg" )
 clothe4.images.attach(io: File.open("./db/images/clothes_4.jpg"), filename: "clothes_4.jpg" )
 clothe4.save!
 
-clothe5 = Clothe.create!(
+clothe5 = Clothe.new(
   retailer_id: retailer4.id,
   name: 'ウォームアップカレッジTEE',
   description: '・WWG定番のビッグシルエット。身幅が広い為、風通りも良く、快適な着心地。
@@ -509,19 +560,25 @@ clothe5 = Clothe.create!(
         M, L： 51   42   68   59',
   price: 5000,
   stocks_attributes: [size: 0, color: 2, quantity: 50],
-  category_ids: [21,123]
+  category_ids: [21,117]
 )
 clothe5.images.attach(io: File.open( "./db/images/clothes5.jpg"), filename: "clothes5.jpg" )
 clothe5.images.attach(io: File.open("./db/images/clothes_5.jpg"), filename: "clothes_5.jpg" )
 clothe5.save!
 
+user1 = User.find(1)
+user2 = User.find(2)
+user3 = User.find(3)
+user4 = User.find(4)
+user5 = User.find(5)
+
 
 Cart.create!([
-  { user_id: user1.id, stock_id: stock3.id },
-  { user_id: user1.id, stock_id: stock5.id },
-  { user_id: user2.id, stock_id: stock1.id },
-  { user_id: user3.id, stock_id: stock2.id },
-  { user_id: user4.id, stock_id: stock4.id }
+  { user_id: user1.id, stock_id: clothe3.stocks.first.id },
+  { user_id: user1.id, stock_id: clothe5.stocks.first.id },
+  { user_id: user2.id, stock_id: clothe1.stocks.first.id },
+  { user_id: user3.id, stock_id: clothe2.stocks.first.id },
+  { user_id: user4.id, stock_id: clothe4.stocks.first.id }
 ])
 
 
@@ -533,19 +590,19 @@ order5 = Order.create!(user_id: user5.id, price: 5000, used_points: 0, paid_pric
 
 
 OrderStock.create!([
-  { order_id: order1.id, stock_id: stock13.id },
-  { order_id: order2.id, stock_id: stock4.id },
-  { order_id: order3.id, stock_id: stock8.id },
-  { order_id: order4.id, stock_id: stock8.id },
-  { order_id: order5.id, stock_id: stock2.id },
-  { order_id: order1.id, stock_id: stock3.id },
-  { order_id: order3.id, stock_id: stock5.id }
+  { order_id: order1.id, stock_id: clothe5.stocks.first.id },
+  { order_id: order1.id, stock_id: clothe4.stocks.first.id },
+  { order_id: order2.id, stock_id: clothe2.stocks.first.id },
+  { order_id: order3.id, stock_id: clothe2.stocks.second.id },
+  { order_id: order3.id, stock_id: clothe17.stocks.first.id },
+  { order_id: order4.id, stock_id: clothe3.stocks.first.id },
+  { order_id: order5.id, stock_id: clothe1.stocks.second.id }
 ])
 
 review1 = Review.create!(
   user_id: user1.id,
   clothe_id: clothe5.id,
-  stock_no: stock13.id,
+  stock_no: clothe5.stocks.first.id,
   rate: 5.0,
   content: 'クロップT欲しくて色んな所見たけどこれは丈感ちょうど良かった！！長すぎず短すぎず。袖もちょうどいいし、フィット感ばっちり！！！！'
 )
@@ -553,7 +610,7 @@ review1 = Review.create!(
 review2 = Review.create!(
  user_id: user1.id,
   clothe_id: clothe2.id,
-  stock_no: stock4.id,
+  stock_no: clothe2.stocks.first.id,
   rate: 5.0,
   content: 'とりま可愛すぎる！一枚あれば大活躍！！！！素材がしっかりしてるので、結構寒くなっても着れそう！！'
 )
@@ -561,7 +618,7 @@ review2 = Review.create!(
 review3 = Review.create!(
   user_id: user2.id,
   clothe_id: clothe2.id,
-  stock_no: stock5.id,
+  stock_no: clothe2.stocks.second.id,
   rate: 4.5,
   content: '紐が長すぎる！爆笑爆笑爆笑 でもめちゃくちゃデザインは可愛いしいいと思う！162センチの私がMサイズを着てみて、丈がすごく短く感じました！'
 )
@@ -569,7 +626,7 @@ review3 = Review.create!(
 review4 = Review.create!(
   user_id: user3.id,
   clothe_id: clothe3.id,
-  stock_no: stock8.id,
+  stock_no: clothe3.stocks.first.id,
   rate: 5.0,
   content: '少し大きめなのかな？と思ったけど肩幅も着丈もピッタリ！！これは可愛い！！低身長さんにもオススメです！'
 
@@ -578,7 +635,7 @@ review4 = Review.create!(
 review5 = Review.create!(
   user_id: user5.id,
   clothe_id: clothe1.id,
-  stock_no: stock2.id,
+  stock_no: clothe1.stocks.second.id,
   rate: 5.0,
   content: '骨格ウェーブです。今までウエストに合わせて買うと丈足りないとかザラでほぼ諦めてたけどこれウエストぴったりだしへそまで隠れるぐらいだから脚長効果抜群。フレアすぎて逆に短足に見える人だったけど写真より全然フレアじゃないから是非買って欲しい。ウエストはサイズ表より小さめかも。ベルト無しでも全然履ける！うれしい！骨格ウェーブ皆これ着て脚長くなろうな( ◠‿◠ )'
 )
@@ -604,47 +661,3 @@ Favorite.create!([
   { user_id: user4.id, clothe_id: clothe4.id },
   { user_id: user5.id, clothe_id: clothe4.id }
 ])
-
-women_1 = Category.create(name: "レディース /トップス")
-women_2 = Category.create(name: "レディース /パンツ")
-women_3 = Category.create(name: "レディース /スカート")
-women_4 = Category.create(name: "レディース /ワンピース")
-women_5 = Category.create(name: "レディース /ジャケット")
-women_6 = Category.create(name: "レディース /コート")
-women_7 = Category.create(name: "レディース /靴")
-women_8 = Category.create(name: "レディース /アクセサリー")
-women_9 = Category.create(name: "レディース /バッグ")
-women_10 = Category.create(name: "レディース /その他")
-unisex_1 = Category.create(name: "ユニセックス /帽子")
-
-men_1 = Category.create(name: "メンズ /トップス")
-men_2 = Category.create(name: "メンズ /パンツ")
-men_3 = Category.create(name: "メンズ /ジャケット")
-men_4 = Category.create(name: "メンズ /コート")
-men_5 = Category.create(name: "メンズ /スポーツウェア")
-men_6 = Category.create(name: "メンズ /靴")
-men_7 = Category.create(name: "メンズ /バッグ")
-men_8 = Category.create(name: "メンズ /アクセサリー")
-men_9 = Category.create(name: "メンズ /その他")
-
-women_1.children.create([{name: "Tシャツ"},{name: "クロップドTシャツ"},{name: "カットソー"},{name: "シャツ/ブラウス"},{name: "ポロシャツ"},{name: "キャミソール"},{name: "タンクトップ"},{name: "チューブトップ"},{name: "トレーナー/スウェット"},{name: "パーカー"},{name: "ニット/セーター"},{name: "タートルネック"},{name: "カーディガン"},{name: "その他"}])
-women_2.children.create([{name: "デニム/ジーンズ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "カジュアルパンツ"},{name: "ハーフパンツ"},{name: "クロップドパンツ"},{name: "オーバーオール"},{name: "オールインワン"},{name: "サルエルパンツ"},{name: "ガウチョパンツ"},{name: "その他"}])
-women_3.children.create([{name: "ショート丈スカート"},{name: "ひざ丈スカート"},{name: "ロングスカート"},{name: "キュロット"},{name: "その他"}])
-women_4.children.create([{name: "ショート丈ワンピース"},{name: "ひざ丈ワンピース"},{name: "ロングワンピース"},{name: "ジャンプスーツ"},{name: "パーティ用ドレス"},{name: "柄ドレス"},{name: "その他"}])
-women_5.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "デニムジャケット"},{name: "レザージャケット"},{name: "MA-1"},{name: "ミリタリージャケット"},{name: "ダウンベスト"},{name: "ジャンパー/ブルゾン"},{name: "その他"}])
-women_6.children.create([{name: "ダウンジャケット"},{name: "ロングコート"},{name: "トレンチコート"},{name: "ダッフルコート"},{name: "ピーコート"},{name: "チェスターコート"},{name: "モッズコート"},{name: "毛皮/ファーコート"},{name: "スプリングコート"},{name: "その他"}])
-women_7.children.create([{name: "ハイヒール/パンプス"},{name: "ブーツ"},{name: "サンダル"},{name: "スニーカー"},{name: "ミュール"},{name: "モカシン"},{name: "ローファー/革靴"},{name: "フラットシューズ/バレエシューズ"},{name: "長靴/レインシューズ"},{name: "その他"}])
-women_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{name: "バングル/リストバンド"},{name: "リング"},{name: "ピアス"},{name: "イヤリング"},{name: "アンクレット"},{name: "ブローチ/コサージュ"},{name: "チャーム"},{name: "その他"}])
-women_9.children.create([{name: "ハンドバッグ"},{name: "レザーバッグ"},{name: "トートバッグ"},{name: "エコバッグ"},{name: "リュック/バックパック"},{name: "ショルダーバッグ"},{name: "クラッチバッグ"},{name: "ポーチ/バニティ"},{name: "ウェストバッグ"},{name: "ビジネスバッグ"},{name: "かごバッグ"},{name: "その他"}])
-women_10.children.create([{name: "水着セパレート"},{name: "水着ワンピース"},{name: "水着スポーツ用"},{name: "ビキニ"},{name: "ルームウェア"},{name: "浴衣"},{name: "その他"}])
-
-men_1.children.create([{name: "Tシャツ"},{name: "カットソー"},{name: "シャツ"},{name: "ポロシャツ"},{name: "タンクトップ"},{name: "ニット/セーター"},{name: "パーカー"},{name: "カーディガン"},{name: "スウェット"},{name: "ジャージ"},{name: "ベスト"},{name: "その他"}])
-men_2.children.create([{name: "デニム/ジーンズ"},{name: "ワークパンツ/カーゴパンツ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "ペインターパンツ"},{name: "サルエルパンツ"},{name: "オーバーオール"},{name: "その他"}])
-men_3.children.create([{name: "テーラードジャケット"},{name: "ノーカラージャケット"},{name: "Gジャン/デニムジャケット"},{name: "レザージャケット"},{name: "ミリタリージャケット"},{name: "ナイロンジャケット"},{name: "マウンテンパーカー"},{name: "その他"}])
-men_4.children.create([{name: "ダウンジャケット"},{name: "ダッフルコート"},{name: "ピーコート"},{name: "ステンカラーコート"},{name: "トレンチコート"},{name: "モッズコート"},{name: "チェスターコート"},{name: "ダウンベスト"},{name: "カバーオール"},{name: "その他"}])
-men_5.children.create([{name: "ジムウェア - トップス"},{name: "ジムウェア - ボトムス"},{name: "スウェット（上）"},{name: "スウェット（下）"},{name: "その他"}])
-men_6.children.create([{name: "スニーカー"},{name: "サンダル"},{name: "ブーツ"},{name: "モカシン"},{name: "ドレス/ビジネス"},{name: "長靴/レインシューズ"},{name: "デッキシューズ"},{name: "その他"}])
-men_7.children.create([{name: "ショルダーバッグ"},{name: "トートバッグ"},{name: "ボストンバッグ"},{name: "リュック/バックパック"},{name: "ウエストポーチ"},{name: "ボディーバッグ"},{name: "ビジネスバッグ"},{name: "メッセンジャーバッグ"},{name: "エコバッグ"},{name: "その他"}])
-men_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{name: "バングル/リストバンド"},{name: "リング"},{name: "ピアス(片耳用)"},{name: "ピアス(両耳用)"},{name: "アンクレット"},{name: "その他"}])
-men_9.children.create([{name: "水着"},{name: "スーツジャケット"},{name: "スーツベスト"},{name: "スラックス"},{name: "セットアップ"},{name: "その他"}])
-unisex_1.children.create([{name: "キャップ"},{name: "ニットキャップ/ビーニー"},{name: "ハット"},{name: "ハンチング/ベレー帽"},{name: "キャップ"},{name: "キャスケット"},{name: "麦わら帽子"},{name: "その他"}])
