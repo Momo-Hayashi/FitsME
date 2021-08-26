@@ -11,7 +11,7 @@ header {
 }
 
 body {
-  color: #55423d;
+  color: #5e4c47;
   // min-width: 1200px;
   margin: auto;
   position: relative;
@@ -20,6 +20,7 @@ body {
   position: relative;
   text-align: center;
   font-family: 'Noto Serif JP', serif;
+  background-image: image-url("stone.png");
 }
 
 table {
@@ -143,7 +144,7 @@ td{
 
 .card img {
   width: 100%;
- cursor: pointer;
+  cursor: pointer;
 }
 
 .card:hover{
@@ -153,12 +154,13 @@ td{
 }
 
 .category_bar {
-  padding: 0;
+  padding: 10px;
 }
 
 .each_category {
   padding: 6px 0;
   max-width: 190px;
+  border: 1px solid;
 }
 
 .card-img-top {
@@ -223,7 +225,7 @@ td{
 }
 
 .reviews_detail {
-  background-color: #E8E3E3;
+  background-color: #F4F5F7;
   border-radius: 20px;
 }
 
@@ -236,7 +238,7 @@ td{
 }
 
 .order_index {
-  background-color: #FFFFFF;
+  background-color: #E8E3E3;
   border-radius: 20px;
   padding: 20px 50px;
   border-collapse: separate;
@@ -256,8 +258,12 @@ td{
 
 .pagination {
   justify-content: center;
-}  
+}
 
 .pagination>li>a {
   color: #55423d;
+}
+
+.dropdown-item label{
+  margin-bottom: 0;
 }

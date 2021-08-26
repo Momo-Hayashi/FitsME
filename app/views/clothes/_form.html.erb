@@ -13,7 +13,9 @@
         <% end %>
       </ul>
     </div>
-  <% end %><br>
+  <% end %>
+
+  <p>**全項目入力必須となります。</p><br>
 
   <div class="actions">
     <div class="form-group row">
@@ -40,19 +42,21 @@
     <div class="form-group row">
       <%= form.label :Price, class: "col-sm-2 offset-md-1 col-form-label" %><br>
       <%= form.number_field :price, class: "col-sm-5 form-control", placeholder: "例）10000" %>円（税込）
-    </div><br>
+    </div><br><br>
 
-    <div class="category_fields row">
-      <% n = 0 %>
+    <h5>Categories</h5><hr>
+    <p>*1~3個ご選択ください</p>
+    <div class="category_fields fields row">
       <% Category.all.order("id ASC").limit(20).each do |category| %>
-        <% n += 1 %>
         <div class="field col-md-3">
           <div class="dropdown">
             <button class="btn btn-info dropdown-toggle category btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= category.name %>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item"><%= form.collection_check_boxes(:category_ids, category.children, :id, :name) %></a>
+            <div class="dropdown-menu category_box" aria-labelledby="dropdownMenuButton">
+              <%= form.collection_check_boxes(:category_ids, category.children, :id, :name) do |b| %>
+                <a class="dropdown-item"><%= b.label { b.check_box + b.text } %></a>
+              <% end %>
             </div>
           </div>
         </div>

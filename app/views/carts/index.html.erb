@@ -1,66 +1,69 @@
-<hr><h3>カート</h3><hr>
-<% if @carts.empty? %>
-  <p>カートに商品を追加すると内容が表示されます:)</p>
-  <%= link_to '商品を追加する', clothes_path, class: "btn btn-info" %><hr>
-<% else %>
-
-  <h3>Items in my cart.</h3><br>
-  <% total_price = 0 %>
-
-  <% @carts.each do |item| %>
-    <%= form_with(model: item, local: true, url: cart_path(item.id) ) do |f| %>
-      <div class="row">
-        <% @clothe = item.stock.clothe %>
-        <div class="col-md-2 offset-md-2">
-          <%= image_tag @clothe.images.first.variant(resize: "150x250") %>
-        </div>
-
-        <div class="col-md-4">
-          <table>
-            <tr>
-              <th class="col-md-4">ブランド名</th>
-              <td class="col-md-8"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">アイテム</th>
-              <td class="col-md-8"><%= link_to @clothe.name, clothe_path(@clothe.id) %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">サイズ</th>
-              <td class="col-md-8"><%= item.stock.size %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">カラー</th>
-              <td class="col-md-8"><%= item.stock.color %></td>
-            </tr>
-            <tr>
-              <th class="col-md-4">金額</th>
-              <td class="col-md-8z"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-md-2">
-          <br><br>
-          <p class ="row"><%= f.label :個数 %>：<%= f.number_field :amount, class:"form-control col-4", min: 0 %>
-          <%= f.submit '更新', class:"btn btn-outline-success" %></p><br>
-          <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete, class:"btn btn-outline-danger" %>
-        </div>
-      </div><hr>
-      <% total_price += @clothe.price*item.amount %>
-    <% end %>
-  <% end %>
-
-  <h5>合計金額：<%= total_price.to_s(:delimited) %> 円（税込み）</h5><br>
-  <% new_points = total_price*0.03 %>
-  <h6>現在保有ポイント：<%= @user.points.to_s(:delimited) %> pt.</h6>
-  <h6>今回獲得予定ポイント：<%= new_points.round %> pt.</h6><br>
-  <h7><small>**既に獲得されているポイントを今回ご利用の場合、<br>
-    合計金額からご利用ポイント分を引いた金額の3%が獲得ポイントとなります。</small></h7><br><hr>
-
-  <%= link_to '他の商品を追加する', clothes_path, class: "btn btn-info" %> |
-  <% if current_user.addresses.present? %>
-    <%= link_to '購入へすすむ', cart_confirm_path(@carts.ids), class: "btn btn-success" %>
+<br><div class="white_box">
+  <hr><h3>カート</h3><hr>
+  <% if @carts.empty? %>
+    <p>カートに商品を追加すると内容が表示されます:)</p>
+    <%= link_to '商品を追加する', clothes_path, class: "btn btn-info" %><hr>
   <% else %>
-    <%= link_to 'お届け先を追加する', edit_user_registration_path, class: "btn btn-success" %>
-  <% end %>
-<% end %>
+
+    <h3>Items in my cart.</h3>
+    <% total_price = 0 %>
+
+    <% @carts.each do |item| %>
+      <%= form_with(model: item, local: true, url: cart_path(item.id) ) do |f| %>
+        <div class="row">
+          <% @clothe = item.stock.clothe %>
+          <div class="col-md-2 offset-md-1">
+            <%= image_tag @clothe.images.first.variant(resize: "150x250").processed %>
+          </div>
+
+          <div class="col-md-5">
+            <table>
+              <tr>
+                <th class="col-md-2"><i class="far fa-building"></i></th>
+                <td class="col-md-8"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer) %></td>
+              </tr>
+              <tr>
+                <th class="col-md-2"><i class="fas fa-tshirt"></i></th>
+                <td class="col-md-8"><%= link_to @clothe.name, clothe_path(@clothe) %></td>
+              </tr>
+              <tr>
+                <th class="col-md-2"><i class="fas fa-ruler"></i></th>
+                <td class="col-md-8"><%= item.stock.size %></td>
+              </tr>
+              <tr>
+                <th class="col-md-2"><i class="fas fa-palette"></i></th>
+                <td class="col-md-8"><%= item.stock.color %></td>
+              </tr>
+              <tr>
+                <th class="col-md-2"><i class="fas fa-yen-sign"></i></th>
+                <td class="col-md-8"><%= @clothe.price.to_s(:delimited) %>円（税込み）</td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-3">
+            <br><br>
+            <p class ="row"><%= f.label :個数 %>：<%= f.number_field :amount, class:"form-control col-4", min: 0 %>
+            <%= f.submit '更新', class:"btn btn-outline-success" %></p>
+            <%= link_to 'カートから削除', cart_path(id: item.id), method: :delete, class:"btn btn-outline-danger btn-sm" %>
+          </div>
+        </div><hr>
+        <% total_price += @clothe.price*item.amount %>
+      <% end %>
+    <% end %>
+
+    <h5>合計金額：<%= total_price.to_s(:delimited) %> 円（税込み）</h5><br>
+    <% new_points = total_price*0.03 %>
+    <h6>現在保有ポイント：<%= @user.points.to_s(:delimited) %> pt.</h6>
+    <h6>今回獲得予定ポイント：<%= new_points.round %> pt.</h6><br>
+    <h7><small>**既に獲得されているポイントを今回ご利用の場合、<br>
+      合計金額からご利用ポイント分を引いた金額の3%が獲得ポイントとなります。</small></h7><br><hr>
+
+    <%= link_to '他の商品を追加する', clothes_path, class: "btn btn-info" %> |
+    <% if current_user.addresses.present? %>
+      <%= link_to '購入へすすむ', cart_confirm_path(@carts.ids), class: "btn btn-success" %>
+    <% else %>
+      <%= link_to 'お届け先を登録する', edit_user_registration_path, class: "btn btn-success" %>
+      <p>お届け先をご登録いただくと、「購入」ボタンが表示されます。</p>
+    <% end %>
+  <% end %><br><br>
+</div>

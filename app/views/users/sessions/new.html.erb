@@ -28,7 +28,10 @@
   <% end %>
 
   <%= render "users/shared/links" %><br><br>
+
+  <%= link_to '新規登録はこちら', new_user_registration_path, class:'btn btn-outline-primary' %><br><br>
+
   <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:'btn btn-outline-info btn-sm' %> |
-  <%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-primary btn-sm' %><br><br>
+  <%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-info btn-sm' %><br><br>
 
 </div>
