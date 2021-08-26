@@ -36,7 +36,7 @@
         <div class="index_clothes col-sm-6 col-md-3">
 
           <div class="card">
-            <%= link_to image_tag(clothe.images.first.variant(combine_options:{gravity: :center, resize:"200x300^", crop:"200x300+0+0"})),
+            <%= link_to image_tag(clothe.images.first.variant(combine_options:{gravity: :center, resize:"385x575^", crop:"385x575+0+0"}).processed),
               clothe_path(clothe.id), class:"card-img-top"  %>
 
             <div class="card-body">
