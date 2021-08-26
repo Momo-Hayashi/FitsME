@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-5 image_field">
     <% if @clothe.images.attached? %>
-      <%= image_tag @clothe.images.first.variant(resize: "350x480").processed %><br><br>
+      <%= image_tag @clothe.images.first.variant(resize: "350x500").processed %><br><br>
       <% @clothe.images.each do |image| %>
         <span class="img_wrap">
           <%= link_to image_tag(image.variant(resize: "150x150").processed),image, rel:"lightbox",

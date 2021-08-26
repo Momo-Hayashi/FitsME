@@ -1,6 +1,6 @@
-<hr><h3>ご注文の詳細</h3><hr>
+<br><div class="white_box">
+  <hr><h3>ご注文の詳細</h3><hr>
 
-  <div class="white_box"><br>
   <strong><p>ご注文日：<%= l @order.created_at %><p></strong><hr>
 
   <% @order.order_stocks.each do |order_stock| %>
@@ -39,10 +39,11 @@
         </table>
       </div>
       <div class="col-md-3">
-        <br><br><br><br>
+        <br><br><br>
         <% @review = Review.find_by(user_id:current_user, clothe_id:@clothe.id, stock_no:order_stock.stock.id ) %>
         <% if @review.present? %>
-        <td><%= link_to 'レビューを編集', edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: order_stock.stock.id), class: 'btn btn-outline-success' %></td>
+          <td><%= link_to '投稿した内容を確認', clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: order_stock.stock.id), class: 'btn btn-outline-info' %></td><br><br>
+          <td><%= link_to 'レビューを編集', edit_clothe_review_path(@review.id, clothe_id:@clothe.id, stock_no: order_stock.stock.id), class: 'btn btn-outline-success' %></td>
         <% else %>
           <td><%= link_to new_clothe_review_path(@clothe.id, stock_no: order_stock.stock.id, order_id: @order.id), class: 'btn btn-outline-success' do %>
                 レビューを書いて<br>ポイントGet <% end %></td>

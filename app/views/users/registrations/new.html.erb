@@ -31,12 +31,14 @@
         <th><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %></th>
       </tr>
     </table>
-    <div class="actions"><br>
+    <div class="actions">
       <%= f.submit "Sign up", class: 'btn btn-success' %>
     </div>
   <% end %><br><br>
 
+  <%= link_to '登録済みの方のログインはこちら', new_user_session_path, class:'btn btn-outline-primary btn-sm' %><br><br>
+
   <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:'btn btn-outline-info btn-sm' %> |
-  <%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-primary btn-sm' %><br><br>
+  <%= link_to '管理者ログインはこちら', new_admin_session_path, class:'btn btn-outline-info btn-sm' %><br><br>
 
 </div>

@@ -21,7 +21,7 @@
   <div class="row">
     <ul class="col-md-3 offset-md-1">
       <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
-      <li><%= @clothe.retailer.name %></li>
+      <li><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer) %></li>
       <li><%= link_to @clothe.name, clothe_path(@clothe) %></li>
       <li><%= @stock.size %>サイズ</li>
       <li><%= @stock.color %></li>
@@ -42,8 +42,8 @@
         <tr>
           <th class="col-md-3 file_upload"><%= form.label :画像 %></th>
           <td class="col-md-9"><% if @review.images.attached? %>
-            <p>現在登録されている画像</p>
-            <p>（削除するものはチェックしてください）</p>
+            <p>現在登録されている画像<br>
+              （削除するものはチェックしてください）</p>
             <% @review.images.each do |image| %>
               <%= form.check_box :image_ids, {multiple: true}, image.id, false %>
               <%= image_tag image.variant(resize: "230x230") %><br>
@@ -56,6 +56,7 @@
   </div><hr>
 
   <script>
+    $('#star').empty();
     $('#star').raty({
       starOn: "<%= asset_path('star-on.png') %>",
       starOff: "<%= asset_path('star-off.png') %>",
