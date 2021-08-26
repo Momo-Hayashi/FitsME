@@ -1,71 +1,71 @@
-# user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 700, height: 160.8, weight: 50.3, waist: 60.3, bust: 80.7, hip: 90.5)
-# user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 700, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
-# user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 58, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
-# user4 = User.create!(username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 23, height: 180.8, weight: 71.3)
-# user5 = User.create!(username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 500, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5)
-#
-#
-# address1 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
-# address2 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '6780064', prefecture_code: 04, address_city: '相生市', address_street: '青葉台1-2-3', address_building: 'ビル101', phone_number: '22222222222')
-# address3 = Address.create!(user_id: user2.id, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333')
-# address4 = Address.create!(user_id: user3.id, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444')
-# address5 = Address.create!(user_id: user4.id, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555')
-#
-#
-# retailer1 = Retailer.create!(
-#   name: 'afendssss',
-#   description: '７０年代オーストラリアのヒッピーカルチャーの聖地として有名なバイロンベイにて、その第二世代として生まれ育ったDeclan Wise（デクラン・ワイズ）、Jono Salfield（ジョノ・サーフィールド）を中心に２００６年に設立されたオルタネートファッション＆ライフスタイルブランド。Punk-Rock をルーツとしたバイロンベイのモダンデイカルチャーとフリーリビングアティテュードをテーマに、自宅のバックヤードにてハンドスクリーンプリンティングを施したオリジナルアートTシャツの販売からスタートした後、またたくまにオーストラリアで成功をおさめ、現在世界１５カ国に広がるブランドへと成長。
-#   Question Everything（全てのことに疑問を持つこと）を信条とし、そのあくなき探究心と創造性により、アート、ミュージック、サーフ、ストリートと共にある彼らの日常のライフスタイルをテキスタイルに落とし込み、Afends way of lifeとしてバイロンベイより提案している。',
-#   website_url: 'https://afends.com/',
-#   phone_number: '1234567890',
-#   address: '東京都渋谷区1-2-3',
-#   email: 'afends@test.jp',
-#   password: 'afends@test.jp')
-#
-# retailer2 = Retailer.create!(
-#   name: 'Ted Bakerrrr',
-#   description: 'Ted Baker Londonの始まりは、イギリスのグラスゴーの小さなシャツ専門店。現在はグローバルライフスタイルブランドとして世界中に500以上の店舗を展開。「No Ordinary Designer Label」として、Ted Bakerのデザインはブリティッシュユーモアを取り入れたクオリティの高いデザインが魅力的なブランドです。',
-#   website_url: 'https://tedbaker.jp/',
-#   phone_number: '1234567890',
-#   address: '東京都渋谷区1-2-3',
-#   email: 'tedbaker@test.jp',
-#   password: 'tedbaker@test.jp')
-#
-# retailer3 = Retailer.create!(
-#   name: 'Stella McCartneyyyy',
-#   description: 'スポーツとファッションのどちらも犠牲にできない欲張りな女性のために、adidasのスポーツテクノロジーとステラ・マッカートニーのデザインが融合し、最高のスポーツパフォーマンスと美しさを引き出すハイエンドスポーツウエア　adidas by Stella McCartney',
-#   website_url: 'https://www.stellamccartney.com/jp/ja/',
-#   phone_number: '1234567890',
-#   address: '東京都渋谷区1-2-3',
-#   email: 'stella@test.jp',
-#   password: 'stella@test.jp')
-#
-# retailer4 = Retailer.create!(
-#   name: 'Maison Kitsuneeee',
-#   description: '2002年にGildas Loaëc （ジルダ・ロアエック）とMasaya Kuroki （黒木理也）のふたりにより設立。
-#   ファッションブランドの「Maison Kitsuné（メゾン キツネ）」、ミュージックレーベルの「Kitsuné Musique（キツネ ミュージック）」、カフェの「Café Kitsuné（カフェ キツネ）」を通じ、インスピレーションあふれるユニークなアール・ド・ヴィーヴル
-#   （フランス語で「暮らしの芸術」の意）を発信しています。ブランド設立から19年間、パリと東京を拠点とする多面的なブランドは一貫して成長し続け、グローバルなインフルーエンスパワーを自然と高めていき、世界中に熱心なファンを増やしています。',
-#   website_url: 'https://maisonkitsune.com/jp/',
-#   phone_number: '1234567890',
-#   address: '東京都渋谷区1-2-3',
-#   email: 'maisonkitune@test.jp',
-#   password: 'maisonkitune@test.jp')
-#
-# retailer5 = Retailer.create!(
-#   name: 'Joueteeee',
-#   description: 'スペシャルなシチュエーションだけでなく、いつもお洒落を楽しみたい。流行とともに歳を重ねてきたファッションに敏感な大人の女性に向けてそれぞれの個性をより輝かせるジュエリーを発信します。',
-#   website_url: 'https://www.jouete.com/',
-#   phone_number: '1234567890',
-#   address: '東京都渋谷区1-2-3',
-#   email: 'jouete@test.jp',
-#   password: 'jouete@test.jp')
-#
-#
-# retailer1.logo.attach(io: File.open("./db/images/afends.png"), filename: "afends.png")
-# retailer2.logo.attach(io: File.open("./db/images/TedBaker.png"), filename: "TedBaker.png")
-# retailer3.logo.attach(io: File.open("./db/images/stellamccartney.jpeg"), filename: "stellamccartney.jpeg")
-# retailer4.logo.attach(io: File.open("./db/images/maisonkitune.jpeg"), filename: "maisonkitune.jpeg")
-# retailer5.logo.attach(io: File.open("./db/images/jouete.jpeg"), filename: "jouete.jpeg")
+user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 700, height: 160.8, weight: 50.3, waist: 60.3, bust: 80.7, hip: 90.5)
+user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 700, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
+user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 58, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
+user4 = User.create!(username: "Mike", email: "mike@mail.com", password: "mike@mail.com", birthday: '1990-10-15', points: 23, height: 180.8, weight: 71.3)
+user5 = User.create!(username: "Olivia", email: "olivia@mail.com", password: "olivia@mail.com", birthday: '2000-10-15', points: 500, height: 180.8, weight: 52.8, waist: 60.3, bust: 77.7, hip: 90.5)
+
+
+address1 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '1540001', prefecture_code: 13, address_city: '世田谷区', address_street: '池尻1-2-3',phone_number: '1111111111')
+address2 = Address.create!(user_id: user1.id, first_name: 'Emily', last_name: 'Cooper', postcode: '6780064', prefecture_code: 04, address_city: '相生市', address_street: '青葉台1-2-3', address_building: 'ビル101', phone_number: '22222222222')
+address3 = Address.create!(user_id: user2.id, first_name: 'Rose', last_name: 'Mason', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '3333333333')
+address4 = Address.create!(user_id: user3.id, first_name: 'Emilia', last_name: 'Packer', postcode: '2480026', prefecture_code: 14, address_city: '鎌倉市', address_street: '七里ヶ浜1-2-3', address_building: 'ビル101', phone_number: '4444444444')
+address5 = Address.create!(user_id: user4.id, first_name: 'Olivia', last_name: 'Grealish', postcode: '3999300', prefecture_code: 20, address_city: '北安曇郡', address_street: '白馬村1-2-3', address_building: 'ビル101', phone_number: '5555555555')
+
+
+retailer1 = Retailer.create!(
+  name: 'afendssss',
+  description: '７０年代オーストラリアのヒッピーカルチャーの聖地として有名なバイロンベイにて、その第二世代として生まれ育ったDeclan Wise（デクラン・ワイズ）、Jono Salfield（ジョノ・サーフィールド）を中心に２００６年に設立されたオルタネートファッション＆ライフスタイルブランド。Punk-Rock をルーツとしたバイロンベイのモダンデイカルチャーとフリーリビングアティテュードをテーマに、自宅のバックヤードにてハンドスクリーンプリンティングを施したオリジナルアートTシャツの販売からスタートした後、またたくまにオーストラリアで成功をおさめ、現在世界１５カ国に広がるブランドへと成長。
+  Question Everything（全てのことに疑問を持つこと）を信条とし、そのあくなき探究心と創造性により、アート、ミュージック、サーフ、ストリートと共にある彼らの日常のライフスタイルをテキスタイルに落とし込み、Afends way of lifeとしてバイロンベイより提案している。',
+  website_url: 'https://afends.com/',
+  phone_number: '1234567890',
+  address: '東京都渋谷区1-2-3',
+  email: 'afends@test.jp',
+  password: 'afends@test.jp')
+
+retailer2 = Retailer.create!(
+  name: 'Ted Bakerrrr',
+  description: 'Ted Baker Londonの始まりは、イギリスのグラスゴーの小さなシャツ専門店。現在はグローバルライフスタイルブランドとして世界中に500以上の店舗を展開。「No Ordinary Designer Label」として、Ted Bakerのデザインはブリティッシュユーモアを取り入れたクオリティの高いデザインが魅力的なブランドです。',
+  website_url: 'https://tedbaker.jp/',
+  phone_number: '1234567890',
+  address: '東京都渋谷区1-2-3',
+  email: 'tedbaker@test.jp',
+  password: 'tedbaker@test.jp')
+
+retailer3 = Retailer.create!(
+  name: 'Stella McCartneyyyy',
+  description: 'スポーツとファッションのどちらも犠牲にできない欲張りな女性のために、adidasのスポーツテクノロジーとステラ・マッカートニーのデザインが融合し、最高のスポーツパフォーマンスと美しさを引き出すハイエンドスポーツウエア　adidas by Stella McCartney',
+  website_url: 'https://www.stellamccartney.com/jp/ja/',
+  phone_number: '1234567890',
+  address: '東京都渋谷区1-2-3',
+  email: 'stella@test.jp',
+  password: 'stella@test.jp')
+
+retailer4 = Retailer.create!(
+  name: 'Maison Kitsuneeee',
+  description: '2002年にGildas Loaëc （ジルダ・ロアエック）とMasaya Kuroki （黒木理也）のふたりにより設立。
+  ファッションブランドの「Maison Kitsuné（メゾン キツネ）」、ミュージックレーベルの「Kitsuné Musique（キツネ ミュージック）」、カフェの「Café Kitsuné（カフェ キツネ）」を通じ、インスピレーションあふれるユニークなアール・ド・ヴィーヴル
+  （フランス語で「暮らしの芸術」の意）を発信しています。ブランド設立から19年間、パリと東京を拠点とする多面的なブランドは一貫して成長し続け、グローバルなインフルーエンスパワーを自然と高めていき、世界中に熱心なファンを増やしています。',
+  website_url: 'https://maisonkitsune.com/jp/',
+  phone_number: '1234567890',
+  address: '東京都渋谷区1-2-3',
+  email: 'maisonkitune@test.jp',
+  password: 'maisonkitune@test.jp')
+
+retailer5 = Retailer.create!(
+  name: 'Joueteeee',
+  description: 'スペシャルなシチュエーションだけでなく、いつもお洒落を楽しみたい。流行とともに歳を重ねてきたファッションに敏感な大人の女性に向けてそれぞれの個性をより輝かせるジュエリーを発信します。',
+  website_url: 'https://www.jouete.com/',
+  phone_number: '1234567890',
+  address: '東京都渋谷区1-2-3',
+  email: 'jouete@test.jp',
+  password: 'jouete@test.jp')
+
+
+retailer1.logo.attach(io: File.open("./db/images/afends.png"), filename: "afends.png")
+retailer2.logo.attach(io: File.open("./db/images/TedBaker.png"), filename: "TedBaker.png")
+retailer3.logo.attach(io: File.open("./db/images/stellamccartney.jpeg"), filename: "stellamccartney.jpeg")
+retailer4.logo.attach(io: File.open("./db/images/maisonkitune.jpeg"), filename: "maisonkitune.jpeg")
+retailer5.logo.attach(io: File.open("./db/images/jouete.jpeg"), filename: "jouete.jpeg")
 
 
 women_1 = Category.create(name: "レディース /トップス")
@@ -112,12 +112,6 @@ men_8.children.create([{name: "ネックレス"},{name: "ブレスレット"},{n
 men_9.children.create([{name: "水着"},{name: "スーツジャケット"},{name: "スーツベスト"},{name: "スラックス"},{name: "セットアップ"},{name: "その他"}])
 unisex_1.children.create([{name: "キャップ"},{name: "ニットキャップ/ビーニー"},{name: "ハット"},{name: "ハンチング/ベレー帽"},{name: "キャップ"},{name: "キャスケット"},{name: "麦わら帽子"},{name: "その他"}])
 
-
-retailer1 = Retailer.find(1)
-retailer2 = Retailer.find(2)
-retailer3 = Retailer.find(3)
-retailer4 = Retailer.find(4)
-retailer5 = Retailer.find(5)
 
 clothe15 = Clothe.new(
   retailer_id: retailer5.id,

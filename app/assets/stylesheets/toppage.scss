@@ -90,7 +90,7 @@
   width:100%;
   height: 100vh;
   position: relative;
-  background-image: url("/images/toppage2.png");
+  background-image: image-url("toppage2.png");
   background-size:cover;
 }
 
@@ -112,7 +112,7 @@
   padding:230px 0 300px;
   text-align: center;
   color: grey;
-  background-image: url("/images/toppage_bottom.png");
+  background-image: image-url("toppage_bottom.png");
   background-size:cover;
 
 }
