@@ -23,6 +23,9 @@ class Retailer < ApplicationRecord
       retailer.phone_number = '1111111111'
       retailer.address = 'Tokyo'
       retailer.password = SecureRandom.urlsafe_base64
+      retailer.description = 'オリジナルファブリックをこだわりとしデザインだけでなく、質感や素材にもトレンドを取り入れたブランド。
+      「一人十色」の気分を持っているトレンディな人たちに向けたブランドです。'
+      retailer.website_url = 'https://wwwwjp/'
     end
   end
 
