@@ -61,6 +61,7 @@
   <% if current_user.addresses.present? %>
     <%= link_to '購入へすすむ', cart_confirm_path(@carts.ids), class: "btn btn-success" %>
   <% else %>
-    <%= link_to 'お届け先を追加する', edit_user_registration_path, class: "btn btn-success" %>
+    <%= link_to 'お届け先を登録する', edit_user_registration_path, class: "btn btn-success" %>
+    <p>お届け先をご登録いただくと、「購入」ボタンが表示されます。</p>
   <% end %>
 <% end %>

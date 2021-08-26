@@ -1,12 +1,13 @@
 <hr><h2>アイテム詳細</h2><hr><br>
 
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-5 image_field">
     <% if @clothe.images.attached? %>
-      <%= image_tag @clothe.images.first.variant(resize: "350x480") %><br><br>
+      <%= image_tag @clothe.images.first.variant(resize: "350x480").processed %><br><br>
       <% @clothe.images.each do |image| %>
         <span class="img_wrap">
-          <%= link_to image_tag(image.variant(resize: "150x150")),image, rel:"lightbox", "data-lightbox":"clothe_images" %>
+          <%= link_to image_tag(image.variant(resize: "150x150").processed),image, rel:"lightbox",
+           "data-lightbox":"clothe_images", 'data-toggle':"tooltip", title:"画像を拡大表示する", 'data-placement':"left" %>
         </span>
       <% end %>
     <% end %>
@@ -150,3 +151,4 @@
 <%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+<script>$('[data-toggle="tooltip"]').tooltip()</script>

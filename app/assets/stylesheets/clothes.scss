@@ -20,6 +20,7 @@ body {
   position: relative;
   text-align: center;
   font-family: 'Noto Serif JP', serif;
+  background-image: image-url("stone.png");
 }
 
 table {
@@ -153,12 +154,13 @@ td{
 }
 
 .category_bar {
-  padding: 0;
+  padding: 10px;
 }
 
 .each_category {
   padding: 6px 0;
   max-width: 190px;
+  border: 1px solid;
 }
 
 .card-img-top {
@@ -223,7 +225,7 @@ td{
 }
 
 .reviews_detail {
-  background-color: #E8E3E3;
+  background-color: #F4F5F7;
   border-radius: 20px;
 }
 
@@ -256,7 +258,7 @@ td{
 
 .pagination {
   justify-content: center;
-}  
+}
 
 .pagination>li>a {
   color: #55423d;

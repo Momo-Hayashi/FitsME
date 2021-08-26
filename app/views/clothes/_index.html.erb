@@ -2,7 +2,7 @@
   <div class="search_field form-row">
     <%= search_form_for @q do |f| %>
       <%# <%= f.label :name_or_description_or_retailer_name_cont, 'Key Word', class: "col-1.5" %>
-      <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'キーワード/ブランド名で検索', class:"form-control col-3 offset-1" %>
+      <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'キーワード/ブランド名で探す', class:"form-control col-3 offset-1" %>
       <%= f.select :stocks_color_eq, Stock.colors{|key,value| [Stock.colors[key],value]}, {include_blank: '色で探す'}, class:"form-control col-2" %>
       <%= f.select :stocks_size_eq, Stock.sizes{|key,value| [Stock.sizes[key],value]}, {include_blank: 'サイズで探す'}, class:"form-control col-2" %>
       <%= f.search_field :price_lteq, placeholder:'予算で探す (ex:10000)', class:"form-control col-2" %>
@@ -17,7 +17,7 @@
   <div class="side_menu col-md-2 category_bar">
     <% Category.all.order("id ASC").limit(20).each do |category| %>
       <div class="btn-group-vertical dropright">
-        <button type="button" class="btn btn-outline-info each_category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-secondary each_category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= category.name %>
         </button>
         <div class="dropdown-menu">
