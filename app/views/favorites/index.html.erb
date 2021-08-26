@@ -6,10 +6,11 @@
 
   <div class="row">
     <% @favorites.each do |f| %>
-      <div class="index_clothes col-sm-6 col-md-3 ">
+      <div class="index_clothes col-sm-6 col-md-3">
 
         <div class="card">
-          <%= image_tag f.clothe.images.first.variant(combine_options:{gravity: :center, resize:"200x300^", crop:"200x300+0+0"}), class:"card-img-top"  %>
+          <%= link_to image_tag(f.clothe.images.first.variant(combine_options:{gravity: :center, resize:"385x575^", crop:"385x575+0+0"})),
+            clothe_path(f.clothe.id), class:"card-img-top"  %>
 
           <div class="card-body">
             <p class="card-text"><%= link_to f.clothe.retailer.name, retailers_path(f.clothe.retailer.id) %><br>
