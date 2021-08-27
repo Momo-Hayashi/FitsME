@@ -4,6 +4,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
@@ -13,16 +14,31 @@
 
   <body>
     <header id="header">
-      <h5 class ="toppage_title">
-      <%= image_tag 'FitsME6.png' %><br><br><br>
 
-      <strong>この服わたしに似合うのかな・・？<br><br>
-      実際の生地感とかサイズ感って、どんなだろう・・？？</strong></h5><br>
+      <div class="slidebox">
+        <h1 class="toptext">
+          <span class="c1">F</span>
+          <span class="c6">i</span>
+          <span class="c3">t</span>
+          <span class="c5">s</span>
+          <span class="c7">&thinsp;</span>
+          <span class="c4">M</span>
+          <span class="c2">E</span>
+        </h1>
+        <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
+          <h4>What does this clothes actually look like in person?</h4>
+          <h4>Is this gonna be looking good on me?</h4>
+          <h4>Does this fit me perfectly?</h4>
+        </div>
+      </div>
+      <div class ="toppage_title">
+        <%# <%= image_tag 'FitsME6.png' %>
+        <%= image_tag 'toppage2.png', class:'top_image' %>
+      </div>
       <div class="scrolldown4"><span>Scroll</span></div>
     </header>
 
     <div class="toppage" id="container">
-
       <h4>「もうOnline Shoppingで失敗したくない！」</h4>
 
       <br><br><h4><%= image_tag('FitsME1.png') %>は、そんな方々のために作られました</h4><br><br><br>

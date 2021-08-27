@@ -1,23 +1,5 @@
-/* .toppage {
-  background-image: url("/images/toppage.png");
-  height: 800px;
-  background-size: cover;
-}
-
-.toppage_content {
-  padding-top: 80px;
-  vertical-align: middle;
-  font-family: 'Noto Serif JP', serif;
-} */
-
-
-/*=== 9-1-4 矢印が動いてスクロールを促す  ====*/
-
-/*=== 9-1-4 矢印が動いてスクロールを促す  ====*/
-
 /*スクロールダウン全体の場所*/
 .scrolldown4{
-    /*描画位置※位置は適宜調整してください*/
   position:absolute;
   bottom:10%;
   right:50%;
@@ -34,7 +16,6 @@
 
 /*Scrollテキストの描写*/
 .scrolldown4 span{
-    /*描画位置*/
   position: absolute;
   left:-20px;
   bottom:10px;
@@ -44,14 +25,13 @@
   letter-spacing: 0.05em;
   /*縦書き設定*/
   -ms-writing-mode: tb-rl;
-    -webkit-writing-mode: vertical-rl;
-    writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
 }
 
 /* 矢印の描写 */
 .scrolldown4:before {
     content: "";
-    /*描画位置*/
     position: absolute;
     bottom: 0;
     right: -6px;
@@ -64,7 +44,6 @@
 
 .scrolldown4:after{
   content:"";
-    /*描画位置*/
   position: absolute;
   bottom:0;
   right:0;
@@ -74,24 +53,54 @@
   background:#eee;
 }
 
-/*========= レイアウトのためのCSS ===============*/
 
 .toppage_title{
   position: fixed;
-  top: 45%;
-  left: 50%;
+  top: 50%;
+  left: 65%;
   transform: translateY(-50%) translateX(-50%);
   color:#eee;
   text-shadow: 0 0 15px #666;
   text-align: center;
 }
 
+.top_image {
+  width: 550px;
+  height: auto;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+.c1, .c2, .c3, .c4, .c5, .c6, .c7 {
+  opacity: 0;
+  animation: 2.0s linear forwards fadeIn;
+  font-size: 8rem;
+}
+
+.slidebox {
+  width: 600px;
+  margin: 250px auto 0 30px;
+}
+
+.c1 { animation-delay: 0.0s; }
+.c2 { animation-delay: 0.3s; }
+.c3 { animation-delay: 0.6s; }
+.c4 { animation-delay: 0.9s; }
+.c5 { animation-delay: 1.2s; }
+.c6 { animation-delay: 1.5s; }
+.c7 { animation-delay: 1.8s; }
+
 #header{
   width:100%;
   height: 100vh;
   position: relative;
-  background-image: image-url("toppage2.png");
-  background-size:cover;
+  background-image: image-url("stone.jpeg");
+  // background-image: image-url("toppage2.png");
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 #header:before{
@@ -114,14 +123,11 @@
   color: grey;
   background-image: image-url("toppage_bottom.png");
   background-size:cover;
-
 }
 
 @media screen and (max-width:768px){
-
     #header,
     #header:before{
   height: 90vh;
     }
-
 }

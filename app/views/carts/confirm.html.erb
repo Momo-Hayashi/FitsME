@@ -77,12 +77,9 @@
           <td><%= pref.name if address.prefecture_code %> <%= address.address_city %>
             <%= address.address_street %> <%= address.address_building %></td>
         </tr>
-        <tr>
-          <th></th>
-          <td><%= f.check_box :address_ids ,{multiple: true}, address.id, false %>
-              この住所を今回のお届け先に指定する</td>
-        </tr>
-      </table><hr>
+      </table>
+      <h6><%= f.check_box :address_ids ,{multiple: true}, address.id, false %>
+          この住所を今回のお届け先に指定する</h6><hr>
     <% end %>
 
     <%= link_to 'お届け先を追加/変更する', edit_user_registration_path, class: "btn btn-outline-info" %> |

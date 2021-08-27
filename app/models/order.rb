@@ -17,7 +17,7 @@ class Order < ApplicationRecord
 
   def self.new_order(user_id, address_id, price, used_points, paid_price)
     @address = Address.find(address_id)
-    Order.create!(
+    Order.create(
       user_id: user_id,
       price: price,
       used_points: used_points,

@@ -16,7 +16,7 @@ class ClothesController < ApplicationController
 
   def confirm
     @clothe = current_retailer.clothes.build(clothe_params)
-    redirect_to new_clothe_path, alert: '全項目が入力項目です' if @clothe.invalid?
+    redirect_to new_clothe_path, alert: '全項目が入力必須です' if @clothe.invalid?
   end
 
   def edit ;  end
