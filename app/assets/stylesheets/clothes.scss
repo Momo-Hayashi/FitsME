@@ -20,7 +20,7 @@ body {
   position: relative;
   text-align: center;
   font-family: 'Noto Serif JP', serif;
-  background-image: image-url("stone.png");
+  background-image: image-url("stone.jpeg");
 }
 
 table {
@@ -154,7 +154,7 @@ td{
 }
 
 .category_bar {
-  padding: 10px;
+  padding: 0 20px 0 0;
 }
 
 .each_category {
@@ -182,10 +182,6 @@ td{
   padding: 10px 0;
 }
 
-.clothe_detail_info {
-  text-align: left;
-}
-
 // 服の上をホバーした時に若干拡大する
 .img_wrap{
   border: 1px solid #ddd;
@@ -202,6 +198,7 @@ td{
 }
 
 .clothe_detail_info {
+  text-align: left;
   background-color: #FFFFFF;
   border-radius: 20px;
 }

@@ -7,7 +7,17 @@ class Clothe < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   has_many :stocks, dependent: :destroy
-  accepts_nested_attributes_for :stocks, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :stocks, allow_destroy: true, reject_if: :reject_if_all_blank
+
+  def reject_if_all_blank(attributes)
+    if attributes[:id]
+      attributes.merge!(_destroy: "1") if attributes[:size].blank? and attributes[:color].blank? and attributes[:quantity].blank?
+      !attributes[:size].blank? and attributes[:color].blank? and attributes[:quantity].blank?
+    else
+      attributes[:size].blank? and attributes[:color].blank? and attributes[:quantity].blank?
+    end
+  end
+
   validates_associated :stocks
   validates :stocks, presence: true
 

@@ -1,0 +1,81 @@
+<hr><h3>下記の内容で掲載しますか？</h3><hr>
+<%= form_with(model: @clothe, url: clothes_path, local: true) do |f| %>
+
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :description %>
+  <%= f.hidden_field :size %>
+  <%= f.hidden_field :price %>
+  <%= f.fields_for :stocks do |stock| %>
+    <%= stock.hidden_field :size %>
+    <%= stock.hidden_field :color %>
+    <%= stock.hidden_field :quantity %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-5 image_field">
+      <% if @clothe.images.attached? %>
+        <%= image_tag @clothe.images.first.variant(resize: "350x500").processed %><br><br>
+        <% @clothe.images.each do |image| %>
+          <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+          <span class="img_wrap">
+            <%= link_to image_tag(image.variant(resize: "150x150").processed),image, rel:"lightbox",
+             "data-lightbox":"clothe_images", 'data-toggle':"tooltip", title:"画像を拡大表示する", 'data-placement':"left" %>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="clothe_detail_info col-md-7 text_right">
+      <table class = "row">
+        <tr>
+          <th class="col-md-1"><i class="far fa-building"></i></th>
+          <td class="col-md-11"><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer.id) %></td>
+        </tr>
+        <tr>
+          <th class="col-md-1"><i class="fas fa-tshirt"></i></th>
+          <td class="col-md-11"><%= @clothe.name %></td>
+        </tr>
+        <% if @clothe.category_ids.present? %>
+          <% @clothe.category_ids.each do |category_id| %>
+            <% category = Category.find(category_id) %>
+            <tr>
+              <th class="col-md-1"><i class="fas fa-tags"></i></th>
+              <td class="col-md-11"><%= category.parent.name if category.parent.present? %> /
+               <%= link_to category.name, category_path(category_id) %></td>
+            </tr>
+            <%= f.hidden_field :category_ids, multiple: true, value: category.id %>
+          <% end %>
+        <% end %>
+        <tr>
+          <th class="col-md-1"><i class="fas fa-yen-sign"></i></th>
+          <td class="col-md-11"><strong><%= @clothe.price.to_s(:delimited) %>円（税込み）</strong></td>
+        </tr>
+        <tr class="item_description">
+          <th class="col-md-1"><i class="fas fa-pencil-alt"></i></th>
+          <td class="col-md-11"><%= simple_format @clothe.description %></td>
+        </tr>
+        <tr>
+          <th class="col-md-1"><i class="fas fa-ruler"></i></th>
+          <td class="col-md-11"><%= simple_format @clothe.size %></td>
+        </tr>
+      </table>
+
+      <table class="stock_info item_description">
+        <tr>
+          <td class="col-md-1">Size</td>
+          <td class="col-md-1">Color</td>
+          <td class="col-md-1">在庫</td>
+        </tr>
+        <% @clothe.stocks.each do |stock| %>
+          <tr>
+            <td class="col-md-1"><%= stock.size %></td>
+            <td class="col-md-1"><%= stock.color %></td>
+            <td class="col-md-1"><%= stock.quantity %></td>
+          </tr>
+        <% end %>
+      </table><br>
+    </div>
+  </div><br>
+  <%= f.submit "Back", name:'back', class: 'btn btn-info' %> |
+  <%= f.submit "Post!", class: 'btn btn-success' %>
+<% end %>

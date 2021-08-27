@@ -1,9 +1,122 @@
-<br>
-<div class="white_box">
+<br><div class="white_box">
 
   <hr><h1>New Clothes</h1><hr>
 
-  <%= render 'form', clothe: @clothe %>
+  <%= form_with(model: @clothe, local: true, url:confirm_clothes_path) do |f| %>
+
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :description %>
+    <%= f.hidden_field :size %>
+    <%= f.hidden_field :price %>
+
+    <% if @clothe.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= I18n.t("errors.messages.not_saved",
+                     count: clothe.errors.count,
+                     resource: clothe.class.model_name.human.downcase) %>
+        </h2>
+        <ul class="alert alert alert-danger">
+          <% clothe.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>**全項目入力必須となります。</p><br>
+
+    <div class="actions">
+      <div class="form-group row">
+        <%= f.label :アイテム名, class: "col-sm-2 offset-md-1 col-form-label" %><br>
+        <%= f.text_field :name, class: "col-sm-7 form-control", placeholder: "name of the item" %>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :アイテム詳細, class: "col-sm-2 offset-md-1 col-form-label" %><br>
+        <%= f.text_area :description, class: "col-sm-7 form-control", rows: "4",
+         placeholder: "商品のアピールポイントをご記入ください。
+          例：美脚効果抜群！待望のスラックスパンツが遂に登場！！" %>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :サイズ, class: "col-sm-2 offset-md-1 col-form-label" %><br>
+        <%= f.text_area :size, class: "col-sm-7 form-control", rows: "4",
+         placeholder: "商品のサイズの詳細をご記入ください。
+          例：サイズ：身幅 肩幅 着丈 そで丈
+                S :  47   38  60   52
+                M :  51   42  68   59" %>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :Price, class: "col-sm-2 offset-md-1 col-form-label" %><br>
+        <%= f.number_field :price, class: "col-sm-5 form-control", placeholder: "例）10000" %>円（税込）
+      </div><br><br>
+
+      <h5>Categories</h5><hr>
+      <p>*1~3個ご選択ください</p>
+      <div class="category_fields fields row">
+        <% Category.all.order("id ASC").limit(20).each do |category| %>
+          <div class="field col-md-3">
+            <div class="dropdown">
+              <button class="btn btn-info dropdown-toggle category btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= category.name %>
+              </button>
+              <div class="dropdown-menu category_box" aria-labelledby="dropdownMenuButton">
+                <%= f.collection_check_boxes(:category_ids, category.children, :id, :name) do |b| %>
+                  <a class="dropdown-item"><%= b.label { b.check_box + b.text } %></a>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% if @clothe.categories.present? %>
+          <p>現在選択したカテゴリー：
+          <% @clothe.categories.each do |category| %>
+            <%= category.parent.name %> / <%= category.name %>,<br>
+          <% end %></p>
+      <% end %>
+      <br>
+
+      <div class="field images">
+        <h5><%= f.label :'Images of the item' %></h5><hr>
+        <% if @clothe.images.attached? %>
+          <p>現在登録されている画像（削除するものはチェックしてください）</p>
+          <% @clothe.images.each do |image| %>
+            <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+            <%= image_tag image.variant(resize: "250x250") %>
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+          <% end %>
+        <% end %><br><br>
+        <%= f.file_field :images, multiple: true %>
+      </div><br><br>
+
+      <div class="field stocks">
+        <h5>ストック情報</h5><hr>
+        <p>*サイズ・カラーごとに在庫数をご記入ください</p>
+        <table>
+          <%= f.fields_for :stocks do |stock| %>
+            <tr>
+              <th><%= stock.label :Size %></th>
+              <th><%= stock.label :Color %></th>
+              <th><%= stock.label :数量 %></th>
+            </tr>
+            <tr>
+              <td><%= stock.select :size, Stock.sizes.keys.to_a {}, include_blank: true %></td>
+              <td><%= stock.select :color, Stock.colors.keys.to_a {}, include_blank: true %></td>
+              <td><%= stock.text_field :quantity, placeholder: "例）50" %></td>
+            </tr>
+          <% end %>
+        </table>
+        <div id="links">
+          <%= link_to_add_association "サイズ・カラーをさらに追加する", f, :stocks, class:'btn btn-outline-success btn-sm' %>
+        </div>
+      </div><hr>
+
+      <%= f.submit "登録する", class: 'btn btn-warning' %><br><br>
+    </div>
+  <% end %>
   <%= link_to 'Back', clothes_path, class: 'btn btn-outline-primary btn-sm' %><br><br>
 
 </div>

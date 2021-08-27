@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
   def confirm
     @stock = Stock.find(params[:review][:stock_no])
     @review = @clothe.reviews.build(review_params)
-    render :new if @review.invalid?
+    redirect_to new_clothe_review_path(stock_no: @stock.id), alert: '評価・コメントは必須項目です' if @review.invalid?
   end
 
   def create
@@ -69,7 +69,7 @@ class ReviewsController < ApplicationController
       redirect_to clothe_path(@review.clothe), notice: "レビューを更新しました！ありがとうございます！"
     else
       redirect_to edit_clothe_review_path(@review.id, clothe_id:@review.clothe.id, stock_no: params[:review][:stock_no] ),
-      alert: '評価もしくは内容が空白です'
+      alert: '評価・コメントは必須項目です'
     end
   end
 
