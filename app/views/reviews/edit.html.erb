@@ -1,7 +1,7 @@
 <br><div class="white_box">
   <hr><h3>Reviewを編集</h3><hr><br>
 
-  <%= form_with(model: @review, local: true, url: new_or_edit ) do |form| %>
+  <%= form_with(model: @review, local: true, url: clothe_review_path ) do |form| %>
     <%= form.hidden_field :stock_no, value: @stock.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.hidden_field :order_id, value: params[:order_id] %>

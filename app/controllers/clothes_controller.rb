@@ -11,7 +11,12 @@ class ClothesController < ApplicationController
 
   def new
     @clothe = Clothe.new
-    3.times{ @clothe.stocks.build }
+    @clothe.stocks.build
+  end
+
+  def confirm
+    @clothe = current_retailer.clothes.build(clothe_params)
+    redirect_to new_clothe_path, alert: '全項目が入力項目です' if @clothe.invalid?
   end
 
   def edit ;  end
@@ -19,13 +24,17 @@ class ClothesController < ApplicationController
   def create
     @clothe = current_retailer.clothes.build(clothe_params)
 
-    respond_to do |format|
-      if @clothe.save
-        format.html { redirect_to @clothe, notice: "Clothe was successfully created." }
-        format.json { render :show, status: :created, location: @clothe }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @clothe.errors, status: :unprocessable_entity }
+    if params[:back]
+      render :new
+    else
+      respond_to do |format|
+        if @clothe.save
+          format.html { redirect_to @clothe, notice: "Clothe was successfully created." }
+          format.json { render :show, status: :created, location: @clothe }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @clothe.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

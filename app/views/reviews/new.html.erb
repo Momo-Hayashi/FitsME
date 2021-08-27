@@ -4,7 +4,7 @@
   <h5>星評価とテキストコメントで&ensp;100ポイント&ensp;、<br>
   写真付きのレビュー投稿で&ensp;150ポイント&ensp;獲得できます：）</h5><br><hr><br>
 
-  <%= form_with(model: @review, local: true, url: new_or_edit ) do |form| %>
+  <%= form_with(model: @review, local: true, url: confirm_clothe_reviews_path ) do |form| %>
     <%= form.hidden_field :stock_no, value: @stock.id %>
     <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.hidden_field :order_id, value: params[:order_id] %>

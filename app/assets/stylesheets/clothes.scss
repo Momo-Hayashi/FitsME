@@ -182,10 +182,6 @@ td{
   padding: 10px 0;
 }
 
-.clothe_detail_info {
-  text-align: left;
-}
-
 // 服の上をホバーした時に若干拡大する
 .img_wrap{
   border: 1px solid #ddd;
@@ -202,6 +198,7 @@ td{
 }
 
 .clothe_detail_info {
+  text-align: left;
   background-color: #FFFFFF;
   border-radius: 20px;
 }
