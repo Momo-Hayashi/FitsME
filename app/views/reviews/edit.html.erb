@@ -1,5 +1,50 @@
 <br><div class="white_box">
   <hr><h3>Reviewを編集</h3><hr><br>
 
-  <%= render 'form', clothe: @clothe %>
+  <%= form_with(model: @review, local: true, url: new_or_edit ) do |form| %>
+    <%= form.hidden_field :stock_no, value: @stock.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :order_id, value: params[:order_id] %>
+
+    <div class="row">
+      <ul class="col-md-3 offset-md-1">
+        <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
+        <li><%= link_to @clothe.retailer.name, retailers_path(@clothe.retailer) %></li>
+        <li><%= link_to @clothe.name, clothe_path(@clothe) %></li>
+        <li><%= @stock.size %>サイズ</li>
+        <li><%= @stock.color %></li>
+        <li><%= @clothe.price %>円（税込み）</li>
+      </ul>
+
+      <div class="col-md-6">
+        <table>
+          <tr>
+            <th class="col-md-3"><%= form.label :'評価' %></th>
+            <td id="star"><%= form.hidden_field :rate, id: :review_star %></td>
+          </tr>
+          <tr>
+            <th class="col-md-3"><%= form.label :コメント %></th>
+            <td class="col-md-9"><%= form.text_area :content, class: "form-control", rows: "5",
+               placeholder: "例）身長160cmのわたしはSサイズで丈感がちょうどよかった！色は写真よりも鮮やかで、素材はしっかりしていて着心地がいいです！" %></td>
+          </tr>
+          <tr>
+            <th class="col-md-3 file_upload"><%= form.label :画像 %></th>
+            <td class="col-md-9">
+              <% if @review.images.attached? %>
+                <p>現在登録されている画像<br>
+                  （削除するものはチェックしてください）</p>
+                <% @review.images.each do |image| %>
+                  <%= form.check_box :image_ids, {multiple: true}, image.id, false %>
+                  <%= image_tag image.variant(resize: "230x230") %><br>
+                <% end %>
+              <% end %><br>
+              <%= form.file_field :images, multiple: true %></td>
+          </tr>
+        </table>
+      </div>
+    </div><hr>
+    <%= render 'error' %>
+
+    <%= form.submit '登録する', class: 'btn btn-success' %><br><br>
+  <% end %>
 </div>

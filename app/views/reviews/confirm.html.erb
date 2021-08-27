@@ -1,34 +1,48 @@
-<h2>Would you like to post with the following contents?</h2>
-<%= form_with(model: @review, url: clothe_reviews_path, local: true) do |f| %>
+<br><div class="white_box">
+  <hr><h3>下記の内容で投稿しますか？</h3><hr>
+  <%= form_with(model: @review, url: clothe_reviews_path, local: true) do |f| %>
 
-  <%= f.hidden_field :rate %>
-  <%= f.hidden_field :content %>
-  <%= f.hidden_field :stock_no %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :images, value: params[:review][:images] %>
+    <%= f.hidden_field :rate %>
+    <%= f.hidden_field :content %>
+    <%= f.hidden_field :stock_no %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <div class="row">
-    <ul class="col-md-3">
-      <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
-      <li><%= @clothe.retailer.name %></li>
-      <li><%= @clothe.name %></li>
-      <li><%= @stock.size %>サイズ</li>
-      <li><%= @stock.color %></li>
-      <li><%= @clothe.price %>円（税込み）</li>
-    </ul>
+    <div class="row">
+      <ul class="col-md-3 offset-md-1">
+        <li><%= image_tag @clothe.images.first.variant(resize: "150x150") if @clothe.images.attached? %></li>
+        <li><%= @clothe.retailer.name %></li>
+        <li><%= @clothe.name %></li>
+        <li><%= @stock.size %>サイズ</li>
+        <li><%= @stock.color %></li>
+        <li><%= @clothe.price %>円（税込み）</li>
+      </ul>
 
-    <div class="col-md-7">
-      <p>Rating：<%= @review.rate %></p>
-      <p>Content：<%= @review.content %></p>
-      <p>Image：</p>
-      <% if @review.images.attached? %>
-        <% @review.images.each do |image| %>
-          <%= image_tag image.variant(resize: "200x200") %>
+      <div class="col-md-6">
+        <div id="star-rate-<%= @review.id %>"></div>
+        <p>Content：<%= @review.content %></p>
+        <p>Image：</p>
+        <% if @review.images.attached? %>
+          <% @review.images.each do |image| %>
+            <%= image_tag image.variant(resize: "200x200") %>
+            <%= f.hidden_field :images, multiple: true, value: image.signed_id %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  </div><br>
+      </div>
+    </div><br>
 
-  <%= f.submit "Post!" %>
-  <%= f.submit "Back", name:'back' %>
-<% end %>
+    <%= f.submit "Back", name:'back', class: 'btn btn-outline-info' %> |
+    <%= f.submit "Post!", class: 'btn btn-outline-success' %><br><br>
+  <% end %>
+
+  <script>
+    $('#star-rate-<%= @review.id %>').empty();
+    $('#star-rate-<%= @review.id %>').raty({
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= @review.rate %>,
+    });
+  </script>
+</div>

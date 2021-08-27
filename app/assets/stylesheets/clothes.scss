@@ -20,7 +20,7 @@ body {
   position: relative;
   text-align: center;
   font-family: 'Noto Serif JP', serif;
-  background-image: image-url("stone.png");
+  background-image: image-url("stone.jpeg");
 }
 
 table {
@@ -154,7 +154,7 @@ td{
 }
 
 .category_bar {
-  padding: 10px;
+  padding: 0 20px 0 0;
 }
 
 .each_category {

@@ -1,0 +1,26 @@
+<% if @review.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= I18n.t("errors.messages.not_saved",
+                 count: @review.errors.count,
+                 resource: @review.class.model_name.human.downcase) %>
+    </h2>
+    <ul class="alert alert alert-danger">
+    <% @review.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div><br>
+<% end %>
+
+<script>
+  $('#star').empty();
+  $('#star').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'review[rate]',
+    half: true,
+    score: "<%= @review.rate if @review.rate.present? %>",
+  });
+</script>

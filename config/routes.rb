@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   resources :orders, only: %i[ index show ]
   resources :clothes do
+    post 'confirm', on: :collection
     resources :reviews do
       post 'confirm', on: :collection
     end
