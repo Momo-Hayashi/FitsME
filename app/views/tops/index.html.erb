@@ -14,26 +14,53 @@
 
   <body>
     <header id="header">
-
-      <div class="slidebox">
-        <h1 class="toptext">
-          <span class="c1">F</span>
-          <span class="c6">i</span>
-          <span class="c3">t</span>
-          <span class="c5">s</span>
-          <span class="c7">&thinsp;</span>
-          <span class="c4">M</span>
-          <span class="c2">E</span>
-        </h1>
-        <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
-          <h4>What does this clothes actually look like in person?</h4>
-          <h4>Is this gonna be looking good on me?</h4>
-          <h4>Does this fit me perfectly?</h4>
+      <div class="row">
+        <div class="slidebox_letter col-md-6">
+          <h1 class="toptext">
+            <span class="c1">F</span>
+            <span class="c6">i</span>
+            <span class="c3">t</span>
+            <span class="c5">s</span>
+            <span class="c7">&thinsp;</span>
+            <span class="c4">M</span>
+            <span class="c2">E</span>
+          </h1>
+          <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
+            <h4>What does this clothes actually look like in person?</h4>
+            <h4>Is this gonna be looking good on me?</h4>
+            <h4>Does this fit me perfectly?</h4>
+          </div>
         </div>
-      </div>
-      <div class ="toppage_title">
-        <%# <%= image_tag 'FitsME6.png' %>
-        <%= image_tag 'toppage2.png', class:'top_image' %>
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide col-md-5" data-ride="carousel" data-interval="3000">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="card card_top">
+                <%= image_tag 'clothes_8.jpg', class:'top_image d-block w-10', alt:"First slide" %>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card card_top">
+                <%= image_tag 'clothes14.jpg', class:'top_image d-block w-10', alt:"Second slide" %>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card card_top">
+                <%= image_tag 'clothes7.jpg', class:'top_image d-block w-10', alt:"Third slide" %>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card card_top">
+                <%= image_tag 'top4.jpg', class:'top_image d-block w-10', alt:"Forth slide" %>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card card_top">
+                <%= image_tag 'top5.jpg', class:'top_image d-block w-10', alt:"Fifth slide" %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="scrolldown4"><span>Scroll</span></div>
     </header>

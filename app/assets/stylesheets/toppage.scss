@@ -53,21 +53,6 @@
   background:#eee;
 }
 
-
-.toppage_title{
-  position: fixed;
-  top: 50%;
-  left: 65%;
-  transform: translateY(-50%) translateX(-50%);
-  color:#eee;
-  text-shadow: 0 0 15px #666;
-  text-align: center;
-}
-
-.top_image {
-  width: 550px;
-  height: auto;
-}
 @keyframes fadeIn {
   to { opacity: 1; }
 }
@@ -77,9 +62,10 @@
   font-size: 8rem;
 }
 
-.slidebox {
+.slidebox_letter {
   width: 600px;
   margin: 250px auto 0 30px;
+  padding-right: 0;
 }
 
 .c1 { animation-delay: 0.0s; }
@@ -90,13 +76,28 @@
 .c6 { animation-delay: 1.5s; }
 .c7 { animation-delay: 1.8s; }
 
+.carouselExampleSlidesOnly {
+  text-align: left;
+  width: 640px;
+  padding-right: 0px;
+}
+
+.card_top {
+  margin: 50px 70px 50px;
+  padding: 20px 30px 100px 30px;
+}
+
+.card_top:hover{
+  box-shadow: none;
+  transform: none;
+}
+
 #header{
   width:100%;
   height: 100vh;
   position: relative;
   background-image: image-url("stone.jpeg");
-  // background-image: image-url("toppage2.png");
-  display: flex;
+  // display: flex;
   justify-content: center;
   // align-items: center;
   margin: 0;
@@ -115,13 +116,15 @@
 }
 
 #container{
+  width:100%;
   position: relative;
   z-index:1;
   background:white;
   padding:230px 0 300px;
   text-align: center;
   color: grey;
-  background-image: image-url("toppage_bottom.png");
+  background-image: image-url("toppage2.png");
+  // background-image: image-url("toppage_bottom.png");
   background-size:cover;
 }
 
