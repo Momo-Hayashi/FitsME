@@ -14,21 +14,22 @@
 
   <body>
     <header id="header">
+      <p class='toppage_logo'><%= link_to image_tag('FitsME1.png'), clothes_path %></p>
       <div class="row">
         <div class="slidebox_letter col-md-6">
-          <h1 class="toptext">
+          <h1 class="toptext"><strong>
             <span class="c1">F</span>
             <span class="c6">i</span>
             <span class="c3">t</span>
             <span class="c5">s</span>
             <span class="c7">&thinsp;</span>
             <span class="c4">M</span>
-            <span class="c2">E</span>
+            <span class="c2">E</span></strong>
           </h1>
           <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
-            <h4>What does this clothes actually look like in person?</h4>
-            <h4>Is this gonna be looking good on me?</h4>
-            <h4>Does this fit me perfectly?</h4>
+            <h4>「Online Shoppingで失敗」はイマドキじゃない</h4><br>
+            <h4>Become your best self.</h4>
+            <h4></h4>
           </div>
         </div>
 
@@ -65,18 +66,23 @@
       <div class="scrolldown4"><span>Scroll</span></div>
     </header>
 
-    <div class="toppage" id="container">
-      <h4>「もうOnline Shoppingで失敗したくない！」</h4>
+    <div id="container">
+      <div class="toppage"><br>
+        <p>この服わたしに似合うのかな・・？</p>
+        <p>実際の生地感とかサイズ感って、どんなだろう・・？？</p><br>
 
-      <br><br><h4><%= image_tag('FitsME1.png') %>は、そんな方々のために作られました</h4><br><br><br>
+        <p>「もうOnline Shoppingで失敗したくない！」</p>
 
-      <h4><%= image_tag('FitsME1.png') %>では、服を&ensp;<strong>購入した方からのレビュー</strong>&ensp;を参考にして</h4>
-      <h4>自分にピッタリ似合うお洋服を探し、購入することができます。</h4><br><br>
+        <br><br><p><%= image_tag('FitsME1.png') %>は、そんな方々のために作られました</p><br>
 
-      <h5>自分に似た体型の方のレビューや画像を参考に</h5>
-      <h5>Online Shoppingを楽しみましょう！</h5><br>
+        <p><%= image_tag('FitsME1.png') %>では、服を&ensp;<b>購入した方からのレビュー</b>&ensp;を参考にして</p>
+        <p>自分にピッタリ似合うお洋服を探し、購入することができます。</p><br><br>
 
-      <br><%= link_to 'Getting started!!', clothes_path, class:"btn btn-warning" %>
+        <p>自分に似た体型の方のレビューや画像を参考に</p>
+        <p>Online Shoppingを楽しみましょう！</p><br>
+      </div><br><br>
+      <%= link_to 'Getting started!!', clothes_path, class:"btn btn-warning btn-lg" %>
+
     </div>
   </body>
 </html>

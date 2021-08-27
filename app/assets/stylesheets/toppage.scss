@@ -1,9 +1,104 @@
+.toppage_logo{
+  text-align: left;
+  padding: 20px 0 0 20px;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+.c1, .c2, .c3, .c4, .c5, .c6, .c7 {
+  opacity: 0;
+  animation: 2.0s linear forwards fadeIn;
+  font-size: 8rem;
+}
+
+.c1 { animation-delay: 0.0s; }
+.c2 { animation-delay: 0.3s; }
+.c3 { animation-delay: 0.6s; }
+.c4 { animation-delay: 0.9s; }
+.c5 { animation-delay: 1.2s; }
+.c6 { animation-delay: 1.5s; }
+.c7 { animation-delay: 1.8s; }
+
+.slidebox_letter {
+  width: 600px;
+  margin: 180px auto 0 30px;
+  padding-right: 0;
+}
+
+.carouselExampleSlidesOnly {
+  // text-align: left;
+  width: 640px;
+  padding-right: 0px;
+}
+
+.card_top {
+  margin: 0 70px 50px;
+  padding: 20px 30px 100px 30px;
+}
+
+.card_top:hover{
+  box-shadow: none;
+  transform: none;
+}
+
+#header{
+  width:100%;
+  height: 100vh;
+  position: relative;
+  background-image: image-url("stone.jpeg");
+  // display: flex;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+#header:before{
+  content: '';
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+  width:100%;
+  height: 100vh;
+}
+
+.toppage {
+  background: rgba(51,112,121,0.4);
+  width: 50%;
+  border-radius: 40px;
+  display: inline-block;
+  text-align: left;
+}
+
+.toppage p {
+  text-align: center;
+}
+
+#container{
+  width:100%;
+  position: relative;
+  z-index:1;
+  background:white;
+  padding:200px 0 200px;
+  text-align: center;
+  color: white;
+  background-image: image-url("toppage2.png");
+  // background-image: image-url("toppage_bottom.png");
+  background-size:cover;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+@media screen and (max-width:768px){
+    #header,
+    #header:before{
+  height: 90vh;
+    }
+}
+
 /*スクロールダウン全体の場所*/
 .scrolldown4{
   position:absolute;
   bottom:10%;
   right:50%;
-    /*矢印の動き1秒かけて永遠にループ*/
   animation: arrowmove 1s ease-in-out infinite;
 }
 
@@ -19,11 +114,9 @@
   position: absolute;
   left:-20px;
   bottom:10px;
-    /*テキストの形状*/
   color: #eee;
   font-size: 1rem;
   letter-spacing: 0.05em;
-  /*縦書き設定*/
   -ms-writing-mode: tb-rl;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
@@ -35,7 +128,6 @@
     position: absolute;
     bottom: 0;
     right: -6px;
-    /*矢印の形状*/
     width: 1px;
     height: 20px;
     background: #eee;
@@ -47,90 +139,7 @@
   position: absolute;
   bottom:0;
   right:0;
-    /*矢印の形状*/
   width:1px;
   height: 70px;
   background:#eee;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-.c1, .c2, .c3, .c4, .c5, .c6, .c7 {
-  opacity: 0;
-  animation: 2.0s linear forwards fadeIn;
-  font-size: 8rem;
-}
-
-.slidebox_letter {
-  width: 600px;
-  margin: 250px auto 0 30px;
-  padding-right: 0;
-}
-
-.c1 { animation-delay: 0.0s; }
-.c2 { animation-delay: 0.3s; }
-.c3 { animation-delay: 0.6s; }
-.c4 { animation-delay: 0.9s; }
-.c5 { animation-delay: 1.2s; }
-.c6 { animation-delay: 1.5s; }
-.c7 { animation-delay: 1.8s; }
-
-.carouselExampleSlidesOnly {
-  text-align: left;
-  width: 640px;
-  padding-right: 0px;
-}
-
-.card_top {
-  margin: 50px 70px 50px;
-  padding: 20px 30px 100px 30px;
-}
-
-.card_top:hover{
-  box-shadow: none;
-  transform: none;
-}
-
-#header{
-  width:100%;
-  height: 100vh;
-  position: relative;
-  background-image: image-url("stone.jpeg");
-  // display: flex;
-  justify-content: center;
-  // align-items: center;
-  margin: 0;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-
-#header:before{
-  content: '';
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-  width:100%;
-  height: 100vh;
-  /*背景画像設定*/
-}
-
-#container{
-  width:100%;
-  position: relative;
-  z-index:1;
-  background:white;
-  padding:230px 0 300px;
-  text-align: center;
-  color: grey;
-  background-image: image-url("toppage2.png");
-  // background-image: image-url("toppage_bottom.png");
-  background-size:cover;
-}
-
-@media screen and (max-width:768px){
-    #header,
-    #header:before{
-  height: 90vh;
-    }
 }
