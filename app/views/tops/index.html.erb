@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+    <script src="https://kit.fontawesome.com/370d8f2402.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -18,18 +19,15 @@
         <p class='toppage_logo'><%= link_to image_tag('FitsME1.png'), clothes_path %></p>
         <div class="row">
           <div class="slidebox_letter col-md-6">
-            <h1 class="toptext"><strong>
-              <span class="c1">F</span>
-              <span class="c6">i</span>
-              <span class="c3">t</span>
-              <span class="c5">s</span>
-              <span class="c7">&thinsp;</span>
-              <span class="c4">M</span>
-              <span class="c2">E</span></strong>
-            </h1>
+            <%= image_tag 'FitsME6.png' %>
+            <p class="toptext"><strong>
+              <span class="c1">B</span><span class="c6">e</span><span class="c3">c</span><span class="c7">o</span><span class="c3">m</span><span class="c6">e</span>
+              <span>&thinsp;</span><span class="c2">y</span><span class="c4">o</span><span class="c7">u</span><span class="c5">r</span>
+              <span>&thinsp;</span><span class="c2">b</span><span class="c3">e</span><span class="c5">s</span><span class="c4">t</span>
+              <span>&thinsp;</span><span class="c5">s</span><span class="c7">e</span><span class="c3">l</span><span class="c6">f</span></strong>
+            </p>
             <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
-              <h4>Become your best self.</h4><br>
-              <h4>「Online Shoppingで失敗」はもうしない</h4>
+              <br><h4>「Online Shoppingで失敗」はもうしない</h4>
             </div>
           </div>
 
@@ -40,6 +38,7 @@
                   <%= image_tag 'clothes_8.jpg', class:'top_image d-block w-10', alt:"First slide" %>
                   <div class="card-body card_body_top">
                     <h5 class="card-title"><%= Time.now %></h5>
+                    <h5 class="card-title">Age: 22, Height: 155cm, Weight: 58kg, Waist: 70cm</h5>
                   </div>
                 </div>
               </div>
@@ -48,6 +47,7 @@
                   <%= image_tag 'clothes14.jpg', class:'top_image d-block w-10', alt:"Second slide" %>
                   <div class="card-body card_body_top">
                     <h5 class="card-title"><%= Time.now %></h5>
+                    <h5 class="card-title">Age: 27, Height: 183cm, Weight: 73kg</h5>
                   </div>
                 </div>
               </div>
@@ -56,6 +56,7 @@
                   <%= image_tag 'clothes7.jpg', class:'top_image d-block w-10', alt:"Third slide" %>
                   <div class="card-body card_body_top">
                     <h5 class="card-title"><%= Time.now %></h5>
+                    <h5 class="card-title">Age: 23, Height: 164cm, Weight: 53kg, bust: 80cm, hip:90cm</h5>
                   </div>
                 </div>
               </div>
@@ -64,6 +65,7 @@
                   <%= image_tag 'top4.jpg', class:'top_image d-block w-10', alt:"Forth slide" %>
                   <div class="card-body card_body_top">
                     <h5 class="card-title"><%= Time.now %></h5>
+                    <h5 class="card-title">Age: 27, Height: 175cm, Weight: 52kg, Waist: 70cm</h5>
                   </div>
                 </div>
               </div>
@@ -72,6 +74,7 @@
                   <%= image_tag 'top5.jpg', class:'top_image d-block w-10', alt:"Fifth slide" %>
                   <div class="card-body card_body_top">
                     <h5 class="card-title"><%= Time.now %></h5>
+                    <h5 class="card-title">Age: 18, Height: 183cm, Weight: 70kg</h5>
                   </div>
                 </div>
               </div>
@@ -83,22 +86,43 @@
     </header>
 
     <div id="container">
-      <div class="container_image">
-        <%= image_tag 'toppage2.png', size: '525x345', alt: 'problem' %>
+      <h3>こんな経験、ありませんか？</h3><hr style="width: 500px;"><br>
+      <div class="toppage_middle">
+        <div class="container_image">
+          <%= image_tag 'toppage3.png' %>
+        </div>
+        <div class="voices">
+          <div class="voice1">
+            <p>この服、わたしに合うかな？？<br>
+              痩せてるモデルさんだと<br>よくわからないな・・</p>
+          </div>
+          <div class="voice2">
+            <br><p>このジャケットの生地、<br>どのくらい厚手なのかな・・？？</p>
+          </div>
+          <div class="voice3">
+            <br><p>Online Shoppingで<br>これ以上失敗したくない・・!</p><br>
+          </div>
+        </div>
       </div>
-      <div class="toppage"><br>
-        <p>この服わたしに似合うのかな・・？</p>
-        <p>実際の生地感とかサイズ感って、どんなだろう・・？？</p><br>
 
-        <p>「もうOnline Shoppingで失敗したくない！」</p>
+      <div class="container_contents">
+        <h3><%= image_tag('FitsME1.png') %>では、購入者からのレビューを参考にお買い物を楽しめます</h3><hr><br>
 
-        <br><br><p><%= image_tag('FitsME1.png') %>は、そんな方々のために作られました</p><br>
+        <h4 class="title_concept">CONCEPT</h4><br>
+        <div class="concept1">
+          <p style="font-size: 1.5rem;"><br>「実物のイメージを、購入前からよりクリアに持てたらいいな」</p>
+          <p style="font-size: 1.5rem;">「オンラインショッピングの可能性を広げたいな」</p>
+          <p><%= image_tag('FitsME1.png') %>は、そういった想いから作成されました</p><br>
+        </div><br><br>
 
-        <p><%= image_tag('FitsME1.png') %>では、服を&ensp;購入した方からのレビュー&ensp;を参考にして</p>
-        <p>自分にピッタリ似合うお洋服を探し、購入することができます。</p><br><br>
+        <h4 class="title_concept">How to Use</h4><br>
+        <div class="concept2"><br>
+          <p><i class="fas fa-check-square"></i>生地感：購入した方のレビュー文を参考に<br>
+            <i class="fas fa-check-square"></i>サイズ感：自分に似た体型の方のレビューを確認<br>
+            <i class="fas fa-check-square"></i>色味：スタジオ以外で撮られた画像を参考に<br>
 
-        <p>自分に似た体型の方のレビューや画像を参考に</p>
-        <p>Online Shoppingを楽しみましょう！</p><br><br>
+          <p>Online Shoppingをもっと楽しんで、自分を自由に表現しよう！</p><br>
+        </div><br><br>
         <%= link_to 'Getting started!!', clothes_path, class:"btn btn-warning btn-lg" %>
       </div>
     </div>
