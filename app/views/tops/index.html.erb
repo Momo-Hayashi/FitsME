@@ -14,59 +14,78 @@
 
   <body>
     <header id="header">
-      <p class='toppage_logo'><%= link_to image_tag('FitsME1.png'), clothes_path %></p>
-      <div class="row">
-        <div class="slidebox_letter col-md-6">
-          <h1 class="toptext"><strong>
-            <span class="c1">F</span>
-            <span class="c6">i</span>
-            <span class="c3">t</span>
-            <span class="c5">s</span>
-            <span class="c7">&thinsp;</span>
-            <span class="c4">M</span>
-            <span class="c2">E</span></strong>
-          </h1>
-          <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
-            <h4>「Online Shoppingで失敗」はイマドキじゃない</h4><br>
-            <h4>Become your best self.</h4>
-            <h4></h4>
+      <div class="solid_box">
+        <p class='toppage_logo'><%= link_to image_tag('FitsME1.png'), clothes_path %></p>
+        <div class="row">
+          <div class="slidebox_letter col-md-6">
+            <h1 class="toptext"><strong>
+              <span class="c1">F</span>
+              <span class="c6">i</span>
+              <span class="c3">t</span>
+              <span class="c5">s</span>
+              <span class="c7">&thinsp;</span>
+              <span class="c4">M</span>
+              <span class="c2">E</span></strong>
+            </h1>
+            <div class="animate__animated animate__fadeInUp animate__slow animate__delay-2s">
+              <h4>Become your best self.</h4><br>
+              <h4>「Online Shoppingで失敗」はもうしない</h4>
+            </div>
           </div>
-        </div>
 
-        <div id="carouselExampleSlidesOnly" class="carousel slide col-md-5" data-ride="carousel" data-interval="3000">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card card_top">
-                <%= image_tag 'clothes_8.jpg', class:'top_image d-block w-10', alt:"First slide" %>
+          <div id="carouselExampleSlidesOnly" class="carousel slide col-md-5" data-ride="carousel" data-interval="3000">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="card card_top">
+                  <%= image_tag 'clothes_8.jpg', class:'top_image d-block w-10', alt:"First slide" %>
+                  <div class="card-body card_body_top">
+                    <h5 class="card-title"><%= Time.now %></h5>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card_top">
-                <%= image_tag 'clothes14.jpg', class:'top_image d-block w-10', alt:"Second slide" %>
+              <div class="carousel-item">
+                <div class="card card_top">
+                  <%= image_tag 'clothes14.jpg', class:'top_image d-block w-10', alt:"Second slide" %>
+                  <div class="card-body card_body_top">
+                    <h5 class="card-title"><%= Time.now %></h5>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card_top">
-                <%= image_tag 'clothes7.jpg', class:'top_image d-block w-10', alt:"Third slide" %>
+              <div class="carousel-item">
+                <div class="card card_top">
+                  <%= image_tag 'clothes7.jpg', class:'top_image d-block w-10', alt:"Third slide" %>
+                  <div class="card-body card_body_top">
+                    <h5 class="card-title"><%= Time.now %></h5>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card_top">
-                <%= image_tag 'top4.jpg', class:'top_image d-block w-10', alt:"Forth slide" %>
+              <div class="carousel-item">
+                <div class="card card_top">
+                  <%= image_tag 'top4.jpg', class:'top_image d-block w-10', alt:"Forth slide" %>
+                  <div class="card-body card_body_top">
+                    <h5 class="card-title"><%= Time.now %></h5>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="carousel-item">
-              <div class="card card_top">
-                <%= image_tag 'top5.jpg', class:'top_image d-block w-10', alt:"Fifth slide" %>
+              <div class="carousel-item">
+                <div class="card card_top">
+                  <%= image_tag 'top5.jpg', class:'top_image d-block w-10', alt:"Fifth slide" %>
+                  <div class="card-body card_body_top">
+                    <h5 class="card-title"><%= Time.now %></h5>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="scrolldown4"><span>Scroll</span></div>
       </div>
-      <div class="scrolldown4"><span>Scroll</span></div>
     </header>
 
     <div id="container">
+      <div class="container_image">
+        <%= image_tag 'toppage2.png', size: '525x345', alt: 'problem' %>
+      </div>
       <div class="toppage"><br>
         <p>この服わたしに似合うのかな・・？</p>
         <p>実際の生地感とかサイズ感って、どんなだろう・・？？</p><br>
@@ -75,14 +94,13 @@
 
         <br><br><p><%= image_tag('FitsME1.png') %>は、そんな方々のために作られました</p><br>
 
-        <p><%= image_tag('FitsME1.png') %>では、服を&ensp;<b>購入した方からのレビュー</b>&ensp;を参考にして</p>
+        <p><%= image_tag('FitsME1.png') %>では、服を&ensp;購入した方からのレビュー&ensp;を参考にして</p>
         <p>自分にピッタリ似合うお洋服を探し、購入することができます。</p><br><br>
 
         <p>自分に似た体型の方のレビューや画像を参考に</p>
-        <p>Online Shoppingを楽しみましょう！</p><br>
-      </div><br><br>
-      <%= link_to 'Getting started!!', clothes_path, class:"btn btn-warning btn-lg" %>
-
+        <p>Online Shoppingを楽しみましょう！</p><br><br>
+        <%= link_to 'Getting started!!', clothes_path, class:"btn btn-warning btn-lg" %>
+      </div>
     </div>
   </body>
 </html>

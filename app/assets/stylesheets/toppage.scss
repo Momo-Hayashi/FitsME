@@ -21,20 +21,21 @@
 .c7 { animation-delay: 1.8s; }
 
 .slidebox_letter {
-  width: 600px;
+  width: 980px;
   margin: 180px auto 0 30px;
   padding-right: 0;
 }
 
-.carouselExampleSlidesOnly {
-  // text-align: left;
-  width: 640px;
-  padding-right: 0px;
+.card_top {
+  width: 420px;
+  margin: 0px 70px 50px 50px;
+  padding: 20px 30px 50px 30px;
 }
 
-.card_top {
-  margin: 0 70px 50px;
-  padding: 20px 30px 100px 30px;
+.card_body_top {
+  font-family: 'Noto Serif JP', serif;
+  color: #5e4c47;
+  font-size: 2rem;
 }
 
 .card_top:hover{
@@ -42,49 +43,72 @@
   transform: none;
 }
 
+.carousel {
+  text-align: left;
+  margin-right: auto;
+}
+
 #header{
   width:100%;
   height: 100vh;
   position: relative;
-  background-image: image-url("stone.jpeg");
-  // display: flex;
   font-family: 'Noto Sans JP', sans-serif;
 }
 
 #header:before{
-  content: '';
+  content: "";
   position:fixed;
   top:0;
   left:0;
-  z-index:-1;
+  z-index: 0;
   width:100%;
   height: 100vh;
+	background: image-url("stone.jpeg") no-repeat center;
+	background-size:cover;
+  }
+
+.solid_box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  color:#eee;
+  text-shadow: 0 0 15px #666;
+  text-align: center;
+  width: 100%;
+  height: 800px;
+}
+
+#container{
+  position: relative;
+  z-index:1;
+  background:white;
+  padding: 100px 0 150px;
+  text-align: center;
+  color: white;
+  background-color: #F2F2F2;
+  // background-image: image-url("toppage2.png");
+  background-size:cover;
+  font-family: 'Noto Sans JP', sans-serif;
+  height: 1000px;
+}
+
+.container_image {
+  margin: 100px 70px;
+  display:block;
+  float: right;
 }
 
 .toppage {
+  position: absolute;
   background: rgba(51,112,121,0.4);
-  width: 50%;
   border-radius: 40px;
-  display: inline-block;
-  text-align: left;
+  margin: 30px 30px 0 200px;
+  padding: 30px;
 }
 
 .toppage p {
   text-align: center;
-}
-
-#container{
-  width:100%;
-  position: relative;
-  z-index:1;
-  background:white;
-  padding:200px 0 200px;
-  text-align: center;
-  color: white;
-  background-image: image-url("toppage2.png");
-  // background-image: image-url("toppage_bottom.png");
-  background-size:cover;
-  font-family: 'Noto Sans JP', sans-serif;
 }
 
 @media screen and (max-width:768px){
@@ -97,7 +121,7 @@
 /*スクロールダウン全体の場所*/
 .scrolldown4{
   position:absolute;
-  bottom:10%;
+  bottom:1%;
   right:50%;
   animation: arrowmove 1s ease-in-out infinite;
 }
