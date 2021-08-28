@@ -41,25 +41,27 @@ class CartsController < ApplicationController
   end
 
   def complete
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp::Charge.create(
-      :amount => params[:cart][:paid_price],
-      :card => params['payjp-token'],
-      :currency => 'jpy'
-    )
+    # ActiveRecord::Base.transaction do
+      @order = Order.new_order(@user.id, params[:cart][:address_id], params[:cart][:total_price],
+         params[:cart][:used_points], params[:cart][:paid_price])
 
-    @order = Order.new_order(@user.id, params[:cart][:address_id], params[:cart][:total_price],
-       params[:cart][:used_points], params[:cart][:paid_price])
+      @carts.each do |item|
+        OrderStock.create(stock_id: item.stock.id, order_id: @order.id, amount: item.amount)
+        @stock = item.stock
+        new_quantity = @stock.quantity - item.amount
+        @stock.update_attribute( :quantity, new_quantity )
+        item.destroy
+      end
 
-    @carts.each do |item|
-      OrderStock.create(stock_id: item.stock.id, order_id: @order.id, amount: item.amount)
-      @stock = item.stock
-      new_quantity = @stock.quantity - item.amount
-      @stock.update_attribute( :quantity, new_quantity )
-      item.destroy
-    end
+      @user.point_update(params[:cart][:paid_price], params[:cart][:used_points], @user.id)
 
-    @user.point_update(params[:cart][:paid_price], params[:cart][:used_points], @user.id)
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        :amount => params[:cart][:paid_price],
+        :card => params['payjp-token'],
+        :currency => 'jpy'
+      )
+    # end
     redirect_to orders_path, notice: "購入処理が完了しました！商品の到着を楽しみにお待ちください：）"
   end
 

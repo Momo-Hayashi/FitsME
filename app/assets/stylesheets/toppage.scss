@@ -1,27 +1,188 @@
-/* .toppage {
-  background-image: url("/images/toppage.png");
-  height: 800px;
-  background-size: cover;
+.toppage_logo{
+  text-align: left;
+  padding: 20px 0 0 20px;
+  margin-bottom: 0;
 }
 
-.toppage_content {
-  padding-top: 80px;
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+.c1, .c2, .c3, .c4, .c5, .c6, .c7 {
+  opacity: 0;
+  animation: 2.0s linear forwards fadeIn;
+  font-size: 2.5rem;
+}
+
+.c1 { animation-delay: 0.0s; }
+.c2 { animation-delay: 0.3s; }
+.c3 { animation-delay: 0.6s; }
+.c4 { animation-delay: 0.9s; }
+.c5 { animation-delay: 1.2s; }
+.c6 { animation-delay: 1.5s; }
+.c7 { animation-delay: 1.8s; }
+
+.slidebox_letter {
+  width: 980px;
+  margin: 140px auto 0 30px;
+  padding-right: 0;
+}
+
+.card_top {
+  width: 420px;
+  margin: 0px 70px 80px 50px;
+  padding: 20px 30px 0px 30px;
+}
+
+.card_body_top {
+  font-family: 'Gochi Hand', cursive;
+  color: #5e4c47;
+}
+
+.card_body_top h5 {
+  font-size: 1.8rem;
+}
+
+.card_top:hover{
+  box-shadow: none;
+  transform: none;
+}
+
+.carousel {
+  text-align: left;
+  margin-right: auto;
+}
+
+#header{
+  width:100%;
+  height: 100vh;
+  position: relative;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+#header:before{
+  content: "";
+  position:fixed;
+  top:0;
+  left:0;
+  z-index: 0;
+  width:100%;
+  height: 100vh;
+	background: image-url("stone.jpeg") no-repeat center;
+	background-size:cover;
+  }
+
+.solid_box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  color:#eee;
+  text-shadow: 0 0 15px #666;
+  text-align: center;
+  width: 100%;
+  height: 800px;
+}
+
+#container{
+  position: relative;
+  z-index:1;
+  background:white;
+  padding: 150px 0 130px;
+  text-align: center;
+  background-color: #F2F2F2;
+  height: 1200px;
+}
+
+#container p {
+  font-size: 1.1rem;
   vertical-align: middle;
-  font-family: 'Noto Serif JP', serif;
-} */
+  text-shadow: -1px -1px 5px #FFD700;
+  color: black;
+}
 
+// container 真ん中パート
+.toppage_middle {
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  margin-bottom: 170px;
+}
 
-/*=== 9-1-4 矢印が動いてスクロールを促す  ====*/
+.container_image {
+  display: table-cell;
+  vertical-align: middle;
+  margin-left: 100px;
+}
 
-/*=== 9-1-4 矢印が動いてスクロールを促す  ====*/
+.voices {
+  justify-content: center;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  margin: 30px 30px;
+}
+
+.voice1,
+.voice2,
+.voice3 {
+  padding: 20px;
+  width: 350px;
+  height: 120px;
+  margin: -15px;
+  mix-blend-mode: multiply;
+  background:rgba(191,184,191,0.7);
+}
+.voice1, .voice3 {
+  border-radius: 50% 50% 50% 70%/50% 50% 70% 60%;
+}
+.voice2 {
+  border-radius: 80% 30% 50% 50%/50%;
+}
+
+// container 最下部パート
+.container_contents {
+  background-color: white;
+  padding: 150px 0;
+  background-image: image-url("toppage_bottom.png");
+  background-size:cover;
+  text-align: center;
+}
+
+.title_concept {
+  background: #5e4c47;
+  color: white;
+  // width: 180px;
+  text-align: center;
+  padding: 7px 30px;
+  display: inline-block;
+  text-align: left;
+}
+
+.concept1, .concept2{
+  background:rgba(221,160,221,0.3);
+  width: 55%;
+  border-radius: 50% 50% 50% 70%/50% 50% 70% 60%;
+  border: 1px dashed #333;
+  display: inline-block;
+  text-align: center;
+}
+
+.concept2 {
+  width: 50%;
+}
+
+@media screen and (max-width:768px){
+    #header,
+    #header:before{
+  height: 90vh;
+    }
+}
 
 /*スクロールダウン全体の場所*/
 .scrolldown4{
-    /*描画位置※位置は適宜調整してください*/
   position:absolute;
-  bottom:10%;
+  bottom:1%;
   right:50%;
-    /*矢印の動き1秒かけて永遠にループ*/
   animation: arrowmove 1s ease-in-out infinite;
 }
 
@@ -34,28 +195,23 @@
 
 /*Scrollテキストの描写*/
 .scrolldown4 span{
-    /*描画位置*/
   position: absolute;
   left:-20px;
   bottom:10px;
-    /*テキストの形状*/
   color: #eee;
   font-size: 1rem;
   letter-spacing: 0.05em;
-  /*縦書き設定*/
   -ms-writing-mode: tb-rl;
-    -webkit-writing-mode: vertical-rl;
-    writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
 }
 
 /* 矢印の描写 */
 .scrolldown4:before {
     content: "";
-    /*描画位置*/
     position: absolute;
     bottom: 0;
     right: -6px;
-    /*矢印の形状*/
     width: 1px;
     height: 20px;
     background: #eee;
@@ -64,64 +220,10 @@
 
 .scrolldown4:after{
   content:"";
-    /*描画位置*/
   position: absolute;
   bottom:0;
   right:0;
-    /*矢印の形状*/
   width:1px;
   height: 70px;
   background:#eee;
-}
-
-/*========= レイアウトのためのCSS ===============*/
-
-.toppage_title{
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  color:#eee;
-  text-shadow: 0 0 15px #666;
-  text-align: center;
-}
-
-#header{
-  width:100%;
-  height: 100vh;
-  position: relative;
-  background-image: image-url("toppage2.png");
-  background-size:cover;
-}
-
-#header:before{
-  content: '';
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-  width:100%;
-  height: 100vh;
-  /*背景画像設定*/
-}
-
-#container{
-  position: relative;
-  z-index:1;
-  background:white;
-  padding:230px 0 300px;
-  text-align: center;
-  color: grey;
-  background-image: image-url("toppage_bottom.png");
-  background-size:cover;
-
-}
-
-@media screen and (max-width:768px){
-
-    #header,
-    #header:before{
-  height: 90vh;
-    }
-
 }
