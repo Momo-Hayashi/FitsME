@@ -1,0 +1,62 @@
+<div class ="reviews_detail" id="pagenate">
+  <br><h5>Reviews</h5><hr>
+  <% if @reviews.present? %>
+    <table>
+      <tr>
+        <th>User Info</th>
+        <th>Clothe Info</th>
+        <th>Rating</th>
+        <th>Images</th>
+      </tr>
+      <% @reviews.each do |review| %>
+        <% @stock = Stock.find(review.stock_no) %>
+          <tr>
+            <td class="col-md-2 body_shape_info">
+              <%= review.user.username %>, <%= Date.today.year - review.user.birthday.year %>歳<br>
+              Height：<%= review.user.height %>cm<br>
+              Weight：<%= review.user.weight %>kg<br>
+              Waist：<%= review.user.waist %>cm<br>
+              Bust：<%= review.user.bust %>cm<br>
+              Hip：<%= review.user.hip %>cm</td>
+
+            <td class="col-md-1 stock_info">
+              <%= @stock.size %><br>
+              <%= @stock.color %></td>
+
+            <td class="col-md-5 review_info">
+              <div id="star-rate-<%= review.id %>"></div>
+              <%= review.content %></td>
+
+            <td class="col-md-3 review_image">
+              <% if review.images.attached? %>
+                <% review.images.each do |image| %>
+                  <%= image_tag image.variant(resize: "130x130") %>
+                <% end %>
+              <% end %></td>
+
+            <% if review.user == current_user %>
+              <td><%= link_to 'Edit', edit_clothe_review_path(@clothe.id, review.id, stock_no: @stock.id), class: "btn btn-info btn-sm" %><br><br>
+              <%= link_to 'Delete', clothe_review_path(@clothe.id, review.id), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-info btn-sm" %></td>
+            <% end %>
+            <td><%= link_to 'Detail', clothe_review_path(review.id, clothe_id:@clothe.id, stock_no: @stock.id), class: 'btn btn-outline-info' %></td>
+          </tr>
+
+          <script>
+          $('#star-rate-<%= review.id %>').empty();
+          $('#star-rate-<%= review.id %>').raty({
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+          </script>
+
+        <% end %>
+      </table>
+      <%= paginate @reviews, remote: true %>
+    <% else %>
+    <p>こちらの商品に対するレビューはまだありません。</p>
+  <% end %><br>
+</div>

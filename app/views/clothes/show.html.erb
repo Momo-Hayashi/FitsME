@@ -75,15 +75,15 @@
       <% if @favorite.present? %>
         <%= link_to 'お気に入り解除する', favorite_path(clothe_id: @clothe.id, id: @favorite.id), method: :delete, class: 'btn btn-outline-danger' %>
       <% else %>
-        <%= link_to 'お気に入りに追加', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-info" %>
+        <%= link_to 'お気に入りに追加', favorites_path(clothe_id: @clothe.id), method: :post, class: "btn btn-success" %>
       <% end %>
     </div><br>
   </div>
 </div><br><br>
 
-<div class ="reviews_detail">
+<div class ="reviews_detail" id="pagenate">
   <br><h5>Reviews</h5><hr>
-  <% if @clothe.reviews.present? %>
+  <% if @reviews.present? %>
     <table>
       <tr>
         <th>User Info</th>
@@ -91,7 +91,7 @@
         <th>Rating</th>
         <th>Images</th>
       </tr>
-      <% @clothe.reviews.each do |review| %>
+      <% @reviews.each do |review| %>
         <% @stock = Stock.find(review.stock_no) %>
           <tr>
             <td class="col-md-2 body_shape_info">
@@ -138,6 +138,7 @@
 
         <% end %>
       </table>
+      <%= paginate @reviews, remote: true %>
     <% else %>
     <p>こちらの商品に対するレビューはまだありません。</p>
   <% end %><br>
@@ -148,7 +149,7 @@
   <%= link_to 'Edit', edit_clothe_path(@clothe), class: "btn btn-outline-success" %> |
   <%= link_to 'Delete', clothe_path(@clothe), method: :delete, data:{ confirm:'Are you sure?'}, class: "btn btn-outline-danger"  %> |
 <% end %>
-<%= link_to 'Back', clothes_path, class: "btn btn-outline-info" %>
+<%= link_to 'Back', clothes_path, class: "btn btn-secondary" %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 <script>$('[data-toggle="tooltip"]').tooltip()</script>

@@ -42,6 +42,13 @@ class ClothesController < ApplicationController
   def show
     @favorite = current_user.favorites.find_by(clothe_id: @clothe.id) if current_user
     @stocks = @clothe.stocks
+    @reviews = @clothe.reviews.all.page(params[:page]).per(3)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    
   end
 
   def update
