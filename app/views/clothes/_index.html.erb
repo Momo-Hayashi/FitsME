@@ -1,7 +1,6 @@
 <form>
   <div class="search_field form-row">
     <%= search_form_for @q do |f| %>
-      <%# <%= f.label :name_or_description_or_retailer_name_cont, 'Key Word', class: "col-1.5" %>
       <%= f.search_field :name_or_description_or_retailer_name_cont, placeholder:'キーワード/ブランド名で探す', class:"form-control col-3 offset-1" %>
       <%= f.select :stocks_color_eq, Stock.colors{|key,value| [Stock.colors[key],value]}, {include_blank: '色で探す'}, class:"form-control col-2" %>
       <%= f.select :stocks_size_eq, Stock.sizes{|key,value| [Stock.sizes[key],value]}, {include_blank: 'サイズで探す'}, class:"form-control col-2" %>

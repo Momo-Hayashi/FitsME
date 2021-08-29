@@ -42,13 +42,26 @@ class ClothesController < ApplicationController
   def show
     @favorite = current_user.favorites.find_by(clothe_id: @clothe.id) if current_user
     @stocks = @clothe.stocks
-    @reviews = @clothe.reviews.all.page(params[:page]).per(3)
+    @reviews = @clothe.reviews.all
+
+    if params[:color_search].present?
+      @stocks = @stocks.where(color: params[:color_search])
+      @reviews = @reviews.where(stock_no: @stocks.ids)
+    elsif params[:size_search].present?
+      @stocks = @stocks.where(size: params[:size_search])
+      @reviews = @reviews.where(stock_no: @stocks.ids)
+    elsif params[:color_search].present? && params[:size_search].present?
+      @stocks = @stocks.where(size: params[:size_search]).where(color: params[:color_search])
+      @reviews = @reviews.where(stock_no: @stocks.ids)
+    end
+
+    @reviews = @reviews.page(params[:page]).per(3)
 
     respond_to do |format|
       format.html
       format.js
     end
-    
+
   end
 
   def update

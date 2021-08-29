@@ -81,9 +81,18 @@
   </div>
 </div><br><br>
 
-<div class ="reviews_detail" id="pagenate">
+<div class ="reviews_detail container" id="pagenate">
   <br><h5>Reviews</h5><hr>
   <% if @reviews.present? %>
+    <form>
+      <div class="form-row">
+        <%= form_with local:true, url:clothe_path, method: 'get' do |f| %>
+          <%= f.select :size_search, @clothe.stocks.pluck(:size).uniq, {include_blank: 'サイズで探す'}, class:"form-control col-2 offset-3" %>
+          <%= f.select :color_search, @clothe.stocks.pluck(:color).uniq, {include_blank: '色で探す'}, class:"form-control col-2" %>
+          <%= f.submit '検索', class:"btn btn-secondary" %>
+        <% end %>
+      </div>
+    </form><br>
     <table>
       <tr>
         <th>User Info</th>
