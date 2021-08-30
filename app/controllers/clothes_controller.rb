@@ -58,7 +58,7 @@ class ClothesController < ApplicationController
     @reviews = @reviews.page(params[:page]).per(3)
 
     respond_to do |format|
-      format.js { render :show }
+      format.js
       format.html
     end
 

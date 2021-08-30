@@ -3,10 +3,10 @@
   <% if @reviews.present? %>
     <form>
       <div class="form-row">
-        <%= form_with remote:true do |f| %>
+        <%= form_with href:clothe_path(anchor:"review_section") do |f| %>
           <%= f.select :size_search, @clothe.stocks.pluck(:size).uniq, {include_blank: 'サイズで探す'}, class:"form-control col-2 offset-3" %>
           <%= f.select :color_search, @clothe.stocks.pluck(:color).uniq, {include_blank: '色で探す'}, class:"form-control col-2" %>
-          <%= f.submit '検索', remote: true, class:"btn btn-secondary" %>
+          <%= f.submit '検索', href:clothe_path(anchor:"review_section"), class:"btn btn-secondary" %>
         <% end %>
       </div>
     </form><br>
