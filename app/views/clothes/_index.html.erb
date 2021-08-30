@@ -21,7 +21,7 @@
         </button>
         <div class="dropdown-menu">
           <% category.children.each do |child| %>
-            <button class="dropdown-item" type="button"><%= link_to child.name, category_path(child.id) %></button>
+            <button class="dropdown-item child_category" type="button"><%= link_to child.name, category_path(child.id) %></button>
           <% end %>
         </div>
       </div>
