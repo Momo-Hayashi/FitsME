@@ -42,7 +42,7 @@ class ClothesController < ApplicationController
   def show
     @favorite = current_user.favorites.find_by(clothe_id: @clothe.id) if current_user
     @stocks = @clothe.stocks
-    @reviews = @clothe.reviews.all
+    @reviews = @clothe.reviews.all.order(updated_at: :desc)
 
     if params[:color_search].present?
       @stocks = @stocks.where(color: params[:color_search])

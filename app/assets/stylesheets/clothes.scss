@@ -126,7 +126,6 @@ td{
 
 .side_menu .btn {
   width: 220px;
-  // background-color: #f3d2c1;
 }
 
 .index_clothes {
@@ -161,6 +160,20 @@ td{
   padding: 6px 0;
   max-width: 190px;
   border: 1px solid;
+}
+
+.dropdown-item {
+  padding: 0;
+}
+
+.child_category a{
+  display: block;
+  padding: 4px 24px;
+}
+
+.child_category_register label{
+  display: block;
+  padding: 4px 24px;
 }
 
 .card-img-top {
