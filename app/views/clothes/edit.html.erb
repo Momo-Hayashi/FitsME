@@ -63,7 +63,7 @@
               </button>
               <div class="dropdown-menu category_box" aria-labelledby="dropdownMenuButton">
                 <%= f.collection_check_boxes(:category_ids, category.children, :id, :name) do |b| %>
-                  <a class="dropdown-item"><%= b.label { b.check_box + b.text } %></a>
+                  <a class="dropdown-item child_category_register"><%= b.label { b.check_box + b.text } %></a>
                 <% end %>
               </div>
             </div>

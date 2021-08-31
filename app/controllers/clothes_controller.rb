@@ -44,14 +44,14 @@ class ClothesController < ApplicationController
     @stocks = @clothe.stocks
     @reviews = @clothe.reviews.all.order(updated_at: :desc)
 
-    if params[:color_search].present?
+    if params[:color_search].present? && params[:size_search].present?
+      @stocks = @stocks.where(size: params[:size_search]).where(color: params[:color_search])
+      @reviews = @reviews.where(stock_no: @stocks.ids)
+    elsif params[:color_search].present?
       @stocks = @stocks.where(color: params[:color_search])
       @reviews = @reviews.where(stock_no: @stocks.ids)
     elsif params[:size_search].present?
       @stocks = @stocks.where(size: params[:size_search])
-      @reviews = @reviews.where(stock_no: @stocks.ids)
-    elsif params[:color_search].present? && params[:size_search].present?
-      @stocks = @stocks.where(size: params[:size_search]).where(color: params[:color_search])
       @reviews = @reviews.where(stock_no: @stocks.ids)
     end
 
