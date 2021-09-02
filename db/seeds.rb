@@ -657,339 +657,341 @@
 # ])
 #
 #
-user1 = User.find(3)
-user2 = User.find(1)
-user3 = User.find(2)
-user4 = User.find(5)
+# user1 = User.find(3)
+# user2 = User.find(1)
+# user3 = User.find(2)
+# user4 = User.find(5)
+#
+# clothe3 = Clothe.find(3)
+# clothe4 = Clothe.find(4)
+# clothe5 = Clothe.find(5)
+# clothe6 = Clothe.find(6)
+# clothe7 = Clothe.find(7)
+# clothe8 = Clothe.find(8)
+# clothe10 = Clothe.find(10)
+# clothe11 = Clothe.find(11)
+# clothe12 = Clothe.find(12)
+# clothe14 = Clothe.find(14)
+# clothe15 = Clothe.find(15)
+# clothe16 = Clothe.find(16)
+# clothe17 = Clothe.find(17)
+# clothe18 = Clothe.find(18)
+# clothe19 = Clothe.find(19)
+#
+# Review.create([
+#   { user_id: user3.id,
+#     clothe_id: clothe19.id,
+#     stock_no: clothe19.stocks.first.id,
+#     rate: 5.0,
+#     content: 'ダンス用のTシャツ探してて、ちょうどいい感じの見つかって嬉しい！生地も意外とさらっとしてて夏も涼しいです！！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe19.id,
+#     stock_no: clothe19.stocks.first.id,
+#     rate: 4.0,
+#     content: '青の発色がほんとに綺麗で気に入ってます！！シャツインして白のスカートとか着てチア風にして着てます♡' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe19.id,
+#     stock_no: clothe19.stocks.first.id,
+#     rate: 3.0,
+#     content: '思ってたよりもプリントが若かったかも・・笑　色も形もかわいいから着るけど！！' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe19.id,
+#     stock_no: clothe19.stocks.first.id,
+#     rate: 4.5,
+#     content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe8.id,
+#     stock_no: clothe8.stocks.second.id,
+#     rate: 5.0,
+#     content: '大当たりすぎる、、、、、本当にかわいいし丈感もスカートの長さも完璧！下のスカートはズボン見たいのが中にあってよかった！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe8.id,
+#     stock_no: clothe8.stocks.first.id,
+#     rate: 4.0,
+#     content: 'ウエストが心配でしたが、案の定気を抜くと肉が乗りそう・・笑　服自体はとてもかわいいので、着こなせるように痩せます！！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe8.id,
+#     stock_no: clothe8.stocks.first.id,
+#     rate: 5.0,
+#     content: '私は腰の位置が平均より少し高めなので丈足りるかな、と心配だったのですが問題なかったです！！とても可愛くて満足です♡' },
+#
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe8.id,
+#     stock_no: clothe8.stocks.second.id,
+#     rate: 4.5,
+#     content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe14.id,
+#     stock_no: clothe14.stocks.first.id,
+#     rate: 5.0,
+#     content: '彼氏にプレゼントしたらとても喜んでくれました！！生地は相当分厚いので、冬のそれなりに寒い日でも中も暖かいの着ればいけそう！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe14.id,
+#     stock_no: clothe14.stocks.first.id,
+#     rate: 5.0,
+#     content: '自分用に買いました！漆黒でかっこいいのに首周りのモフモフがかわいくて、絶妙さが気に入ってます！！one-sizeなのが不安でしたが、自分はオーバーサイズめでよかった！' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe14.id,
+#     stock_no: clothe14.stocks.first.id,
+#     rate: 5.0,
+#     content: 'サイズもちょうどよく、デザインも綺麗めで大満足です！！ショート丈だったので、ハイウエストデニムと合わせて着たら可愛いかなあと思います！　着るのが楽しみです！！' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe14.id,
+#     stock_no: clothe14.stocks.first.id,
+#     rate: 5.0,
+#     content: 'スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！冬が待ち遠しい・・！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe11.id,
+#     stock_no: clothe11.stocks.first.id,
+#     rate: 4.5,
+#     content: '太ももの太さもカバーしてくれます！ 暑い日にも着やすい素材で、とてもお気に入りです 155cmで2-3cm丈が余ってしまいました' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe11.id,
+#     stock_no: clothe11.stocks.first.id,
+#     rate: 5.0,
+#     content: '写真のまんまです！かわいい！160cmの私がSを履いて地面に少し裾が付くくらいです。スニーカーは5cmくらいの厚さのと合わせてます。' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe11.id,
+#     stock_no: clothe11.stocks.second.id,
+#     rate: 5.0,
+#     content: 'ウエストがゴムになっているので凄く楽チンです。夏にピッタリな生地です。薄いので下着によってはラインの透ける物もあるかもしれません' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe11.id,
+#     stock_no: clothe11.stocks.last.id,
+#     rate: 5.0,
+#     content: 'サイズもちょうどよく、デザインも綺麗めで大満足です！！' }
+# ])
+#
+# Review.create([
+#   { user_id: user1.id,
+#     clothe_id: clothe10.id,
+#     stock_no: clothe10.stocks.first.id,
+#     rate: 4.0,
+#     content: '私には少し大きかったかも？少し肩幅と袖が余りますが、これはこれでオーバーサイズとしてラフに着れそうで結果よかったです！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe10.id,
+#     stock_no: clothe10.stocks.first.id,
+#     rate: 5.0,
+#     content: '色は写真通りで綺麗な発色だけど程よくくすんでいて、とても素敵です！！シンプルなコーデでも一枚で存在感がだせるので気に入ってます♡' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe10.id,
+#     stock_no: clothe10.stocks.first.id,
+#     rate: 5.0,
+#     content: 'スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！春も秋も使えそうで嬉しい！' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe10.id,
+#     stock_no: clothe10.stocks.first.id,
+#     rate: 5.0,
+#     content: '少し袖が短かったですが、肩幅はぴったしです！スカートともパンツとも合って既にお気に入りです！' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe4.id,
+#     stock_no: clothe4.stocks.second.id,
+#     rate: 5.0,
+#     content: 'ハイウエストでバックデザインも可愛くて、脚長効果絶大！！！毎日着たいくらい気に入ってます！ウエストは紐で調整できるので、お腹いっぱいの時も安心♡笑' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe4.id,
+#     stock_no: clothe4.stocks.first.id,
+#     rate: 4.0,
+#     content: '私には少し大きかったかも？7cmほど丈が余りますが、厚底のスニーカーとか合わせちゃえばなんとかいけます！！ww' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe4.id,
+#     stock_no: clothe4.stocks.first.id,
+#     rate: 5.0,
+#     content: '生地もしっかりしてて透けないし、159cmでMにしようか迷ったけどSで全然良かった！！ぴったり！！愛用する♡丈はもちょうどよい！' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe4.id,
+#     stock_no: clothe4.stocks.second.id,
+#     rate: 4.5,
+#     content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+#
+#     { user_id: user3.id,
+#       clothe_id: clothe6.id,
+#       stock_no: clothe6.stocks.second.id,
+#       rate: 5.0,
+#       content: 'こうゆう淡い色のトレーナー探してたから、すごく嬉しい！くすみ青で、デニムも合うしなんでもいける！' },
+#
+#     { user_id: user1.id,
+#       clothe_id: clothe6.id,
+#       stock_no: clothe6.stocks.first.id,
+#       rate: 4.0,
+#       content: 'オーバーサイズめ狙って、ちょうど萌え袖ぐらいで気に入ってます！生地もしっかりしてて、秋冬用かな！早く寒くなって欲しい！笑' },
+#
+#     { user_id: user2.id,
+#       clothe_id: clothe6.id,
+#       stock_no: clothe6.stocks.first.id,
+#       rate: 3.0,
+#       content: '思ってたよりもプリントが若かったかも・・笑　色も形もかわいいから着るけど！！' },
+#
+#
+#     { user_id: user4.id,
+#       clothe_id: clothe6.id,
+#       stock_no: clothe6.stocks.second.id,
+#       rate: 4.5,
+#       content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+# ])
+#
+# Review.create([
+#   { user_id: user1.id,
+#     clothe_id: clothe17.id,
+#     stock_no: clothe17.stocks.first.id,
+#     rate: 4.0,
+#     content: '私には少し大きかったかも？少し肩幅と袖が余りますが、これはこれでオーバーサイズとしてラフに着れそうで結果よかったです！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe16.id,
+#     stock_no: clothe16.stocks.first.id,
+#     rate: 4.0,
+#     content: '私には少し大きかったかも？少し肩幅と袖が余りますが、これはこれでオーバーサイズとしてラフに着れそうで結果よかったです！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe12.id,
+#     stock_no: clothe12.stocks.first.id,
+#     rate: 4.0,
+#     content: '私には少し大きかったかも？少し肩幅と丈が余りますが、これはこれでラフに着れそうで結果よかったです！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe12.id,
+#     stock_no: clothe12.stocks.first.id,
+#     rate: 5.0,
+#     content: '生地もしっかりしてて透けないし、159cmでSにしようか迷ったけどMで全然良かった！！ぴったり！！愛用する♡丈は膝上10センチないくらい！' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe12.id,
+#     stock_no: clothe12.stocks.first.id,
+#     rate: 5.0,
+#     content: '肩幅があるのがコンプレックスで今までこの形を避けてきたけど安いし可愛いしレビューが良くて購入してみました。 結論から言うと大満足です！形が絶妙でウエストが細くみえるし丈感もベストでした！ほんとに素敵で人生で初めて自分からレビューを書きたいと思えるほどお気に入りな服に出会えました❤︎ 他の方が書いてくださってたレビューを見ていつもならMを買うところをLサイズにして正解なきがします。' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe12.id,
+#     stock_no: clothe12.stocks.first.id,
+#     rate: 4.5,
+#     content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe5.id,
+#     stock_no: clothe5.stocks.first.id,
+#     rate: 4.0,
+#     content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe5.id,
+#     stock_no: clothe5.stocks.first.id,
+#     rate: 5.0,
+#     content: '生地もしっかりしてて透けないし、159cmでサイズ合うか心配だったけど全然良かった！！ぴったり！！愛用する♡' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe5.id,
+#     stock_no: clothe5.stocks.first.id,
+#     rate: 5.0,
+#     content: '写真よりも淡めの白と、繊細な青でとても気に入りました！！肌触りもすごくいいです。スニーカーと合わせて楽しんでます！' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe5.id,
+#     stock_no: clothe5.stocks.first.id,
+#     rate: 4.5,
+#     content: '私には少し小さかったかも？少し肩幅と丈が余りますが、これはこれでラフに着れそうで結果よかったです！' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe7.id,
+#     stock_no: clothe7.stocks.first.id,
+#     rate: 4.0,
+#     content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe7.id,
+#     stock_no: clothe7.stocks.first.id,
+#     rate: 5.0,
+#     content: '生地もしっかりしてて、159cmでサイズが合うか心配だったけど全然良かった！！Aラインがかわいい！！愛用する♡' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe7.id,
+#     stock_no: clothe7.stocks.second.id,
+#     rate: 5.0,
+#     content: '写真よりも淡めの白と、繊細な青でとても気に入りました！！肌触りもすごくいいです。スニーカーと合わせて楽しんでます！' },
+#
+#   { user_id: user4.id,
+#     clothe_id: clothe7.id,
+#     stock_no: clothe7.stocks.second.id,
+#     rate: 4.5,
+#     content: '私には少し小さかったかも？少し肩幅と丈が余りますが、これはこれでラフに着れそうで結果よかったです！' }
+# ])
+#
+# Review.create([
+#   { user_id: user1.id,
+#     clothe_id: clothe3.id,
+#     stock_no: clothe3.stocks.first.id,
+#     rate: 4.5,
+#     content: '太ももの太さもカバーしてくれます！ 暑い日にも着やすい素材で、とてもお気に入りです 155cmで2-3cm丈が余ってしまいました' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe3.id,
+#     stock_no: clothe3.stocks.second.id,
+#     rate: 5.0,
+#     content: '写真のまんまです！かわいい！160cmの私がSを履いて地面に少し裾が付くくらいです。スニーカーは5cmくらいの厚さのと合わせてます。' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe3.id,
+#     stock_no: clothe3.stocks.third.id,
+#     rate: 5.0,
+#     content: 'ウエストがゴムになっているので凄く楽チンです。夏にピッタリな生地です。薄いので下着によってはラインの透ける物もあるかもしれません' },
+#
+#   { user_id: user1.id,
+#     clothe_id: clothe15.id,
+#     stock_no: clothe15.stocks.first.id,
+#     rate: 4.5,
+#     content: '太ももの太さもカバーしてくれます！ 暑い日にも着やすい素材で、とてもお気に入りです 155cmで2-3cm丈が余ってしまいました' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe18.id,
+#     stock_no: clothe18.stocks.first.id,
+#     rate: 5.0,
+#     content: 'サイズ感も色味も良かったです。ウエストはベルトをしなくてもはけるくらいで少し余裕がありました。' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe18.id,
+#     stock_no: clothe18.stocks.second.id,
+#     rate: 5.0,
+#     content: '170cmですがLでいいくらいでした！ハイウエストめっちゃ可愛いです！ボタンが2個あったので調整出来ました！ウエストが大きくてもベルトなどで調整出来るのいいですね' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe16.id,
+#     stock_no: clothe16.stocks.third.id,
+#     rate: 5.0,
+#     content: 'サイズもちょうどよく、デザインも可愛かったので大満足です！！ショート丈だったので、ハイウエストデニムと合わせて着たら可愛いかなあと思います！　着るのが楽しみです！！' },
+#
+#   { user_id: user2.id,
+#     clothe_id: clothe17.id,
+#     stock_no: clothe17.stocks.first.id,
+#     rate: 5.0,
+#     content: 'ペラペラでもなく夏に丁度いい生地でした。色は写真通りでした。リネンのような素材で、非常に肌触りが良いです。セットアップなので中に着る物は別で購入した方がいいです。' },
+#
+#   { user_id: user3.id,
+#     clothe_id: clothe17.id,
+#     stock_no: clothe17.stocks.second.id,
+#     rate: 5.0,
+#     content: 'SET UP合わせて着ると、スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！春も秋も使えそうで嬉しい！' }
+# ])
 
-clothe3 = Clothe.find(3)
-clothe4 = Clothe.find(4)
-clothe5 = Clothe.find(5)
-clothe6 = Clothe.find(6)
-clothe7 = Clothe.find(7)
-clothe8 = Clothe.find(8)
-clothe10 = Clothe.find(10)
-clothe11 = Clothe.find(11)
-clothe12 = Clothe.find(12)
-clothe14 = Clothe.find(14)
-clothe15 = Clothe.find(15)
-clothe16 = Clothe.find(16)
-clothe17 = Clothe.find(17)
-clothe18 = Clothe.find(18)
-clothe19 = Clothe.find(19)
-
-Review.create([
-  { user_id: user3.id,
-    clothe_id: clothe19.id,
-    stock_no: clothe19.stocks.first.id,
-    rate: 5.0,
-    content: 'ダンス用のTシャツ探してて、ちょうどいい感じの見つかって嬉しい！生地も意外とさらっとしてて夏も涼しいです！！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe19.id,
-    stock_no: clothe19.stocks.first.id,
-    rate: 4.0,
-    content: '青の発色がほんとに綺麗で気に入ってます！！シャツインして白のスカートとか着てチア風にして着てます♡' },
-
-  { user_id: user2.id,
-    clothe_id: clothe19.id,
-    stock_no: clothe19.stocks.first.id,
-    rate: 3.0,
-    content: '思ってたよりもプリントが若かったかも・・笑　色も形もかわいいから着るけど！！' },
-
-  { user_id: user4.id,
-    clothe_id: clothe19.id,
-    stock_no: clothe19.stocks.first.id,
-    rate: 4.5,
-    content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-
-  { user_id: user3.id,
-    clothe_id: clothe8.id,
-    stock_no: clothe8.stocks.second.id,
-    rate: 5.0,
-    content: '大当たりすぎる、、、、、本当にかわいいし丈感もスカートの長さも完璧！下のスカートはズボン見たいのが中にあってよかった！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe8.id,
-    stock_no: clothe8.stocks.first.id,
-    rate: 4.0,
-    content: 'ウエストが心配でしたが、案の定気を抜くと肉が乗りそう・・笑　服自体はとてもかわいいので、着こなせるように痩せます！！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe8.id,
-    stock_no: clothe8.stocks.first.id,
-    rate: 5.0,
-    content: '私は腰の位置が平均より少し高めなので丈足りるかな、と心配だったのですが問題なかったです！！とても可愛くて満足です♡' },
-
-
-  { user_id: user4.id,
-    clothe_id: clothe8.id,
-    stock_no: clothe8.stocks.second.id,
-    rate: 4.5,
-    content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe14.id,
-    stock_no: clothe14.stocks.first.id,
-    rate: 5.0,
-    content: '彼氏にプレゼントしたらとても喜んでくれました！！生地は相当分厚いので、冬のそれなりに寒い日でも中も暖かいの着ればいけそう！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe14.id,
-    stock_no: clothe14.stocks.first.id,
-    rate: 5.0,
-    content: '自分用に買いました！漆黒でかっこいいのに首周りのモフモフがかわいくて、絶妙さが気に入ってます！！one-sizeなのが不安でしたが、自分はオーバーサイズめでよかった！' },
-
-  { user_id: user3.id,
-    clothe_id: clothe14.id,
-    stock_no: clothe14.stocks.first.id,
-    rate: 5.0,
-    content: 'サイズもちょうどよく、デザインも綺麗めで大満足です！！ショート丈だったので、ハイウエストデニムと合わせて着たら可愛いかなあと思います！　着るのが楽しみです！！' },
-
-  { user_id: user4.id,
-    clothe_id: clothe14.id,
-    stock_no: clothe14.stocks.first.id,
-    rate: 5.0,
-    content: 'スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！冬が待ち遠しい・・！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe11.id,
-    stock_no: clothe11.stocks.first.id,
-    rate: 4.5,
-    content: '太ももの太さもカバーしてくれます！ 暑い日にも着やすい素材で、とてもお気に入りです 155cmで2-3cm丈が余ってしまいました' },
-
-  { user_id: user2.id,
-    clothe_id: clothe11.id,
-    stock_no: clothe11.stocks.first.id,
-    rate: 5.0,
-    content: '写真のまんまです！かわいい！160cmの私がSを履いて地面に少し裾が付くくらいです。スニーカーは5cmくらいの厚さのと合わせてます。' },
-
-  { user_id: user3.id,
-    clothe_id: clothe11.id,
-    stock_no: clothe11.stocks.second.id,
-    rate: 5.0,
-    content: 'ウエストがゴムになっているので凄く楽チンです。夏にピッタリな生地です。薄いので下着によってはラインの透ける物もあるかもしれません' },
-
-  { user_id: user4.id,
-    clothe_id: clothe11.id,
-    stock_no: clothe11.stocks.last.id,
-    rate: 5.0,
-    content: 'サイズもちょうどよく、デザインも綺麗めで大満足です！！' }
-])
-
-Review.create([
-  { user_id: user1.id,
-    clothe_id: clothe10.id,
-    stock_no: clothe10.stocks.first.id,
-    rate: 4.0,
-    content: '私には少し大きかったかも？少し肩幅と袖が余りますが、これはこれでオーバーサイズとしてラフに着れそうで結果よかったです！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe10.id,
-    stock_no: clothe10.stocks.first.id,
-    rate: 5.0,
-    content: '色は写真通りで綺麗な発色だけど程よくくすんでいて、とても素敵です！！シンプルなコーデでも一枚で存在感がだせるので気に入ってます♡' },
-
-  { user_id: user3.id,
-    clothe_id: clothe10.id,
-    stock_no: clothe10.stocks.first.id,
-    rate: 5.0,
-    content: 'スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！春も秋も使えそうで嬉しい！' },
-
-  { user_id: user4.id,
-    clothe_id: clothe10.id,
-    stock_no: clothe10.stocks.first.id,
-    rate: 5.0,
-    content: '少し袖が短かったですが、肩幅はぴったしです！スカートともパンツとも合って既にお気に入りです！' },
-
-  { user_id: user3.id,
-    clothe_id: clothe4.id,
-    stock_no: clothe4.stocks.second.id,
-    rate: 5.0,
-    content: 'ハイウエストでバックデザインも可愛くて、脚長効果絶大！！！毎日着たいくらい気に入ってます！ウエストは紐で調整できるので、お腹いっぱいの時も安心♡笑' },
-
-  { user_id: user1.id,
-    clothe_id: clothe4.id,
-    stock_no: clothe4.stocks.first.id,
-    rate: 4.0,
-    content: '私には少し大きかったかも？7cmほど丈が余りますが、厚底のスニーカーとか合わせちゃえばなんとかいけます！！ww' },
-
-  { user_id: user2.id,
-    clothe_id: clothe4.id,
-    stock_no: clothe4.stocks.first.id,
-    rate: 5.0,
-    content: '生地もしっかりしてて透けないし、159cmでMにしようか迷ったけどSで全然良かった！！ぴったり！！愛用する♡丈はもちょうどよい！' },
-
-  { user_id: user4.id,
-    clothe_id: clothe4.id,
-    stock_no: clothe4.stocks.second.id,
-    rate: 4.5,
-    content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-
-    { user_id: user3.id,
-      clothe_id: clothe6.id,
-      stock_no: clothe6.stocks.second.id,
-      rate: 5.0,
-      content: 'こうゆう淡い色のトレーナー探してたから、すごく嬉しい！くすみ青で、デニムも合うしなんでもいける！' },
-
-    { user_id: user1.id,
-      clothe_id: clothe6.id,
-      stock_no: clothe6.stocks.first.id,
-      rate: 4.0,
-      content: 'オーバーサイズめ狙って、ちょうど萌え袖ぐらいで気に入ってます！生地もしっかりしてて、秋冬用かな！早く寒くなって欲しい！笑' },
-
-    { user_id: user2.id,
-      clothe_id: clothe6.id,
-      stock_no: clothe6.stocks.first.id,
-      rate: 3.0,
-      content: '思ってたよりもプリントが若かったかも・・笑　色も形もかわいいから着るけど！！' },
-
-
-    { user_id: user4.id,
-      clothe_id: clothe6.id,
-      stock_no: clothe6.stocks.second.id,
-      rate: 4.5,
-      content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-])
-
-Review.create([
-  { user_id: user1.id,
-    clothe_id: clothe17.id,
-    stock_no: clothe17.stocks.first.id,
-    rate: 4.0,
-    content: '私には少し大きかったかも？少し肩幅と袖が余りますが、これはこれでオーバーサイズとしてラフに着れそうで結果よかったです！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe16.id,
-    stock_no: clothe16.stocks.first.id,
-    rate: 4.0,
-    content: '私には少し大きかったかも？少し肩幅と袖が余りますが、これはこれでオーバーサイズとしてラフに着れそうで結果よかったです！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe12.id,
-    stock_no: clothe12.stocks.first.id,
-    rate: 4.0,
-    content: '私には少し大きかったかも？少し肩幅と丈が余りますが、これはこれでラフに着れそうで結果よかったです！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe12.id,
-    stock_no: clothe12.stocks.first.id,
-    rate: 5.0,
-    content: '生地もしっかりしてて透けないし、159cmでSにしようか迷ったけどMで全然良かった！！ぴったり！！愛用する♡丈は膝上10センチないくらい！' },
-
-  { user_id: user3.id,
-    clothe_id: clothe12.id,
-    stock_no: clothe12.stocks.first.id,
-    rate: 5.0,
-    content: '肩幅があるのがコンプレックスで今までこの形を避けてきたけど安いし可愛いしレビューが良くて購入してみました。 結論から言うと大満足です！形が絶妙でウエストが細くみえるし丈感もベストでした！ほんとに素敵で人生で初めて自分からレビューを書きたいと思えるほどお気に入りな服に出会えました❤︎ 他の方が書いてくださってたレビューを見ていつもならMを買うところをLサイズにして正解なきがします。' },
-
-  { user_id: user4.id,
-    clothe_id: clothe12.id,
-    stock_no: clothe12.stocks.first.id,
-    rate: 4.5,
-    content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe5.id,
-    stock_no: clothe5.stocks.first.id,
-    rate: 4.0,
-    content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe5.id,
-    stock_no: clothe5.stocks.first.id,
-    rate: 5.0,
-    content: '生地もしっかりしてて透けないし、159cmでサイズ合うか心配だったけど全然良かった！！ぴったり！！愛用する♡' },
-
-  { user_id: user3.id,
-    clothe_id: clothe5.id,
-    stock_no: clothe5.stocks.first.id,
-    rate: 5.0,
-    content: '写真よりも淡めの白と、繊細な青でとても気に入りました！！肌触りもすごくいいです。スニーカーと合わせて楽しんでます！' },
-
-  { user_id: user4.id,
-    clothe_id: clothe5.id,
-    stock_no: clothe5.stocks.first.id,
-    rate: 4.5,
-    content: '私には少し小さかったかも？少し肩幅と丈が余りますが、これはこれでラフに着れそうで結果よかったです！' },
-
-  { user_id: user1.id,
-    clothe_id: clothe7.id,
-    stock_no: clothe7.stocks.first.id,
-    rate: 4.0,
-    content: '模様が綺麗なのでカジュアルにも綺麗めにも着れそうですごくかわいいです！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe7.id,
-    stock_no: clothe7.stocks.first.id,
-    rate: 5.0,
-    content: '生地もしっかりしてて、159cmでサイズが合うか心配だったけど全然良かった！！Aラインがかわいい！！愛用する♡' },
-
-  { user_id: user3.id,
-    clothe_id: clothe7.id,
-    stock_no: clothe7.stocks.second.id,
-    rate: 5.0,
-    content: '写真よりも淡めの白と、繊細な青でとても気に入りました！！肌触りもすごくいいです。スニーカーと合わせて楽しんでます！' },
-
-  { user_id: user4.id,
-    clothe_id: clothe7.id,
-    stock_no: clothe7.stocks.second.id,
-    rate: 4.5,
-    content: '私には少し小さかったかも？少し肩幅と丈が余りますが、これはこれでラフに着れそうで結果よかったです！' }
-])
-
-Review.create([
-  { user_id: user1.id,
-    clothe_id: clothe3.id,
-    stock_no: clothe3.stocks.first.id,
-    rate: 4.5,
-    content: '太ももの太さもカバーしてくれます！ 暑い日にも着やすい素材で、とてもお気に入りです 155cmで2-3cm丈が余ってしまいました' },
-
-  { user_id: user2.id,
-    clothe_id: clothe3.id,
-    stock_no: clothe3.stocks.second.id,
-    rate: 5.0,
-    content: '写真のまんまです！かわいい！160cmの私がSを履いて地面に少し裾が付くくらいです。スニーカーは5cmくらいの厚さのと合わせてます。' },
-
-  { user_id: user3.id,
-    clothe_id: clothe3.id,
-    stock_no: clothe3.stocks.third.id,
-    rate: 5.0,
-    content: 'ウエストがゴムになっているので凄く楽チンです。夏にピッタリな生地です。薄いので下着によってはラインの透ける物もあるかもしれません' },
-
-  { user_id: user1.id,
-    clothe_id: clothe15.id,
-    stock_no: clothe15.stocks.first.id,
-    rate: 4.5,
-    content: '太ももの太さもカバーしてくれます！ 暑い日にも着やすい素材で、とてもお気に入りです 155cmで2-3cm丈が余ってしまいました' },
-
-  { user_id: user2.id,
-    clothe_id: clothe18.id,
-    stock_no: clothe18.stocks.first.id,
-    rate: 5.0,
-    content: 'サイズ感も色味も良かったです。ウエストはベルトをしなくてもはけるくらいで少し余裕がありました。' },
-
-  { user_id: user3.id,
-    clothe_id: clothe18.id,
-    stock_no: clothe18.stocks.second.id,
-    rate: 5.0,
-    content: '170cmですがLでいいくらいでした！ハイウエストめっちゃ可愛いです！ボタンが2個あったので調整出来ました！ウエストが大きくてもベルトなどで調整出来るのいいですね' },
-
-  { user_id: user2.id,
-    clothe_id: clothe16.id,
-    stock_no: clothe16.stocks.third.id,
-    rate: 5.0,
-    content: 'サイズもちょうどよく、デザインも可愛かったので大満足です！！ショート丈だったので、ハイウエストデニムと合わせて着たら可愛いかなあと思います！　着るのが楽しみです！！' },
-
-  { user_id: user2.id,
-    clothe_id: clothe17.id,
-    stock_no: clothe17.stocks.first.id,
-    rate: 5.0,
-    content: 'ペラペラでもなく夏に丁度いい生地でした。色は写真通りでした。リネンのような素材で、非常に肌触りが良いです。セットアップなので中に着る物は別で購入した方がいいです。' },
-
-  { user_id: user3.id,
-    clothe_id: clothe17.id,
-    stock_no: clothe17.stocks.second.id,
-    rate: 5.0,
-    content: 'SET UP合わせて着ると、スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！春も秋も使えそうで嬉しい！' }
-])
+Admin.create!(name:'管理者', email:'admin@admin.jp', password:'admin@admin.jp')

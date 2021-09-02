@@ -12,10 +12,17 @@ RSpec.describe Admin, type: :system do
 
   describe 'ログイン・ログアウト機能' do
     context '管理者がログインをした場合' do
-      it '管理者画面に遷移する' do
+      it 'ホーム画面に遷移する' do
         admin_login
         sleep(0.1)
-        expect(page).to have_content 'ログインしました'
+        expect(page).to have_content('ログインしました').and have_content('管理画面')
+        expect(current_path).to eq clothes_path
+      end
+
+      it '管理画面にアクセスできる' do
+        admin_login
+        sleep(0.1)
+        click_on '管理画面'
         expect(current_path).to eq rails_admin_path
       end
     end
@@ -24,10 +31,10 @@ RSpec.describe Admin, type: :system do
       it 'ホーム画面に遷移する' do
         admin_login
         sleep(0.1)
-        find(:xpath, '//*[@id="secondary-navigation"]/ul/li[4]/a/span').click
+        click_on 'Log out'
         sleep(0.1)
         expect(page).to have_content 'ログアウトしました'
-        expect(current_path).to eq root_path
+        expect(current_path).to eq clothes_path
       end
     end
   end
@@ -36,6 +43,8 @@ RSpec.describe Admin, type: :system do
     context '管理者が新たに他の管理者を新規登録をした場合' do
       it '管理者が増える' do
         admin_login
+        sleep(0.1)
+        click_on '管理画面'
         sleep(0.1)
         find(:xpath, '/html/body/div[3]/div/div[1]/ul[1]/li[17]/a').click
         sleep(0.1)
@@ -54,6 +63,8 @@ RSpec.describe Admin, type: :system do
       it 'そのリテイラーがデータベースから消える' do
         retailer = FactoryBot.create(:second_retailer)
         admin_login
+        sleep(0.1)
+        click_on '管理画面'
         sleep(0.1)
         find(:xpath, '/html/body/div[3]/div/div[1]/ul[1]/li[12]/a').click
         sleep(0.1)
