@@ -2,21 +2,21 @@ require 'rails_helper'
 RSpec.describe Clothe, type: :system do
 
   let!(:retailer) { FactoryBot.create(:second_retailer, email: 'testretailer@test.com') }
-  let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer) }
   let!(:category) { FactoryBot.create(:category) }
   let!(:child_category) { FactoryBot.create(:child_category, ancestry: category.id ) }
+  let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer, category_ids: child_category.id ) }
   # let!(:categorization) { FactoryBot.create(:categorization) }
 
   def retailer_login
     visit new_retailer_session_path
     fill_in 'retailer_email', with: 'testretailer@test.com'
     fill_in 'retailer_password', with: 'test_retailer2@test.com'
-    find(:xpath, '//*[@id="new_retailer"]/div[4]/input').click
+    find(:xpath, '//*[@id="new_retailer"]/div[2]/input').click
   end
 
   describe '服の登録機能' do
     context 'リテイラーが服を登録した場合' do
-      it '服の詳細画面に遷移し、登録内容が表示される' do
+      it '服の登録内容の確認画面に遷移する' do
         retailer_login
         sleep(0.1)
         click_on '服の登録'
@@ -35,7 +35,8 @@ RSpec.describe Clothe, type: :system do
         fill_in 'clothe[stocks_attributes][0][quantity]', with: '100'
         click_on '登録する'
         sleep(0.1)
-        expect(page).to have_content('Clothe was successfully created.').and have_content('美脚効果抜群のセミフレアパンツに、待望のスラックス')
+        expect(current_path).to eq confirm_clothes_path
+        expect(page).to have_content('下記の内容で掲載しますか？')
       end
     end
   end
@@ -47,12 +48,9 @@ RSpec.describe Clothe, type: :system do
         sleep(0.1)
         click_on '企業ページ'
         sleep(0.1)
-        find(:xpath, '/html/body/article/div[3]/div/ul/table/tbody/tr/td[1]/a').click
+        find(:xpath, '/html/body/article/div[2]/div/div/div/table/tbody/tr/td[1]/a').click
         sleep(0.1)
-        click_on 'サイズ・カラーをさらに追加する'
         fill_in 'clothe[description]', with: '編集テスト！！'
-        click_on 'レディース /パンツ'
-        check 'Tシャツ'
         click_on '更新する'
         sleep(0.1)
         expect(page).to have_content('Clothe was successfully updated.').and have_content('編集テスト')
