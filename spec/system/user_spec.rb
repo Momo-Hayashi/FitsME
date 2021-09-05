@@ -7,7 +7,7 @@ RSpec.describe User, type: :system do
     visit new_user_session_path
     fill_in 'user_email', with: 'testuser1@test.com'
     fill_in 'user_password', with: 'testuser1@test.com'
-    find(:xpath, '//*[@id="new_user"]/div[4]/input').click
+    find(:xpath, '//*[@id="new_user"]/div[2]/input').click
   end
 
   describe 'ユーザ登録機能' do
@@ -21,7 +21,7 @@ RSpec.describe User, type: :system do
         select '10', from: 'user_birthday_3i'
         fill_in 'user_password', with: 'test@test.com'
         fill_in 'user_password_confirmation', with: 'test@test.com'
-        find(:xpath, '//*[@id="new_user"]/div[6]/input').click
+        find(:xpath, '//*[@id="new_user"]/div/input').click
         sleep(0.1)
         expect(page).to have_content 'アカウント登録が完了しました'
         expect(current_path).to eq users_show_path
@@ -41,10 +41,10 @@ RSpec.describe User, type: :system do
     context 'ユーザーがログアウトをした場合' do
       it 'ホーム画面に遷移する' do
         user_login
-        find(:xpath, '/html/body/header/ul/li[6]/a').click
+        click_on  'Log out'
         sleep(0.1)
         expect(page).to have_content 'ログアウトしました'
-        expect(current_path).to eq root_path
+        expect(current_path).to eq clothes_path
       end
     end
   end
@@ -66,8 +66,6 @@ RSpec.describe User, type: :system do
         click_button 'Update'
         sleep(0.1)
         expect(page).to have_content 'アカウント情報を変更しました'
-        find(:xpath, '/html/body/header/ul/li[2]/a').click
-        sleep(0.1)
         expect(page).to have_content '渋谷区 渋谷市1-2-3'
       end
     end
@@ -82,8 +80,6 @@ RSpec.describe User, type: :system do
         click_button 'Update'
         sleep(0.1)
         expect(page).to have_content 'アカウント情報を変更しました'
-        find(:xpath, '/html/body/header/ul/li[2]/a').click
-        sleep(0.1)
         expect(page).to have_content '177.7'
       end
     end

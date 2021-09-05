@@ -8,13 +8,13 @@ RSpec.describe Review, type: :system do
   let!(:order_stock) { FactoryBot.create(:order_stock, order: order, stock: clothe.stocks.first) }
 
 
-  describe 'レビュー投稿機能' do
+  describe 'レビュー CRUD 機能' do
 
     def user_login_and_review
       visit new_user_session_path
       fill_in 'user_email', with: 'testuser1@test.com'
       fill_in 'user_password', with: 'testuser1@test.com'
-      find(:xpath, '//*[@id="new_user"]/div[4]/input').click
+      find(:xpath, '//*[@id="new_user"]/div[2]/input').click
       sleep(0.1)
       click_on 'Orders'
       sleep(0.1)
@@ -45,6 +45,13 @@ RSpec.describe Review, type: :system do
         click_on 'レビューを編集'
         sleep(0.1)
         expect(page).to have_content('Reviewを編集').and have_content('身長160cmのわたしはSサイズで丈感がちょうど')
+      end
+    end
+
+    context 'レビューを削除した場合' do
+      it '' do
+        user_login_and_review
+        expect(page).to have_content('レビュー投稿ありがとうございます!').and have_content('身長160cmのわたしはSサイズで丈感がちょうど')
       end
     end
 
