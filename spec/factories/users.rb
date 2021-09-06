@@ -30,13 +30,4 @@ FactoryBot.define do
     points { 0 }
   end
 
-  factory :third_user, class: User do
-    username { 'テストユーザー3' }
-    birthday { '1990-10-10' }
-    email { 'testuser3@test.com' }
-    password { 'testuser3@test.com' }
-    password_confirmation { 'testuser3@test.com' }
-    points { 0 }
-
-  end
 end

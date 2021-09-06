@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :order do
     price { '10000' }
+    used_points { '300' }
+    paid_price { '9700' }
     last_name { 'テスト' }
     first_name { 'アドレス' }
     postcode { '1333333' }
