@@ -20,7 +20,6 @@ FactoryBot.define do
 
     after (:build) do |clothe|
       clothe.images.attach(io: File.open("./spec/images/clothes1.jpg"), filename: 'clothes1.jpg')
-      clothe.images.attach(io: File.open("./spec/images/clothes_1.jpg"), filename: 'clothes_1.jpg')
 
       stock = create(:stock)
       clothe.stocks.build(size: stock.size, color:stock.color, quantity: stock.quantity )

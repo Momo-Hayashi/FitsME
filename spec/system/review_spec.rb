@@ -15,7 +15,7 @@ RSpec.describe Review, type: :system do
       find(:xpath, '//*[@id="new_user"]/div[2]/input').click
       sleep(0.1)
       click_on 'Orders'
-      sleep(0.1)
+      sleep(0.3)
       click_on '注文の詳細'
       sleep(0.1)
       click_on 'レビューを書いてポイントGet'
@@ -39,11 +39,7 @@ RSpec.describe Review, type: :system do
     context '投稿済みのレビューを選択した場合' do
       def edit_review
         user_login_and_review
-        click_on 'Orders'
-        sleep(0.2)
-        click_on '注文の詳細'
-        sleep(0.1)
-        click_on 'レビューを編集'
+        click_on 'Edit'
         sleep(0.1)
       end
 

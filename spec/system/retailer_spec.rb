@@ -40,11 +40,10 @@ RSpec.describe Retailer, type: :system do
     context 'リテイラーがプロフィールを編集した場合' do
       it 'マイページに反映される' do
         retailer_sign_up
-        sleep(0.1)
         click_on '企業ページ'
         sleep(0.1)
         click_on 'Edit the profile'
-        sleep(0.1)
+        sleep(0.3)
         attach_file 'retailer[logo]', "#{Rails.root}/spec/images/afends.png"
         fill_in 'retailer[current_password]', with: 'test@test.com'
         click_button 'Update'

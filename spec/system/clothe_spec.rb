@@ -50,7 +50,7 @@ RSpec.describe Clothe, type: :system do
         click_on '企業ページ'
         sleep(0.1)
         find(:xpath, '/html/body/article/div[2]/div/div/div/table/tbody/tr/td[1]/a').click
-        sleep(0.1)
+        sleep(0.5)
         fill_in 'clothe[description]', with: '編集テスト！！'
         click_on '登録する'
         sleep(0.1)
