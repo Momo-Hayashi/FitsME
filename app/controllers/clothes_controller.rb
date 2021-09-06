@@ -85,7 +85,7 @@ class ClothesController < ApplicationController
   def destroy
     @clothe.destroy
     respond_to do |format|
-      format.html { redirect_to clothes_url, notice: "Clothe was successfully destroyed." }
+      format.html { redirect_to clothes_url, notice: "Clothe was successfully deleted." }
       format.json { head :no_content }
     end
   end

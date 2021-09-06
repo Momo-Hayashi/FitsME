@@ -1,24 +1,25 @@
 require 'rails_helper'
 RSpec.describe Clothe, type: :system do
 
-  let!(:retailer) { FactoryBot.create(:second_retailer, email: 'testretailer@test.com') }
+  let!(:retailer) { FactoryBot.create(:second_retailer) }
   let!(:category) { FactoryBot.create(:category) }
   let!(:child_category) { FactoryBot.create(:child_category, ancestry: category.id ) }
-  let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer, category_ids: child_category.id ) }
-  # let!(:categorization) { FactoryBot.create(:categorization) }
+  let!(:second_clothe) { FactoryBot.create(:second_clothe, retailer: retailer, category_ids: child_category.id ) }
 
-  def retailer_login
-    visit new_retailer_session_path
-    fill_in 'retailer_email', with: 'testretailer@test.com'
-    fill_in 'retailer_password', with: 'test_retailer2@test.com'
-    find(:xpath, '//*[@id="new_retailer"]/div[2]/input').click
-  end
 
-  describe '服の登録機能' do
-    context 'リテイラーが服を登録した場合' do
-      it '服の登録内容の確認画面に遷移する' do
+  describe '服の CRUD機能' do
+
+    def retailer_login
+      visit new_retailer_session_path
+      fill_in 'retailer_email', with: 'test_retailer2@test.com'
+      fill_in 'retailer_password', with: 'test_retailer2@test.com'
+      find(:xpath, '//*[@id="new_retailer"]/div[2]/input').click
+      sleep(0.1)
+    end
+
+    context 'リテイラーが服を登録する場合' do
+      it '確認画面に遷移した後、登録できる' do
         retailer_login
-        sleep(0.1)
         click_on '服の登録'
         sleep(0.1)
         fill_in 'clothe[name]', with: '【web限定Sサイズ】センタープレスセミフレアスラックス'
@@ -37,23 +38,36 @@ RSpec.describe Clothe, type: :system do
         sleep(0.1)
         expect(current_path).to eq confirm_clothes_path
         expect(page).to have_content('下記の内容で掲載しますか？')
+        click_on 'Post'
+        sleep(0.1)
+        expect(page).to have_content('Clothe was successfully created')
       end
     end
-  end
 
-  describe '服の編集機能' do
     context 'リテイラーが服を編集した場合' do
       it '服の詳細画面に遷移し、登録内容が反映される' do
         retailer_login
-        sleep(0.1)
         click_on '企業ページ'
         sleep(0.1)
         find(:xpath, '/html/body/article/div[2]/div/div/div/table/tbody/tr/td[1]/a').click
         sleep(0.1)
         fill_in 'clothe[description]', with: '編集テスト！！'
-        click_on '更新する'
+        click_on '登録する'
         sleep(0.1)
         expect(page).to have_content('Clothe was successfully updated.').and have_content('編集テスト')
+      end
+    end
+
+    context 'リテイラーが服を編集した場合' do
+      it '服の詳細画面に遷移し、登録内容が反映される' do
+        retailer_login
+        click_on '企業ページ'
+        sleep(0.1)
+        find(:xpath, '/html/body/article/div[2]/div/div/div/table/tbody/tr/td[2]/a').click
+        page.driver.browser.switch_to.alert.accept
+        sleep(0.1)
+        expect(page).to have_content('Clothe was successfully deleted.')
+        expect(page).not_to have_content('センタープレスセミフレアスラックス')
       end
     end
   end
