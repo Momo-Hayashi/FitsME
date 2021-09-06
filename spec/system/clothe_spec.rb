@@ -17,7 +17,7 @@ RSpec.describe Clothe, type: :system do
       sleep(0.1)
     end
 
-    context 'リテイラーが服を登録する場合' do
+    context '服を登録する場合' do
       it '確認画面に遷移した後、登録できる' do
         retailer_login
         click_on '服の登録'
@@ -44,7 +44,7 @@ RSpec.describe Clothe, type: :system do
       end
     end
 
-    context 'リテイラーが服を編集した場合' do
+    context '服を編集した場合' do
       it '服の詳細画面に遷移し、登録内容が反映される' do
         retailer_login
         click_on '企業ページ'
@@ -58,8 +58,8 @@ RSpec.describe Clothe, type: :system do
       end
     end
 
-    context 'リテイラーが服を編集した場合' do
-      it '服の詳細画面に遷移し、登録内容が反映される' do
+    context '服を削除した場合' do
+      it 'alertが表示され、登録内容が削除される' do
         retailer_login
         click_on '企業ページ'
         sleep(0.1)

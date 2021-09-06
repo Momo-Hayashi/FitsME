@@ -54,7 +54,6 @@ RSpec.describe Retailer, type: :system do
         click_on '企業ページ'
         sleep(0.1)
         have_selector("img[src$='afends.png']")
-        binding.irb
       end
     end
 
