@@ -31,8 +31,9 @@ gem 'kaminari'
 gem "aws-sdk-s3", require: false
 
 gem 'unicorn'
-gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+gem 'mini_racer', platforms: :ruby
 
+gem 'rubocop', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
