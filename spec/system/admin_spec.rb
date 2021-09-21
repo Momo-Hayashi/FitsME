@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Admin, type: :system do
-
   let!(:admin) { FactoryBot.create(:admin) }
 
   def admin_login
@@ -61,7 +62,7 @@ RSpec.describe Admin, type: :system do
 
     context '特定のリテイラーを削除した場合' do
       it 'そのリテイラーがデータベースから消える' do
-        retailer = FactoryBot.create(:second_retailer)
+        FactoryBot.create(:second_retailer)
         admin_login
         sleep(0.1)
         click_on '管理画面'
@@ -76,7 +77,5 @@ RSpec.describe Admin, type: :system do
         expect(page).not_to have_content('削除リテイラー')
       end
     end
-
   end
-
 end

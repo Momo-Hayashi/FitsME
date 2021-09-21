@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Review, type: :model do
-
   user = FactoryBot.build(:user)
   clothe = FactoryBot.build(:clothe)
 
@@ -18,6 +19,5 @@ RSpec.describe Review, type: :model do
         expect(review).not_to be_valid
       end
     end
-
   end
 end

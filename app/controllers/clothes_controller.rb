@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ClothesController < ApplicationController
-  before_action :authenticate_retailer!, only: %i[ new create edit update destroy ]
-  before_action :set_clothe, only: %i[ show edit update destroy ]
+  before_action :authenticate_retailer!, only: %i[new create edit update destroy]
+  before_action :set_clothe, only: %i[show edit update destroy]
 
   def index
     @clothes = Clothe.all.order(updated_at: :desc)
@@ -19,7 +21,7 @@ class ClothesController < ApplicationController
     redirect_to new_clothe_path, alert: '全項目が入力必須です' if @clothe.invalid?
   end
 
-  def edit ;  end
+  def edit; end
 
   def create
     @clothe = current_retailer.clothes.build(clothe_params)
@@ -29,7 +31,7 @@ class ClothesController < ApplicationController
     else
       respond_to do |format|
         if @clothe.save
-          format.html { redirect_to @clothe, notice: "Clothe was successfully created." }
+          format.html { redirect_to @clothe, notice: 'Clothe was successfully created.' }
           format.json { render :show, status: :created, location: @clothe }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -61,19 +63,16 @@ class ClothesController < ApplicationController
       format.js { render :show }
       format.html
     end
-
   end
 
   def update
-    if params[:clothe][:image_ids]
-      params[:clothe][:image_ids].each do |image_id|
-        image = @clothe.images.find(image_id)
-        image.purge
-      end
+    params[:clothe][:image_ids]&.each do |image_id|
+      image = @clothe.images.find(image_id)
+      image.purge
     end
     respond_to do |format|
       if @clothe.update_attributes(clothe_params)
-        format.html { redirect_to @clothe, notice: "Clothe was successfully updated." }
+        format.html { redirect_to @clothe, notice: 'Clothe was successfully updated.' }
         format.json { render :show, status: :ok, location: @clothe }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -85,20 +84,19 @@ class ClothesController < ApplicationController
   def destroy
     @clothe.destroy
     respond_to do |format|
-      format.html { redirect_to clothes_url, notice: "Clothe was successfully deleted." }
+      format.html { redirect_to clothes_url, notice: 'Clothe was successfully deleted.' }
       format.json { head :no_content }
     end
   end
 
   private
 
-    def set_clothe
-      @clothe = Clothe.find(params[:id])
-    end
+  def set_clothe
+    @clothe = Clothe.find(params[:id])
+  end
 
-    def clothe_params
-      params.require(:clothe).permit(:name, :description, :size, :price, :category_id, category_ids: [], images: [],
-         stocks_attributes: [:size, :color, :quantity, :id, :clothe_id, :_destroy ] )
-    end
-
+  def clothe_params
+    params.require(:clothe).permit(:name, :description, :size, :price, :category_id, category_ids: [], images: [],
+                                                                                     stocks_attributes: %i[size color quantity id clothe_id _destroy])
+  end
 end

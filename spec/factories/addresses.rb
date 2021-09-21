@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :address do
     last_name { 'テスト' }
@@ -10,5 +12,4 @@ FactoryBot.define do
     phone_number { '1234567890' }
     association :user
   end
-
 end

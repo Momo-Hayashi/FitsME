@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
@@ -14,5 +16,4 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(id: params[:id]).destroy
     redirect_to clothe_path(params[:clothe_id]), notice: "#{favorite.clothe.name}をお気に入り解除しました！"
   end
-
 end

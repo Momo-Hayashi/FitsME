@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe '購入機能', type: :system do
-
   let!(:retailer) { FactoryBot.create(:retailer) }
   let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer) }
   let!(:user) { FactoryBot.create(:user) }
   let!(:cart) { FactoryBot.create(:cart, user: user, stock: clothe.stocks.first) }
 
   describe '服の購入機能' do
-
     def user_login_add_item
       visit new_user_session_path
       fill_in 'user_email', with: 'testuser1@test.com'
@@ -99,7 +99,7 @@ RSpec.describe '購入機能', type: :system do
         sleep(0.1)
         Capybara.within_frame 'payjp-checkout-iframe' do
           fill_in 'payjp_cardNumber', with: '4242424242424242'
-          fill_in 'payjp_cardExpiresMonth',  with: '12'
+          fill_in 'payjp_cardExpiresMonth', with: '12'
           fill_in 'payjp_cardExpiresYear', with: '30'
           fill_in 'payjp_cardCvc', with: '123'
           fill_in 'payjp_cardName', with: 'TEST'
@@ -110,6 +110,5 @@ RSpec.describe '購入機能', type: :system do
         expect(current_path).to eq orders_path
       end
     end
-
   end
 end

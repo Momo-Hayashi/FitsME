@@ -1,14 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Clothe, type: :system do
-
   let!(:retailer) { FactoryBot.create(:second_retailer) }
   let!(:category) { FactoryBot.create(:category) }
-  let!(:child_category) { FactoryBot.create(:child_category, ancestry: category.id ) }
-  let!(:second_clothe) { FactoryBot.create(:second_clothe, retailer: retailer, category_ids: child_category.id ) }
-
+  let!(:child_category) { FactoryBot.create(:child_category, ancestry: category.id) }
+  let!(:second_clothe) { FactoryBot.create(:second_clothe, retailer: retailer, category_ids: child_category.id) }
 
   describe '服の CRUD機能' do
-
     def retailer_login
       visit new_retailer_session_path
       fill_in 'retailer_email', with: 'test_retailer2@test.com'
@@ -71,5 +70,4 @@ RSpec.describe Clothe, type: :system do
       end
     end
   end
-
 end

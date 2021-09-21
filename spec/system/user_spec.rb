@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe User, type: :system do
-
   let!(:user) { FactoryBot.create(:user) }
 
   describe 'ユーザ CRUD機能' do
-
     def user_sign_in
       visit new_user_registration_path
       fill_in 'user_username', with: 'Testing'
@@ -62,11 +62,9 @@ RSpec.describe User, type: :system do
         expect(current_path).to eq new_user_session_path
       end
     end
-
   end
 
   describe 'ログイン・ログアウト機能' do
-
     def user_login
       visit new_user_session_path
       fill_in 'user_email', with: 'testuser1@test.com'
@@ -85,12 +83,11 @@ RSpec.describe User, type: :system do
     context 'ユーザーがログアウトをした場合' do
       it 'ホーム画面に遷移する' do
         user_login
-        click_on  'Log out'
+        click_on 'Log out'
         sleep(0.1)
         expect(page).to have_content 'ログアウトしました'
         expect(current_path).to eq clothes_path
       end
     end
   end
-
 end

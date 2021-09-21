@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Order < ApplicationRecord
   belongs_to :user
   has_many :order_stocks, dependent: :destroy
@@ -7,12 +9,12 @@ class Order < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :last_name, presence: true, length: { maximum: 100 }
   validates :first_name, presence: true, length: { maximum: 100 }
-  VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/
+  VALID_POSTAL_CODE_REGEX = /\A\d{3}-?\d{4}\z/.freeze
   validates :postcode, presence: true, format: { with: VALID_POSTAL_CODE_REGEX }
   validates :prefecture_code, presence: true
   validates :address_city, presence: true, length: { maximum: 100 }
   validates :address_street, presence: true, length: { maximum: 100 }
-  VALID_PHONE_REGEX = /\A\d{10,11}\z/
+  VALID_PHONE_REGEX = /\A\d{10,11}\z/.freeze
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
 
   def self.new_order(user_id, address_id, price, used_points, paid_price)
@@ -29,7 +31,7 @@ class Order < ApplicationRecord
       address_city: @address.address_city,
       address_street: @address.address_street,
       address_building: @address.address_building,
-      phone_number: @address.phone_number,
+      phone_number: @address.phone_number
     )
   end
 end
