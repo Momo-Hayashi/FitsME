@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Favorite, type: :system do
-
   let!(:retailer) { FactoryBot.create(:retailer, email: 'testretailer@test.com') }
   let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer) }
   let!(:user) { FactoryBot.create(:user) }
 
   describe '服のお気に入り登録機能' do
-
     def user_login
       visit new_user_session_path
       fill_in 'user_email', with: 'testuser1@test.com'
@@ -54,6 +54,5 @@ RSpec.describe Favorite, type: :system do
         expect(page).to have_content('ログインもしくはアカウント登録してください')
       end
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :admin do
     name { 'アドミン' }
@@ -5,5 +7,4 @@ FactoryBot.define do
     password { 'admin@admin.jp' }
     password_confirmation { 'admin@admin.jp' }
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeOrdersColumns < ActiveRecord::Migration[5.2]
   def change
     remove_column :orders, :amount, :integer

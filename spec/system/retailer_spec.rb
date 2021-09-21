@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Retailer, type: :system do
-
   let!(:retailer) { FactoryBot.create(:retailer) }
 
   describe 'リテイラーCRUD機能' do
-
     def retailer_sign_up
       visit new_retailer_registration_path
       sleep(0.1)
@@ -55,12 +55,9 @@ RSpec.describe Retailer, type: :system do
         have_selector("img[src$='afends.png']")
       end
     end
-
   end
 
-
   describe 'ログイン・ログアウト機能' do
-
     def retailer_login
       visit new_retailer_session_path
       fill_in 'retailer_email', with: 'test_retailer1@test.com'
@@ -86,5 +83,4 @@ RSpec.describe Retailer, type: :system do
       end
     end
   end
-
 end

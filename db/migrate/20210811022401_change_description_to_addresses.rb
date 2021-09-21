@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeDescriptionToAddresses < ActiveRecord::Migration[5.2]
   def change
     change_column_null :addresses, :last_name, true

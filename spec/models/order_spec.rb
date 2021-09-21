@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Order, type: :model do
-
   user = FactoryBot.build(:user)
 
   describe 'バリデーションのテスト' do
@@ -20,10 +21,9 @@ RSpec.describe Order, type: :model do
 
     context 'postcodeが文字を含む場合' do
       it 'バリデーションに引っかかる' do
-        order = FactoryBot.build(:order, postcode: 'aaaaaaa', user: user )
+        order = FactoryBot.build(:order, postcode: 'aaaaaaa', user: user)
         expect(order).not_to be_valid
       end
     end
-
   end
 end

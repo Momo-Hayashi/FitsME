@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'tops#index'
 
@@ -36,10 +38,10 @@ Rails.application.routes.draw do
   get 'retailers/orders', to: 'retailers#orders'
   get 'retailers/orders/:id/detail', to: 'retailers#detail', as: 'retailers/orders/detail'
 
-  resources :favorites, only: %i[ create destroy index]
+  resources :favorites, only: %i[create destroy index]
   resources :addresses, only: [:destroy]
   resources :categories, only: [:show]
-  resources :orders, only: %i[ index show ]
+  resources :orders, only: %i[index show]
   resources :clothes do
     post 'confirm', on: :collection
     resources :reviews do
@@ -48,12 +50,11 @@ Rails.application.routes.draw do
   end
   get '/users/reviewable', to: 'reviews#index'
 
-  resources :carts, only: %i[ create destroy index update ] do
+  resources :carts, only: %i[create destroy index update] do
     get :confirm
     post :confirm
     get :pay
     post :pay
     post :complete
   end
-
 end

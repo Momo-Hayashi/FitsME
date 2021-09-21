@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Clothe < ApplicationRecord
   has_many_attached :images
   belongs_to :retailer
@@ -11,7 +13,9 @@ class Clothe < ApplicationRecord
 
   def reject_if_all_blank(attributes)
     if attributes[:id]
-      attributes.merge!(_destroy: "1") if attributes[:size].blank? and attributes[:color].blank? and attributes[:quantity].blank?
+      if attributes[:size].blank? && attributes[:color].blank? && attributes[:quantity].blank?
+        attributes.merge!(_destroy: '1')
+      end
       !attributes[:size].blank? and attributes[:color].blank? and attributes[:quantity].blank?
     else
       attributes[:size].blank? and attributes[:color].blank? and attributes[:quantity].blank?
@@ -22,7 +26,7 @@ class Clothe < ApplicationRecord
   validates :stocks, presence: true
 
   validates :name, presence: true, length: { maximum: 100 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1}
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :size, presence: true, length: { maximum: 500 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :images, presence: true
@@ -30,12 +34,11 @@ class Clothe < ApplicationRecord
 
   def less_than_3_categories
     if categories.length >= 4
-      errors.add(:categories, "は3つまでしか選べません")
-    elsif categories.length == 0
-      errors.add(:categories, "を1-3個選択してください")
-    elsif 0 < categories.length && categories.length < 4
+      errors.add(:categories, 'は3つまでしか選べません')
+    elsif categories.length.zero?
+      errors.add(:categories, 'を1-3個選択してください')
+    elsif categories.length.positive? && categories.length < 4
       true
     end
   end
-
 end

@@ -1,1 +1,3 @@
-json.partial! "clothes/clothe", clothe: @clothe
+# frozen_string_literal: true
+
+json.partial! 'clothes/clothe', clothe: @clothe

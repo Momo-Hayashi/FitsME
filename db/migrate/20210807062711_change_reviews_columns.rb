@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeReviewsColumns < ActiveRecord::Migration[5.2]
   def change
     remove_reference :reviews, :stock, foreign_key: true

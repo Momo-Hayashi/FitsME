@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Review, type: :system do
-
   describe 'レビュー CRUD 機能' do
-
     let!(:retailer) { FactoryBot.create(:retailer) }
     let!(:clothe) { FactoryBot.create(:clothe, retailer: retailer) }
     let!(:order) { FactoryBot.create(:order) }
@@ -67,6 +67,5 @@ RSpec.describe Review, type: :system do
         expect(page).not_to have_content('身長160cmのわたしはSサイズで丈感がちょうど')
       end
     end
-
   end
 end

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Retailer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  VALID_PHONE_REGEX = /\A\d{10,11}\z/
+  VALID_PHONE_REGEX = /\A\d{10,11}\z/.freeze
   validates :phone_number, presence: true, format: { with: VALID_PHONE_REGEX }
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, length: { maximum: 500 }, allow_blank: true
-  validates :website_url, format: /\A#{URI::regexp(%w(http https))}\z/, allow_blank: true
+  validates :website_url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/, allow_blank: true
   # /\Ahttp(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/
   validates :address, presence: true, length: { maximum: 250 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
@@ -28,5 +30,4 @@ class Retailer < ApplicationRecord
       retailer.website_url = 'https://wwwwjp/'
     end
   end
-
 end

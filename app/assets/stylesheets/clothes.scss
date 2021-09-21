@@ -71,6 +71,14 @@ article {
   margin-right: 15px;
 }
 
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar{
+  z-index: 10;
+}
+
 .clearfix:after {
   content: "";
   display: block;
@@ -84,9 +92,8 @@ td{
 .search_field {
   display: flex;
   align-items: center;
-  height: 96px;
   margin: 0 auto;
-  padding: 0 40px 0;
+  padding: 20px 40px;
   background-color: #FFFFFF;
   border-radius: 10px;
 }

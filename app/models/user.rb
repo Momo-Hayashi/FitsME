@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,9 +15,9 @@ class User < ApplicationRecord
   validates :birthday, presence: true
   validates :height, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
   validates :weight, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
-  validates :waist, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
-  validates :bust, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
-  validates :hip, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300  }, allow_blank: true
+  validates :waist, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300 }, allow_blank: true
+  validates :bust, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300 }, allow_blank: true
+  validates :hip, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 300 }, allow_blank: true
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_clothes, through: :favorites, source: :clothe
@@ -27,7 +29,9 @@ class User < ApplicationRecord
 
   def reject_all_blank(attributes)
     if attributes[:id]
-      attributes.merge!(_destroy: "1") if attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
+      if attributes[:last_name].blank? && attributes[:first_name].blank? && attributes[:postcode].blank? && attributes[:address_city].blank? && attributes[:address_street].blank? && attributes[:address_building].blank? && attributes[:phone_number].blank?
+        attributes.merge!(_destroy: '1')
+      end
       !attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
     else
       attributes[:last_name].blank? and attributes[:first_name].blank? and attributes[:postcode].blank? and attributes[:address_city].blank? and attributes[:address_street].blank? and attributes[:address_building].blank? and attributes[:phone_number].blank?
@@ -62,10 +66,9 @@ class User < ApplicationRecord
 
   def point_update(paid_price, used_points, user_id)
     @user = User.find(user_id)
-    new_points = paid_price.to_i*0.03
+    new_points = paid_price.to_i * 0.03
     new_points.round
     point_total = @user.points + new_points - used_points.to_i
-    @user.update(points:point_total)
+    @user.update(points: point_total)
   end
-
 end

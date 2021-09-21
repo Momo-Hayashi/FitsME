@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # user1 = User.create!(username: "Emily", email: "emily@mail.com", password: "emily@mail.com", birthday: '1995-10-15', points: 700, height: 160.8, weight: 50.3, waist: 60.3, bust: 80.7, hip: 90.5)
 # user2 = User.create!(username: "Rose", email: "rose@mail.com", password: "rose@mail.com", birthday: '1992-10-15', points: 700, height: 170.8, weight: 50.8, waist: 60.3, bust: 82.7, hip: 90.5)
 # user3 = User.create!(username: "Emilia", email: "emilia@mail.com", password: "emilia@mail.com", birthday: '1998-10-15', points: 58, height: 153.8, weight: 45.3, waist: 70.3, bust: 82.7, hip: 96.5)
@@ -994,4 +996,4 @@
 #     content: 'SET UP合わせて着ると、スタイルかなりよく見えます！肩幅もぴったしで、何より素材が気持ちいいです・・！春も秋も使えそうで嬉しい！' }
 # ])
 
-Admin.create!(name:'管理者', email:'admin@admin.jp', password:'admin@admin.jp')
+Admin.create!(name: '管理者', email: 'admin@admin.jp', password: 'admin@admin.jp')

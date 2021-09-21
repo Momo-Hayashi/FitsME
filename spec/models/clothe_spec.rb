@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Clothe, type: :model do
-
   retailer = FactoryBot.build(:retailer, email: 'retailer@retailer.jp')
 
   describe 'バリデーションのテスト' do
@@ -28,10 +29,9 @@ RSpec.describe Clothe, type: :model do
     context '在庫情報がない場合' do
       it 'バリデーションに引っかかる' do
         clothe = FactoryBot.build(:clothe, retailer: retailer)
-        clothe.stocks.build(size: '', color:'', quantity:'' )
+        clothe.stocks.build(size: '', color: '', quantity: '')
         expect(clothe).not_to be_valid
       end
     end
-
   end
 end
